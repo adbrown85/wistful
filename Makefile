@@ -21,7 +21,7 @@ LDFLAGS      := $(LIBS)
 # Interface
 .PHONY: all clean
 .DEFAULT: all
-all: tests
+all: tests objects
 clean:
 	$(RM) $(objects)
 	$(RM) $(depends)
