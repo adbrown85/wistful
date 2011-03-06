@@ -12,7 +12,6 @@ public:
 	void testCreate();
 };
 
-
 /** Ensures configurations can be created correctly. */
 void GglConfigFactoryTest::testCreate() {
 	

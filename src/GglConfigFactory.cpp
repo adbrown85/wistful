@@ -21,10 +21,10 @@ list<GglConfig> GglConfigFactory::create() {
 	
 	int len;
 	GLXFBConfig *fbcs = glXGetFBConfigs(display, 0, &len);
-	list<GglConfig> glcs = toGglConfig(fbcs, len, display);
+	list<GglConfig> configs = toGglConfig(fbcs, len, display);
 	
 	XFree(fbcs);
-	return glcs;
+	return configs;
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
@@ -33,11 +33,11 @@ list<GglConfig> GglConfigFactory::create(const map<int,int> requirements) {
 	const int *reqs = toArray(requirements);
 	int len;
 	GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
-	list<GlConfig> glcs = toGlConfig(fbcs, len, display);
+	list<GlConfig> configs = toGlConfig(fbcs, len, display);
 	
 	delete[] reqs;
 	XFree(fbcs);
-	return glcs;
+	return configs;
 }
 
 //---------------------------------------------------------
@@ -77,8 +77,8 @@ const int* GglConfig::toArray(const map<int,int> &m) {
  * @return List of GL configurations
  */
 list<GglConfig> GglConfig::toGlConfig(GLXFBConfig *arr,
-		                             int len,
-		                             Display *display) {
+		                              int len,
+		                              Display *display) {
 	
 	list<GglConfig> glcs;
 	
