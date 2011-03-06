@@ -1,34 +1,34 @@
 /*
- * GlConfigFactory.cpp
+ * GglConfigFactory.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GlConfigFactory.hpp"
+#include "GglConfigFactory.hpp"
 
 /** Creates an OpenGL configuration factory. */
-GlConfigFactory::GlConfigFactory() {
+GglConfigFactory::GglConfigFactory() {
 	display = createDisplay();
 }
 
 /** Destroys the factory. */
-GlConfigFactory::~GlConfigFactory() {
+GglConfigFactory::~GglConfigFactory() {
 	delete display;
 }
 
 /** Returns all available OpenGL configurations. */
-list<GlConfig> GlConfigFactory::create() {
+list<GglConfig> GglConfigFactory::create() {
 	
 	int len;
 	GLXFBConfig *fbcs = glXGetFBConfigs(display, 0, &len);
-	list<GlConfig> glcs = toGlConfig(fbcs, len, display);
+	list<GglConfig> glcs = toGglConfig(fbcs, len, display);
 	
 	XFree(fbcs);
 	return glcs;
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
-list<GlConfig> GlConfigFactory::create(const map<int,int> requirements) {
+list<GglConfig> GglConfigFactory::create(const map<int,int> requirements) {
 	
 	const int *reqs = toArray(requirements);
 	int len;
@@ -45,7 +45,7 @@ list<GlConfig> GlConfigFactory::create(const map<int,int> requirements) {
 //
 
 /** Returns pointer to the default X display. */
-Display* GlConfig::createDisplay() {
+Display* GglConfig::createDisplay() {
 	return XOpenDisplay(const_cast<const char*>(getenv("DISPLAY")));
 }
 
@@ -54,7 +54,7 @@ Display* GlConfig::createDisplay() {
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
  */
-const int* GlConfig::toArray(const map<int,int> &m) {
+const int* GglConfig::toArray(const map<int,int> &m) {
 	
 	int len = (m.size() * 2) + 1;           // Length of array
 	int *arr = new int[len];                // Array of integers
@@ -76,14 +76,14 @@ const int* GlConfig::toArray(const map<int,int> &m) {
  * @param display Associated X display
  * @return List of GL configurations
  */
-list<GlConfig> GlConfig::toGlConfig(GLXFBConfig *arr,
-		                            int len,
-		                            Display *display) {
+list<GglConfig> GglConfig::toGlConfig(GLXFBConfig *arr,
+		                             int len,
+		                             Display *display) {
 	
-	list<GlConfig> glcs;
+	list<GglConfig> glcs;
 	
 	for (int i=0; i<len; ++i) {
-		glcs.push_back(GlConfig(arr[i], display));
+		glcs.push_back(GglConfig(arr[i], display));
 	}
 	return glcs;
 }
