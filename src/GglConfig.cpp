@@ -1,31 +1,31 @@
 /*
- * GlConfig.cpp
+ * GglConfig.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GlConfig.hpp"
+#include "GglConfig.hpp"
 
 /** Creates an OpenGL configuration. */
-GlConfig::GlConfig(GLXFBConfig fbc) {
+GglConfig::GglConfig(GLXFBConfig fbc) {
 	this->fbConfig = fbc;
 }
 
 /** Destroys an OpenGL configuration. */
-GlConfig::~GlConfig() {
+GglConfig::~GglConfig() {
 	
 }
 
-int GlConfig::getBufferSize() const {
+int GglConfig::getBufferSize() const {
 	return findAttribute(GLX_BUFFER_SIZE);
 }
 
-bool GlConfig::isDoubleBuffered() const {
+bool GglConfig::isDoubleBuffered() const {
 	return findAttribute(GLX_DOUBLEBUFFER) > 0;
 }
 
 /** Returns value of an attribute. */
-int GlConfig::findAttribute(int name) const {
+int GglConfig::findAttribute(int name) const {
 	
 	int value;
 	

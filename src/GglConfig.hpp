@@ -1,19 +1,19 @@
 /*
- * GlConfig.hpp
+ * GglConfig.hpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLCONFIG_HPP
-#define GLCONFIG_HPP
+#ifndef GGLCONFIG_HPP
+#define GGLCONFIG_HPP
 #include "common.h"
 
 
 /** Settings for how an OpenGL window is configured. */
-class GlConfig {
+class GglConfig {
 public:
-	GlConfig(GLXFBConfig fbc, Display);
-	virtual ~GlConfig();
+	GglConfig(GLXFBConfig fbc);
+	virtual ~GglConfig();
 	virtual int getBufferSize() const;
 	virtual bool isDoubleBuffered() const;
 private:
