@@ -19,20 +19,11 @@ GglConfigFactory::~GglConfigFactory() {
 /** Returns OpenGL configurations meeting certain requirements. */
 list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	
-	const int *reqs;
+	const int *reqs = toArray(requirements);
 	int len;
-	GLXFBConfig *fbcs;
+	GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
 	list<GglConfig*> configs;
 	GglConfigGlxBuilder b;
-	
-	// Get framebuffer configurations from GLX
-	if (requirements.empty()) {
-		reqs = NULL;
-		fbcs = glXGetFBConfigs(display, 0, &len);
-	} else {
-		reqs = toArray(requirements);
-		fbcs = glXChooseFBConfig(display, 0, reqs, &len);
-	}
 	
 	// Convert configurations
 	for (int i=0; i<len; ++i) {
@@ -46,7 +37,7 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	}
 	
 	// Finish
-	if (reqs != NULL) delete[] reqs;
+	delete[] reqs;
 	XFree(fbcs);
 	return configs;
 }
