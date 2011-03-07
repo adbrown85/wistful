@@ -23,20 +23,17 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	int len;
 	GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
 	list<GglConfig*> configs;
-	GglConfigGlxBuilder b;
+	GglConfig *config;
+	int id;
 	
 	// Convert configurations
 	for (int i=0; i<len; ++i) {
-		b.glxFBConfig = fbcs[i];
-		b.red = getValue(fbcs[i], GLX_RED_SIZE);
-		b.green = getValue(fbcs[i], GLX_GREEN_SIZE);
-		b.blue = getValue(fbcs[i], GLX_BLUE_SIZE);
-		b.alpha = getValue(fbcs[i], GLX_ALPHA_SIZE);
-		b.depth = getValue(fbcs[i], GLX_DEPTH_SIZE);
-		b.stencil = getValue(fbcs[i], GLX_STENCIL_SIZE);
-		b.doubleBuffered = getValue(fbcs[i], GLX_DOUBLEBUFFER);
-		b.id = getValue(fbcs[i], GLX_FBCONFIG_ID);
-		configs.push_back(new GglConfigGlx(&b));
+		id = getValue(fbcs[i], GLX_FBCONFIG_ID);
+		config = find(id);
+		if (config == NULL) {
+			config = doCreate(fbcs[i]);
+		}
+		configs.push_back(config);
 	}
 	
 	// Finish
@@ -52,6 +49,35 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 /** Returns pointer to the default X display. */
 Display* GglConfigFactory::createDisplay() {
 	return XOpenDisplay(const_cast<const char*>(getenv("DISPLAY")));
+}
+
+/** Actually creates a configuration. */
+GglConfig* GglConfigFactory::doCreate(GLXFBConfig &fbc) {
+	
+	GglConfigGlxBuilder b;
+	
+	b.glxFBConfig = fbc;
+	b.red = getValue(fbc, GLX_RED_SIZE);
+	b.green = getValue(fbc, GLX_GREEN_SIZE);
+	b.blue = getValue(fbc, GLX_BLUE_SIZE);
+	b.alpha = getValue(fbc, GLX_ALPHA_SIZE);
+	b.depth = getValue(fbc, GLX_DEPTH_SIZE);
+	b.stencil = getValue(fbc, GLX_STENCIL_SIZE);
+	b.doubleBuffered = getValue(fbc, GLX_DOUBLEBUFFER);
+	b.id = getValue(fbc, GLX_FBCONFIG_ID);
+	return new GglConfigGlx(&b);
+}
+
+/** Finds a configuration that was already built.
+ * 
+ * @param id Identifier of configuration
+ * @return Pointer to the configuration, or NULL if not found
+ */
+GglConfig* GglConfigFactory::find(int id) {
+	
+	map<int,GglConfig*>::iterator it = configs.find(id);
+	
+	return (it == configs.end()) ? NULL : it->second;
 }
 
 /** Converts a map of integers to an array.
