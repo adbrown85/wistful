@@ -33,6 +33,7 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 		b.setBlueSize(getValue(fbcs[i], GLX_BLUE_SIZE));
 		b.setAlphaSize(getValue(fbcs[i], GLX_ALPHA_SIZE));
 		b.setDepthSize(getValue(fbcs[i], GLX_DEPTH_SIZE));
+		b.setDoubleBuffered(getValue(fbcs[i], GLX_DOUBLEBUFFER));
 		configs.push_back(new GglConfigGlx(&b));
 	}
 	
