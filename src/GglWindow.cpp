@@ -1,22 +1,33 @@
 /*
- * GlWindowGlx.cpp
+ * GglWindow.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GlWindowGlx.hpp"
+#include "GglWindow.hpp"
 
 /** Creates a window. */
-GlWindowGlx::GlWindowGlx() {
+GglWindow::GglWindow() {
+	
+}
+
+/** Destroys the window. */
+GglWindow::~GglWindow() {
+	
+}
+
+/** Creates a window. */
+GglWindowGlx::GglWindowGlx() {
 	display = XOpenDisplay(getenv("DISPLAY"));
 }
 
 /** Destroys the window. */
-GlWindowGlx::~GlWindowGlx() {
+GglWindowGlx::~GglWindowGlx() {
 	XCloseDisplay(display);
 }
 
 /** Shows the window. */
-void GlWindowGlx::show() {
+void GglWindowGlx::show() {
 	cout << "GlWindowGlx::show()" << endl;
 }
+
