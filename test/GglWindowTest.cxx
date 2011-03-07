@@ -1,10 +1,10 @@
 /*
- * GlWindowGlxTest.cxx
+ * GglWindowGlxTest.cxx
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GlWindowGlx.hpp"
+#include "GglWindow.hpp"
 #include <iostream>
 using namespace std;
 
