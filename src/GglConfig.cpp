@@ -8,42 +8,42 @@
 
 /** Creates an OpenGL configuration builder. */
 GglConfigBuilder::GglConfigBuilder() {
-	r = 0;
-	g = 0;
-	b = 0;
-	a = 0;
+	red = 0;
+	green = 0;
+	blue = 0;
+	alpha = 0;
 	depth = 0;
 	doubleBuffered = false;
 }
 
 /** Creates an OpenGL configuration. */
 GglConfig::GglConfig(GglConfigBuilder *b) {
-	this->r = b->r;
-	this->g = b->g;
-	this->b = b->b;
-	this->a = b->a;
+	this->red = b->red;
+	this->green = b->green;
+	this->blue = b->blue;
+	this->alpha = b->alpha;
 	this->depth = b->depth;
 	this->doubleBuffered = b->doubleBuffered;
 }
 
 /** Returns size of red buffer in bits. */
 int GglConfig::getRedSize() const {
-	return r;
+	return red;
 }
 
 /** Returns size of green buffer in bits. */
 int GglConfig::getGreenSize() const {
-	return g;
+	return green;
 }
 
 /** Returns size of red buffer in bits. */
 int GglConfig::getBlueSize() const {
-	return b;
+	return blue;
 }
 
 /** Returns size of red buffer in bits. */
 int GglConfig::getAlphaSize() const {
-	return a;
+	return alpha;
 }
 
 /** Returns size of depth buffer in bits. */

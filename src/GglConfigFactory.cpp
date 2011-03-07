@@ -28,10 +28,10 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	// Convert configurations
 	for (int i=0; i<len; ++i) {
 		b.glxFBConfig = fbcs[i];
-		b.r = getValue(fbcs[i], GLX_RED_SIZE);
-		b.g = getValue(fbcs[i], GLX_GREEN_SIZE);
-		b.b = getValue(fbcs[i], GLX_BLUE_SIZE);
-		b.a = getValue(fbcs[i], GLX_ALPHA_SIZE);
+		b.red = getValue(fbcs[i], GLX_RED_SIZE);
+		b.green = getValue(fbcs[i], GLX_GREEN_SIZE);
+		b.blue = getValue(fbcs[i], GLX_BLUE_SIZE);
+		b.alpha = getValue(fbcs[i], GLX_ALPHA_SIZE);
 		b.depth = getValue(fbcs[i], GLX_DEPTH_SIZE);
 		b.doubleBuffered = (getValue(fbcs[i], GLX_DOUBLEBUFFER));
 		configs.push_back(new GglConfigGlx(&b));

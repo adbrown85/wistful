@@ -14,10 +14,10 @@ class GglConfigBuilder {
 public:
 	GglConfigBuilder();
 	virtual ~GglConfigBuilder() {}
-	int r;                                  // Red size
-	int g;                                  // Green size
-	int b;                                  // Blue size
-	int a;                                  // Alpha size
+	int red;                                // Red size
+	int green;                              // Green size
+	int blue;                               // Blue size
+	int alpha;                              // Alpha size
 	int depth;                              // Depth size
 	bool doubleBuffered;                    // True if front and back buffers
 };
@@ -35,10 +35,10 @@ public:
 	virtual int getDepthSize() const;
 	virtual bool isDoubleBuffered() const;
 private:
-	int r;                                  // Red size
-	int g;                                  // Green size
-	int b;                                  // Blue size
-	int a;                                  // Alpha size
+	int red;                                // Red size
+	int green;                              // Green size
+	int blue;                               // Blue size
+	int alpha;                              // Alpha size
 	int depth;                              // Depth size
 	bool doubleBuffered;                    // True if front and back buffer
 };
