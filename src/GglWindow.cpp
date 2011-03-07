@@ -6,17 +6,7 @@
  */
 #include "GglWindow.hpp"
 
-/** Creates a window. */
-GglWindow::GglWindow() {
-	
-}
-
-/** Destroys the window. */
-GglWindow::~GglWindow() {
-	
-}
-
-/** Creates a window. */
+/** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx() {
 	display = XOpenDisplay(getenv("DISPLAY"));
 }

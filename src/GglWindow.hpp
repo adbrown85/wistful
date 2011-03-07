@@ -12,8 +12,7 @@
 /** @brief OpenGL window that can be shown. */
 class GglWindow {
 public:
-	GglWindow();
-	virtual ~GglWindow();
+	virtual ~GglWindow() {}
 	virtual void show() = 0;
 };
 
