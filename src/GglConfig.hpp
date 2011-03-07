@@ -24,16 +24,20 @@ public:
 	virtual void setBlueSize(int b);
 	virtual int getAlphaSize();
 	virtual void setAlphaSize(int a);
+	virtual int getDepthSize();
+	virtual void setDepthSize(int depth);
 private:
 	int r;                                  // Red size
 	int g;                                  // Green size
 	int b;                                  // Blue size
 	int a;                                  // Alpha size
+	int depth;                              // Depth size
 // Constants
 	static const int DEFAULT_R = 8;
 	static const int DEFAULT_G = 8;
 	static const int DEFAULT_B = 8;
 	static const int DEFAULT_A = 8;
+	static const int DEFAULT_DEPTH = 24;
 };
 
 
@@ -46,11 +50,13 @@ public:
 	virtual int getGreenSize() const;
 	virtual int getBlueSize() const;
 	virtual int getAlphaSize() const;
+	virtual int getDepthSize() const;
 private:
 	int r;                                  // Red size
 	int g;                                  // Green size
 	int b;                                  // Blue size
 	int a;                                  // Alpha size
+	int depth;                              // Depth size
 };
 
 

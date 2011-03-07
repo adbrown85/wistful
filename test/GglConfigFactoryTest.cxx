@@ -33,16 +33,9 @@ void GglConfigFactoryTest::testCreate() {
 	configs = cf.create(reqs);
 	
 	cout << "Found " << configs.size() << " configurations." << endl;
-	it = configs.begin();
-	GglConfigGlx *cfg = (GglConfigGlx*) *it;
-	cfg->getFBConfig();
-	
-//	for (it=configs.begin(); it!=configs.end(); ++it) {
-//		cout << it->getRedSize() << endl;
-//		cout << it->getGreenSize() << endl;
-//		cout << it->getBlueSize() << endl;
-//		cout << it->getAlphaSize() << endl;
-//	}
+	for (it=configs.begin(); it!=configs.end(); ++it) {
+		cout << (*it)->getDepthSize() << endl;
+	}
 }
 
 /** Runs the test. */

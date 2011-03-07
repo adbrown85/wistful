@@ -12,6 +12,7 @@ GglConfigBuilder::GglConfigBuilder() {
 	g = DEFAULT_G;
 	b = DEFAULT_B;
 	a = DEFAULT_A;
+	depth = DEFAULT_DEPTH;
 }
 
 /** Reverts all values to their defaults. */
@@ -20,6 +21,7 @@ void GglConfigBuilder::reset() {
 	g = DEFAULT_G;
 	b = DEFAULT_B;
 	a = DEFAULT_A;
+	depth = DEFAULT_DEPTH;
 }
 
 /** Returns size of red buffer in bits. */
@@ -62,12 +64,23 @@ void GglConfigBuilder::setAlphaSize(int a) {
 	this->a = a;
 }
 
+/** Returns size of depth buffer in bits. */
+int GglConfigBuilder::getDepthSize() {
+	return depth;
+}
+
+/** Changes the size of the depth buffer. */
+void GglConfigBuilder::setDepthSize(int depth) {
+	this->depth = depth;
+}
+
 /** Creates an OpenGL configuration. */
 GglConfig::GglConfig(GglConfigBuilder *b) {
 	this->r = b->getRedSize();
 	this->g = b->getGreenSize();
 	this->b = b->getBlueSize();
 	this->a = b->getAlphaSize();
+	this->depth = b->getDepthSize();
 }
 
 /** Returns size of red buffer in bits. */
@@ -88,6 +101,11 @@ int GglConfig::getBlueSize() const {
 /** Returns size of red buffer in bits. */
 int GglConfig::getAlphaSize() const {
 	return a;
+}
+
+/** Returns size of depth buffer in bits. */
+int GglConfig::getDepthSize() const {
+	return depth;
 }
 
 /** Changes the native framebuffer configuration with GLX. */
