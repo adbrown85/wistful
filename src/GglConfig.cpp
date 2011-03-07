@@ -8,11 +8,7 @@
 
 /** Creates an OpenGL configuration builder. */
 GglConfigBuilder::GglConfigBuilder() {
-	r = DEFAULT_R;
-	g = DEFAULT_G;
-	b = DEFAULT_B;
-	a = DEFAULT_A;
-	depth = DEFAULT_DEPTH;
+	GglConfigBuilder::reset();
 }
 
 /** Reverts all values to their defaults. */
