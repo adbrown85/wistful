@@ -26,18 +26,22 @@ public:
 	virtual void setAlphaSize(int a);
 	virtual int getDepthSize();
 	virtual void setDepthSize(int depth);
+	virtual bool isDoubleBuffered();
+	virtual void setDoubleBuffered(bool doubleBuffered);
 private:
 	int r;                                  // Red size
 	int g;                                  // Green size
 	int b;                                  // Blue size
 	int a;                                  // Alpha size
 	int depth;                              // Depth size
+	bool doubleBuffered;                    // True if front and back buffers
 // Constants
 	static const int DEFAULT_R = 8;
 	static const int DEFAULT_G = 8;
 	static const int DEFAULT_B = 8;
 	static const int DEFAULT_A = 8;
 	static const int DEFAULT_DEPTH = 24;
+	static const bool DEFAULT_DOUBLE_BUFFERED = true;
 };
 
 
@@ -51,12 +55,14 @@ public:
 	virtual int getBlueSize() const;
 	virtual int getAlphaSize() const;
 	virtual int getDepthSize() const;
+	virtual bool isDoubleBuffered() const;
 private:
 	int r;                                  // Red size
 	int g;                                  // Green size
 	int b;                                  // Blue size
 	int a;                                  // Alpha size
 	int depth;                              // Depth size
+	bool doubleBuffered;                    // True if front and back buffer
 };
 
 

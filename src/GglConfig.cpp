@@ -18,6 +18,7 @@ void GglConfigBuilder::reset() {
 	b = DEFAULT_B;
 	a = DEFAULT_A;
 	depth = DEFAULT_DEPTH;
+	doubleBuffered = DEFAULT_DOUBLE_BUFFERED;
 }
 
 /** Returns size of red buffer in bits. */
@@ -70,6 +71,16 @@ void GglConfigBuilder::setDepthSize(int depth) {
 	this->depth = depth;
 }
 
+/** Returns <tt>true</tt> if has both front and back buffers. */
+bool GglConfigBuilder::isDoubleBuffered() {
+	return doubleBuffered;
+}
+
+/** Changes whether the framebuffer with have both front and back buffers. */
+void GglConfigBuilder::setDoubleBuffered(bool doubleBuffered) {
+	this->doubleBuffered = doubleBuffered;
+}
+
 /** Creates an OpenGL configuration. */
 GglConfig::GglConfig(GglConfigBuilder *b) {
 	this->r = b->getRedSize();
@@ -77,6 +88,7 @@ GglConfig::GglConfig(GglConfigBuilder *b) {
 	this->b = b->getBlueSize();
 	this->a = b->getAlphaSize();
 	this->depth = b->getDepthSize();
+	this->doubleBuffered = b->isDoubleBuffered();
 }
 
 /** Returns size of red buffer in bits. */
@@ -102,6 +114,11 @@ int GglConfig::getAlphaSize() const {
 /** Returns size of depth buffer in bits. */
 int GglConfig::getDepthSize() const {
 	return depth;
+}
+
+/** Returns <tt>true</tt> if has both front and back buffers. */
+bool GglConfig::isDoubleBuffered() const {
+	return doubleBuffered;
 }
 
 /** Changes the native framebuffer configuration with GLX. */
