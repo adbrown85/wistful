@@ -37,7 +37,6 @@ void GglConfigFactoryTest::testCreate() {
 		cout << "----" << endl;
 		cout << "  " << (*it)->getDepthSize() << endl;
 		cout << "  " << (*it)->getStencilSize() << endl;
-		cout << "  " << (*it)->isDoubleBuffered() << endl;
 	}
 }
 

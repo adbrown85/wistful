@@ -43,7 +43,7 @@ private:
 	int alpha;                              // Alpha size
 	int depth;                              // Depth size
 	int stencil;                            // Stencil size
-	bool doubleBuffered;                    // True if front and back buffer
+	bool doubleBuffered;                    // True if front and back buffers
 };
 
 
