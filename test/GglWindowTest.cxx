@@ -10,15 +10,15 @@ using namespace std;
 
 
 /** Test for GlWindowGlx. */
-class GlWindowGlxTest {
+class GglWindowGlxTest {
 public:
 	void testShow();
 };
 
 /** Ensures window can be shown. */
-void GlWindowGlxTest::testShow() {
+void GglWindowGlxTest::testShow() {
 	
-	GlWindowGlx window;
+	GglWindowGlx window;
 	
 	window.show();
 }
@@ -26,7 +26,7 @@ void GlWindowGlxTest::testShow() {
 /** Runs the test. */
 int main(int argc, char *argv[]) {
 	
-	GlWindowGlxTest test;
+	GglWindowGlxTest test;
 	
 	test.testShow();
 }
