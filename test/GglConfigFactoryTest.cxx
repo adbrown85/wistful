@@ -35,6 +35,7 @@ void GglConfigFactoryTest::testCreate() {
 	cout << "Found " << configs.size() << " configurations." << endl;
 	for (it=configs.begin(); it!=configs.end(); ++it) {
 		cout << "----" << endl;
+		cout << "  " << ((GglConfigGlx*) (*it))->getId() << endl;
 		cout << "  " << (*it)->getDepthSize() << endl;
 		cout << "  " << (*it)->getStencilSize() << endl;
 	}

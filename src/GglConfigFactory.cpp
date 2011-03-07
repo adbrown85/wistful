@@ -35,6 +35,7 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 		b.depth = getValue(fbcs[i], GLX_DEPTH_SIZE);
 		b.stencil = getValue(fbcs[i], GLX_STENCIL_SIZE);
 		b.doubleBuffered = getValue(fbcs[i], GLX_DOUBLEBUFFER);
+		b.id = getValue(fbcs[i], GLX_FBCONFIG_ID);
 		configs.push_back(new GglConfigGlx(&b));
 	}
 	

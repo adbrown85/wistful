@@ -52,6 +52,7 @@ class GglConfigGlxBuilder : public GglConfigBuilder {
 public:
 	virtual ~GglConfigGlxBuilder() {}
 	GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
+	int id;                                 // Identifier from X
 };
 
 
@@ -61,8 +62,10 @@ public:
 	GglConfigGlx(GglConfigGlxBuilder *b);
 	virtual ~GglConfigGlx() {}
 	virtual GLXFBConfig getFBConfig();
+	virtual int getId();
 private:
 	GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
+	int id;                                 // Identifier from GLX
 };
 
 
