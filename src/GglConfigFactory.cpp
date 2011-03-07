@@ -27,7 +27,6 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	
 	// Convert configurations
 	for (int i=0; i<len; ++i) {
-		b.reset();
 		b.setFBConfig(fbcs[i]);
 		b.setRedSize(getValue(fbcs[i], GLX_RED_SIZE));
 		b.setGreenSize(getValue(fbcs[i], GLX_GREEN_SIZE));

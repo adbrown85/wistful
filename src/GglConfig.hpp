@@ -14,7 +14,6 @@ class GglConfigBuilder {
 public:
 	GglConfigBuilder();
 	virtual ~GglConfigBuilder() {}
-	virtual void reset();
 // Getters and setters
 	virtual int getRedSize();
 	virtual void setRedSize(int r);

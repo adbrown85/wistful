@@ -8,11 +8,6 @@
 
 /** Creates an OpenGL configuration builder. */
 GglConfigBuilder::GglConfigBuilder() {
-	GglConfigBuilder::reset();
-}
-
-/** Reverts all values to their defaults. */
-void GglConfigBuilder::reset() {
 	r = DEFAULT_R;
 	g = DEFAULT_G;
 	b = DEFAULT_B;
