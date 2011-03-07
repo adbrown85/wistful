@@ -13,7 +13,7 @@ GglConfigFactory::GglConfigFactory() {
 
 /** Destroys the factory. */
 GglConfigFactory::~GglConfigFactory() {
-//	delete display;
+	XCloseDisplay(display);
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
