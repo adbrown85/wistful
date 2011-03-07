@@ -14,33 +14,12 @@ class GglConfigBuilder {
 public:
 	GglConfigBuilder();
 	virtual ~GglConfigBuilder() {}
-// Getters and setters
-	virtual int getRedSize();
-	virtual void setRedSize(int r);
-	virtual int getGreenSize();
-	virtual void setGreenSize(int g);
-	virtual int getBlueSize();
-	virtual void setBlueSize(int b);
-	virtual int getAlphaSize();
-	virtual void setAlphaSize(int a);
-	virtual int getDepthSize();
-	virtual void setDepthSize(int depth);
-	virtual bool isDoubleBuffered();
-	virtual void setDoubleBuffered(bool doubleBuffered);
-private:
 	int r;                                  // Red size
 	int g;                                  // Green size
 	int b;                                  // Blue size
 	int a;                                  // Alpha size
 	int depth;                              // Depth size
 	bool doubleBuffered;                    // True if front and back buffers
-// Constants
-	static const int DEFAULT_R = 8;
-	static const int DEFAULT_G = 8;
-	static const int DEFAULT_B = 8;
-	static const int DEFAULT_A = 8;
-	static const int DEFAULT_DEPTH = 24;
-	static const bool DEFAULT_DOUBLE_BUFFERED = true;
 };
 
 
@@ -69,10 +48,6 @@ private:
 class GglConfigGlxBuilder : public GglConfigBuilder {
 public:
 	virtual ~GglConfigGlxBuilder() {}
-// Getters and setters
-	virtual GLXFBConfig getFBConfig();
-	virtual void setFBConfig(GLXFBConfig fbc);
-private:
 	GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
 };
 

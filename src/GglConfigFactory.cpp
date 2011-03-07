@@ -27,13 +27,13 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	
 	// Convert configurations
 	for (int i=0; i<len; ++i) {
-		b.setFBConfig(fbcs[i]);
-		b.setRedSize(getValue(fbcs[i], GLX_RED_SIZE));
-		b.setGreenSize(getValue(fbcs[i], GLX_GREEN_SIZE));
-		b.setBlueSize(getValue(fbcs[i], GLX_BLUE_SIZE));
-		b.setAlphaSize(getValue(fbcs[i], GLX_ALPHA_SIZE));
-		b.setDepthSize(getValue(fbcs[i], GLX_DEPTH_SIZE));
-		b.setDoubleBuffered(getValue(fbcs[i], GLX_DOUBLEBUFFER));
+		b.glxFBConfig = fbcs[i];
+		b.r = getValue(fbcs[i], GLX_RED_SIZE);
+		b.g = getValue(fbcs[i], GLX_GREEN_SIZE);
+		b.b = getValue(fbcs[i], GLX_BLUE_SIZE);
+		b.a = getValue(fbcs[i], GLX_ALPHA_SIZE);
+		b.depth = getValue(fbcs[i], GLX_DEPTH_SIZE);
+		b.doubleBuffered = (getValue(fbcs[i], GLX_DOUBLEBUFFER));
 		configs.push_back(new GglConfigGlx(&b));
 	}
 	
