@@ -15,14 +15,13 @@ class GglConfigFactory {
 public:
 	GglConfigFactory();
 	virtual ~GglConfigFactory();
-	virtual list<GglConfig> create();
-	virtual list<GglConfig> create(const map<int,int> &requirements);
+	virtual list<GglConfig*> create(const map<int,int> &requirements);
 private:
 	Display *display;
 // Helpers
 	static Display* createDisplay();
 	static const int* toArray(const map<int,int> &m);
-	static list<GglConfig> toGglConfig(GLXFBConfig*, int, Display*);
+	int getValue(GLXFBConfig fbc, int key);
 };
 
 #endif

@@ -13,29 +13,40 @@ GglConfigFactory::GglConfigFactory() {
 
 /** Destroys the factory. */
 GglConfigFactory::~GglConfigFactory() {
-	delete display;
-}
-
-/** Returns all available OpenGL configurations. */
-list<GglConfig> GglConfigFactory::create() {
-	
-	int len;
-	GLXFBConfig *fbcs = glXGetFBConfigs(display, 0, &len);
-	list<GglConfig> configs = toGglConfig(fbcs, len, display);
-	
-	XFree(fbcs);
-	return configs;
+//	delete display;
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
-list<GglConfig> GglConfigFactory::create(const map<int,int> requirements) {
+list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	
-	const int *reqs = toArray(requirements);
+	const int *reqs;
 	int len;
-	GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
-	list<GlConfig> configs = toGlConfig(fbcs, len, display);
+	GLXFBConfig *fbcs;
+	list<GglConfig*> configs;
+	GglConfigGlxBuilder b;
 	
-	delete[] reqs;
+	// Get framebuffer configurations from GLX
+	if (requirements.empty()) {
+		reqs = NULL;
+		fbcs = glXGetFBConfigs(display, 0, &len);
+	} else {
+		reqs = toArray(requirements);
+		fbcs = glXChooseFBConfig(display, 0, reqs, &len);
+	}
+	
+	// Convert configurations
+	for (int i=0; i<len; ++i) {
+		b.reset();
+		b.setFBConfig(fbcs[i]);
+		b.setRedSize(getValue(fbcs[i], GLX_RED_SIZE));
+		b.setGreenSize(getValue(fbcs[i], GLX_GREEN_SIZE));
+		b.setBlueSize(getValue(fbcs[i], GLX_BLUE_SIZE));
+		b.setAlphaSize(getValue(fbcs[i], GLX_ALPHA_SIZE));
+		configs.push_back(new GglConfigGlx(&b));
+	}
+	
+	// Finish
+	if (reqs != NULL) delete[] reqs;
 	XFree(fbcs);
 	return configs;
 }
@@ -45,7 +56,7 @@ list<GglConfig> GglConfigFactory::create(const map<int,int> requirements) {
 //
 
 /** Returns pointer to the default X display. */
-Display* GglConfig::createDisplay() {
+Display* GglConfigFactory::createDisplay() {
 	return XOpenDisplay(const_cast<const char*>(getenv("DISPLAY")));
 }
 
@@ -54,7 +65,7 @@ Display* GglConfig::createDisplay() {
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
  */
-const int* GglConfig::toArray(const map<int,int> &m) {
+const int* GglConfigFactory::toArray(const map<int,int> &m) {
 	
 	int len = (m.size() * 2) + 1;           // Length of array
 	int *arr = new int[len];                // Array of integers
@@ -69,22 +80,17 @@ const int* GglConfig::toArray(const map<int,int> &m) {
 	return const_cast<const int*>(arr);
 }
 
-/** Converts X framebuffer configurations to GL configurations.
+/** Returns the value of an attribute.
  * 
- * @param arr Pointer to an array of X framebuffer configurations
- * @param len Length of the array
- * @param display Associated X display
- * @return List of GL configurations
+ * @param display Current X screen
+ * @param fbc GLX Framebuffer configuration
+ * @param key Name of attribute
  */
-list<GglConfig> GglConfig::toGlConfig(GLXFBConfig *arr,
-		                              int len,
-		                              Display *display) {
+int GglConfigFactory::getValue(GLXFBConfig fbc, int key) {
 	
-	list<GglConfig> glcs;
+	int value;
 	
-	for (int i=0; i<len; ++i) {
-		glcs.push_back(GglConfig(arr[i], display));
-	}
-	return glcs;
+	glXGetFBConfigAttrib(display, fbc, key, &value);
+	return value;
 }
 
