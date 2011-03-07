@@ -23,6 +23,7 @@ GglConfig::GglConfig(GglConfigBuilder *b) {
 	this->blue = b->blue;
 	this->alpha = b->alpha;
 	this->depth = b->depth;
+	this->stencil = b->stencil;
 	this->doubleBuffered = b->doubleBuffered;
 }
 
@@ -49,6 +50,11 @@ int GglConfig::getAlphaSize() const {
 /** Returns size of depth buffer in bits. */
 int GglConfig::getDepthSize() const {
 	return depth;
+}
+
+/** Returns size of stencil buffer in bits. */
+int GglConfig::getStencilSize() const {
+	return stencil;
 }
 
 /** Returns <tt>true</tt> if has both front and back buffers. */

@@ -19,6 +19,7 @@ public:
 	int blue;                               // Blue size
 	int alpha;                              // Alpha size
 	int depth;                              // Depth size
+	int stencil;                            // Stencil size
 	bool doubleBuffered;                    // True if front and back buffers
 };
 
@@ -33,6 +34,7 @@ public:
 	virtual int getBlueSize() const;
 	virtual int getAlphaSize() const;
 	virtual int getDepthSize() const;
+	virtual int getStencilSize() const;
 	virtual bool isDoubleBuffered() const;
 private:
 	int red;                                // Red size
@@ -40,6 +42,7 @@ private:
 	int blue;                               // Blue size
 	int alpha;                              // Alpha size
 	int depth;                              // Depth size
+	int stencil;                            // Stencil size
 	bool doubleBuffered;                    // True if front and back buffer
 };
 
