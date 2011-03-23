@@ -48,7 +48,7 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 
 /** Returns pointer to the default X display. */
 Display* GglConfigFactory::createDisplay() {
-	return XOpenDisplay(const_cast<const char*>(getenv("DISPLAY")));
+	return XOpenDisplay(NULL);
 }
 
 /** Actually creates a configuration. */
