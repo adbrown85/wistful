@@ -7,6 +7,7 @@
 #ifndef GGLWINDOW_HPP
 #define GGLWINDOW_HPP
 #include "common.h"
+#include "GglConfig.hpp"
 
 
 /** @brief OpenGL window that can be shown. */
@@ -20,11 +21,13 @@ public:
 /** @brief OpenGL Window implemented with GLX. */
 class GglWindowGlx {
 public:
-	GglWindowGlx();
+	GglWindowGlx(GglConfigGlx *cfg);
 	virtual ~GglWindowGlx();
 	virtual void show();
 private:
 	Display *display;
+	Window window;
+	XVisualInfo *visualInfo;
 };
 
 #endif

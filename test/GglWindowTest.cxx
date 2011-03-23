@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglWindow.hpp"
+#include "GglConfigFactory.hpp"
 #include <iostream>
 using namespace std;
 
@@ -18,9 +19,24 @@ public:
 /** Ensures window can be shown. */
 void GglWindowGlxTest::testShow() {
 	
-	GglWindowGlx window;
+	GglConfigFactory cf;
+	GglWindowGlx *window;
+	map<int,int> m;
+	list<GglConfig*> configs;
+	GglConfig* config;
 	
-	window.show();
+	m[GLX_RENDER_TYPE] = GLX_RGBA_BIT;
+	m[GLX_X_RENDERABLE] = True;
+	m[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
+	m[GLX_DOUBLEBUFFER] = True;
+	m[GLX_RED_SIZE] = 8;
+	m[GLX_GREEN_SIZE] = 8;
+	m[GLX_BLUE_SIZE] = 8;
+	configs = cf.create(m);
+	config = *(configs.begin());
+	
+	window = new GglWindowGlx((GglConfigGlx*) config);
+	window->show();
 }
 
 /** Runs the test. */
