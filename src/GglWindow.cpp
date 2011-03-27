@@ -48,4 +48,12 @@ void GglWindowGlx::show() {
 			winmask,
 			&wa);
 	XMapWindow(display, window);
+	
+	GLXContext context = glXCreateContext(display, visualInfo, 0, True);
+	glXMakeCurrent(display, window, context);
+	
+	glViewport(0, 0, 512, 512);
+	glClearColor(0, 0, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glXSwapBuffers(display, window);
 }
