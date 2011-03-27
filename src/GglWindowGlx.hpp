@@ -24,6 +24,7 @@ private:
 // Helpers
 	static Display* getDefaultDisplay();
 	static long getEventMask();
+	static long getWindowMask();
 	Colormap getColormap();
 };
 
