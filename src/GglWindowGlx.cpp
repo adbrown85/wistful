@@ -12,6 +12,7 @@ GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
 	this->display = NULL;
 	this->info = NULL;
 	this->window = NULL;
+	this->context = NULL;
 }
 
 /** Destroys the window. */
@@ -28,7 +29,7 @@ void GglWindowGlx::open() {
 	createXWindow();
 	mapXWindow();
 	
-	GLXContext context = glXCreateContext(display, info, 0, True);
+	context = glXCreateContext(display, info, 0, True);
 	glXMakeCurrent(display, window, context);
 	
 	glViewport(0, 0, 512, 512);
@@ -46,6 +47,8 @@ void GglWindowGlx::close() {
 		return;
 	}
 	
+    glXDestroyContext(display, context);
+    context = NULL;
 	XDestroyWindow(display, window);
 	window = NULL;
 	XCloseDisplay(display);

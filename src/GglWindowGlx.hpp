@@ -23,6 +23,7 @@ private:
 	Display *display;
 	XVisualInfo *info;
 	Window window;
+	GLXContext context;
 // Helpers
 	static Display* getDefaultDisplay();
 	static long getEventMask();
