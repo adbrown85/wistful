@@ -16,7 +16,7 @@ class GglWindowGlx {
 public:
 	GglWindowGlx(GglConfigGlx *config);
 	virtual ~GglWindowGlx();
-	virtual void show();
+	virtual void open();
 private:
 	GglConfigGlx *config;
 	Display *display;

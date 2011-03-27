@@ -36,7 +36,7 @@ void GglWindowGlxTest::testShow() {
 	config = *(configs.begin());
 	
 	window = new GglWindowGlx((GglConfigGlx*) config);
-	window->show();
+	window->open();
 }
 
 /** Runs the test. */

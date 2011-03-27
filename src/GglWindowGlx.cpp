@@ -22,7 +22,7 @@ GglWindowGlx::~GglWindowGlx() {
 }
 
 /** Shows the window. */
-void GglWindowGlx::show() {
+void GglWindowGlx::open() {
 	
 	display = getDefaultDisplay();
 	info = glXGetVisualFromFBConfig(display, config->getFBConfig());
