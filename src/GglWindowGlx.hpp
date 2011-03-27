@@ -26,6 +26,7 @@ private:
 	static long getEventMask();
 	static long getWindowMask();
 	Colormap getColormap();
+	XSetWindowAttributes getWindowAttributes();
 };
 
 #endif

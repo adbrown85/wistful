@@ -21,12 +21,7 @@ GglWindowGlx::~GglWindowGlx() {
 /** Shows the window. */
 void GglWindowGlx::show() {
 	
-	XSetWindowAttributes wa;
-	
-	wa.event_mask = getEventMask();
-	wa.border_pixel = 0;
-	wa.bit_gravity = StaticGravity;
-	wa.colormap = getColormap();
+	XSetWindowAttributes wa = getWindowAttributes();
 	int winmask = getWindowMask();
 	
 	window = XCreateWindow(
@@ -101,4 +96,15 @@ Colormap GglWindowGlx::getColormap() {
  */
 long GglWindowGlx::getWindowMask() {
 	return CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
+}
+
+XSetWindowAttributes GglWindowGlx::getWindowAttributes() {
+	
+	XSetWindowAttributes wa;
+	
+	wa.event_mask = getEventMask();
+	wa.border_pixel = 0;
+	wa.bit_gravity = StaticGravity;
+	wa.colormap = getColormap();
+	return wa;
 }
