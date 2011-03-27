@@ -23,6 +23,7 @@ private:
 	XVisualInfo *visual;
 // Helpers
 	static Display* getDefaultDisplay();
+	static long getEventMask();
 };
 
 #endif

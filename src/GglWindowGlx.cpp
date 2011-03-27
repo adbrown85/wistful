@@ -23,10 +23,7 @@ void GglWindowGlx::show() {
 	
 	XSetWindowAttributes wa;
 	
-	wa.event_mask = 
-			ExposureMask | VisibilityChangeMask | 
-			KeyPressMask | PointerMotionMask | 
-			StructureNotifyMask;
+	wa.event_mask = getEventMask();
 	wa.border_pixel = 0;
 	wa.bit_gravity = StaticGravity;
 	wa.colormap = XCreateColormap(
@@ -76,4 +73,15 @@ Display* GglWindowGlx::getDefaultDisplay() {
 		throw GglException("Could not open default display!");
 	}
 	return display;
+}
+
+/**
+ * Returns an event mask for use with the window.
+ */
+long GglWindowGlx::getEventMask() {
+	return ExposureMask
+			| StructureNotifyMask
+			| VisibilityChangeMask
+			| KeyPressMask
+			| PointerMotionMask;
 }
