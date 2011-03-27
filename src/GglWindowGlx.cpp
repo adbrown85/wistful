@@ -7,19 +7,25 @@
 #include "GglWindowGlx.hpp"
 
 /** Creates a window for GLX. */
-GglWindowGlx::GglWindowGlx(GglConfigGlx *cfg) {
-	display = getDefaultDisplay();
-	info = glXGetVisualFromFBConfig(display, cfg->getFBConfig());
+GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
+	this->config = config;
+	this->display = NULL;
+	this->info = NULL;
 }
 
 /** Destroys the window. */
 GglWindowGlx::~GglWindowGlx() {
-	XDestroyWindow(display, window);
-	XCloseDisplay(display);
+	if (display != null) {
+		XDestroyWindow(display, window);
+		XCloseDisplay(display);
+	}
 }
 
 /** Shows the window. */
 void GglWindowGlx::show() {
+	
+	display = getDefaultDisplay();
+	info = glXGetVisualFromFBConfig(display, config->getFBConfig());
 	
 	createXWindow();
 	mapXWindow();

@@ -14,10 +14,11 @@
 /** @brief OpenGL Window implemented with GLX. */
 class GglWindowGlx {
 public:
-	GglWindowGlx(GglConfigGlx *cfg);
+	GglWindowGlx(GglConfigGlx *config);
 	virtual ~GglWindowGlx();
 	virtual void show();
 private:
+	GglConfigGlx *config;
 	Display *display;
 	Window window;
 	XVisualInfo *info;
