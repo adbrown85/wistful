@@ -27,7 +27,8 @@ void GglWindowGlx::show() {
 			ExposureMask | VisibilityChangeMask | 
 			KeyPressMask | PointerMotionMask | 
 			StructureNotifyMask;
-	wa.border_pixel = StaticGravity;
+	wa.border_pixel = 0;
+	wa.bit_gravity = StaticGravity;
 	wa.colormap = XCreateColormap(
 			display,
 			RootWindow(display, visualInfo->screen),
