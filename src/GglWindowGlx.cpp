@@ -85,6 +85,9 @@ long GglWindowGlx::getWindowMask() {
 	return CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
 }
 
+/**
+ * Return window attributes needed to create backing X window.
+ */
 XSetWindowAttributes GglWindowGlx::getWindowAttributes() {
 	
 	XSetWindowAttributes wa;
