@@ -45,4 +45,5 @@ int main(int argc, char *argv[]) {
 	GglWindowGlxTest test;
 	
 	test.testShow();
+	sleep(4);
 }
