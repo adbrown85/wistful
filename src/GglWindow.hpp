@@ -15,7 +15,7 @@ class GglWindow {
 public:
 	GglWindow();
 	virtual ~GglWindow();
-	virtual void show() = 0;
+	virtual void open() = 0;
 };
 
 #endif
