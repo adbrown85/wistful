@@ -15,8 +15,14 @@ class GglWindow {
 public:
 	GglWindow();
 	virtual ~GglWindow();
-	virtual void open() = 0;
-	virtual void close() = 0;
+	virtual void open();
+	virtual void close();
+protected:
+	virtual void doOpen() = 0;
+	virtual void doClose() = 0;
+private:
+	bool opened;
+	bool closed;
 };
 
 #endif

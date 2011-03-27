@@ -17,11 +17,11 @@ GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
 
 /** Destroys the window. */
 GglWindowGlx::~GglWindowGlx() {
-	close();
+	;
 }
 
 /** Shows the window. */
-void GglWindowGlx::open() {
+void GglWindowGlx::doOpen() {
 	
 	display = getDefaultDisplay();
 	info = glXGetVisualFromFBConfig(display, config->getFBConfig());
@@ -41,12 +41,7 @@ void GglWindowGlx::open() {
 /**
  * Closes the window.
  */
-void GglWindowGlx::close() {
-	
-	if (display == NULL) {
-		return;
-	}
-	
+void GglWindowGlx::doClose() {
     glXDestroyContext(display, context);
     context = NULL;
 	XDestroyWindow(display, window);

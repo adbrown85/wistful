@@ -12,12 +12,12 @@
 
 
 /** @brief OpenGL Window implemented with GLX. */
-class GglWindowGlx {
+class GglWindowGlx : public GglWindow {
 public:
 	GglWindowGlx(GglConfigGlx *config);
 	virtual ~GglWindowGlx();
-	virtual void open();
-	virtual void close();
+	virtual void doOpen();
+	virtual void doClose();
 private:
 	GglConfigGlx *config;
 	Display *display;

@@ -20,7 +20,7 @@ public:
 void GglWindowGlxTest::testShow() {
 	
 	GglConfigFactory cf;
-	GglWindowGlx *window;
+	GglWindow *window;
 	map<int,int> m;
 	list<GglConfig*> configs;
 	GglConfig* config;
