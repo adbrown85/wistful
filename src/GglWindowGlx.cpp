@@ -73,7 +73,6 @@ long GglWindowGlx::getEventMask() {
 /**
  * Returns a color map for the window.
  */
-
 Colormap GglWindowGlx::getColormap() {
 	return XCreateColormap(
 				display,
@@ -81,8 +80,6 @@ Colormap GglWindowGlx::getColormap() {
 				info->visual,
 				AllocNone);
 }
-
-
 
 /**
  * Returns mask for specifying window properties.
