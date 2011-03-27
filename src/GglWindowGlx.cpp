@@ -8,7 +8,7 @@
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx(GglConfigGlx *cfg) {
-	display = XOpenDisplay(NULL);
+	display = getDefaultDisplay();
 	visualInfo = glXGetVisualFromFBConfig(display, cfg->getFBConfig());
 }
 
@@ -56,4 +56,24 @@ void GglWindowGlx::show() {
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glXSwapBuffers(display, window);
+}
+
+//---------------------------------------------------------
+// Helpers
+//
+
+/**
+ * Returns a pointer to the default display.
+ * 
+ * @throw GglException if could not open display
+ * @return Pointer to the display
+ */
+Display* GglWindowGlx::getDefaultDisplay() {
+	
+	Display display = XOpenDisplay(NULL);
+	
+	if (display == NULL) {
+		throw GglException("Could not open default display!");
+	}
+	return display;
 }

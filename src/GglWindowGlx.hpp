@@ -20,6 +20,8 @@ private:
 	Display *display;
 	Window window;
 	XVisualInfo *visualInfo;
+// Helpers
+	static Display* getDefaultDisplay();
 };
 
 #endif
