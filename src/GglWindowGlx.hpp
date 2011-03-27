@@ -9,12 +9,13 @@
 #include "common.h"
 #include "GglWindow.hpp"
 #include "GglException.hpp"
+#include "GglConfigFactory.hpp"
 
 
 /** @brief OpenGL Window implemented with GLX. */
 class GglWindowGlx : public GglWindow {
 public:
-	GglWindowGlx(GglConfigGlx *config);
+	GglWindowGlx();
 	virtual ~GglWindowGlx();
 	virtual void doOpen();
 	virtual void doClose();
@@ -25,6 +26,7 @@ private:
 	Window window;
 	GLXContext context;
 // Helpers
+	static GglConfigGlx* createConfig();
 	static Display* getDefaultDisplay();
 	static long getEventMask();
 	static long getWindowMask();

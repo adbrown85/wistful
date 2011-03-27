@@ -7,8 +7,8 @@
 #include "GglWindowGlx.hpp"
 
 /** Creates a window for GLX. */
-GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
-	this->config = config;
+GglWindowGlx::GglWindowGlx() {
+	this->config = createConfig();
 	this->display = NULL;
 	this->info = NULL;
 	this->window = NULL;
@@ -53,6 +53,27 @@ void GglWindowGlx::doClose() {
 //---------------------------------------------------------
 // Helpers
 //
+
+/**
+ * Returns an OpenGL configuration for use with the window. 
+ */
+GglConfigGlx* GglWindowGlx::createConfig() {
+	
+	GglConfigFactory cf;
+	map<int,int> reqs;
+	
+	reqs[GLX_X_RENDERABLE] = 1;
+	reqs[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
+	reqs[GLX_RENDER_TYPE] = GLX_RGBA_BIT;
+	reqs[GLX_CONFIG_CAVEAT] = GLX_NONE;
+	reqs[GLX_DOUBLEBUFFER] = 1;
+	reqs[GLX_RED_SIZE] = 8;
+	reqs[GLX_GREEN_SIZE] = 8;
+	reqs[GLX_BLUE_SIZE] = 8;
+	reqs[GLX_ALPHA_SIZE] = 8;
+	
+	return (GglConfigGlx*) cf.create(reqs);
+}
 
 /**
  * Returns a pointer to the default display.

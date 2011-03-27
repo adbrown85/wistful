@@ -19,21 +19,8 @@ public:
 /** Ensures window can be shown. */
 void GglWindowGlxTest::testShow() {
 	
-	GglConfigFactory cf;
-	map<int,int> m;
-	GglConfig *config;
-	GglWindow *window;
+	GglWindow *window = new GglWindowGlx();
 	
-	m[GLX_RENDER_TYPE] = GLX_RGBA_BIT;
-	m[GLX_X_RENDERABLE] = True;
-	m[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
-	m[GLX_DOUBLEBUFFER] = True;
-	m[GLX_RED_SIZE] = 8;
-	m[GLX_GREEN_SIZE] = 8;
-	m[GLX_BLUE_SIZE] = 8;
-	config = cf.create(m);
-	
-	window = new GglWindowGlx((GglConfigGlx*) config);
 	window->open();
 	sleep(4);
 	window->close();
