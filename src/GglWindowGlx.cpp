@@ -9,7 +9,7 @@
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx(GglConfigGlx *cfg) {
 	display = getDefaultDisplay();
-	visualInfo = glXGetVisualFromFBConfig(display, cfg->getFBConfig());
+	visual = glXGetVisualFromFBConfig(display, cfg->getFBConfig());
 }
 
 /** Destroys the window. */
@@ -31,8 +31,8 @@ void GglWindowGlx::show() {
 	wa.bit_gravity = StaticGravity;
 	wa.colormap = XCreateColormap(
 			display,
-			RootWindow(display, visualInfo->screen),
-			visualInfo->visual,
+			RootWindow(display, visual->screen),
+			visual->visual,
 			AllocNone);
 	int winmask = CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
 	
@@ -42,14 +42,14 @@ void GglWindowGlx::show() {
 			0, 0,
 			512, 512,
 			0,
-			visualInfo->depth,
+			visual->depth,
 			InputOutput,
-			visualInfo->visual,
+			visual->visual,
 			winmask,
 			&wa);
 	XMapWindow(display, window);
 	
-	GLXContext context = glXCreateContext(display, visualInfo, 0, True);
+	GLXContext context = glXCreateContext(display, visual, 0, True);
 	glXMakeCurrent(display, window, context);
 	
 	glViewport(0, 0, 512, 512);

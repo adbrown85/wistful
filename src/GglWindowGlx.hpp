@@ -19,7 +19,7 @@ public:
 private:
 	Display *display;
 	Window window;
-	XVisualInfo *visualInfo;
+	XVisualInfo *visual;
 // Helpers
 	static Display* getDefaultDisplay();
 };
