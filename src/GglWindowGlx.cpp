@@ -15,7 +15,7 @@ GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
 
 /** Destroys the window. */
 GglWindowGlx::~GglWindowGlx() {
-	if (display != null) {
+	if (display != NULL) {
 		XDestroyWindow(display, window);
 		XCloseDisplay(display);
 	}
