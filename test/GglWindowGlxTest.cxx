@@ -37,6 +37,8 @@ void GglWindowGlxTest::testShow() {
 	
 	window = new GglWindowGlx((GglConfigGlx*) config);
 	window->open();
+	sleep(4);
+	window->close();
 }
 
 /** Runs the test. */
@@ -45,5 +47,4 @@ int main(int argc, char *argv[]) {
 	GglWindowGlxTest test;
 	
 	test.testShow();
-	sleep(4);
 }

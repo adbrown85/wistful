@@ -15,10 +15,7 @@ GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
 
 /** Destroys the window. */
 GglWindowGlx::~GglWindowGlx() {
-	if (display != NULL) {
-		XDestroyWindow(display, window);
-		XCloseDisplay(display);
-	}
+	close();
 }
 
 /** Shows the window. */
@@ -37,6 +34,20 @@ void GglWindowGlx::open() {
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glXSwapBuffers(display, window);
+}
+
+/**
+ * Closes the window.
+ */
+void GglWindowGlx::close() {
+	
+	if (display == NULL) {
+		return;
+	}
+	
+	XDestroyWindow(display, window);
+	XCloseDisplay(display);
+	display = NULL;
 }
 
 //---------------------------------------------------------
