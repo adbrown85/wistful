@@ -26,6 +26,11 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	GglConfig *config;
 	int id;
 	
+	// Validate
+	if (len == 0) {
+		throw GglException("No configuration found for requirements!");
+	}
+	
 	// Convert configurations
 	for (int i=0; i<len; ++i) {
 		id = getValue(fbcs[i], GLX_FBCONFIG_ID);

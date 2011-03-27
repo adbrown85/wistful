@@ -8,6 +8,7 @@
 #define GGLCONFIGFACTORY_HPP
 #include "common.h"
 #include "GglConfig.hpp"
+#include "GglException.hpp"
 
 
 /** Utility for creating OpenGL configurations. */
