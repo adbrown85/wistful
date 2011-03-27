@@ -17,17 +17,4 @@ public:
 	virtual void show() = 0;
 };
 
-
-/** @brief OpenGL Window implemented with GLX. */
-class GglWindowGlx {
-public:
-	GglWindowGlx(GglConfigGlx *cfg);
-	virtual ~GglWindowGlx();
-	virtual void show();
-private:
-	Display *display;
-	Window window;
-	XVisualInfo *visualInfo;
-};
-
 #endif

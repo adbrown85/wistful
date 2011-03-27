@@ -1,10 +1,10 @@
 /*
- * GglWindow.cpp
+ * GglWindowGlx.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglWindow.hpp"
+#include "GglWindowGlx.hpp"
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx(GglConfigGlx *cfg) {
