@@ -27,6 +27,7 @@ private:
 	static long getWindowMask();
 	Colormap getColormap();
 	XSetWindowAttributes getWindowAttributes();
+	Window createXWindow();
 };
 
 #endif

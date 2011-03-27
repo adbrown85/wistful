@@ -21,20 +21,7 @@ GglWindowGlx::~GglWindowGlx() {
 /** Shows the window. */
 void GglWindowGlx::show() {
 	
-	XSetWindowAttributes wa = getWindowAttributes();
-	int winmask = getWindowMask();
-	
-	window = XCreateWindow(
-			display,
-			DefaultRootWindow(display),
-			0, 0,
-			512, 512,
-			0,
-			visual->depth,
-			InputOutput,
-			visual->visual,
-			winmask,
-			&wa);
+	window = createXWindow();
 	XMapWindow(display, window);
 	
 	GLXContext context = glXCreateContext(display, visual, 0, True);
@@ -107,4 +94,25 @@ XSetWindowAttributes GglWindowGlx::getWindowAttributes() {
 	wa.bit_gravity = StaticGravity;
 	wa.colormap = getColormap();
 	return wa;
+}
+
+/**
+ * Returns an X window to back the GGL window.
+ */
+Window GglWindowGlx::createXWindow() {
+	
+	int winmask = getWindowMask();
+	XSetWindowAttributes wa = getWindowAttributes();
+	
+	return XCreateWindow(
+			display,
+			DefaultRootWindow(display),
+			0, 0,
+			512, 512,
+			0,
+			visual->depth,
+			InputOutput,
+			visual->visual,
+			winmask,
+			&wa);
 }
