@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglWindow.hpp"
+#include "GglWindowGlx.hpp"
 #include "GglConfigFactory.hpp"
 #include <iostream>
 using namespace std;
