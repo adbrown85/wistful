@@ -20,7 +20,6 @@ public:
 	virtual void doOpen();
 	virtual void doClose();
 private:
-	GglConfigGlx *config;
 	Display *display;
 	XVisualInfo *info;
 	Window window;

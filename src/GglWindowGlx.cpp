@@ -8,7 +8,6 @@
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx() {
-	this->config = createConfig();
 	this->display = NULL;
 	this->info = NULL;
 	this->window = NULL;
@@ -22,6 +21,8 @@ GglWindowGlx::~GglWindowGlx() {
 
 /** Shows the window. */
 void GglWindowGlx::doOpen() {
+	
+	GglConfigGlx *config = createConfig();
 	
 	display = getDefaultDisplay();
 	info = glXGetVisualFromFBConfig(display, config->getFBConfig());
