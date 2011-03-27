@@ -21,7 +21,7 @@ GglWindowGlx::~GglWindowGlx() {
 /** Shows the window. */
 void GglWindowGlx::show() {
 	
-	window = createXWindow();
+	createXWindow();
 	mapXWindow();
 	
 	GLXContext context = glXCreateContext(display, visual, 0, True);
@@ -100,14 +100,14 @@ XSetWindowAttributes GglWindowGlx::getWindowAttributes() {
 }
 
 /**
- * Returns an X window to back the GGL window.
+ * Makes an X window to back the GGL window.
  */
-Window GglWindowGlx::createXWindow() {
+void GglWindowGlx::createXWindow() {
 	
 	int winmask = getWindowMask();
 	XSetWindowAttributes wa = getWindowAttributes();
 	
-	return XCreateWindow(
+	window = XCreateWindow(
 			display,
 			DefaultRootWindow(display),
 			0, 0,
