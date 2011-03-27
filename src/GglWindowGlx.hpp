@@ -24,7 +24,7 @@ private:
 // Helpers
 	static Display* getDefaultDisplay();
 	static long getEventMask();
-	static Colormap getColormap(Display *display, XVisualInfo *vi);
+	Colormap getColormap();
 };
 
 #endif
