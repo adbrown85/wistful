@@ -28,6 +28,7 @@ private:
 	Colormap getColormap();
 	XSetWindowAttributes getWindowAttributes();
 	Window createXWindow();
+	void mapXWindow();
 };
 
 #endif

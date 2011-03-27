@@ -22,7 +22,7 @@ GglWindowGlx::~GglWindowGlx() {
 void GglWindowGlx::show() {
 	
 	window = createXWindow();
-	XMapWindow(display, window);
+	mapXWindow();
 	
 	GLXContext context = glXCreateContext(display, visual, 0, True);
 	glXMakeCurrent(display, window, context);
@@ -118,4 +118,19 @@ Window GglWindowGlx::createXWindow() {
 			visual->visual,
 			winmask,
 			&wa);
+}
+
+/**
+ * Shows the X window on a screen.
+ */
+void GglWindowGlx::mapXWindow() {
+	
+    XEvent event;
+    
+	XMapWindow(display, window);
+    XSelectInput(display, window, StructureNotifyMask);
+	XNextEvent(display, &event);
+    while (event.type != MapNotify) {
+    	XNextEvent(display, &event);
+    }
 }
