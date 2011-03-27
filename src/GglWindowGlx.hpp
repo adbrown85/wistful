@@ -21,8 +21,8 @@ public:
 private:
 	GglConfigGlx *config;
 	Display *display;
-	Window window;
 	XVisualInfo *info;
+	Window window;
 // Helpers
 	static Display* getDefaultDisplay();
 	static long getEventMask();

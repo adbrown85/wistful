@@ -11,6 +11,7 @@ GglWindowGlx::GglWindowGlx(GglConfigGlx *config) {
 	this->config = config;
 	this->display = NULL;
 	this->info = NULL;
+	this->window = NULL;
 }
 
 /** Destroys the window. */
@@ -46,6 +47,7 @@ void GglWindowGlx::close() {
 	}
 	
 	XDestroyWindow(display, window);
+	window = NULL;
 	XCloseDisplay(display);
 	display = NULL;
 }
