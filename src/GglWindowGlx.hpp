@@ -20,7 +20,7 @@ public:
 private:
 	Display *display;
 	Window window;
-	XVisualInfo *visual;
+	XVisualInfo *info;
 // Helpers
 	static Display* getDefaultDisplay();
 	static long getEventMask();
