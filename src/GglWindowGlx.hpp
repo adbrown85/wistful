@@ -8,6 +8,7 @@
 #define GGLWINDOWGLX_HPP
 #include "common.h"
 #include "GglWindow.hpp"
+#include "GglException.hpp"
 
 
 /** @brief OpenGL Window implemented with GLX. */

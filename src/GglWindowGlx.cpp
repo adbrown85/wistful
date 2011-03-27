@@ -70,7 +70,7 @@ void GglWindowGlx::show() {
  */
 Display* GglWindowGlx::getDefaultDisplay() {
 	
-	Display display = XOpenDisplay(NULL);
+	Display *display = XOpenDisplay(NULL);
 	
 	if (display == NULL) {
 		throw GglException("Could not open default display!");
