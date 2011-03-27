@@ -26,11 +26,7 @@ void GglWindowGlx::show() {
 	wa.event_mask = getEventMask();
 	wa.border_pixel = 0;
 	wa.bit_gravity = StaticGravity;
-	wa.colormap = XCreateColormap(
-			display,
-			RootWindow(display, visual->screen),
-			visual->visual,
-			AllocNone);
+	wa.colormap = getColormap(display, visual);
 	int winmask = CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
 	
 	window = XCreateWindow(
@@ -85,3 +81,20 @@ long GglWindowGlx::getEventMask() {
 			| KeyPressMask
 			| PointerMotionMask;
 }
+
+/**
+ * Returns a color map for the window.
+ * 
+ * @param display Machine showing content
+ * @param vi Visual information from window
+ */
+
+Colormap GglWindowGlx::getColormap(Display *display, XVisualInfo *vi) {
+	return XCreateColormap(
+				display,
+				RootWindow(display, vi->screen),
+				vi->visual,
+				AllocNone);
+}
+
+
