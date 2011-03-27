@@ -20,10 +20,9 @@ public:
 void GglWindowGlxTest::testShow() {
 	
 	GglConfigFactory cf;
-	GglWindow *window;
 	map<int,int> m;
-	list<GglConfig*> configs;
-	GglConfig* config;
+	GglConfig *config;
+	GglWindow *window;
 	
 	m[GLX_RENDER_TYPE] = GLX_RGBA_BIT;
 	m[GLX_X_RENDERABLE] = True;
@@ -32,8 +31,7 @@ void GglWindowGlxTest::testShow() {
 	m[GLX_RED_SIZE] = 8;
 	m[GLX_GREEN_SIZE] = 8;
 	m[GLX_BLUE_SIZE] = 8;
-	configs = cf.create(m);
-	config = *(configs.begin());
+	config = cf.create(m);
 	
 	window = new GglWindowGlx((GglConfigGlx*) config);
 	window->open();

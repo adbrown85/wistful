@@ -16,7 +16,7 @@ class GglConfigFactory {
 public:
 	GglConfigFactory();
 	virtual ~GglConfigFactory();
-	virtual list<GglConfig*> create(const map<int,int> &requirements);
+	virtual GglConfig* create(const map<int,int> &requirements);
 private:
 	Display *display;
 	map<int,GglConfig*> configs;

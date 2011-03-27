@@ -17,12 +17,11 @@ GglConfigFactory::~GglConfigFactory() {
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
-list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
+GglConfig* GglConfigFactory::create(const map<int,int> &requirements) {
 	
 	const int *reqs = toArray(requirements);
 	int len;
 	GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
-	list<GglConfig*> configs;
 	GglConfig *config;
 	int id;
 	
@@ -32,19 +31,16 @@ list<GglConfig*> GglConfigFactory::create(const map<int,int> &requirements) {
 	}
 	
 	// Convert configurations
-	for (int i=0; i<len; ++i) {
-		id = getValue(fbcs[i], GLX_FBCONFIG_ID);
-		config = find(id);
-		if (config == NULL) {
-			config = doCreate(fbcs[i]);
-		}
-		configs.push_back(config);
+	id = getValue(fbcs[0], GLX_FBCONFIG_ID);
+	config = find(id);
+	if (config == NULL) {
+		config = doCreate(fbcs[0]);
 	}
 	
 	// Finish
 	delete[] reqs;
 	XFree(fbcs);
-	return configs;
+	return config;
 }
 
 //---------------------------------------------------------

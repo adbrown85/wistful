@@ -18,8 +18,7 @@ void GglConfigFactoryTest::testCreate() {
 	
 	GglConfigFactory cf;
 	map<int,int> reqs;
-	list<GglConfig*> configs;
-	list<GglConfig*>::iterator it;
+	GglConfig *config;
 	
 	reqs[GLX_X_RENDERABLE] = 1;
 	reqs[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
@@ -30,15 +29,11 @@ void GglConfigFactoryTest::testCreate() {
 	reqs[GLX_GREEN_SIZE] = 8;
 	reqs[GLX_BLUE_SIZE] = 8;
 	reqs[GLX_ALPHA_SIZE] = 8;
-	configs = cf.create(reqs);
+	config = cf.create(reqs);
 	
-	cout << "Found " << configs.size() << " configurations." << endl;
-	for (it=configs.begin(); it!=configs.end(); ++it) {
-		cout << "----" << endl;
-		cout << "  " << ((GglConfigGlx*) (*it))->getId() << endl;
-		cout << "  " << (*it)->getDepthSize() << endl;
-		cout << "  " << (*it)->getStencilSize() << endl;
-	}
+	cout << "  " << ((GglConfigGlx*) config)->getId() << endl;
+	cout << "  " << config->getDepthSize() << endl;
+	cout << "  " << config->getStencilSize() << endl;
 }
 
 /** Runs the test. */
