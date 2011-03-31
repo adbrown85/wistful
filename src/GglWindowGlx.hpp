@@ -31,6 +31,7 @@ private:
 	static long getWindowMask();
 	Colormap getColormap();
 	XSetWindowAttributes getWindowAttributes();
+	static GLXContext createContext(Display *display, GLXFBConfig config);
 	void createXWindow();
 	void mapXWindow();
 };

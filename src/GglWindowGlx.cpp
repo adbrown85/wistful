@@ -30,7 +30,7 @@ void GglWindowGlx::doOpen() {
 	createXWindow();
 	mapXWindow();
 	
-	context = glXCreateContext(display, info, 0, True);
+	context = createContext(display, config->getFBConfig());
 	glXMakeCurrent(display, window, context);
 	
 	glViewport(0, 0, 512, 512);
@@ -74,6 +74,37 @@ GglConfigGlx* GglWindowGlx::createConfig() {
 	reqs[GLX_ALPHA_SIZE] = 8;
 	
 	return (GglConfigGlx*) cf.create(reqs);
+}
+
+/**
+ * Creates a context for the window.
+ * 
+ * @param display Machine window will appear on
+ * @param config Framebuffer configuration
+ * @return OpenGL context
+ */
+GLXContext GglWindowGlx::createContext(Display *display,
+		                               GLXFBConfig config) {
+	
+	PFNGLXCREATECONTEXTATTRIBSARBPROC glXCreateContextAttribsARB;
+	
+	glXCreateContextAttribsARB =
+			(PFNGLXCREATECONTEXTATTRIBSARBPROC)
+			glXGetProcAddressARB((GLubyte*) "glXCreateContextAttribsARB");
+	
+	GLint attribs[] = {
+			GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
+			GLX_CONTEXT_MINOR_VERSION_ARB, 2,
+			GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
+			NULL
+	};
+	
+	return glXCreateContextAttribsARB(
+			display,  // display
+			config,   // framebuffer configuration
+			0,        // render type
+			True,     // direct
+			attribs); // attributes
 }
 
 /**
