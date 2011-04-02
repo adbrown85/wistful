@@ -7,9 +7,9 @@
 #include "GglListener.hpp"
 
 GglListener::GglListener() {
-	;
+    ;
 }
 
 GglListener::~GglListener() {
-	;
+    ;
 }

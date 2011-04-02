@@ -22,8 +22,8 @@ GglWindowGlx::~GglWindowGlx() {
 }
 
 bool GglWindowGlx::doCreateConnection() {
-	display = getDefaultDisplay();
-	return (display != NULL);
+    display = getDefaultDisplay();
+    return (display != NULL);
 }
 
 void GglWindowGlx::doDestroyConnection() {
@@ -32,7 +32,7 @@ void GglWindowGlx::doDestroyConnection() {
 }
 
 bool GglWindowGlx::doCreateWindow() {
-	
+    
     int winmask = getWindowMask();
     XVisualInfo *info = createInfo(display, config);
     Colormap cm = getColormap(display, info);
@@ -125,17 +125,17 @@ void GglWindowGlx::doFlush() {
  * Returns next event from window.
  */
 GglEvent GglWindowGlx::doGetEvent() {
-	
-	XEvent xEvent;
-	
+    
+    XEvent xEvent;
+    
     XSelectInput(display, window, ExposureMask);
-	XNextEvent(display, &xEvent);
-	switch (xEvent.type) {
-	case ClientMessage:
-		return GglEvent(DESTROY);
-	default:
-		return GglEvent(OTHER);
-	}
+    XNextEvent(display, &xEvent);
+    switch (xEvent.type) {
+    case ClientMessage:
+        return GglEvent(DESTROY);
+    default:
+        return GglEvent(OTHER);
+    }
 }
 
 //---------------------------------------------------------
@@ -219,7 +219,7 @@ Colormap GglWindowGlx::getColormap(Display *display, XVisualInfo *vi) {
  * Returns mask for specifying window properties.
  */
 long GglWindowGlx::getWindowMask() {
-	return CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
+    return CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
 }
 
 /**

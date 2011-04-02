@@ -12,60 +12,60 @@
 /** @brief <i>Builder</i> for @GglConfig. */
 class GglConfigBuilder {
 public:
-	GglConfigBuilder();
-	virtual ~GglConfigBuilder() {}
-	int red;                                // Red size
-	int green;                              // Green size
-	int blue;                               // Blue size
-	int alpha;                              // Alpha size
-	int depth;                              // Depth size
-	int stencil;                            // Stencil size
-	bool doubleBuffered;                    // True if front and back buffers
+    GglConfigBuilder();
+    virtual ~GglConfigBuilder() {}
+    int red;                                // Red size
+    int green;                              // Green size
+    int blue;                               // Blue size
+    int alpha;                              // Alpha size
+    int depth;                              // Depth size
+    int stencil;                            // Stencil size
+    bool doubleBuffered;                    // True if front and back buffers
 };
 
 
 /** @brief OpenGL configuration. */
 class GglConfig {
 public:
-	GglConfig(GglConfigBuilder *b);
-	virtual ~GglConfig() {}
-	virtual int getRedSize() const;
-	virtual int getGreenSize() const;
-	virtual int getBlueSize() const;
-	virtual int getAlphaSize() const;
-	virtual int getDepthSize() const;
-	virtual int getStencilSize() const;
-	virtual bool isDoubleBuffered() const;
+    GglConfig(GglConfigBuilder *b);
+    virtual ~GglConfig() {}
+    virtual int getRedSize() const;
+    virtual int getGreenSize() const;
+    virtual int getBlueSize() const;
+    virtual int getAlphaSize() const;
+    virtual int getDepthSize() const;
+    virtual int getStencilSize() const;
+    virtual bool isDoubleBuffered() const;
 private:
-	int red;                                // Red size
-	int green;                              // Green size
-	int blue;                               // Blue size
-	int alpha;                              // Alpha size
-	int depth;                              // Depth size
-	int stencil;                            // Stencil size
-	bool doubleBuffered;                    // True if front and back buffers
+    int red;                                // Red size
+    int green;                              // Green size
+    int blue;                               // Blue size
+    int alpha;                              // Alpha size
+    int depth;                              // Depth size
+    int stencil;                            // Stencil size
+    bool doubleBuffered;                    // True if front and back buffers
 };
 
 
 /** @brief <i>Builder</i> for @GglConfigGlx. */
 class GglConfigGlxBuilder : public GglConfigBuilder {
 public:
-	virtual ~GglConfigGlxBuilder() {}
-	GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
-	int id;                                 // Identifier from X
+    virtual ~GglConfigGlxBuilder() {}
+    GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
+    int id;                                 // Identifier from X
 };
 
 
 /** @brief OpenGL configuration with GLX. */
 class GglConfigGlx : public GglConfig {
 public:
-	GglConfigGlx(GglConfigGlxBuilder *b);
-	virtual ~GglConfigGlx() {}
-	virtual GLXFBConfig getFBConfig();
-	virtual int getId();
+    GglConfigGlx(GglConfigGlxBuilder *b);
+    virtual ~GglConfigGlx() {}
+    virtual GLXFBConfig getFBConfig();
+    virtual int getId();
 private:
-	GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
-	int id;                                 // Identifier from GLX
+    GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
+    int id;                                 // Identifier from GLX
 };
 
 

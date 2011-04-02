@@ -14,8 +14,8 @@
  */
 class GglException : public exception {
 public:
-	GglException(const string &message) throw();
-	virtual ~GglException() throw();
+    GglException(const string &message) throw();
+    virtual ~GglException() throw();
     virtual const char* what() const throw();
 private:
     string message;

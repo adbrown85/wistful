@@ -7,13 +7,13 @@
 #include "GglEvent.hpp"
 
 GglEvent::GglEvent(GglEventType type) {
-	this->type = type;
+    this->type = type;
 }
 
 GglEvent::~GglEvent() {
-	;
+    ;
 }
 
 GglEventType GglEvent::getType() {
-	return type;
+    return type;
 }

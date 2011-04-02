@@ -12,11 +12,11 @@
  */
 class GglListener {
 public:
-	GglListener();
-	virtual ~GglListener();
-	virtual void init() = 0;
-	virtual void display() = 0;
-	virtual void destroy() = 0;
+    GglListener();
+    virtual ~GglListener();
+    virtual void init() = 0;
+    virtual void display() = 0;
+    virtual void destroy() = 0;
 };
 
 #endif

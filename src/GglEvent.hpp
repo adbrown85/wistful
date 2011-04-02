@@ -9,21 +9,21 @@
 
 
 enum GglEventType {
-	DESTROY,
-	RESHAPE,
-	KEY,
-	MOUSE,
-	OTHER
+    DESTROY,
+    RESHAPE,
+    KEY,
+    MOUSE,
+    OTHER
 };
 
 
 class GglEvent {
 public:
-	GglEvent(GglEventType type);
-	virtual ~GglEvent();
-	virtual GglEventType getType();
+    GglEvent(GglEventType type);
+    virtual ~GglEvent();
+    virtual GglEventType getType();
 private:
-	GglEventType type;
+    GglEventType type;
 };
 
 #endif
