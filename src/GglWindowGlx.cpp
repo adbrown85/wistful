@@ -31,6 +31,13 @@ void GglWindowGlx::doOpen() {
 	mapXWindow();
 	
 	context = createContext(display, config->getFBConfig());
+	if (context == NULL) {
+	    XDestroyWindow(display, window);
+	    window = NULL;
+	    XCloseDisplay(display);
+	    display = NULL;
+	    throw GglException("Could not create context!");
+	}
 	glXMakeCurrent(display, window, context);
 	
 	glViewport(0, 0, 512, 512);
