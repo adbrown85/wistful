@@ -29,23 +29,55 @@ void GglWindow::addListener(GglListener *listener) {
 }
 
 /**
- * Shows the window on the screen.
+ * Opens the window.
+ * 
+ * @throw GglException if cannot make connection to windowing system
+ * @throw GglException if cannot make native window
+ * @throw GglException if cannot make OpenGL context
  */
 void GglWindow::open() {
-	if (!opened && !closed) {
-		doOpen();
-		opened = true;
+	
+	// Guard against bad opens
+	if (opened || closed) {
+		return;
 	}
+	
+	// Create objects
+	if (!doCreateConnection()) {
+		throw GglException("Could not make connection to windowing system!");
+	} if (!doCreateWindow()) {
+		throw GglException("Could not make native window!");
+	} if (!doCreateContext()) {
+		throw GglException("Could not make OpenGL context!");
+	}
+	
+	// Set up OpenGL
+    glViewport(0, 0, 512, 512);
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    doFlush();
+    
+    // Successfully opened
+	opened = true;
 }
 
 /**
- * Clears the window from the screen.
+ * Closes the window.
  */
 void GglWindow::close() {
-	if (opened && !closed) {
-		doClose();
-		closed = true;
+	
+	// Guard against bad closes
+	if (!opened || closed) {
+		return;
 	}
+	
+	// Destroy everything
+	doDestroyConnection();
+	doDestroyWindow();
+	doDestroyContext();
+	
+	// Successfully closed
+	closed = true;
 }
 
 /**

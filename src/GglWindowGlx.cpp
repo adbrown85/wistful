@@ -21,41 +21,43 @@ GglWindowGlx::~GglWindowGlx() {
     ;
 }
 
-/** Shows the window. */
-void GglWindowGlx::doOpen() {
-    
-    display = getDefaultDisplay();
+bool GglWindowGlx::doCreateConnection() {
+	display = getDefaultDisplay();
+	return (display != NULL);
+}
+
+void GglWindowGlx::doDestroyConnection() {
+    XCloseDisplay(display);
+    display = NULL;
+}
+
+bool GglWindowGlx::doCreateWindow() {
+	
     config = createConfig();
     info = glXGetVisualFromFBConfig(display, config->getFBConfig());
     createXWindow();
     mapXWindow();
     
-    context = createContext(display, config->getFBConfig());
-    if (context == NULL) {
-        XDestroyWindow(display, window);
-        window = NULL;
-        XCloseDisplay(display);
-        display = NULL;
-        throw GglException("Could not create context!");
-    }
-    glXMakeCurrent(display, window, context);
-    
-    glViewport(0, 0, 512, 512);
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glXSwapBuffers(display, window);
+    return true;
 }
 
-/**
- * Closes the window.
- */
-void GglWindowGlx::doClose() {
-    glXDestroyContext(display, context);
-    context = NULL;
+void GglWindowGlx::doDestroyWindow() {
     XDestroyWindow(display, window);
     window = NULL;
-    XCloseDisplay(display);
-    display = NULL;
+}
+
+bool GglWindowGlx::doCreateContext() {
+    context = createContext(display, window, config->getFBConfig());
+    return (context != NULL);
+}
+
+void GglWindowGlx::doDestroyContext() {
+    glXDestroyContext(display, context);
+    context = NULL;
+}
+
+void GglWindowGlx::doFlush() {
+    glXSwapBuffers(display, window);
 }
 
 /**
@@ -104,11 +106,13 @@ GglConfigGlx* GglWindowGlx::createConfig() {
  * Creates a context for the window.
  * 
  * @param display Machine window will appear on
+ * @param window Area on screen
  * @param config Framebuffer configuration
  * @return OpenGL context
  * @throw GglException if could not create context
  */
 GLXContext GglWindowGlx::createContext(Display *display,
+		                               Window window,
                                        GLXFBConfig config) {
     
     XErrorHandler handler = NULL;
@@ -120,18 +124,23 @@ GLXContext GglWindowGlx::createContext(Display *display,
             NULL
     };
     
+    // Remove default error handler
     handler = XSetErrorHandler(&x11ErrorHandler);
+    
+    // Create context
     context = glXCreateContextAttribsARB(
             display,  // display
             config,   // framebuffer configuration
             0,        // render type
             True,     // direct
             attribs); // attributes
+    if (context != NULL) {
+    	glXMakeCurrent(display, window, context);
+    }
+    
+    // Restore default error handler
     XSetErrorHandler(handler);
     
-    if (context == NULL) {
-        throw GglException("Could not create OpenGL 3.2 context!");
-    }
     return context;
 }
 

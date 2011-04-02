@@ -19,8 +19,13 @@ public:
     GglWindowGlx();
     virtual ~GglWindowGlx();
 protected:
-    virtual void doOpen();
-    virtual void doClose();
+    virtual bool doCreateConnection();
+    virtual bool doCreateWindow();
+    virtual bool doCreateContext();
+    virtual void doDestroyConnection();
+    virtual void doDestroyWindow();
+    virtual void doDestroyContext();
+    virtual void doFlush();
     virtual GglEvent doGetEvent();
 private:
     Display *display;
@@ -35,7 +40,7 @@ private:
     static long getWindowMask();
     Colormap getColormap();
     XSetWindowAttributes getWindowAttributes();
-    static GLXContext createContext(Display *display, GLXFBConfig config);
+    static GLXContext createContext(Display *d, Window w, GLXFBConfig c);
     void createXWindow();
     void mapXWindow();
     static int x11ErrorHandler(Display *display, XErrorEvent *event);

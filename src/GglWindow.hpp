@@ -7,6 +7,7 @@
 #ifndef GGLWINDOW_HPP
 #define GGLWINDOW_HPP
 #include "common.h"
+#include "GglException.hpp"
 #include "GglConfig.hpp"
 #include "GglEvent.hpp"
 #include "GglListener.hpp"
@@ -47,17 +48,23 @@ public:
 	GglWindow();
 	virtual ~GglWindow();
 	virtual void addListener(GglListener *listener);
-	virtual void open();
-	virtual void close();
 	static void run(GglWindow *window);
 protected:
-	virtual void doOpen() = 0;
-	virtual void doClose() = 0;
+	virtual bool doCreateConnection() = 0;
+	virtual bool doCreateWindow() = 0;
+	virtual bool doCreateContext() = 0;
+	virtual void doDestroyConnection() = 0;
+	virtual void doDestroyWindow() = 0;
+	virtual void doDestroyContext() = 0;
+	virtual void doFlush() = 0;
 	virtual GglEvent doGetEvent() = 0;
 private:
 	bool opened;
 	bool closed;
 	list<GglListener*> listeners;
+// Helpers
+	virtual void open();
+	virtual void close();
 };
 
 #endif
