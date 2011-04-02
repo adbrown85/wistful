@@ -90,10 +90,13 @@ GglConfigGlx* GglWindowGlx::createConfig() {
  * @param display Machine window will appear on
  * @param config Framebuffer configuration
  * @return OpenGL context
+ * @throw GglException if could not create context
  */
 GLXContext GglWindowGlx::createContext(Display *display,
                                        GLXFBConfig config) {
     
+    XErrorHandler handler = NULL;
+    GLXContext context = NULL;
     GLint attribs[] = {
             GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
             GLX_CONTEXT_MINOR_VERSION_ARB, 2,
@@ -101,12 +104,19 @@ GLXContext GglWindowGlx::createContext(Display *display,
             NULL
     };
     
-    return glXCreateContextAttribsARB(
+    handler = XSetErrorHandler(&x11ErrorHandler);
+    context = glXCreateContextAttribsARB(
             display,  // display
             config,   // framebuffer configuration
             0,        // render type
             True,     // direct
             attribs); // attributes
+    XSetErrorHandler(handler);
+    
+    if (context == NULL) {
+        throw GglException("Could not create OpenGL 3.2 context!");
+    }
+    return context;
 }
 
 /**
@@ -213,3 +223,15 @@ GLXCCAA GglWindowGlx::getGlXCCAA() {
     
     return (GLXCCAA) glXGetProcAddressARB(name);
 }
+
+/**
+ * Handles error events from X11.
+ * 
+ * @param display Machine displaying content
+ * @param event X11 error event
+ * @return Arbitrary integer, which is ignored
+ */
+int GglWindowGlx::x11ErrorHandler(Display *display, XErrorEvent *event) {
+    return 0;
+}
+

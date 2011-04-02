@@ -35,6 +35,7 @@ private:
     static GLXContext createContext(Display *display, GLXFBConfig config);
     void createXWindow();
     void mapXWindow();
+    static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
     static GLXCCAA getGlXCCAA();
     static GLXCCAA glXCreateContextAttribsARB;
