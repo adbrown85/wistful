@@ -34,7 +34,7 @@ void GglWindowGlx::doDestroyConnection() {
 bool GglWindowGlx::doCreateWindow() {
 	
     config = createConfig();
-    info = glXGetVisualFromFBConfig(display, config->getFBConfig());
+    info = createInfo(display, config);
     createXWindow();
     mapXWindow();
     
@@ -113,6 +113,17 @@ GglEvent GglWindowGlx::doGetEvent() {
 //---------------------------------------------------------
 // Helpers
 //
+
+/**
+ * Creates visual information about a screen.
+ * 
+ * @param display Connection to machine showing content
+ * @param config Desired framebuffer configuration of window
+ * @return Visual information about a compatible window
+ */
+XVisualInfo* GglWindowGlx::createInfo(Display *display, GglConfigGlx *config) {
+    return glXGetVisualFromFBConfig(display, config->getFBConfig());
+}
 
 /**
  * Returns an OpenGL configuration for use with the window. 

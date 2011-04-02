@@ -35,6 +35,7 @@ private:
     GglConfigGlx *config;
 // Helpers
     static GglConfigGlx* createConfig();
+    static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
     static Display* getDefaultDisplay();
     static long getEventMask();
     static long getWindowMask();
