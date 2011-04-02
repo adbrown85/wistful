@@ -45,11 +45,15 @@ void GglWindow::open() {
 	// Create objects
 	if (!doCreateConnection()) {
 		throw GglException("Could not make connection to windowing system!");
-	} if (!doCreateWindow()) {
+	}
+	if (!doCreateWindow()) {
 		throw GglException("Could not make native window!");
-	} if (!doCreateContext()) {
+	}
+	doActivateWindow();
+	if (!doCreateContext()) {
 		throw GglException("Could not make OpenGL context!");
 	}
+	doActivateContext();
 	
 	// Set up OpenGL
     glViewport(0, 0, 512, 512);

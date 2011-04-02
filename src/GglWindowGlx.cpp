@@ -51,9 +51,24 @@ bool GglWindowGlx::doCreateWindow() {
             &wa);
     
     subscribe(display, window);
-    show(display, window);
     
     return true;
+}
+
+/**
+ * Makes the window visible.
+ */
+void GglWindowGlx::doActivateWindow() {
+    
+    XEvent event;
+    
+    XMapWindow(display, window);
+    XSelectInput(display, window, StructureNotifyMask);
+    
+    XNextEvent(display, &event);
+    while (event.type != MapNotify) {
+        XNextEvent(display, &event);
+    }
 }
 
 void GglWindowGlx::doDestroyWindow() {
@@ -64,7 +79,6 @@ void GglWindowGlx::doDestroyWindow() {
 bool GglWindowGlx::doCreateContext() {
     
     XErrorHandler handler = NULL;
-    GLXContext context = NULL;
     GLXFBConfig fbc = config->getFBConfig();
     GLint attribs[] = {
             GLX_CONTEXT_MAJOR_VERSION_ARB, 2,
@@ -84,19 +98,18 @@ bool GglWindowGlx::doCreateContext() {
             True,     // direct
             attribs); // attributes
     
-    // Check if created correctly
-    if (context == NULL) {
-    	return false;
-    }
-    
-    // Make it current
-    glXMakeCurrent(display, window, context);
-    
     // Restore default error handler
     XSetErrorHandler(handler);
     
-    // Successfully made
-    return true;
+    // Finish
+    return (context != NULL);
+}
+
+/**
+ * Makes the OpenGL context current.
+ */
+void GglWindowGlx::doActivateContext() {
+    glXMakeCurrent(display, window, context);
 }
 
 void GglWindowGlx::doDestroyContext() {
@@ -236,25 +249,6 @@ void GglWindowGlx::subscribe(Display *display, Window window) {
     Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     
     XSetWMProtocols(display, window, &atom, 1);
-}
-
-/**
- * Shows the X window on a display.
- * 
- * @param display Connection to machine showing content
- * @param window Handle to X11 window
- */
-void GglWindowGlx::show(Display *display, Window window) {
-    
-    XEvent event;
-    
-    XMapWindow(display, window);
-    XSelectInput(display, window, StructureNotifyMask);
-    
-    XNextEvent(display, &event);
-    while (event.type != MapNotify) {
-        XNextEvent(display, &event);
-    }
 }
 
 /**

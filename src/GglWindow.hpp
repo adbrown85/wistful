@@ -50,6 +50,8 @@ public:
 	virtual void addListener(GglListener *listener);
 	static void run(GglWindow *window);
 protected:
+    virtual void doActivateContext() = 0;
+    virtual void doActivateWindow() = 0;
 	virtual bool doCreateConnection() = 0;
 	virtual bool doCreateWindow() = 0;
 	virtual bool doCreateContext() = 0;

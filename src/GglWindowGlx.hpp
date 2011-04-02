@@ -19,6 +19,8 @@ public:
     GglWindowGlx();
     virtual ~GglWindowGlx();
 protected:
+    virtual void doActivateContext();
+    virtual void doActivateWindow();
     virtual bool doCreateConnection();
     virtual bool doCreateWindow();
     virtual bool doCreateContext();
@@ -42,7 +44,6 @@ private:
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
     static XSetWindowAttributes getWindowAttributes(Colormap cm);
-    static void show(Display *display, Window window);
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
     static PFNGLXCCAA getGlXCCAA();
