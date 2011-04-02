@@ -59,12 +59,14 @@ void GglWindow::open() {
     }
     
     // Try to make context
-    if (!doCreateContext()) {
-        doDestroyConnection();
+    try {
+        doCreateContext();
+        doActivateContext();
+    } catch (GglException &e) {
         doDestroyWindow();
+        doDestroyConnection();
         throw GglException("Could not make OpenGL context!");
     }
-    doActivateContext();
     
     // Set up OpenGL
     glViewport(0, 0, 512, 512);
