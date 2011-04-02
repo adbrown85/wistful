@@ -49,9 +49,9 @@ bool GglWindowGlx::doCreateWindow() {
             info->visual,
             winmask,
             &wa);
-    subscribe(display, window);
     
-    mapXWindow();
+    subscribe(display, window);
+    show(display, window);
     
     return true;
 }
@@ -239,14 +239,18 @@ void GglWindowGlx::subscribe(Display *display, Window window) {
 }
 
 /**
- * Shows the X window on a screen.
+ * Shows the X window on a display.
+ * 
+ * @param display Connection to machine showing content
+ * @param window Handle to X11 window
  */
-void GglWindowGlx::mapXWindow() {
+void GglWindowGlx::show(Display *display, Window window) {
     
     XEvent event;
     
     XMapWindow(display, window);
     XSelectInput(display, window, StructureNotifyMask);
+    
     XNextEvent(display, &event);
     while (event.type != MapNotify) {
         XNextEvent(display, &event);
