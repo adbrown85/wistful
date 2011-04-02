@@ -36,10 +36,11 @@
  * creating and destroying an OpenGL context with the native OpenGL
  * interface.
  * 
- * In addition, a derived class also needs to implement <i>doGetEvent()</i>,
- * which allows the window to process input from the user.  At the very least,
- * a derived class should accept the event generated when the user closes the
- * window.
+ * In addition, a derived class should fill in a few more details.  First it
+ * needs to implement <i>doGetEvent()</i>, which allows the window to process
+ * input from the user.  At the very least, a derived class should accept the
+ * event generated when the user closes the window.  Second, it should
+ * implement <i>doFlush()</i>, which typically swaps the buffers.
  */
 class GglWindow {
 public:
