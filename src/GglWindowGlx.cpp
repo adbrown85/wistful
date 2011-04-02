@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglWindowGlx.hpp"
+GLXCCAA GglWindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx() {
@@ -92,12 +93,6 @@ GglConfigGlx* GglWindowGlx::createConfig() {
  */
 GLXContext GglWindowGlx::createContext(Display *display,
 		                               GLXFBConfig config) {
-	
-	PFNGLXCREATECONTEXTATTRIBSARBPROC glXCreateContextAttribsARB;
-	
-	glXCreateContextAttribsARB =
-			(PFNGLXCREATECONTEXTATTRIBSARBPROC)
-			glXGetProcAddressARB((GLubyte*) "glXCreateContextAttribsARB");
 	
 	GLint attribs[] = {
 			GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
@@ -207,4 +202,14 @@ void GglWindowGlx::mapXWindow() {
     while (event.type != MapNotify) {
     	XNextEvent(display, &event);
     }
+}
+
+/**
+ * Returns pointer to <i>glXCreateContextAttribsARB</i> function.
+ */
+GLXCCAA GglWindowGlx::getGlXCCAA() {
+    
+    GLubyte *name = (GLubyte*) "glXCreateContextAttribsARB";
+    
+    return (GLXCCAA) glXGetProcAddressARB(name);
 }
