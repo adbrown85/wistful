@@ -59,7 +59,6 @@ void GglWindow::run(GglWindow *window) {
         }
     }
     window->close();
-    cerr << "End of GglWindow::run()" << endl;
 }
 
 //--------------------------------------------------

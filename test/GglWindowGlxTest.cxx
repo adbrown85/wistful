@@ -42,6 +42,8 @@ void GglWindowGlxTest::testShow() {
 	window->setSize(640, 480);
 	window->addListener(new FakeGglListener());
 	GglWindow::run(window);
+	
+    cerr << "End of GglWindowGlxTest::testShow()" << endl;
 }
 
 /** Runs the test. */
