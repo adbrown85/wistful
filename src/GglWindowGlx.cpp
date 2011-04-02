@@ -13,7 +13,7 @@ GglWindowGlx::GglWindowGlx() {
     this->info = NULL;
     this->window = NULL;
     this->context = NULL;
-    this->config = NULL;
+    this->config = createConfig();
 }
 
 /** Destroys the window. */
@@ -33,7 +33,6 @@ void GglWindowGlx::doDestroyConnection() {
 
 bool GglWindowGlx::doCreateWindow() {
 	
-    config = createConfig();
     info = createInfo(display, config);
     createXWindow();
     mapXWindow();
