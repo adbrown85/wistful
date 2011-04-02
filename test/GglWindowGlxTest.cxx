@@ -13,7 +13,7 @@ using namespace std;
 /** Test for GlWindowGlx. */
 class GglWindowGlxTest {
 public:
-	void testShow();
+    void testShow();
 };
 
 class FakeGglListener : public GglListener {
@@ -36,20 +36,20 @@ public:
 
 /** Ensures window can be shown. */
 void GglWindowGlxTest::testShow() {
-	
-	GglWindow *window = new GglWindowGlx();
-	
-	window->setSize(640, 480);
-	window->addListener(new FakeGglListener());
-	GglWindow::run(window);
-	
+    
+    GglWindow *window = new GglWindowGlx();
+    
+    window->setSize(640, 480);
+    window->addListener(new FakeGglListener());
+    GglWindow::run(window);
+    
     cerr << "End of GglWindowGlxTest::testShow()" << endl;
 }
 
 /** Runs the test. */
 int main(int argc, char *argv[]) {
-	
-	GglWindowGlxTest test;
-	
-	test.testShow();
+    
+    GglWindowGlxTest test;
+    
+    test.testShow();
 }
