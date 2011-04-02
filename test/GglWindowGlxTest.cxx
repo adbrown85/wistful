@@ -21,9 +21,7 @@ void GglWindowGlxTest::testShow() {
 	
 	GglWindow *window = new GglWindowGlx();
 	
-	window->open();
-	sleep(4);
-	window->close();
+	GglWindow::run(window);
 }
 
 /** Runs the test. */

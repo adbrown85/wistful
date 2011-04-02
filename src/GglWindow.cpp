@@ -22,6 +22,13 @@ GglWindow::~GglWindow() {
 }
 
 /**
+ * Adds an object that will be notified of events.
+ */
+void GglWindow::addListener(GglListener *listener) {
+	listeners.push_back(listener);
+}
+
+/**
  * Shows the window on the screen.
  */
 void GglWindow::open() {
@@ -39,4 +46,26 @@ void GglWindow::close() {
 		doClose();
 		closed = true;
 	}
+}
+
+/**
+ * Shows a window and begins sending events.
+ */
+void GglWindow::run(GglWindow *window) {
+	
+	bool destroyed = false;
+	
+	window->open();
+	while (!destroyed) {
+		GglEvent event = window->doGetEvent();
+		switch (event.getType()) {
+		case DESTROY:
+			destroyed = true;
+			break;
+		default:
+			continue;
+		}
+	}
+	window->close();
+	cerr << "End of GglWindow::run()" << endl;
 }

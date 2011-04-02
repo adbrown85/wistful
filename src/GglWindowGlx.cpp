@@ -29,6 +29,9 @@ void GglWindowGlx::doOpen() {
     info = glXGetVisualFromFBConfig(display, config->getFBConfig());
     
     createXWindow();
+    Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
+    XSetWMProtocols(display, window, &atom, 1);
+    
     mapXWindow();
     
     context = createContext(display, config->getFBConfig());
@@ -57,6 +60,23 @@ void GglWindowGlx::doClose() {
     window = NULL;
     XCloseDisplay(display);
     display = NULL;
+}
+
+/**
+ * Returns next event from window.
+ */
+GglEvent GglWindowGlx::doGetEvent() {
+	
+	XEvent xEvent;
+	
+    XSelectInput(display, window, ExposureMask);
+	XNextEvent(display, &xEvent);
+	switch (xEvent.type) {
+	case ClientMessage:
+		return GglEvent(DESTROY);
+	default:
+		return GglEvent(OTHER);
+	}
 }
 
 //---------------------------------------------------------

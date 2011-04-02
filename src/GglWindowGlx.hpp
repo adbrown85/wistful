@@ -18,8 +18,10 @@ class GglWindowGlx : public GglWindow {
 public:
     GglWindowGlx();
     virtual ~GglWindowGlx();
+protected:
     virtual void doOpen();
     virtual void doClose();
+    virtual GglEvent doGetEvent();
 private:
     Display *display;
     XVisualInfo *info;
