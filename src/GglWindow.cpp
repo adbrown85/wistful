@@ -29,6 +29,32 @@ void GglWindow::addListener(GglListener *listener) {
 }
 
 /**
+ * Shows a window and begins sending events.
+ */
+void GglWindow::run(GglWindow *window) {
+    
+    bool destroyed = false;
+    
+    window->open();
+    while (!destroyed) {
+        GglEvent event = window->doGetEvent();
+        switch (event.getType()) {
+        case DESTROY:
+            destroyed = true;
+            break;
+        default:
+            continue;
+        }
+    }
+    window->close();
+    cerr << "End of GglWindow::run()" << endl;
+}
+
+//--------------------------------------------------
+// Helpers
+//
+
+/**
  * Opens the window.
  * 
  * @throw GglException if cannot make connection to windowing system
@@ -95,26 +121,4 @@ void GglWindow::close() {
     
     // Successfully closed
     closed = true;
-}
-
-/**
- * Shows a window and begins sending events.
- */
-void GglWindow::run(GglWindow *window) {
-    
-    bool destroyed = false;
-    
-    window->open();
-    while (!destroyed) {
-        GglEvent event = window->doGetEvent();
-        switch (event.getType()) {
-        case DESTROY:
-            destroyed = true;
-            break;
-        default:
-            continue;
-        }
-    }
-    window->close();
-    cerr << "End of GglWindow::run()" << endl;
 }
