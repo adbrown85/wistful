@@ -77,9 +77,9 @@ void GglWindow::close() {
     }
     
     // Destroy everything
-    doDestroyConnection();
-    doDestroyWindow();
     doDestroyContext();
+    doDestroyWindow();
+    doDestroyConnection();
     
     // Successfully closed
     closed = true;
