@@ -6,6 +6,7 @@
  */
 #include "GglWindowGlx.hpp"
 PFNGLXCCAA GglWindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
+long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx() {
@@ -132,8 +133,9 @@ GglEvent GglWindowGlx::doGetEvent() {
     
     XEvent xEvent;
     
-    XSelectInput(display, window, ExposureMask);
+    XSelectInput(display, window, DEFAULT_EVENT_MASK);
     XNextEvent(display, &xEvent);
+    
     switch (xEvent.type) {
     case ClientMessage:
         return GglEvent(DESTROY);

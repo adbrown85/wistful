@@ -47,6 +47,8 @@ private:
 // Function pointers
     static PFNGLXCCAA getGlXCCAA();
     static PFNGLXCCAA glXCreateContextAttribsARB;
+// Constants
+    static long DEFAULT_EVENT_MASK;
 };
 
 #endif
