@@ -27,6 +27,7 @@ private:
     XVisualInfo *info;
     Window window;
     GLXContext context;
+    GglConfigGlx *config;
 // Helpers
     static GglConfigGlx* createConfig();
     static Display* getDefaultDisplay();

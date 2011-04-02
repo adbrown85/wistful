@@ -13,6 +13,7 @@ GglWindowGlx::GglWindowGlx() {
     this->info = NULL;
     this->window = NULL;
     this->context = NULL;
+    this->config = NULL;
 }
 
 /** Destroys the window. */
@@ -23,11 +24,9 @@ GglWindowGlx::~GglWindowGlx() {
 /** Shows the window. */
 void GglWindowGlx::doOpen() {
     
-    GglConfigGlx *config = createConfig();
-    
     display = getDefaultDisplay();
+    config = createConfig();
     info = glXGetVisualFromFBConfig(display, config->getFBConfig());
-    
     createXWindow();
     mapXWindow();
     
