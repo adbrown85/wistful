@@ -33,8 +33,24 @@ void GglWindowGlx::doDestroyConnection() {
 
 bool GglWindowGlx::doCreateWindow() {
 	
-    info = createInfo(display, config);
-    createXWindow();
+    int winmask = getWindowMask();
+    XVisualInfo *info = createInfo(display, config);
+    Colormap cm = getColormap(display, info);
+    XSetWindowAttributes wa = getWindowAttributes(cm);
+    
+    window = XCreateWindow(
+            display,
+            DefaultRootWindow(display),
+            0, 0,
+            512, 512,
+            0,
+            info->depth,
+            InputOutput,
+            info->visual,
+            winmask,
+            &wa);
+    subscribe(display, window);
+    
     mapXWindow();
     
     return true;
@@ -207,29 +223,6 @@ XSetWindowAttributes GglWindowGlx::getWindowAttributes(Colormap cm) {
     wa.bit_gravity = StaticGravity;
     wa.colormap = cm;
     return wa;
-}
-
-/**
- * Makes an X window to back the GGL window.
- */
-void GglWindowGlx::createXWindow() {
-    
-    int winmask = getWindowMask();
-    Colormap cm = getColormap(display, info);
-    XSetWindowAttributes wa = getWindowAttributes(cm);
-    
-    window = XCreateWindow(
-            display,
-            DefaultRootWindow(display),
-            0, 0,
-            512, 512,
-            0,
-            info->depth,
-            InputOutput,
-            info->visual,
-            winmask,
-            &wa);
-    subscribe(display, window);
 }
 
 /**

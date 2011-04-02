@@ -42,7 +42,6 @@ private:
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
     static XSetWindowAttributes getWindowAttributes(Colormap cm);
-    void createXWindow();
     void mapXWindow();
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
