@@ -67,8 +67,8 @@ private:
 // Helpers
     void open();
     void close();
-    void createConnection() throw (GglException);
-    void createWindow() throw (GglException);
+    void createConnection() throw(GglException);
+    void createWindow() throw(GglException);
     void createContext() throw(GglException);
 };
 
