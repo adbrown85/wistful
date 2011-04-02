@@ -68,31 +68,10 @@ void GglWindow::open() {
         return;
     }
     
-    // Try to make connection
-    try {
-        doCreateConnection();
-    } catch (GglException &e) {
-        throw GglException("Could not make connection to windowing system!");
-    }
-    
-    // Try to make window
-    try {
-        doCreateWindow();
-        doActivateWindow();
-    } catch (GglException &e) {
-        doDestroyConnection();
-        throw GglException("Could not make native window!");
-    }
-    
-    // Try to make context
-    try {
-        doCreateContext();
-        doActivateContext();
-    } catch (GglException &e) {
-        doDestroyWindow();
-        doDestroyConnection();
-        throw GglException("Could not make OpenGL context!");
-    }
+    // Try to make objects
+    createConnection();
+    createWindow();
+    createContext();
     
     // Set up OpenGL
     glViewport(0, 0, 512, 512);
@@ -121,4 +100,33 @@ void GglWindow::close() {
     
     // Successfully closed
     closed = true;
+}
+
+void GglWindow::createConnection() throw(GglException) {
+    try {
+        doCreateConnection();
+    } catch (GglException &e) {
+        throw GglException("Could not make connection to windowing system!");
+    }
+}
+
+void GglWindow::createWindow() throw(GglException) {
+    try {
+        doCreateWindow();
+        doActivateWindow();
+    } catch (GglException &e) {
+        doDestroyConnection();
+        throw GglException("Could not make native window!");
+    }
+}
+
+void GglWindow::createContext() throw(GglException) {
+    try {
+        doCreateContext();
+        doActivateContext();
+    } catch (GglException &e) {
+        doDestroyWindow();
+        doDestroyConnection();
+        throw GglException("Could not make OpenGL context!");
+    }
 }
