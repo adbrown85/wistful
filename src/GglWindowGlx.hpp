@@ -22,7 +22,7 @@ protected:
     virtual void doActivateContext();
     virtual void doActivateWindow();
     virtual void doCreateConnection() throw(GglException);
-    virtual bool doCreateWindow();
+    virtual void doCreateWindow() throw(GglException);
     virtual bool doCreateContext();
     virtual void doDestroyConnection();
     virtual void doDestroyWindow();

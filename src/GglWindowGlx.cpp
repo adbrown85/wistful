@@ -35,7 +35,7 @@ void GglWindowGlx::doDestroyConnection() {
     display = NULL;
 }
 
-bool GglWindowGlx::doCreateWindow() {
+void GglWindowGlx::doCreateWindow() throw(GglException) {
     
     int winmask = getWindowMask();
     XVisualInfo *info = createInfo(display, config);
@@ -55,8 +55,6 @@ bool GglWindowGlx::doCreateWindow() {
             &wa);
     
     subscribe(display, window);
-    
-    return true;
 }
 
 /**

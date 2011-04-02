@@ -50,11 +50,13 @@ void GglWindow::open() {
     }
     
     // Try to make window
-    if (!doCreateWindow()) {
+    try {
+        doCreateWindow();
+        doActivateWindow();
+    } catch (GglException &e) {
         doDestroyConnection();
         throw GglException("Could not make native window!");
     }
-    doActivateWindow();
     
     // Try to make context
     if (!doCreateContext()) {

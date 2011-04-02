@@ -53,7 +53,7 @@ protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
     virtual void doCreateConnection() throw(GglException) = 0;
-    virtual bool doCreateWindow() = 0;
+    virtual void doCreateWindow() throw(GglException) = 0;
     virtual bool doCreateContext() = 0;
     virtual void doDestroyConnection() = 0;
     virtual void doDestroyWindow() = 0;
