@@ -73,6 +73,11 @@ void GglWindow::close() {
     closed = true;
 }
 
+/**
+ * Makes a connection to the windowing system.
+ * 
+ * @throw GglException if could not make connection
+ */
 void GglWindow::createConnection() throw(GglException) {
     try {
         doCreateConnection();
@@ -81,6 +86,11 @@ void GglWindow::createConnection() throw(GglException) {
     }
 }
 
+/**
+ * Makes and activates a native window.
+ * 
+ * @throw GglException if window could not be made
+ */
 void GglWindow::createWindow() throw(GglException) {
     try {
         doCreateWindow();
@@ -91,6 +101,11 @@ void GglWindow::createWindow() throw(GglException) {
     }
 }
 
+/**
+ * Makes and activates an OpenGL context.
+ * 
+ * @throw GglException if context could not be made
+ */
 void GglWindow::createContext() throw(GglException) {
     try {
         doCreateContext();
