@@ -198,10 +198,7 @@ void GglWindow::open() {
     createContext();
     
     // Set up OpenGL
-    glViewport(0, 0, 512, 512);
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    doFlush();
+    glViewport(0, 0, getWidth(), getHeight());
     
     // Successfully opened
     opened = true;
