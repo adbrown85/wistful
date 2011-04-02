@@ -52,9 +52,9 @@ bool GglWindowGlx::doCreateContext() {
     GLXContext context = NULL;
     GLXFBConfig fbc = config->getFBConfig();
     GLint attribs[] = {
-            GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
-            GLX_CONTEXT_MINOR_VERSION_ARB, 2,
-            GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
+            GLX_CONTEXT_MAJOR_VERSION_ARB, 2,
+            GLX_CONTEXT_MINOR_VERSION_ARB, 1,
+//            GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
             NULL
     };
     
@@ -218,7 +218,6 @@ void GglWindowGlx::createXWindow() {
     int winmask = getWindowMask();
     Colormap cm = getColormap(display, info);
     XSetWindowAttributes wa = getWindowAttributes(cm);
-    Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     
     window = XCreateWindow(
             display,
@@ -231,6 +230,19 @@ void GglWindowGlx::createXWindow() {
             info->visual,
             winmask,
             &wa);
+    subscribe(display, window);
+}
+
+/**
+ * Subscribes to window manager events.
+ * 
+ * @param display Connection to machine showing content
+ * @param window Handle to X11 window
+ */
+void GglWindowGlx::subscribe(Display *display, Window window) {
+    
+    Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
+    
     XSetWMProtocols(display, window, &atom, 1);
 }
 

@@ -34,6 +34,7 @@ private:
     GLXContext context;
     GglConfigGlx *config;
 // Helpers
+    static void subscribe(Display *display, Window window);
     static GglConfigGlx* createConfig();
     static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
     static Display* getDefaultDisplay();
