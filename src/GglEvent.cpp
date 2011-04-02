@@ -17,3 +17,11 @@ GglEvent::~GglEvent() {
 GglEventType GglEvent::getType() {
     return type;
 }
+
+GLuint GglEvent::getTrigger() {
+    return trigger;
+}
+
+void GglEvent::setTrigger(GLuint trigger) {
+    this->trigger = trigger;
+}

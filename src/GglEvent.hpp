@@ -6,6 +6,7 @@
  */
 #ifndef GGLEVENT_HPP
 #define GGLEVENT_HPP
+#include "common.h"
 
 
 enum GglEventType {
@@ -22,8 +23,11 @@ public:
     GglEvent(GglEventType type);
     virtual ~GglEvent();
     virtual GglEventType getType();
+    virtual GLuint getTrigger();
+    virtual void setTrigger(GLuint trigger);
 private:
     GglEventType type;
+    GLuint trigger;
 };
 
 #endif
