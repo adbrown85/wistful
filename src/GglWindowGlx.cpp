@@ -21,9 +21,13 @@ GglWindowGlx::~GglWindowGlx() {
     ;
 }
 
-bool GglWindowGlx::doCreateConnection() {
-    display = getDefaultDisplay();
-    return (display != NULL);
+void GglWindowGlx::doCreateConnection() throw(GglException) {
+    
+    display = XOpenDisplay(NULL);
+    
+    if (display == NULL) {
+        throw GglException("Could not open default display!");
+    }
 }
 
 void GglWindowGlx::doDestroyConnection() {
@@ -172,22 +176,6 @@ GglConfigGlx* GglWindowGlx::createConfig() {
     reqs[GLX_ALPHA_SIZE] = 8;
     
     return (GglConfigGlx*) cf.create(reqs);
-}
-
-/**
- * Returns a pointer to the default display.
- * 
- * @throw GglException if could not open display
- * @return Pointer to the display
- */
-Display* GglWindowGlx::getDefaultDisplay() {
-    
-    Display *display = XOpenDisplay(NULL);
-    
-    if (display == NULL) {
-        throw GglException("Could not open default display!");
-    }
-    return display;
 }
 
 /**

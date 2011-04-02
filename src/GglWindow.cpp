@@ -43,7 +43,9 @@ void GglWindow::open() {
     }
     
     // Try to make connection
-    if (!doCreateConnection()) {
+    try {
+        doCreateConnection();
+    } catch (GglException &e) {
         throw GglException("Could not make connection to windowing system!");
     }
     

@@ -21,7 +21,7 @@ public:
 protected:
     virtual void doActivateContext();
     virtual void doActivateWindow();
-    virtual bool doCreateConnection();
+    virtual void doCreateConnection() throw(GglException);
     virtual bool doCreateWindow();
     virtual bool doCreateContext();
     virtual void doDestroyConnection();
@@ -39,7 +39,6 @@ private:
     static void subscribe(Display *display, Window window);
     static GglConfigGlx* createConfig();
     static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
-    static Display* getDefaultDisplay();
     static long getEventMask();
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
