@@ -49,6 +49,10 @@ public:
     virtual ~GglWindow();
     virtual void addListener(GglListener *listener);
     static void run(GglWindow *window);
+// Getters and setters
+    void setSize(int width, int height);
+    int getWidth();
+    int getHeight();
 protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
@@ -63,6 +67,8 @@ protected:
 private:
     bool opened;
     bool closed;
+    int width;
+    int height;
     list<GglListener*> listeners;
 // Helpers
     void open();
@@ -70,6 +76,9 @@ private:
     void createConnection() throw(GglException);
     void createWindow() throw(GglException);
     void createContext() throw(GglException);
+// Constants
+    static const int DEFAULT_WIDTH = 512;
+    static const int DEFAULT_HEIGHT = 512;
 };
 
 #endif

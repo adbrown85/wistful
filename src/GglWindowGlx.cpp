@@ -46,7 +46,7 @@ void GglWindowGlx::doCreateWindow() throw(GglException) {
             display,
             DefaultRootWindow(display),
             0, 0,
-            512, 512,
+            getWidth(), getHeight(),
             0,
             info->depth,
             InputOutput,

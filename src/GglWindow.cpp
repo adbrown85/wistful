@@ -12,6 +12,8 @@
 GglWindow::GglWindow() {
     this->opened = false;
     this->closed = false;
+    this->width = DEFAULT_WIDTH;
+    this->height = DEFAULT_HEIGHT;
 }
 
 /**
@@ -144,4 +146,24 @@ void GglWindow::open() {
     
     // Successfully opened
     opened = true;
+}
+
+//--------------------------------------------------
+// Getters and setters
+//
+
+/** Changes the size of the window. */
+void GglWindow::setSize(int width, int height) {
+    this->width = width;
+    this->height = height;
+}
+
+/** Returns size of window on X axis. */
+int GglWindow::getWidth() {
+    return width;
+}
+
+/** Returns size of window on Y axis. */
+int GglWindow::getHeight() {
+    return height;
 }

@@ -21,6 +21,7 @@ void GglWindowGlxTest::testShow() {
 	
 	GglWindow *window = new GglWindowGlx();
 	
+	window->setSize(640, 480);
 	GglWindow::run(window);
 }
 
