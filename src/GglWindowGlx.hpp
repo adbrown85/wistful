@@ -10,7 +10,7 @@
 #include "GglWindow.hpp"
 #include "GglException.hpp"
 #include "GglConfigFactory.hpp"
-typedef PFNGLXCREATECONTEXTATTRIBSARBPROC GLXCCAA;
+typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
 
 
 /** @brief OpenGL Window implemented with GLX. */
@@ -37,8 +37,8 @@ private:
     void mapXWindow();
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
-    static GLXCCAA getGlXCCAA();
-    static GLXCCAA glXCreateContextAttribsARB;
+    static PFNGLXCCAA getGlXCCAA();
+    static PFNGLXCCAA glXCreateContextAttribsARB;
 };
 
 #endif
