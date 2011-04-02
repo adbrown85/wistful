@@ -77,6 +77,9 @@ private:
     void createWindow() throw(GglException);
     void createContext() throw(GglException);
     void fireKeyEvent(GglEvent &event);
+    void fireDestroyEvent();
+    void fireDisplayEvent();
+    void fireInitEvent();
 // Constants
     static const int DEFAULT_WIDTH = 512;
     static const int DEFAULT_HEIGHT = 512;

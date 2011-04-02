@@ -23,6 +23,8 @@ public:
     }
     virtual void display() {
         cerr << "FakeGglListener::display()" << endl;
+        glClearColor(0, 1, 0, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
     }
     virtual void destroy() {
         cerr << "FakeGglListener::destroy()" << endl;

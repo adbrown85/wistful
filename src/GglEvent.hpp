@@ -11,6 +11,8 @@
 
 enum GglEventType {
     DESTROY,
+    MAP,
+    EXPOSE,
     RESHAPE,
     KEY,
     MOUSE,

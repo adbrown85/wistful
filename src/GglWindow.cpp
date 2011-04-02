@@ -41,7 +41,14 @@ void GglWindow::run(GglWindow *window) {
     while (!destroyed) {
         GglEvent event = window->doGetEvent();
         switch (event.getType()) {
+        case MAP:
+            window->fireInitEvent();
+            break;
+        case EXPOSE:
+            window->fireDisplayEvent();
+            break;
         case DESTROY:
+            window->fireDestroyEvent();
             destroyed = true;
             break;
         case KEY:
@@ -131,6 +138,43 @@ void GglWindow::fireKeyEvent(GglEvent &event) {
     
     for (it=listeners.begin(); it!=listeners.end(); ++it) {
         (*it)->onKey(event);
+    }
+}
+
+/**
+ * Sends a destroy event to all listeners.
+ */
+void GglWindow::fireDestroyEvent() {
+    
+    list<GglListener*>::iterator it;
+    
+    for (it=listeners.begin(); it!=listeners.end(); ++it) {
+        (*it)->destroy();
+    }
+}
+
+/**
+ * Sends a display event to all listeners.
+ */
+void GglWindow::fireDisplayEvent() {
+    
+    list<GglListener*>::iterator it;
+    
+    for (it=listeners.begin(); it!=listeners.end(); ++it) {
+        (*it)->display();
+    }
+    doFlush();
+}
+
+/**
+ * Sends an initialize event to all listeners.
+ */
+void GglWindow::fireInitEvent() {
+    
+    list<GglListener*>::iterator it;
+    
+    for (it=listeners.begin(); it!=listeners.end(); ++it) {
+        (*it)->init();
     }
 }
 
