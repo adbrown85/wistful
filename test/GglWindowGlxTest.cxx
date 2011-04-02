@@ -16,12 +16,29 @@ public:
 	void testShow();
 };
 
+class FakeGglListener : public GglListener {
+public:
+    virtual void init() {
+        cerr << "FakeGglListener::init()" << endl;
+    }
+    virtual void display() {
+        cerr << "FakeGglListener::display()" << endl;
+    }
+    virtual void destroy() {
+        cerr << "FakeGglListener::destroy()" << endl;
+    }
+    virtual void onKey(GglEvent &event) {
+        cerr << event.getTrigger() << endl;
+    }
+};
+
 /** Ensures window can be shown. */
 void GglWindowGlxTest::testShow() {
 	
 	GglWindow *window = new GglWindowGlx();
 	
 	window->setSize(640, 480);
+	window->addListener(new FakeGglListener());
 	GglWindow::run(window);
 }
 

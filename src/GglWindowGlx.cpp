@@ -140,6 +140,8 @@ GglEvent GglWindowGlx::doGetEvent() {
     switch (xEvent.type) {
     case ClientMessage:
         return GglEvent(DESTROY);
+    case KeyPress:
+        return toGglEvent(xEvent.xkey);
     default:
         return GglEvent(OTHER);
     }
@@ -250,6 +252,21 @@ PFNGLXCCAA GglWindowGlx::getGlXCCAA() {
     GLubyte *name = (GLubyte*) "glXCreateContextAttribsARB";
     
     return (PFNGLXCCAA) glXGetProcAddressARB(name);
+}
+
+/**
+ * Converts an X11 key event to a GGL event.
+ * 
+ * @param xke X11 Key event
+ * @return Equivalent GGL event
+ */
+GglEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
+    
+    GglEvent ge(KEY);
+    KeySym ks = XLookupKeysym(&xke, 0);
+    
+    ge.setTrigger(ks);
+    return ge;
 }
 
 /**

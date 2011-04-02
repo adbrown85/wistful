@@ -6,6 +6,8 @@
  */
 #ifndef GGLLISTENER_HPP
 #define GGLLISTENER_HPP
+#include "GglEvent.hpp"
+
 
 /**
  * @brief Object that listens to GGL events.
@@ -17,6 +19,7 @@ public:
     virtual void init() = 0;
     virtual void display() = 0;
     virtual void destroy() = 0;
+    virtual void onKey(GglEvent &event) = 0;
 };
 
 #endif

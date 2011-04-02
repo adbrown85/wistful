@@ -44,6 +44,9 @@ void GglWindow::run(GglWindow *window) {
         case DESTROY:
             destroyed = true;
             break;
+        case KEY:
+            window->fireKeyEvent(event);
+            break;
         default:
             continue;
         }
@@ -116,6 +119,18 @@ void GglWindow::createContext() throw(GglException) {
         doDestroyWindow();
         doDestroyConnection();
         throw GglException("Could not make OpenGL context!");
+    }
+}
+
+/**
+ * Sends a key event to all listeners.
+ */
+void GglWindow::fireKeyEvent(GglEvent &event) {
+    
+    list<GglListener*>::iterator it;
+    
+    for (it=listeners.begin(); it!=listeners.end(); ++it) {
+        (*it)->onKey(event);
     }
 }
 
