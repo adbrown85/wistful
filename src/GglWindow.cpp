@@ -55,35 +55,6 @@ void GglWindow::run(GglWindow *window) {
 //
 
 /**
- * Opens the window.
- * 
- * @throw GglException if cannot make connection to windowing system
- * @throw GglException if cannot make native window
- * @throw GglException if cannot make OpenGL context
- */
-void GglWindow::open() {
-    
-    // Guard against bad opens
-    if (opened || closed) {
-        return;
-    }
-    
-    // Try to make objects
-    createConnection();
-    createWindow();
-    createContext();
-    
-    // Set up OpenGL
-    glViewport(0, 0, 512, 512);
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    doFlush();
-    
-    // Successfully opened
-    opened = true;
-}
-
-/**
  * Closes the window.
  */
 void GglWindow::close() {
@@ -129,4 +100,33 @@ void GglWindow::createContext() throw(GglException) {
         doDestroyConnection();
         throw GglException("Could not make OpenGL context!");
     }
+}
+
+/**
+ * Opens the window.
+ * 
+ * @throw GglException if cannot make connection to windowing system
+ * @throw GglException if cannot make native window
+ * @throw GglException if cannot make OpenGL context
+ */
+void GglWindow::open() {
+    
+    // Guard against bad opens
+    if (opened || closed) {
+        return;
+    }
+    
+    // Try to make objects
+    createConnection();
+    createWindow();
+    createContext();
+    
+    // Set up OpenGL
+    glViewport(0, 0, 512, 512);
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    doFlush();
+    
+    // Successfully opened
+    opened = true;
 }
