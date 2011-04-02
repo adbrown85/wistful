@@ -29,9 +29,6 @@ void GglWindowGlx::doOpen() {
     info = glXGetVisualFromFBConfig(display, config->getFBConfig());
     
     createXWindow();
-    Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
-    XSetWMProtocols(display, window, &atom, 1);
-    
     mapXWindow();
     
     context = createContext(display, config->getFBConfig());
@@ -205,6 +202,7 @@ void GglWindowGlx::createXWindow() {
     
     int winmask = getWindowMask();
     XSetWindowAttributes wa = getWindowAttributes();
+    Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     
     window = XCreateWindow(
             display,
@@ -217,6 +215,7 @@ void GglWindowGlx::createXWindow() {
             info->visual,
             winmask,
             &wa);
+    XSetWMProtocols(display, window, &atom, 1);
 }
 
 /**
