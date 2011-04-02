@@ -62,17 +62,8 @@ void GglWindowGlx::doCreateWindow() throw(GglException) {
  * Makes the window visible.
  */
 void GglWindowGlx::doActivateWindow() {
-    
-    XEvent event;
-    
     XMapWindow(display, window);
     XFlush(display);
-    
-    XSelectInput(display, window, StructureNotifyMask);
-    XNextEvent(display, &event);
-    while (event.type != MapNotify) {
-        XNextEvent(display, &event);
-    }
 }
 
 void GglWindowGlx::doDestroyWindow() {
