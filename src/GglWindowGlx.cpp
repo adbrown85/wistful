@@ -47,8 +47,41 @@ void GglWindowGlx::doDestroyWindow() {
 }
 
 bool GglWindowGlx::doCreateContext() {
-    context = createContext(display, window, config->getFBConfig());
-    return (context != NULL);
+    
+    XErrorHandler handler = NULL;
+    GLXContext context = NULL;
+    GLXFBConfig fbc = config->getFBConfig();
+    GLint attribs[] = {
+            GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
+            GLX_CONTEXT_MINOR_VERSION_ARB, 2,
+            GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
+            NULL
+    };
+    
+    // Remove default error handler
+    handler = XSetErrorHandler(&x11ErrorHandler);
+    
+    // Create context
+    context = glXCreateContextAttribsARB(
+            display,  // display
+            fbc,      // framebuffer configuration
+            0,        // render type
+            True,     // direct
+            attribs); // attributes
+    
+    // Check if created correctly
+    if (context == NULL) {
+    	return false;
+    }
+    
+    // Make it current
+    glXMakeCurrent(display, window, context);
+    
+    // Restore default error handler
+    XSetErrorHandler(handler);
+    
+    // Successfully made
+    return true;
 }
 
 void GglWindowGlx::doDestroyContext() {
@@ -100,48 +133,6 @@ GglConfigGlx* GglWindowGlx::createConfig() {
     reqs[GLX_ALPHA_SIZE] = 8;
     
     return (GglConfigGlx*) cf.create(reqs);
-}
-
-/**
- * Creates a context for the window.
- * 
- * @param display Machine window will appear on
- * @param window Area on screen
- * @param config Framebuffer configuration
- * @return OpenGL context
- * @throw GglException if could not create context
- */
-GLXContext GglWindowGlx::createContext(Display *display,
-		                               Window window,
-                                       GLXFBConfig config) {
-    
-    XErrorHandler handler = NULL;
-    GLXContext context = NULL;
-    GLint attribs[] = {
-            GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
-            GLX_CONTEXT_MINOR_VERSION_ARB, 2,
-            GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
-            NULL
-    };
-    
-    // Remove default error handler
-    handler = XSetErrorHandler(&x11ErrorHandler);
-    
-    // Create context
-    context = glXCreateContextAttribsARB(
-            display,  // display
-            config,   // framebuffer configuration
-            0,        // render type
-            True,     // direct
-            attribs); // attributes
-    if (context != NULL) {
-    	glXMakeCurrent(display, window, context);
-    }
-    
-    // Restore default error handler
-    XSetErrorHandler(handler);
-    
-    return context;
 }
 
 /**
