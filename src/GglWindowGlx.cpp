@@ -164,12 +164,15 @@ long GglWindowGlx::getEventMask() {
 
 /**
  * Returns a color map for the window.
+ * 
+ * @param display Connection to machine showing content
+ * @param vi Visual information about X screen
  */
-Colormap GglWindowGlx::getColormap() {
+Colormap GglWindowGlx::getColormap(Display *display, XVisualInfo *vi) {
     return XCreateColormap(
             display,
-            RootWindow(display, info->screen),
-            info->visual,
+            RootWindow(display, vi->screen),
+            vi->visual,
             AllocNone);
 }
 
@@ -182,15 +185,17 @@ long GglWindowGlx::getWindowMask() {
 
 /**
  * Return window attributes needed to create backing X window.
+ * 
+ * @param cm Description of color capabilities of screen
  */
-XSetWindowAttributes GglWindowGlx::getWindowAttributes() {
+XSetWindowAttributes GglWindowGlx::getWindowAttributes(Colormap cm) {
     
     XSetWindowAttributes wa;
     
     wa.event_mask = getEventMask();
     wa.border_pixel = 0;
     wa.bit_gravity = StaticGravity;
-    wa.colormap = getColormap();
+    wa.colormap = cm;
     return wa;
 }
 
@@ -200,7 +205,8 @@ XSetWindowAttributes GglWindowGlx::getWindowAttributes() {
 void GglWindowGlx::createXWindow() {
     
     int winmask = getWindowMask();
-    XSetWindowAttributes wa = getWindowAttributes();
+    Colormap cm = getColormap(display, info);
+    XSetWindowAttributes wa = getWindowAttributes(cm);
     Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     
     window = XCreateWindow(

@@ -38,8 +38,8 @@ private:
     static Display* getDefaultDisplay();
     static long getEventMask();
     static long getWindowMask();
-    Colormap getColormap();
-    XSetWindowAttributes getWindowAttributes();
+    static Colormap getColormap(Display *display, XVisualInfo *vi);
+    static XSetWindowAttributes getWindowAttributes(Colormap cm);
     void createXWindow();
     void mapXWindow();
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
