@@ -126,15 +126,23 @@ GglEvent GglWindowGlx::doGetEvent() {
     XEvent xEvent;
     
     XSelectInput(display, window, DEFAULT_EVENT_MASK);
-    XNextEvent(display, &xEvent);
     
-    switch (xEvent.type) {
-    case ClientMessage:
-        return GglEvent(DESTROY);
-    case KeyPress:
-        return toGglEvent(xEvent.xkey);
-    default:
-        return GglEvent(OTHER);
+    while (true) {
+        XNextEvent(display, &xEvent);
+        switch (xEvent.type) {
+        case ClientMessage:
+            return GglEvent(DESTROY);
+        case MapNotify:
+            return GglEvent(MAP);
+        case Expose:
+            if (xEvent.xexpose.count == 0) {
+                return GglEvent(EXPOSE);
+            }
+        case KeyPress:
+            return toGglEvent(xEvent.xkey);
+        default:
+            return GglEvent(OTHER);
+        }
     }
 }
 
