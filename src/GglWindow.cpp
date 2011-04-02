@@ -42,15 +42,22 @@ void GglWindow::open() {
 		return;
 	}
 	
-	// Create objects
+	// Try to make connection
 	if (!doCreateConnection()) {
 		throw GglException("Could not make connection to windowing system!");
 	}
+	
+	// Try to make window
 	if (!doCreateWindow()) {
+	    doDestroyConnection();
 		throw GglException("Could not make native window!");
 	}
 	doActivateWindow();
+	
+	// Try to make context
 	if (!doCreateContext()) {
+	    doDestroyConnection();
+	    doDestroyWindow();
 		throw GglException("Could not make OpenGL context!");
 	}
 	doActivateContext();
