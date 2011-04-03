@@ -4,11 +4,13 @@
 *.o
 aclocal.m4
 autom4te.cache/
+autoscan.log
 config.sub
 config.h
 config.h.in
 config.log
 config.status
 configure
+configure.scan
 install-sh
 Makefile
