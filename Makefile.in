@@ -44,7 +44,6 @@ distclean:
 	$(RM) autoscan.log
 	$(RM) -r autom4te.cache
 	$(RM) config.h
-	$(RM) config.h.in
 	$(RM) config.log
 	$(RM) config.status
 	$(RM) config.sub
