@@ -5,7 +5,10 @@
 aclocal.m4
 autom4te.cache/
 config.sub
+config.h
 config.h.in
+config.log
+config.status
 configure
 install-sh
-
+Makefile
