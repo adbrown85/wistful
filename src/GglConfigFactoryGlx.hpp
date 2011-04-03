@@ -7,6 +7,7 @@
 #ifndef GGLCONFIGFACTORYGLX_HPP
 #define GGLCONFIGFACTORYGLX_HPP
 #include "ggl_common.h"
+#ifdef HAVE_GLX
 #include "GglConfigFactory.hpp"
 #include "GglConfigGlx.hpp"
 
@@ -26,4 +27,5 @@ private:
     int getValue(GLXFBConfig fbc, int key);
 };
 
+#endif // HAVE_GLX
 #endif

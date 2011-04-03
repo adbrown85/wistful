@@ -7,6 +7,7 @@
 #ifndef GGLWINDOWGLX_HPP
 #define GGLWINDOWGLX_HPP
 #include "ggl_common.h"
+#ifdef HAVE_GLX
 #include "GglWindow.hpp"
 #include "GglException.hpp"
 #include "GglConfigFactoryGlx.hpp"
@@ -52,4 +53,5 @@ private:
     static long DEFAULT_EVENT_MASK;
 };
 
+#endif // HAVE_GLX
 #endif

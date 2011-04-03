@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglConfigFactoryGlx.hpp"
+#ifdef HAVE_GLX
 
 /** Creates an OpenGL configuration factory. */
 GglConfigFactoryGlx::GglConfigFactoryGlx() {
@@ -104,3 +105,4 @@ int GglConfigFactoryGlx::getValue(GLXFBConfig fbc, int key) {
     return value;
 }
 
+#endif // HAVE_GLX

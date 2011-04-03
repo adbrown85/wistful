@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglWindowGlx.hpp"
+#ifdef HAVE_GLX
 PFNGLXCCAA GglWindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
 long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 
@@ -279,3 +280,4 @@ int GglWindowGlx::x11ErrorHandler(Display *display, XErrorEvent *event) {
     return 0;
 }
 
+#endif // HAVE_GLX

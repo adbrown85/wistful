@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglWindowFactoryGlx.hpp"
+#ifdef HAVE_GLX
 
 /**
  * Creates a window factory for GLX.
@@ -30,4 +31,4 @@ GglWindow* GglWindowFactoryGlx::create() {
     return new GglWindowGlx();
 }
 
-
+#endif // HAVE_GLX

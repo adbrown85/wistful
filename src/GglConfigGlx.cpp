@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglConfigGlx.hpp"
+#ifdef HAVE_GLX
 
 /** Creates an OpenGL configuration with GLX. */
 GglConfigGlx::GglConfigGlx(GglConfigGlxBuilder *b) : GglConfig(b) {
@@ -21,3 +22,5 @@ GLXFBConfig GglConfigGlx::getFBConfig() {
 int GglConfigGlx::getId() {
     return id;
 }
+
+#endif // HAVE_GLX

@@ -33,4 +33,4 @@ private:
 };
 
 #endif // HAVE_GLX
-#endif // GGL_CONFIGGLX_HPP
+#endif
