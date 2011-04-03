@@ -70,7 +70,7 @@ tests: $(tests)
 	@$(CXX) \
             $(CXXFLAGS) $(LDFLAGS) \
             $< -o $(builddir)/$@ \
-            ${addprefix $(builddir)/,${filter %.o,$^}} \
+            ${addprefix build/,${notdir ${filter %.o,$^}}} \
             $(LIBS)
 
 # Dependencies
