@@ -1,7 +1,7 @@
 # Start
 AC_PREREQ([2.67])
 AC_INIT([GGL], [0.1], [adb1413@rit.edu])
-AC_CONFIG_SRCDIR([src/common.h])
+AC_CONFIG_SRCDIR([src/ggl_common.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs
