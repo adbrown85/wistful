@@ -7,11 +7,13 @@
 #ifndef GGLWINDOWGLX_HPP
 #define GGLWINDOWGLX_HPP
 #include "ggl_common.h"
-#ifdef HAVE_GLX
 #include "GglWindow.hpp"
 #include "GglException.hpp"
 #include "GglConfigFactoryGlx.hpp"
+
+#ifdef HAVE_GLX
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
+#endif //HAVE_GLX
 
 
 /** @brief OpenGL Window implemented with GLX. */
@@ -19,6 +21,7 @@ class GglWindowGlx : public GglWindow {
 public:
     GglWindowGlx();
     virtual ~GglWindowGlx();
+#ifdef HAVE_GLX
 protected:
     virtual void doActivateContext();
     virtual void doActivateWindow();
@@ -51,7 +54,7 @@ private:
     static PFNGLXCCAA glXCreateContextAttribsARB;
 // Constants
     static long DEFAULT_EVENT_MASK;
+#endif //HAVE_GLX
 };
 
-#endif // HAVE_GLX
 #endif

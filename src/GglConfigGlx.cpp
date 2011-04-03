@@ -5,13 +5,16 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglConfigGlx.hpp"
-#ifdef HAVE_GLX
 
 /** Creates an OpenGL configuration with GLX. */
 GglConfigGlx::GglConfigGlx(GglConfigGlxBuilder *b) : GglConfig(b) {
-    this->glxFBConfig = b->glxFBConfig;
+#ifdef HAVE_GLX
     this->id = b->id;
+    this->glxFBConfig = b->glxFBConfig;
+#endif //HAVE_GLX
 }
+
+#ifdef HAVE_GLX
 
 /** Returns native framebuffer configuration for GLX. */
 GLXFBConfig GglConfigGlx::getFBConfig() {

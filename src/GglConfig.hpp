@@ -13,7 +13,6 @@
 class GglConfigBuilder {
 public:
     GglConfigBuilder();
-    virtual ~GglConfigBuilder() {}
     int red;                                // Red size
     int green;                              // Green size
     int blue;                               // Blue size

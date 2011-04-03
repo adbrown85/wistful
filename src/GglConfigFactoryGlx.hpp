@@ -7,7 +7,6 @@
 #ifndef GGLCONFIGFACTORYGLX_HPP
 #define GGLCONFIGFACTORYGLX_HPP
 #include "ggl_common.h"
-#ifdef HAVE_GLX
 #include "GglConfigFactory.hpp"
 #include "GglConfigGlx.hpp"
 
@@ -18,6 +17,7 @@ public:
     GglConfigFactoryGlx();
     virtual ~GglConfigFactoryGlx();
     virtual GglConfig* create(const map<int,int> &requirements);
+#ifdef HAVE_GLX
 private:
     Display *display;
 // Helpers
@@ -25,7 +25,7 @@ private:
     GglConfig* doCreate(GLXFBConfig &fbc);
     static const int* toArray(const map<int,int> &m);
     int getValue(GLXFBConfig fbc, int key);
+#endif //HAVE_GLX
 };
 
-#endif // HAVE_GLX
 #endif

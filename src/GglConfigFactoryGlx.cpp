@@ -5,17 +5,22 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglConfigFactoryGlx.hpp"
-#ifdef HAVE_GLX
 
 /** Creates an OpenGL configuration factory. */
 GglConfigFactoryGlx::GglConfigFactoryGlx() {
+#ifdef HAVE_GLX
     display = createDisplay();
+#endif //HAVE_GLX
 }
 
 /** Destroys the factory. */
 GglConfigFactoryGlx::~GglConfigFactoryGlx() {
+#ifdef HAVE_GLX
     XCloseDisplay(display);
+#endif //HAVE_GLX
 }
+
+#ifdef HAVE_GLX
 
 /** Returns OpenGL configurations meeting certain requirements. */
 GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
@@ -105,4 +110,4 @@ int GglConfigFactoryGlx::getValue(GLXFBConfig fbc, int key) {
     return value;
 }
 
-#endif // HAVE_GLX
+#endif //HAVE_GLX

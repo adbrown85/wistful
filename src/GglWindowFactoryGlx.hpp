@@ -7,7 +7,6 @@
 #ifndef GGLWINDOWFACTORYGLX_HPP
 #define GGLWINDOWFACTORYGLX_HPP
 #include "ggl_common.h"
-#ifdef HAVE_GLX
 #include "GglWindowFactory.hpp"
 #include "GglWindowGlx.hpp"
 
@@ -22,5 +21,4 @@ public:
     virtual GglWindow* create();
 };
 
-#endif // HAVE_GLX
 #endif

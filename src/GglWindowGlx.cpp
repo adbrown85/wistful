@@ -8,6 +8,7 @@
 #ifdef HAVE_GLX
 PFNGLXCCAA GglWindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
 long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
+#endif //HAVE_GLX
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx() {
@@ -22,6 +23,8 @@ GglWindowGlx::GglWindowGlx() {
 GglWindowGlx::~GglWindowGlx() {
     ;
 }
+
+#ifdef HAVE_GLX
 
 void GglWindowGlx::doCreateConnection() throw(GglException) {
     
@@ -280,4 +283,4 @@ int GglWindowGlx::x11ErrorHandler(Display *display, XErrorEvent *event) {
     return 0;
 }
 
-#endif // HAVE_GLX
+#endif //HAVE_GLX
