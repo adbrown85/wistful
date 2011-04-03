@@ -55,21 +55,25 @@ distclean:
 .PHONY: objects
 objects: ${notdir $(objects)}
 %.o: %.cpp %.hpp
-	$(CXX) -c $(CXXFLAGS) $< -o $(srcdir)/$@
+	@echo "  CXX $@"
+	@$(CXX) -c $(CXXFLAGS) $< -o $@
 
 # Tests
 .PHONY: tests
 tests: ${notdir $(tests)}
 %: %.cxx
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $(testdir)/$@ $(LIBS)
+	@echo "  CXX $@"
+	@$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $(testdir)/$@ $(LIBS)
 
 # Dependencies
 .PHONY: depends
 depends: $(depends)
 %.d: %.hpp
-	$(CXX) $(CXXFLAGS) -MM $< > $@
+	@echo "  GEN $@"
+	@$(CXX) $(CXXFLAGS) -MM $< > $@
 %.d: %.cxx
-	$(CXX) $(CXXFLAGS) -MM $< | sed 's/\.o//;s/\.hpp/\.o/g' > $@
+	@echo "  GEN $@"
+	@$(CXX) $(CXXFLAGS) -MM $< | sed 's/\.o//;s/\.hpp/\.o/g' > $@
 ifneq ($(MAKECMDGOALS),clean)
   -include $(depends)
 endif
