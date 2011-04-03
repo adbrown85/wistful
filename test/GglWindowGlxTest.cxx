@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglWindowGlx.hpp"
+#include "GglWindowFactoryGlx.hpp"
 #include <iostream>
 using namespace std;
 
@@ -36,7 +36,8 @@ public:
 /** Ensures window can be shown. */
 void GglWindowGlxTest::testShow() {
     
-    GglWindow *window = new GglWindowGlx();
+    GglWindowFactory *factory = new GglWindowFactoryGlx();
+    GglWindow *window = factory->create();
     
     window->setSize(640, 480);
     window->addListener(new FakeGglListener());
