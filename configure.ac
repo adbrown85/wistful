@@ -3,6 +3,8 @@ AC_PREREQ([2.67])
 AC_INIT([GGL], [0.1], [adb1413@rit.edu])
 AC_CONFIG_SRCDIR([src/ggl_common.h])
 AC_CONFIG_HEADERS([config.h])
+AC_SUBST([srcdir], [src])
+AC_SUBST([testdir], [test])
 
 # Checks for programs
 AC_PROG_CXX
