@@ -2,4 +2,9 @@
 .project
 *.d
 *.o
+aclocal.m4
+autom4te.cache/
+config.sub
+config.h.in
+configure
 
