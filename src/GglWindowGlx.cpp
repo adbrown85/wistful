@@ -166,7 +166,7 @@ XVisualInfo* GglWindowGlx::createInfo(Display *display, GglConfigGlx *config) {
  */
 GglConfigGlx* GglWindowGlx::createConfig() {
     
-    GglConfigFactory cf;
+    GglConfigFactoryGlx cf;
     map<int,int> reqs;
     
     reqs[GLX_X_RENDERABLE] = 1;

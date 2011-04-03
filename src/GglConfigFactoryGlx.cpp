@@ -1,23 +1,23 @@
 /*
- * GglConfigFactory.cpp
+ * GglConfigFactoryGlx.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglConfigFactory.hpp"
+#include "GglConfigFactoryGlx.hpp"
 
 /** Creates an OpenGL configuration factory. */
-GglConfigFactory::GglConfigFactory() {
+GglConfigFactoryGlx::GglConfigFactoryGlx() {
     display = createDisplay();
 }
 
 /** Destroys the factory. */
-GglConfigFactory::~GglConfigFactory() {
+GglConfigFactoryGlx::~GglConfigFactoryGlx() {
     XCloseDisplay(display);
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
-GglConfig* GglConfigFactory::create(const map<int,int> &requirements) {
+GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
     
     const int *reqs = toArray(requirements);
     int len;
@@ -48,12 +48,12 @@ GglConfig* GglConfigFactory::create(const map<int,int> &requirements) {
 //
 
 /** Returns pointer to the default X display. */
-Display* GglConfigFactory::createDisplay() {
+Display* GglConfigFactoryGlx::createDisplay() {
     return XOpenDisplay(NULL);
 }
 
 /** Actually creates a configuration. */
-GglConfig* GglConfigFactory::doCreate(GLXFBConfig &fbc) {
+GglConfig* GglConfigFactoryGlx::doCreate(GLXFBConfig &fbc) {
     
     GglConfigGlxBuilder b;
     
@@ -74,7 +74,7 @@ GglConfig* GglConfigFactory::doCreate(GLXFBConfig &fbc) {
  * @param id Identifier of configuration
  * @return Pointer to the configuration, or NULL if not found
  */
-GglConfig* GglConfigFactory::find(int id) {
+GglConfig* GglConfigFactoryGlx::find(int id) {
     
     map<int,GglConfig*>::iterator it = configs.find(id);
     
@@ -86,7 +86,7 @@ GglConfig* GglConfigFactory::find(int id) {
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
  */
-const int* GglConfigFactory::toArray(const map<int,int> &m) {
+const int* GglConfigFactoryGlx::toArray(const map<int,int> &m) {
     
     int len = (m.size() * 2) + 1;           // Length of array
     int *arr = new int[len];                // Array of integers
@@ -107,7 +107,7 @@ const int* GglConfigFactory::toArray(const map<int,int> &m) {
  * @param fbc GLX Framebuffer configuration
  * @param key Name of attribute
  */
-int GglConfigFactory::getValue(GLXFBConfig fbc, int key) {
+int GglConfigFactoryGlx::getValue(GLXFBConfig fbc, int key) {
     
     int value;
     

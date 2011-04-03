@@ -1,22 +1,22 @@
 /*
- * GglConfigFactoryTest.cxx
+ * GglConfigFactoryGlxTest.cxx
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglConfigFactory.hpp"
+#include "GglConfigFactoryGlx.hpp"
 
 
-/** Test for GglConfigFactory. */
-class GglConfigFactoryTest {
+/** Test for GglConfigFactoryGlx. */
+class GglConfigFactoryGlxTest {
 public:
     void testCreate();
 };
 
 /** Ensures configurations can be created correctly. */
-void GglConfigFactoryTest::testCreate() {
+void GglConfigFactoryGlxTest::testCreate() {
     
-    GglConfigFactory cf;
+    GglConfigFactoryGlx cf;
     map<int,int> reqs;
     GglConfig *config;
     
@@ -39,7 +39,7 @@ void GglConfigFactoryTest::testCreate() {
 /** Runs the test. */
 int main(int argc, char *argv[]) {
     
-    GglConfigFactoryTest test;
+    GglConfigFactoryGlxTest test;
     
     test.testCreate();
     return 0;

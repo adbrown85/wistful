@@ -1,21 +1,21 @@
 /*
- * GglConfigFactory.hpp
+ * GglConfigFactoryGlx.hpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLCONFIGFACTORY_HPP
-#define GGLCONFIGFACTORY_HPP
+#ifndef GGLCONFIGFACTORYGLX_HPP
+#define GGLCONFIGFACTORYGLX_HPP
 #include "ggl_common.h"
 #include "GglConfigGlx.hpp"
 #include "GglException.hpp"
 
 
 /** Utility for creating OpenGL configurations. */
-class GglConfigFactory {
+class GglConfigFactoryGlx {
 public:
-    GglConfigFactory();
-    virtual ~GglConfigFactory();
+    GglConfigFactoryGlx();
+    virtual ~GglConfigFactoryGlx();
     virtual GglConfig* create(const map<int,int> &requirements);
 private:
     Display *display;
