@@ -37,19 +37,24 @@ depends      := ${subst .hpp,.d,$(headers)} ${subst .cxx,.d,$(harnesses)}
 .DEFAULT: all
 all: objects tests
 clean:
-	$(RM) $(objects)
-	$(RM) $(tests)
-	$(RM) $(depends)
+	@echo "  RM  objects"
+	@$(RM) $(objects)
+	@echo "  RM  tests"
+	@$(RM) $(tests)
+	@echo "  RM  dependencies"
+	@$(RM) $(depends)
 distclean:
-	$(RM) aclocal.m4
-	$(RM) autoscan.log
-	$(RM) -r autom4te.cache
-	$(RM) config.h
-	$(RM) config.log
-	$(RM) config.status
-	$(RM) config.sub
-	$(RM) configure.scan
-	$(RM) Makefile
+	@echo "  RM  autoscan files"
+	@$(RM) autoscan.log
+	@$(RM) configure.scan
+	@echo "  RM  configure files"
+	@$(RM) aclocal.m4
+	@$(RM) -r autom4te.cache
+	@$(RM) config.h
+	@$(RM) config.log
+	@$(RM) config.status
+	@$(RM) config.sub
+	@$(RM) Makefile
 
 # Objects
 .PHONY: objects
