@@ -11,9 +11,10 @@ exec_prefix  := @exec_prefix@
 bindir       := @bindir@
 libdir       := @libdir@
 includedir   := @includedir@
-srcdir       := @srcdir@
-testdir      := @testdir@
-VPATH        := $(srcdir) $(testdir)
+srcdir       := src
+testdir      := test
+builddir     := build
+VPATH        := $(srcdir) $(testdir) $(builddir)
 
 # Tools
 CXX          := @CXX@
@@ -27,27 +28,28 @@ INSTALL      := @INSTALL@
 # Files
 sources      := ${wildcard $(srcdir)/*.cpp}
 headers      := ${subst .cpp,.hpp,$(sources)}
-objects      := ${subst .cpp,.o,$(sources)}
+objects      := ${notdir ${subst .cpp,.o,$(sources)}}
 harnesses    := ${wildcard $(testdir)/*.cxx}
-tests        := ${subst .cxx,,$(harnesses)}
+tests        := ${notdir ${subst .cxx,,$(harnesses)}}
 depends      := ${subst .hpp,.d,$(headers)} ${subst .cxx,.d,$(harnesses)}
 
 # Interface
-.PHONY: all clean
+.PHONY: all clean init
 .DEFAULT: all
-all: objects tests
+all: init objects tests
+init:
+	@echo "  MKDIR $(builddir)"
+	@$(INSTALL) -d $(builddir)
 clean:
-	@echo "  RM  objects"
-	@$(RM) $(objects)
-	@echo "  RM  tests"
-	@$(RM) $(tests)
-	@echo "  RM  dependencies"
+	@echo "  RM    build"
+	@$(RM) -r $(builddir)
+	@echo "  RM    dependencies"
 	@$(RM) $(depends)
 distclean:
-	@echo "  RM  autoscan files"
+	@echo "  RM    autoscan files"
 	@$(RM) autoscan.log
 	@$(RM) configure.scan
-	@echo "  RM  configure files"
+	@echo "  RM    configure files"
 	@$(RM) aclocal.m4
 	@$(RM) -r autom4te.cache
 	@$(RM) config.h
@@ -58,28 +60,40 @@ distclean:
 
 # Objects
 .PHONY: objects
-objects: ${notdir $(objects)}
+objects: $(objects)
 %.o: %.cpp %.hpp
-	@echo "  CXX $@"
-	@$(CXX) -c $(CXXFLAGS) $< -o $(srcdir)/$@
+	@echo "  CXX   $@"
+	@$(CXX) \
+            $(CXXFLAGS) \
+            -c $< -o $(builddir)/$@
 
 # Tests
 .PHONY: tests
-tests: ${notdir $(tests)}
+tests: $(tests)
 %: %.cxx
-	@echo "  CXX $@"
-	@$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $(testdir)/$@ $(LIBS)
+	@echo "  CXX   $@"
+	@$(CXX) \
+            $(CXXFLAGS) $(LDFLAGS) \
+            $< -o $(builddir)/$@ \
+            ${addprefix $(builddir)/,${filter %.o,$^}} \
+            $(LIBS)
 
 # Dependencies
 .PHONY: depends
 depends: $(depends)
 %.d: %.hpp
-	@echo "  GEN $@"
-	@$(CXX) $(CXXFLAGS) -MM $< > $@
+	@echo "  GEN   $@"
+	@$(CXX) \
+            $(CXXFLAGS) \
+            -MM $< \
+            > $@
 %.d: %.cxx
-	@echo "  GEN $@"
-	@$(CXX) $(CXXFLAGS) -MM $< | sed 's/\.o//;s/\.hpp/\.o/g' > $@
+	@echo "  GEN   $@"
+	@$(CXX) \
+            $(CXXFLAGS) \
+            -MM $< \
+            | sed 's|\.o||;s|\.hpp|\.o|g;s|$(srcdir)/||g' \
+            > $@
 ifneq ($(MAKECMDGOALS),clean)
   -include $(depends)
 endif
-

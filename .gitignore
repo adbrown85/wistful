@@ -2,6 +2,7 @@
 .project
 *.d
 *.o
+build/
 aclocal.m4
 autom4te.cache/
 autoscan.log
