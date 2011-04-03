@@ -31,20 +31,15 @@ headers      := ${subst .cpp,.hpp,$(sources)}
 objects      := ${notdir ${subst .cpp,.o,$(sources)}}
 harnesses    := ${wildcard $(testdir)/*.cxx}
 tests        := ${notdir ${subst .cxx,,$(harnesses)}}
-depends      := ${subst .hpp,.d,$(headers)} ${subst .cxx,.d,$(harnesses)}
+depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
 
 # Interface
-.PHONY: all clean init
+.PHONY: all clean distclean
 .DEFAULT: all
-all: init objects tests
-init:
-	@echo "  MKDIR $(builddir)"
-	@$(INSTALL) -d $(builddir)
+all: objects tests
 clean:
 	@echo "  RM    build"
 	@$(RM) -r $(builddir)
-	@echo "  RM    dependencies"
-	@$(RM) $(depends)
 distclean:
 	@echo "  RM    autoscan files"
 	@$(RM) autoscan.log
@@ -81,19 +76,21 @@ tests: $(tests)
 # Dependencies
 .PHONY: depends
 depends: $(depends)
-%.d: %.hpp
+$(builddir)/%.d: $(srcdir)/%.hpp
 	@echo "  GEN   $@"
+	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXFLAGS) \
             -MM $< \
             > $@
-%.d: %.cxx
+$(builddir)/%.d: $(testdir)/%.cxx
 	@echo "  GEN   $@"
+	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXFLAGS) \
             -MM $< \
             | sed 's|\.o||;s|\.hpp|\.o|g;s|$(srcdir)/||g' \
             > $@
 ifneq ($(MAKECMDGOALS),clean)
-  -include $(depends)
+  -include ${addprefix $(builddir)/,$(depends)}
 endif
