@@ -26,9 +26,6 @@ define_have_glx() {
 }
 AC_CHECK_HEADER([GL/glx.h], [define_have_glx])
 
-# Checks for types
-AC_HEADER_STDBOOL
-
 # Finish
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
