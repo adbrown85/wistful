@@ -7,4 +7,5 @@ autom4te.cache/
 config.sub
 config.h.in
 configure
+install-sh
 
