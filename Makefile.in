@@ -1,0 +1,63 @@
+# @configure_input@
+
+# Package
+package      := @PACKAGE_NAME@
+version      := @PACKAGE_VERSION@
+tarname      := @PACKAGE_TARNAME@
+
+# Directories
+prefix       := @prefix@
+bindir       := @bindir@
+srcdir       := src
+testdir      := test
+libdir       := @libdir@
+includedir   := @includedir@
+VPATH        := $(srcdir) $(testdir)
+
+# Tools
+CXX          := @CXX@
+INCLUDES     := -I./ -I$(srcdir)/
+CXXFLAGS     := @CXXFLAGS@ -fPIC $(INCLUDES)
+LIBS         := @LIBS@
+LDFLAGS      := @LDFLAGS@
+INSTALL      := @INSTALL@
+
+# Files
+sources      := ${wildcard $(srcdir)/*.cpp}
+headers      := ${subst .cpp,.hpp,$(sources)}
+objects      := ${subst .cpp,.o,$(sources)}
+harnesses    := ${wildcard $(testdir)/*.cxx}
+tests        := ${subst .cxx,,$(harnesses)}
+depends      := ${subst .hpp,.d,$(headers)} ${subst .cxx,.d,$(harnesses)}
+
+# Interface
+.PHONY: all clean
+.DEFAULT: all
+all: objects tests
+clean:
+	$(RM) $(objects)
+	$(RM) $(tests)
+    $(RM) $(depends)
+
+# Objects
+.PHONY: objects
+objects: ${notdir $(objects)}
+%.o: %.cpp %.hpp
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+# Tests
+.PHONY: tests
+tests: ${notdir $(tests)}
+%: %.cxx
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $(testdir)/$@ $(LIBS)
+
+# Dependencies
+.PHONY: depends
+depends: $(depends)
+%.d: %.hpp
+	$(CXX) $(CXXFLAGS) -MM $< > $@
+%.d: %.cxx
+	$(CXX) $(CXXFLAGS) -MM $< | sed 's/\.o//;s/\.hpp/\.o/g' > $@
+ifneq ($(MAKECMDGOALS),clean)
+  -include $(depends)
+endif
