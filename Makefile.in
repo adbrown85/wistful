@@ -38,6 +38,17 @@ clean:
 	$(RM) $(objects)
 	$(RM) $(tests)
 	$(RM) $(depends)
+distclean:
+	$(RM) aclocal.m4
+	$(RM) autoscan.log
+	$(RM) -r autom4te.cache
+	$(RM) config.h
+	$(RM) config.h.in
+	$(RM) config.log
+	$(RM) config.status
+	$(RM) config.sub
+	$(RM) configure.scan
+	$(RM) Makefile
 
 # Objects
 .PHONY: objects
@@ -61,3 +72,4 @@ depends: $(depends)
 ifneq ($(MAKECMDGOALS),clean)
   -include $(depends)
 endif
+
