@@ -32,6 +32,8 @@ AC_HEADER_STDBOOL
 # Finish
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
+
+# Report
 echo \
 "--------------------------------------------------------------
  ${PACKAGE_NAME} ${PACKAGE_VERSION}
