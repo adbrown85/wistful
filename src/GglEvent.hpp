@@ -6,7 +6,7 @@
  */
 #ifndef GGLEVENT_HPP
 #define GGLEVENT_HPP
-#include "common.h"
+#include "ggl_common.h"
 
 
 enum GglEventType {

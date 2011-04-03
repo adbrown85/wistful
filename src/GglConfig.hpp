@@ -6,7 +6,7 @@
  */
 #ifndef GGLCONFIG_HPP
 #define GGLCONFIG_HPP
-#include "common.h"
+#include "ggl_common.h"
 
 
 /** @brief <i>Builder</i> for @GglConfig. */

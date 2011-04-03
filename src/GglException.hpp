@@ -6,7 +6,7 @@
  */
 #ifndef GGLEXCEPTION_HPP
 #define GGLEXCEPTION_HPP
-#include "common.h"
+#include "ggl_common.h"
 
 
 /**

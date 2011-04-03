@@ -6,7 +6,7 @@
  */
 #ifndef GGLWINDOW_HPP
 #define GGLWINDOW_HPP
-#include "common.h"
+#include "ggl_common.h"
 #include "GglException.hpp"
 #include "GglConfig.hpp"
 #include "GglEvent.hpp"

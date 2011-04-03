@@ -6,6 +6,7 @@
  */
 #ifndef GGLLISTENER_HPP
 #define GGLLISTENER_HPP
+#include "ggl_common.h"
 #include "GglEvent.hpp"
 
 
