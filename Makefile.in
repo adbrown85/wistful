@@ -55,7 +55,7 @@ distclean:
 .PHONY: objects
 objects: ${notdir $(objects)}
 %.o: %.cpp %.hpp
-	$(CXX) -c $(CXXFLAGS) $< -o $@
+	$(CXX) -c $(CXXFLAGS) $< -o $(srcdir)/$@
 
 # Tests
 .PHONY: tests
