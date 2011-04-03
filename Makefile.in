@@ -9,10 +9,10 @@ tarname      := @PACKAGE_TARNAME@
 prefix       := @prefix@
 exec_prefix  := @exec_prefix@
 bindir       := @bindir@
-srcdir       := @srcdir@
-testdir      := @testdir@
 libdir       := @libdir@
 includedir   := @includedir@
+srcdir       := @srcdir@
+testdir      := @testdir@
 VPATH        := $(srcdir) $(testdir)
 
 # Tools
