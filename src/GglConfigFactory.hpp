@@ -7,7 +7,7 @@
 #ifndef GGLCONFIGFACTORY_HPP
 #define GGLCONFIGFACTORY_HPP
 #include "ggl_common.h"
-#include "GglConfig.hpp"
+#include "GglConfigGlx.hpp"
 #include "GglException.hpp"
 
 

@@ -46,27 +46,4 @@ private:
     bool doubleBuffered;                    // True if front and back buffers
 };
 
-
-/** @brief <i>Builder</i> for @GglConfigGlx. */
-class GglConfigGlxBuilder : public GglConfigBuilder {
-public:
-    virtual ~GglConfigGlxBuilder() {}
-    GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
-    int id;                                 // Identifier from X
-};
-
-
-/** @brief OpenGL configuration with GLX. */
-class GglConfigGlx : public GglConfig {
-public:
-    GglConfigGlx(GglConfigGlxBuilder *b);
-    virtual ~GglConfigGlx() {}
-    virtual GLXFBConfig getFBConfig();
-    virtual int getId();
-private:
-    GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
-    int id;                                 // Identifier from GLX
-};
-
-
 #endif
