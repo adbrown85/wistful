@@ -37,7 +37,7 @@ all: objects tests
 clean:
 	$(RM) $(objects)
 	$(RM) $(tests)
-    $(RM) $(depends)
+	$(RM) $(depends)
 
 # Objects
 .PHONY: objects
