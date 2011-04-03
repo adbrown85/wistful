@@ -17,7 +17,8 @@ VPATH        := $(srcdir) $(testdir)
 # Tools
 CXX          := @CXX@
 INCLUDES     := -I./ -I$(srcdir)/
-CXXFLAGS     := @CXXFLAGS@ -fPIC $(INCLUDES)
+DEFS         := @DEFS@
+CXXFLAGS     := @CXXFLAGS@ $(DEFS) -fPIC $(INCLUDES)
 LIBS         := @LIBS@
 LDFLAGS      := @LDFLAGS@
 INSTALL      := @INSTALL@
