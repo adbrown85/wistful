@@ -58,7 +58,7 @@ distclean:
 
 # Objects
 .PHONY: objects
-objects: ${notdir $(objects)}
+objects: $(objects)
 %.o: %.cpp %.hpp
 	@echo "  CXX $@"
 	@$(CXX) -c $(CXXFLAGS) $< -o $@
