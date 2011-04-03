@@ -20,11 +20,9 @@ GglConfigFactoryGlx::~GglConfigFactoryGlx() {
 #endif //HAVE_GLX
 }
 
-#ifdef HAVE_GLX
-
 /** Returns OpenGL configurations meeting certain requirements. */
 GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
-    
+#ifdef HAVE_GLX
     const int *reqs = toArray(requirements);
     int len;
     GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
@@ -48,7 +46,12 @@ GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
     delete[] reqs;
     XFree(fbcs);
     return config;
+#else
+    return NULL;
+#endif
 }
+
+#ifdef HAVE_GLX
 
 //---------------------------------------------------------
 // Helpers

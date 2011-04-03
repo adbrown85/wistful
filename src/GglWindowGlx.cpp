@@ -24,24 +24,26 @@ GglWindowGlx::~GglWindowGlx() {
     ;
 }
 
-#ifdef HAVE_GLX
 
 void GglWindowGlx::doCreateConnection() throw(GglException) {
-    
+#ifdef HAVE_GLX
     display = XOpenDisplay(NULL);
     
     if (display == NULL) {
         throw GglException("Could not open default display!");
     }
+#endif
 }
 
 void GglWindowGlx::doDestroyConnection() {
+#ifdef HAVE_GLX
     XCloseDisplay(display);
     display = NULL;
+#endif
 }
 
 void GglWindowGlx::doCreateWindow() throw(GglException) {
-    
+#ifdef HAVE_GLX
     int winmask = getWindowMask();
     XVisualInfo *info = createInfo(display, config);
     Colormap cm = getColormap(display, info);
@@ -60,23 +62,28 @@ void GglWindowGlx::doCreateWindow() throw(GglException) {
             &wa);
     
     subscribe(display, window);
+#endif
 }
 
 /**
  * Makes the window visible.
  */
 void GglWindowGlx::doActivateWindow() {
+#ifdef HAVE_GLX
     XMapWindow(display, window);
     XFlush(display);
+#endif
 }
 
 void GglWindowGlx::doDestroyWindow() {
+#ifdef HAVE_GLX
     XDestroyWindow(display, window);
     window = NULL;
+#endif
 }
 
 void GglWindowGlx::doCreateContext() throw(GglException) {
-    
+#ifdef HAVE_GLX
     XErrorHandler handler = NULL;
     GLXFBConfig fbc = config->getFBConfig();
     GLint attribs[] = {
@@ -104,29 +111,36 @@ void GglWindowGlx::doCreateContext() throw(GglException) {
     if (context == NULL) {
         throw GglException("Could not make OpenGL context!");
     }
+#endif
 }
 
 /**
  * Makes the OpenGL context current.
  */
 void GglWindowGlx::doActivateContext() {
+#ifdef HAVE_GLX
     glXMakeCurrent(display, window, context);
+#endif
 }
 
 void GglWindowGlx::doDestroyContext() {
+#ifdef HAVE_GLX
     glXDestroyContext(display, context);
     context = NULL;
+#endif
 }
 
 void GglWindowGlx::doFlush() {
+#ifdef HAVE_GLX
     glXSwapBuffers(display, window);
+#endif
 }
 
 /**
  * Returns next event from window.
  */
 GglEvent GglWindowGlx::doGetEvent() {
-    
+#ifdef HAVE_GLX
     XEvent xEvent;
     
     XSelectInput(display, window, DEFAULT_EVENT_MASK);
@@ -148,7 +162,12 @@ GglEvent GglWindowGlx::doGetEvent() {
             return GglEvent(OTHER);
         }
     }
+#else
+    return GglEvent(DESTROY);
+#endif
 }
+
+#ifdef HAVE_GLX
 
 //---------------------------------------------------------
 // Helpers

@@ -21,7 +21,6 @@ class GglWindowGlx : public GglWindow {
 public:
     GglWindowGlx();
     virtual ~GglWindowGlx();
-#ifdef HAVE_GLX
 protected:
     virtual void doActivateContext();
     virtual void doActivateWindow();
@@ -34,6 +33,7 @@ protected:
     virtual void doFlush();
     virtual GglEvent doGetEvent();
 private:
+#ifdef HAVE_GLX
     Display *display;
     XVisualInfo *info;
     Window window;
