@@ -9,6 +9,23 @@ AC_PROG_CXX
 AC_LANG([C++])
 AC_PROG_INSTALL
 
+# Check for OpenGL
+error_no_gl() {
+    echo "no"
+    echo "--------------------"
+    echo " No OpenGL!"
+    echo "--------------------"
+    (exit 1); exit 1;
+}
+AC_SEARCH_LIBS([glGetString], [GL], , [error_no_gl])
+AC_CHECK_HEADER([GL/gl.h], , [error_no_gl])
+
+# Check for GLX
+define_have_glx() {
+    AC_DEFINE([HAVE_GLX], [1], [Define to 1 if GLX is available.])
+}
+AC_CHECK_HEADER([GL/glx.h], [define_have_glx])
+
 # Checks for types
 AC_HEADER_STDBOOL
 
