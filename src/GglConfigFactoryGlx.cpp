@@ -35,6 +35,7 @@ GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
     config = find(id);
     if (config == NULL) {
         config = doCreate(fbcs[0]);
+        add(id, config);
     }
     
     // Finish
@@ -67,18 +68,6 @@ GglConfig* GglConfigFactoryGlx::doCreate(GLXFBConfig &fbc) {
     b.doubleBuffered = getValue(fbc, GLX_DOUBLEBUFFER);
     b.id = getValue(fbc, GLX_FBCONFIG_ID);
     return new GglConfigGlx(&b);
-}
-
-/** Finds a configuration that was already built.
- * 
- * @param id Identifier of configuration
- * @return Pointer to the configuration, or NULL if not found
- */
-GglConfig* GglConfigFactoryGlx::find(int id) {
-    
-    map<int,GglConfig*>::iterator it = configs.find(id);
-    
-    return (it == configs.end()) ? NULL : it->second;
 }
 
 /** Converts a map of integers to an array.
