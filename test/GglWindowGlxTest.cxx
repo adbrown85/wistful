@@ -32,7 +32,7 @@ public:
         switch (event.getTrigger()) {
         case GGL_ESCAPE:
             cerr << "GGL_ESCAPE" << endl;
-            window.destroy();
+            window.close();
             break;
         case GGL_A:
             cerr << "GGL_A" << endl;

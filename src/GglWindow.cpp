@@ -16,7 +16,7 @@ GglWindow::GglWindow() {
     this->height = DEFAULT_HEIGHT;
     this->x = DEFAULT_X;
     this->y = DEFAULT_Y;
-    this->destroyed = false;
+    this->closed = false;
 }
 
 /**
@@ -36,8 +36,8 @@ void GglWindow::addListener(GglListener *listener) {
 /**
  * Marks the window as destroyed.
  */
-void GglWindow::destroy() {
-    destroyed = true;
+void GglWindow::close() {
+    closed = true;
 }
 
 /**
@@ -45,7 +45,7 @@ void GglWindow::destroy() {
  */
 void GglWindow::run(GglWindow *window) {
     window->create();
-    while (!window->isDestroyed()) {
+    while (!window->isClosed()) {
         GglEvent event = window->doGetEvent();
         switch (event.getType()) {
         case MAP:
@@ -56,7 +56,7 @@ void GglWindow::run(GglWindow *window) {
             break;
         case DESTROY:
             window->fireDestroyEvent();
-            window->destroy();
+            window->close();
             break;
         case KEY:
             window->fireKeyEvent(event);
@@ -247,6 +247,6 @@ void GglWindow::setLocation(int x, int y) {
 }
 
 /** Returns <tt>true</tt> if window has been destroyed. */
-bool GglWindow::isDestroyed() const {
-    return destroyed;
+bool GglWindow::isClosed() const {
+    return closed;
 }

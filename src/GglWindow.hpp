@@ -49,7 +49,7 @@ public:
     GglWindow();
     virtual ~GglWindow();
     void addListener(GglListener *listener);
-    void destroy();
+    void close();
     static void run(GglWindow *window);
 // Getters and setters
     int getWidth() const;
@@ -58,7 +58,7 @@ public:
     int getX() const;
     int getY() const;
     void setLocation(int x, int y);
-    bool isDestroyed() const;
+    bool isClosed() const;
 protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
@@ -77,7 +77,7 @@ private:
     int height;
     int x;
     int y;
-    bool destroyed;
+    bool closed;
     list<GglListener*> listeners;
 // Helpers
     void create();
