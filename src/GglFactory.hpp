@@ -14,7 +14,7 @@
 
 
 /**
- * Utility for retrieving factories for specific types.
+ * Utility for retrieving GGL objects.
  */
 class GglFactory {
 public:
