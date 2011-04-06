@@ -50,6 +50,8 @@ all: objects tests library
 clean:
 	@echo "  RM    build"
 	@$(RM) -r $(builddir)
+	@echo "  RM    $(library)"
+	@$(RM) $(library)
 distclean:
 	@echo "  RM    autoscan files"
 	@$(RM) autoscan.log
