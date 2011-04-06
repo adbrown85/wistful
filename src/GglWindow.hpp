@@ -72,7 +72,7 @@ protected:
     virtual GglEvent doGetEvent() = 0;
 private:
     bool created;
-    bool creamed;
+    bool destroyed;
     int width;
     int height;
     int x;
@@ -81,10 +81,10 @@ private:
     list<GglListener*> listeners;
 // Helpers
     void create();
-    void cream();
     void createConnection() throw(GglException);
     void createWindow() throw(GglException);
     void createContext() throw(GglException);
+    void destroy();
     void fireKeyEvent(GglEvent &event);
     void fireDestroyEvent();
     void fireDisplayEvent();

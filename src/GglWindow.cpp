@@ -11,7 +11,7 @@
  */
 GglWindow::GglWindow() {
     this->created = false;
-    this->creamed = false;
+    this->destroyed = false;
     this->width = DEFAULT_WIDTH;
     this->height = DEFAULT_HEIGHT;
     this->x = DEFAULT_X;
@@ -23,7 +23,7 @@ GglWindow::GglWindow() {
  * Destroys the window.
  */
 GglWindow::~GglWindow() {
-    cream();
+    destroy();
 }
 
 /**
@@ -65,7 +65,7 @@ void GglWindow::open(GglWindow *window) {
             continue;
         }
     }
-    window->cream();
+    window->destroy();
 }
 
 //--------------------------------------------------
@@ -82,7 +82,7 @@ void GglWindow::open(GglWindow *window) {
 void GglWindow::create() {
     
     // Guard against bad requests
-    if (created || creamed) {
+    if (created || destroyed) {
         return;
     }
     
@@ -96,25 +96,6 @@ void GglWindow::create() {
     
     // Successfully shown
     created = true;
-}
-
-/**
- * Crushes the window.
- */
-void GglWindow::cream() {
-    
-    // Guard against bad requests
-    if (!created || creamed) {
-        return;
-    }
-    
-    // Destroy everything
-    doDestroyContext();
-    doDestroyWindow();
-    doDestroyConnection();
-    
-    // Successfully closed
-    creamed = true;
 }
 
 /**
@@ -159,6 +140,25 @@ void GglWindow::createContext() throw(GglException) {
         doDestroyConnection();
         throw GglException("Could not make OpenGL context!");
     }
+}
+
+/**
+ * Destroys the window.
+ */
+void GglWindow::destroy() {
+    
+    // Guard against bad requests
+    if (!created || destroyed) {
+        return;
+    }
+    
+    // Destroy everything
+    doDestroyContext();
+    doDestroyWindow();
+    doDestroyConnection();
+    
+    // Successfully closed
+    destroyed = true;
 }
 
 /**
