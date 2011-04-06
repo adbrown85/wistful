@@ -40,15 +40,12 @@ tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
 
 # Interface
-.PHONY: all clean check distclean
+.PHONY: all clean distclean
 .DEFAULT: all
 all: objects tests
 clean:
 	@echo "  RM    build"
 	@$(RM) -r $(builddir)
-check:
-	@echo "  srcmods   = $(srcmods)"
-	@echo "  testmods  = $(testmods)"
 distclean:
 	@echo "  RM    autoscan files"
 	@$(RM) autoscan.log
