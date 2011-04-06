@@ -7,6 +7,18 @@
 #include "GglFactory.hpp"
 
 /**
+ * Returns a window for the current environment.
+ */
+GglWindow* GglFactory::createWindow() {
+    
+    GglWindowFactory *factory = getWindowFactory();
+    GglWindow *window = factory->create();
+    
+    delete factory;
+    return window;
+}
+
+/**
  * Obtains a configuration factory for the current environment.
  * 
  * @return Pointer to new config factory, or NULL if none available

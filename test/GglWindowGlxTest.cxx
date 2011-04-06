@@ -47,8 +47,7 @@ public:
 /** Ensures window can be opened. */
 void GglWindowGlxTest::testOpen() {
     
-    GglWindowFactory *factory = GglFactory::getWindowFactory();
-    GglWindow *window = factory->create();
+    GglWindow *window = GglFactory::createWindow();
     
     window->setLocation(50, 50);
     window->setSize(640, 480);

@@ -18,6 +18,7 @@
  */
 class GglFactory {
 public:
+    static GglWindow* createWindow();
     static GglConfigFactory* getConfigFactory();
     static GglWindowFactory* getWindowFactory();
 };
