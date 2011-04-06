@@ -21,9 +21,9 @@ class GglListener {
 public:
     GglListener();
     virtual ~GglListener();
-    virtual void init(GglWindow &window) = 0;
-    virtual void display(GglWindow &window) = 0;
-    virtual void destroy(GglWindow &window) = 0;
+    virtual void onInit(GglWindow &window) = 0;
+    virtual void onDisplay(GglWindow &window) = 0;
+    virtual void onDestroy(GglWindow &window) = 0;
     virtual void onKey(GglWindow &window, GglEvent &event) = 0;
 };
 

@@ -17,15 +17,15 @@ public:
 
 class FakeGglListener : public GglListener {
 public:
-    virtual void init(GglWindow &window) {
+    virtual void onInit(GglWindow &window) {
         cerr << "FakeGglListener::init()" << endl;
     }
-    virtual void display(GglWindow &window) {
+    virtual void onDisplay(GglWindow &window) {
         cerr << "FakeGglListener::display()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void destroy(GglWindow &window) {
+    virtual void onDestroy(GglWindow &window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
     virtual void onKey(GglWindow &window, GglEvent &event) {
