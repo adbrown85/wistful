@@ -13,6 +13,7 @@ exec_prefix  := @exec_prefix@
 bindir       := @bindir@
 libdir       := @libdir@
 includedir   := @includedir@
+myincludedir := $(includedir)/$(tarname)
 srcdir       := src
 testdir      := test
 builddir     := build
@@ -91,6 +92,31 @@ $(library): objects
             -shared -Wl,-soname,$(soname) \
             -o $@ \
             ${addprefix build/,$(objects)}
+
+# Installation
+.PHONY: install uninstall
+install:
+	@echo "  INSTALL $(library)"
+	@$(INSTALL) -d $(libdir)
+	@$(INSTALL) -m 0644 $(library) $(libdir)
+	@ln -s -f -T $(libdir)/$(library) $(libdir)/$(linkername)
+	@ldconfig $(libdir)
+	@echo "  INSTALL *.hpp *.h"
+	@$(INSTALL) -d $(myincludedir)
+	@$(INSTALL) -m 0644 config.h $(myincludedir)
+	@$(INSTALL) -m 0644 src/*.hpp $(myincludedir)
+	@$(INSTALL) -m 0644 src/*.h $(myincludedir)
+	@$(INSTALL) -m 0644 src/*/*.hpp $(myincludedir)
+	@$(INSTALL) -m 0644 src/*/*.h $(myincludedir)
+	@$(INSTALL) -m 0644 src/*/*/*.hpp $(myincludedir)
+	@$(INSTALL) -m 0644 src/*/*/*.h $(myincludedir)
+uninstall:
+	@echo "  UNINSTALL $(library)"
+	@$(RM) $(libdir)/$(library)
+	@$(RM) $(libdir)/$(linkername)
+	@ldconfig $(libdir)
+	@echo "  UNINSTALL *.hpp *.h"
+	@$(RM) -r $(includedir)/$(tarname)
 
 # Dependencies
 .PHONY: depends
