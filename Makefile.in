@@ -4,6 +4,8 @@
 package      := @PACKAGE_NAME@
 version      := @PACKAGE_VERSION@
 tarname      := @PACKAGE_TARNAME@
+linkername   := lib$(tarname).so
+soname       := lib$(tarname).so.0
 
 # Directories
 prefix       := @prefix@
@@ -38,11 +40,12 @@ objects      := ${notdir ${subst .cpp,.o,$(sources)}}
 fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
+library      := lib$(tarname).so.0.1.1
 
 # Interface
-.PHONY: all clean distclean
+.PHONY: all clean distclean library
 .DEFAULT: all
-all: objects tests
+all: objects tests library
 clean:
 	@echo "  RM    build"
 	@$(RM) -r $(builddir)
@@ -78,6 +81,16 @@ tests: $(tests)
             $< -o $(builddir)/$@ \
             ${addprefix build/,${notdir ${filter %.o,$^}}} \
             $(LIBS)
+
+# Library
+.PHONY: library
+library: $(library)
+$(library): objects
+	@echo "  CXX   $@"
+	@$(CXX) \
+            -shared -Wl,-soname,$(soname) \
+            -o $@ \
+            ${addprefix build/,$(objects)}
 
 # Dependencies
 .PHONY: depends

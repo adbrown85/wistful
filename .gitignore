@@ -16,3 +16,4 @@ configure
 configure.scan
 install-sh
 Makefile
+libggl.so.*
