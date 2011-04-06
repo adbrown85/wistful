@@ -14,11 +14,17 @@ includedir   := @includedir@
 srcdir       := src
 testdir      := test
 builddir     := build
-VPATH        := $(srcdir) $(testdir) $(builddir)
+srcmods      := $(srcdir)/ \
+                ${filter %/,${wildcard $(srcdir)/*/}} \
+                ${filter %/,${wildcard $(srcdir)/*/*/}}
+testmods     := $(testdir)/ \
+                ${filter %/,${wildcard $(testdir)/*/}} \
+                ${filter %/,${wildcard $(testdir)/*/*/}}
+VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
 
 # Tools
 CXX          := @CXX@
-INCLUDES     := -I./ -I$(srcdir)/
+INCLUDES     := -I./ -I$(srcdir)/ ${addprefix -I,$(srcmods)}
 DEFS         := @DEFS@
 CXXFLAGS     := @CXXFLAGS@ $(DEFS) -fPIC $(INCLUDES)
 LIBS         := @LIBS@
@@ -26,20 +32,23 @@ LDFLAGS      := @LDFLAGS@
 INSTALL      := @INSTALL@
 
 # Files
-sources      := ${wildcard $(srcdir)/*.cpp}
+sources      := ${foreach m,$(srcmods),${wildcard $(m)*.cpp}}
 headers      := ${subst .cpp,.hpp,$(sources)}
 objects      := ${notdir ${subst .cpp,.o,$(sources)}}
-fixtures     := ${wildcard $(testdir)/*.cxx}
+fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
 
 # Interface
-.PHONY: all clean distclean
+.PHONY: all clean check distclean
 .DEFAULT: all
 all: objects tests
 clean:
 	@echo "  RM    build"
 	@$(RM) -r $(builddir)
+check:
+	@echo "  srcmods   = $(srcmods)"
+	@echo "  testmods  = $(testmods)"
 distclean:
 	@echo "  RM    autoscan files"
 	@$(RM) autoscan.log
@@ -76,20 +85,22 @@ tests: $(tests)
 # Dependencies
 .PHONY: depends
 depends: $(depends)
-$(builddir)/%.d: $(srcdir)/%.hpp
+$(builddir)/%.d: %.hpp
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXFLAGS) \
             -MM $< \
             > $@
-$(builddir)/%.d: $(testdir)/%.cxx
+$(builddir)/%.d: %.cxx
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXFLAGS) \
             -MM $< \
-            | sed 's|\.o||;s|\.hpp|\.o|g;s|$(srcdir)/||g' \
+            | sed 's|\.o||' \
+            | sed 's|\.hpp|\.o|g' \
+            | sed 's|[[:alnum:]/]*/||g' \
             > $@
 ifneq ($(MAKECMDGOALS),clean)
   -include ${addprefix $(builddir)/,$(depends)}
