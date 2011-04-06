@@ -29,8 +29,8 @@ INSTALL      := @INSTALL@
 sources      := ${wildcard $(srcdir)/*.cpp}
 headers      := ${subst .cpp,.hpp,$(sources)}
 objects      := ${notdir ${subst .cpp,.o,$(sources)}}
-harnesses    := ${wildcard $(testdir)/*.cxx}
-tests        := ${notdir ${subst .cxx,,$(harnesses)}}
+fixtures     := ${wildcard $(testdir)/*.cxx}
+tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
 
 # Interface
