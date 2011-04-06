@@ -51,11 +51,11 @@ public:
     virtual void addListener(GglListener *listener);
     static void run(GglWindow *window);
 // Getters and setters
-    int getWidth();
-    int getHeight();
+    int getWidth() const;
+    int getHeight() const;
     void setSize(int width, int height);
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
     void setLocation(int x, int y);
 protected:
     virtual void doActivateContext() = 0;

@@ -210,12 +210,12 @@ void GglWindow::open() {
 //
 
 /** Returns size of window on X axis. */
-int GglWindow::getWidth() {
+int GglWindow::getWidth() const {
     return width;
 }
 
 /** Returns size of window on Y axis. */
-int GglWindow::getHeight() {
+int GglWindow::getHeight() const {
     return height;
 }
 
@@ -226,12 +226,12 @@ void GglWindow::setSize(int width, int height) {
 }
 
 /** Returns initial location of window on X axis. */
-int GglWindow::getX() {
+int GglWindow::getX() const {
     return x;
 }
 
 /** Returns initial location of window on Y axis. */
-int GglWindow::getY() {
+int GglWindow::getY() const {
     return y;
 }
 
