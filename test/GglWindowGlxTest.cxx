@@ -53,7 +53,7 @@ void GglWindowGlxTest::testShow() {
     window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addListener(new FakeGglListener());
-    GglWindow::run(window);
+    GglWindow::open(window);
     
     cerr << "End of GglWindowGlxTest::testShow()" << endl;
 }

@@ -43,7 +43,7 @@ void GglWindow::close() {
 /**
  * Shows a window and begins sending events.
  */
-void GglWindow::run(GglWindow *window) {
+void GglWindow::open(GglWindow *window) {
     window->create();
     while (!window->isClosed()) {
         GglEvent event = window->doGetEvent();

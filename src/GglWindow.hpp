@@ -50,7 +50,7 @@ public:
     virtual ~GglWindow();
     void addListener(GglListener *listener);
     void close();
-    static void run(GglWindow *window);
+    static void open(GglWindow *window);
 // Getters and setters
     int getWidth() const;
     int getHeight() const;
