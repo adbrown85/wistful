@@ -209,12 +209,6 @@ void GglWindow::open() {
 // Getters and setters
 //
 
-/** Changes the size of the window. */
-void GglWindow::setSize(int width, int height) {
-    this->width = width;
-    this->height = height;
-}
-
 /** Returns size of window on X axis. */
 int GglWindow::getWidth() {
     return width;
@@ -223,6 +217,12 @@ int GglWindow::getWidth() {
 /** Returns size of window on Y axis. */
 int GglWindow::getHeight() {
     return height;
+}
+
+/** Changes the size of the window. */
+void GglWindow::setSize(int width, int height) {
+    this->width = width;
+    this->height = height;
 }
 
 /** Returns initial location of window on X axis. */

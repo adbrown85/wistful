@@ -51,9 +51,9 @@ public:
     virtual void addListener(GglListener *listener);
     static void run(GglWindow *window);
 // Getters and setters
-    void setSize(int width, int height);
     int getWidth();
     int getHeight();
+    void setSize(int width, int height);
     int getX();
     int getY();
     void setLocation(int x, int y);
