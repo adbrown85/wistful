@@ -48,7 +48,7 @@ class GglWindow {
 public:
     GglWindow();
     virtual ~GglWindow();
-    virtual void addListener(GglListener *listener);
+    void addListener(GglListener *listener);
     static void run(GglWindow *window);
 // Getters and setters
     int getWidth() const;
