@@ -29,7 +29,17 @@ public:
         cerr << "FakeGglListener::destroy()" << endl;
     }
     virtual void onKey(GglEvent &event) {
-        cerr << event.getTrigger() << endl;
+        switch (event.getTrigger()) {
+        case GGL_ESCAPE:
+            cerr << "GGL_ESCAPE" << endl;
+            break;
+        case GGL_A:
+            cerr << "GGL_A" << endl;
+            break;
+        case GGL_a:
+            cerr << "GGL_a" << endl;
+            break;
+        }
     }
 };
 
