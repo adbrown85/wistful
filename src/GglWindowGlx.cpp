@@ -52,7 +52,7 @@ void GglWindowGlx::doCreateWindow() throw(GglException) {
     window = XCreateWindow(
             display,
             DefaultRootWindow(display),
-            0, 0,
+            getX(), getY(),
             getWidth(), getHeight(),
             0,
             info->depth,

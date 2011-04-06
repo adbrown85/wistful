@@ -54,6 +54,9 @@ public:
     void setSize(int width, int height);
     int getWidth();
     int getHeight();
+    int getX();
+    int getY();
+    void setLocation(int x, int y);
 protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
@@ -70,6 +73,8 @@ private:
     bool closed;
     int width;
     int height;
+    int x;
+    int y;
     list<GglListener*> listeners;
 // Helpers
     void open();
@@ -84,6 +89,8 @@ private:
 // Constants
     static const int DEFAULT_WIDTH = 512;
     static const int DEFAULT_HEIGHT = 512;
+    static const int DEFAULT_X = 25;
+    static const int DEFAULT_Y = 25;
 };
 
 #endif

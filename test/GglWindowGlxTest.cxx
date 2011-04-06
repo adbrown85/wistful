@@ -49,6 +49,7 @@ void GglWindowGlxTest::testShow() {
     GglWindowFactory *factory = GglFactory::getWindowFactory();
     GglWindow *window = factory->create();
     
+    window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addListener(new FakeGglListener());
     GglWindow::run(window);

@@ -14,6 +14,8 @@ GglWindow::GglWindow() {
     this->closed = false;
     this->width = DEFAULT_WIDTH;
     this->height = DEFAULT_HEIGHT;
+    this->x = DEFAULT_X;
+    this->y = DEFAULT_Y;
 }
 
 /**
@@ -221,4 +223,20 @@ int GglWindow::getWidth() {
 /** Returns size of window on Y axis. */
 int GglWindow::getHeight() {
     return height;
+}
+
+/** Returns initial location of window on X axis. */
+int GglWindow::getX() {
+    return x;
+}
+
+/** Returns initial location of window on Y axis. */
+int GglWindow::getY() {
+    return y;
+}
+
+/** Changes the initial location of the window. */
+void GglWindow::setLocation(int x, int y) {
+    this->x = x;
+    this->y = y;
 }
