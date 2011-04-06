@@ -10,8 +10,8 @@
  * Creates a window.
  */
 GglWindow::GglWindow() {
-    this->opened = false;
-    this->closed = false;
+    this->created = false;
+    this->creamed = false;
     this->width = DEFAULT_WIDTH;
     this->height = DEFAULT_HEIGHT;
     this->x = DEFAULT_X;
@@ -23,7 +23,7 @@ GglWindow::GglWindow() {
  * Destroys the window.
  */
 GglWindow::~GglWindow() {
-    close();
+    cream();
 }
 
 /**
@@ -44,7 +44,7 @@ void GglWindow::destroy() {
  * Shows a window and begins sending events.
  */
 void GglWindow::run(GglWindow *window) {
-    window->open();
+    window->create();
     while (!window->isDestroyed()) {
         GglEvent event = window->doGetEvent();
         switch (event.getType()) {
@@ -65,7 +65,7 @@ void GglWindow::run(GglWindow *window) {
             continue;
         }
     }
-    window->close();
+    window->cream();
 }
 
 //--------------------------------------------------
@@ -73,12 +73,38 @@ void GglWindow::run(GglWindow *window) {
 //
 
 /**
- * Closes the window.
+ * Creates the window.
+ * 
+ * @throw GglException if cannot make connection to windowing system
+ * @throw GglException if cannot make native window
+ * @throw GglException if cannot make OpenGL context
  */
-void GglWindow::close() {
+void GglWindow::create() {
     
-    // Guard against bad closes
-    if (!opened || closed) {
+    // Guard against bad requests
+    if (created || creamed) {
+        return;
+    }
+    
+    // Try to make objects
+    createConnection();
+    createWindow();
+    createContext();
+    
+    // Set up OpenGL
+    glViewport(0, 0, getWidth(), getHeight());
+    
+    // Successfully shown
+    created = true;
+}
+
+/**
+ * Crushes the window.
+ */
+void GglWindow::cream() {
+    
+    // Guard against bad requests
+    if (!created || creamed) {
         return;
     }
     
@@ -88,7 +114,7 @@ void GglWindow::close() {
     doDestroyConnection();
     
     // Successfully closed
-    closed = true;
+    creamed = true;
 }
 
 /**
@@ -182,32 +208,6 @@ void GglWindow::fireInitEvent() {
     for (it=listeners.begin(); it!=listeners.end(); ++it) {
         (*it)->onInit((*this));
     }
-}
-
-/**
- * Opens the window.
- * 
- * @throw GglException if cannot make connection to windowing system
- * @throw GglException if cannot make native window
- * @throw GglException if cannot make OpenGL context
- */
-void GglWindow::open() {
-    
-    // Guard against bad opens
-    if (opened || closed) {
-        return;
-    }
-    
-    // Try to make objects
-    createConnection();
-    createWindow();
-    createContext();
-    
-    // Set up OpenGL
-    glViewport(0, 0, getWidth(), getHeight());
-    
-    // Successfully opened
-    opened = true;
 }
 
 //--------------------------------------------------

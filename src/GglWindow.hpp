@@ -71,8 +71,8 @@ protected:
     virtual void doFlush() = 0;
     virtual GglEvent doGetEvent() = 0;
 private:
-    bool opened;
-    bool closed;
+    bool created;
+    bool creamed;
     int width;
     int height;
     int x;
@@ -80,8 +80,8 @@ private:
     bool destroyed;
     list<GglListener*> listeners;
 // Helpers
-    void open();
-    void close();
+    void create();
+    void cream();
     void createConnection() throw(GglException);
     void createWindow() throw(GglException);
     void createContext() throw(GglException);
