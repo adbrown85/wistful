@@ -10,8 +10,12 @@
 #include <iostream>
 #include <list>
 #include <map>
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
 #include <GL/glx.h>
+#endif
 using namespace std;
 
 //#ifdef HAVE_CONFIG_H
