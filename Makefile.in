@@ -6,8 +6,6 @@ version      := @PACKAGE_VERSION@
 major        := @PACKAGE_MAJOR_VERSION@
 minor        := @PACKAGE_MINOR_VERSION@
 tarname      := @PACKAGE_TARNAME@
-linkername   := lib$(tarname).so
-soname       := lib$(tarname).so.0
 
 # Directories
 prefix       := @prefix@
@@ -31,7 +29,7 @@ VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
 CXX          := @CXX@
 INCLUDES     := -I./ -I$(srcdir)/ ${addprefix -I,$(srcmods)}
 DEFS         := @DEFS@
-CXXFLAGS     := @CXXFLAGS@ $(DEFS) -fPIC $(INCLUDES)
+CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES)
 LIBS         := @LIBS@
 LDFLAGS      := @LDFLAGS@
 INSTALL      := @INSTALL@
@@ -39,11 +37,11 @@ INSTALL      := @INSTALL@
 # Files
 sources      := ${foreach m,$(srcmods),${wildcard $(m)*.cpp}}
 headers      := ${subst .cpp,.hpp,$(sources)}
-objects      := ${notdir ${subst .cpp,.o,$(sources)}}
+objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
 fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
-depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
-library      := lib$(tarname).so.0.1.1
+depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
+library      := lib$(tarname)-$(major).la
 
 # Interface
 .PHONY: all clean distclean maintainer-clean
@@ -66,14 +64,16 @@ maintainer-clean: distclean
 	$(RM) config.sub
 	$(RM) configure
 	$(RM) install-sh
+	$(RM) libtool
+	$(RM) ltmain.sh
 
 # Objects
 .PHONY: objects
 objects: $(objects)
-%.o: %.cpp %.hpp
+%.lo: %.cpp %.hpp
 	@echo "  CXX   $@"
-	@$(CXX) \
-            $(CXXFLAGS) \
+	@libtool --mode=compile --quiet \
+            $(CXX) $(CXXFLAGS) \
             -c $< -o $(builddir)/$@
 
 # Tests
@@ -81,30 +81,34 @@ objects: $(objects)
 tests: $(tests)
 %: %.cxx
 	@echo "  CXX   $@"
-	@$(CXX) \
-            $(CXXFLAGS) $(LDFLAGS) \
-            $< -o $(builddir)/$@ \
-            ${addprefix build/,${notdir ${filter %.o,$^}}} \
-            $(LIBS)
+	@libtool --mode=link --quiet \
+        $(CXX) \
+        $(CXXFLAGS) $(LDFLAGS) \
+        $< -o $(builddir)/$@ \
+        ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}} \
+        $(LIBS)
 
 # Library
 .PHONY: library
 library: $(library)
-$(library): objects
-	@echo "  CXX   $@"
-	@$(CXX) \
-            -shared -Wl,-soname,$(soname) \
-            -o $@ \
-            ${addprefix build/,$(objects)}
+$(library): $(objects)
+	@echo "  LD    $@"
+	@libtool --mode=link --quiet \
+			$(CXX) \
+			$(LDFLAGS) \
+            -o $(builddir)/$(library) \
+            ${addprefix $(builddir)/,$(objects)} \
+			-rpath $(libdir) \
+			-version-info $(minor):$(minor)
 
 # Installation
 .PHONY: install uninstall
 install:
 	@echo "  INSTALL $(library)"
 	@$(INSTALL) -d $(libdir)
-	@$(INSTALL) -m 0644 $(library) $(libdir)
-	@ln -s -f -T $(libdir)/$(library) $(libdir)/$(linkername)
-	@ldconfig $(libdir)
+	@libtool --mode=install --quiet \
+			$(INSTALL) $(builddir)/$(library) $(libdir)
+	@libtool --mode=finish -n --quiet $(libdir)
 	@echo "  INSTALL *.hpp *.h"
 	@$(INSTALL) -d $(myincludedir)
 	@$(INSTALL) -m 0644 config.h $(myincludedir)
@@ -139,7 +143,7 @@ $(builddir)/%.d: %.cxx
             $(CXXFLAGS) \
             -MM $< \
             | sed 's|\.o||' \
-            | sed 's|\.hpp|\.o|g' \
+            | sed 's|\.hpp|\.lo|g' \
             | sed 's|[[:alnum:]/]*/||g' \
             > $@
 ifneq ($(MAKECMDGOALS),clean)
