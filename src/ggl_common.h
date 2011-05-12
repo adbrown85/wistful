@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef GGL_COMMON_H
+#define GGL_COMMON_H
 #include <cstdlib>
 #include <iostream>
 #include <list>
