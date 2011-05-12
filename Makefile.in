@@ -3,6 +3,8 @@
 # Package
 package      := @PACKAGE_NAME@
 version      := @PACKAGE_VERSION@
+major        := @PACKAGE_MAJOR_VERSION@
+minor        := @PACKAGE_MINOR_VERSION@
 tarname      := @PACKAGE_TARNAME@
 linkername   := lib$(tarname).so
 soname       := lib$(tarname).so.0
