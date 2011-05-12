@@ -134,7 +134,7 @@ $(builddir)/%.d: %.hpp
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXFLAGS) \
-            -MM $< \
+            -MM ${subst .hpp,.cpp,$<} \
             > $@
 $(builddir)/%.d: %.cxx
 	@echo "  GEN   $@"
