@@ -9,6 +9,7 @@ AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL)
 AC_CONFIG_SRCDIR([src/ggl_common.h])
 AC_CONFIG_HEADERS([config.h])
 AC_LANG([C++])
+AC_CANONICAL_HOST
 
 # Checks for programs
 AC_PROG_CXX
@@ -22,8 +23,10 @@ error_no_gl() {
     echo "--------------------"
     (exit 1); exit 1;
 }
-AC_SEARCH_LIBS([glGetString], [GL], , [error_no_gl])
-AC_CHECK_HEADER([GL/gl.h], , [error_no_gl])
+if test "$host_vendor" != 'apple'; then
+    AC_SEARCH_LIBS([glGetString], [GL], , [error_no_gl])
+    AC_CHECK_HEADER([GL/gl.h], , [error_no_gl])
+fi
 
 # Check for GLX
 define_have_glx() {
