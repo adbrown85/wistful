@@ -8,10 +8,10 @@ define([MY_EMAIL], [adb1413@rit.edu])
 AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL)
 AC_CONFIG_SRCDIR([src/ggl_common.h])
 AC_CONFIG_HEADERS([config.h])
+AC_LANG([C++])
 
 # Checks for programs
 AC_PROG_CXX
-AC_LANG([C++])
 AC_PROG_INSTALL
 
 # Check for OpenGL
