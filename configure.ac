@@ -1,6 +1,11 @@
 # Start
 AC_PREREQ([2.67])
-AC_INIT([GGL], [0.1], [adb1413@rit.edu])
+define([MY_NAME], [ggl])
+define([MY_MAJOR_VERSION], [0])
+define([MY_MINOR_VERSION], [1])
+define([MY_VERSION], MY_MAJOR_VERSION.MY_MINOR_VERSION)
+define([MY_EMAIL], [adb1413@rit.edu])
+AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL)
 AC_CONFIG_SRCDIR([src/ggl_common.h])
 AC_CONFIG_HEADERS([config.h])
 
