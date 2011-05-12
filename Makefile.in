@@ -46,7 +46,7 @@ depends      := ${subst .o,.d,$(objects)} ${addsuffix .d,$(tests)}
 library      := lib$(tarname).so.0.1.1
 
 # Interface
-.PHONY: all clean distclean library
+.PHONY: all clean distclean
 .DEFAULT: all
 all: objects tests library
 clean:
