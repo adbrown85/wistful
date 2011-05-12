@@ -12,11 +12,13 @@ long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 
 /** Creates a window for GLX. */
 GglWindowGlx::GglWindowGlx() {
+#ifdef HAVE_GLX
     this->display = NULL;
     this->info = NULL;
     this->window = NULL;
     this->context = NULL;
     this->config = createConfig();
+#endif
 }
 
 /** Destroys the window. */
