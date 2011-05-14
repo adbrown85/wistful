@@ -57,6 +57,7 @@ echo \
 
  prefix      ${prefix}
  CXX         ${CXX}
+ CPPFLAGS    ${CPPFLAGS}
  CXXFLAGS    ${CXXFLAGS}
  LDFLAGS     ${LDFLAGS}
  LIBS        ${LIBS}
