@@ -1,22 +1,26 @@
-# Start
+# Check for Autoconf
 AC_PREREQ([2.67])
+
+# Initialize package information
 define([MY_NAME], [ggl])
 define([MY_MAJOR_VERSION], [0])
 define([MY_MINOR_VERSION], [1])
 define([MY_VERSION], MY_MAJOR_VERSION.MY_MINOR_VERSION)
 define([MY_EMAIL], [adb1413@rit.edu])
 AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL)
-AC_CONFIG_SRCDIR([src/ggl_common.h])
-AC_CONFIG_HEADERS([config.h])
-AC_LANG([C++])
-AC_CANONICAL_HOST
-
-# Additional version information
 AC_SUBST([PACKAGE_MAJOR_VERSION], MY_MAJOR_VERSION)
 AC_SUBST([PACKAGE_MINOR_VERSION], MY_MINOR_VERSION)
+AC_CONFIG_SRCDIR([src/ggl_common.h])
+AC_CONFIG_HEADERS([config.h])
 
-# Checks for programs
+# Check for system
+AC_CANONICAL_HOST
+
+# Check for compilers and languages
 AC_PROG_CXX
+AC_LANG([C++])
+
+# Check for tools
 AC_PROG_INSTALL
 
 # Check for OpenGL
