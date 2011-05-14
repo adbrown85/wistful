@@ -17,6 +17,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_CANONICAL_HOST
 
 # Check for compilers and languages
+AC_PROG_CC
 AC_PROG_CXX
 AC_LANG([C++])
 
