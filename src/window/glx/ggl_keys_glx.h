@@ -7,7 +7,6 @@
 #ifndef GGL_KEYS_GLX_H_
 #define GGL_KEYS_GLX_H_
 #include "ggl_common.h"
-#ifdef HAVE_GLX
 
 /* TTY function keys */
 #define GGL_BACKSPACE    XK_BACKSPACE
@@ -159,5 +158,4 @@
 #define GGL_braceright   XK_braceright
 #define GGL_asciitilde   XK_asciitilde
 
-#endif //HAVE_GLX
 #endif

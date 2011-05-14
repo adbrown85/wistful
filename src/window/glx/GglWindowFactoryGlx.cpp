@@ -27,10 +27,5 @@ GglWindowFactoryGlx::~GglWindowFactoryGlx() {
  */
 
 GglWindow* GglWindowFactoryGlx::create() {
-#ifdef HAVE_GLX
     return new GglWindowGlx();
-#else
-    return NULL;
-#endif
 }
-

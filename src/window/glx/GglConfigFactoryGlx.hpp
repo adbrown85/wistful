@@ -17,7 +17,6 @@ public:
     GglConfigFactoryGlx();
     virtual ~GglConfigFactoryGlx();
     virtual GglConfig* create(const map<int,int> &requirements);
-#ifdef HAVE_GLX
 private:
     Display *display;
 // Helpers
@@ -25,7 +24,6 @@ private:
     GglConfig* doCreate(GLXFBConfig &fbc);
     static const int* toArray(const map<int,int> &m);
     int getValue(GLXFBConfig fbc, int key);
-#endif //HAVE_GLX
 };
 
 #endif

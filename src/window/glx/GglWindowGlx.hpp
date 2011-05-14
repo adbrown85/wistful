@@ -11,9 +11,7 @@
 #include "GglException.hpp"
 #include "GglConfigFactoryGlx.hpp"
 
-#ifdef HAVE_GLX
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
-#endif //HAVE_GLX
 
 
 /** @brief OpenGL Window implemented with GLX. */
@@ -33,7 +31,6 @@ protected:
     virtual void doFlush();
     virtual GglEvent doGetEvent();
 private:
-#ifdef HAVE_GLX
     Display *display;
     XVisualInfo *info;
     Window window;
@@ -54,7 +51,6 @@ private:
     static PFNGLXCCAA glXCreateContextAttribsARB;
 // Constants
     static long DEFAULT_EVENT_MASK;
-#endif //HAVE_GLX
 };
 
 #endif

@@ -8,21 +8,16 @@
 
 /** Creates an OpenGL configuration factory. */
 GglConfigFactoryGlx::GglConfigFactoryGlx() {
-#ifdef HAVE_GLX
     display = createDisplay();
-#endif //HAVE_GLX
 }
 
 /** Destroys the factory. */
 GglConfigFactoryGlx::~GglConfigFactoryGlx() {
-#ifdef HAVE_GLX
     XCloseDisplay(display);
-#endif //HAVE_GLX
 }
 
 /** Returns OpenGL configurations meeting certain requirements. */
 GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
-#ifdef HAVE_GLX
     const int *reqs = toArray(requirements);
     int len;
     GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
@@ -46,12 +41,7 @@ GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
     delete[] reqs;
     XFree(fbcs);
     return config;
-#else
-    return NULL;
-#endif
 }
-
-#ifdef HAVE_GLX
 
 //---------------------------------------------------------
 // Helpers
@@ -112,5 +102,3 @@ int GglConfigFactoryGlx::getValue(GLXFBConfig fbc, int key) {
     glXGetFBConfigAttrib(display, fbc, key, &value);
     return value;
 }
-
-#endif //HAVE_GLX
