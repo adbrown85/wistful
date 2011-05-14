@@ -11,7 +11,9 @@
 #include "GglConfigGlx.hpp"
 
 
-/** Utility for creating OpenGL configurations. */
+/**
+ * Utility for creating OpenGL configurations.
+ */
 class GglConfigFactoryGlx : public GglConfigFactory {
 public:
     GglConfigFactoryGlx();

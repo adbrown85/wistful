@@ -6,18 +6,24 @@
  */
 #include "GglConfigGlx.hpp"
 
-/** Creates an OpenGL configuration with GLX. */
+/**
+ * Creates an OpenGL configuration with GLX.
+ */
 GglConfigGlx::GglConfigGlx(GglConfigGlxBuilder *b) : GglConfig(b) {
     this->id = b->id;
     this->glxFBConfig = b->glxFBConfig;
 }
 
-/** Returns native framebuffer configuration for GLX. */
+/**
+ * Returns native framebuffer configuration for GLX.
+ */
 GLXFBConfig GglConfigGlx::getFBConfig() {
     return glxFBConfig;
 }
 
-/** Returns identifier given to configuration by GLX. */
+/**
+ * Returns identifier given to configuration by GLX.
+ */
 int GglConfigGlx::getId() {
     return id;
 }

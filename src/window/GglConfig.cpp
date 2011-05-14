@@ -6,7 +6,9 @@
  */
 #include "GglConfig.hpp"
 
-/** Creates an OpenGL configuration builder. */
+/**
+ * Creates an OpenGL configuration builder.
+ */
 GglConfigBuilder::GglConfigBuilder() {
     red = 0;
     green = 0;
@@ -16,7 +18,9 @@ GglConfigBuilder::GglConfigBuilder() {
     doubleBuffered = false;
 }
 
-/** Creates an OpenGL configuration. */
+/**
+ * Creates an OpenGL configuration.
+ */
 GglConfig::GglConfig(GglConfigBuilder *b) {
     this->red = b->red;
     this->green = b->green;
@@ -27,37 +31,51 @@ GglConfig::GglConfig(GglConfigBuilder *b) {
     this->doubleBuffered = b->doubleBuffered;
 }
 
-/** Returns size of red buffer in bits. */
+/**
+ * Returns size of red buffer in bits.
+ */
 int GglConfig::getRedSize() const {
     return red;
 }
 
-/** Returns size of green buffer in bits. */
+/**
+ * Returns size of green buffer in bits.
+ */
 int GglConfig::getGreenSize() const {
     return green;
 }
 
-/** Returns size of red buffer in bits. */
+/**
+ * Returns size of red buffer in bits.
+ */
 int GglConfig::getBlueSize() const {
     return blue;
 }
 
-/** Returns size of red buffer in bits. */
+/**
+ * Returns size of red buffer in bits.
+ */
 int GglConfig::getAlphaSize() const {
     return alpha;
 }
 
-/** Returns size of depth buffer in bits. */
+/**
+ * Returns size of depth buffer in bits.
+ */
 int GglConfig::getDepthSize() const {
     return depth;
 }
 
-/** Returns size of stencil buffer in bits. */
+/**
+ * Returns size of stencil buffer in bits.
+ */
 int GglConfig::getStencilSize() const {
     return stencil;
 }
 
-/** Returns <tt>true</tt> if has both front and back buffers. */
+/**
+ * Returns <tt>true</tt> if has both front and back buffers.
+ */
 bool GglConfig::isDoubleBuffered() const {
     return doubleBuffered;
 }

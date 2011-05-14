@@ -11,7 +11,9 @@
 #include "GglException.hpp"
 
 
-/** Utility for creating OpenGL configurations. */
+/**
+ * Utility for creating OpenGL configurations.
+ */
 class GglConfigFactory {
 public:
     GglConfigFactory();

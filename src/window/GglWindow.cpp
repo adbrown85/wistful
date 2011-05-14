@@ -214,39 +214,53 @@ void GglWindow::fireInitEvent() {
 // Getters and setters
 //
 
-/** Returns size of window on X axis. */
+/**
+ * Returns size of window on X axis.
+ */
 int GglWindow::getWidth() const {
     return width;
 }
 
-/** Returns size of window on Y axis. */
+/**
+ * Returns size of window on Y axis.
+ */
 int GglWindow::getHeight() const {
     return height;
 }
 
-/** Changes the size of the window. */
+/**
+ * Changes the size of the window.
+ */
 void GglWindow::setSize(int width, int height) {
     this->width = width;
     this->height = height;
 }
 
-/** Returns initial location of window on X axis. */
+/**
+ * Returns initial location of window on X axis.
+ */
 int GglWindow::getX() const {
     return x;
 }
 
-/** Returns initial location of window on Y axis. */
+/**
+ * Returns initial location of window on Y axis.
+ */
 int GglWindow::getY() const {
     return y;
 }
 
-/** Changes the initial location of the window. */
+/**
+ * Changes the initial location of the window.
+ */
 void GglWindow::setLocation(int x, int y) {
     this->x = x;
     this->y = y;
 }
 
-/** Returns <tt>true</tt> if window has been destroyed. */
+/**
+ * Returns <tt>true</tt> if window has been destroyed.
+ */
 bool GglWindow::isClosed() const {
     return closed;
 }

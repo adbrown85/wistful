@@ -8,7 +8,9 @@
 PFNGLXCCAA GglWindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
 long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 
-/** Creates a window for GLX. */
+/**
+ * Creates a window for GLX.
+ */
 GglWindowGlx::GglWindowGlx() {
     this->display = NULL;
     this->info = NULL;
@@ -17,7 +19,9 @@ GglWindowGlx::GglWindowGlx() {
     this->config = createConfig();
 }
 
-/** Destroys the window. */
+/**
+ * Destroys the window.
+ */
 GglWindowGlx::~GglWindowGlx() {
     ;
 }

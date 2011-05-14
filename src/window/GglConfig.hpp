@@ -9,7 +9,9 @@
 #include "ggl_common.h"
 
 
-/** @brief <i>Builder</i> for @GglConfig. */
+/**
+ * @brief <i>Builder</i> for @GglConfig.
+ */
 class GglConfigBuilder {
 public:
     GglConfigBuilder();
@@ -23,7 +25,9 @@ public:
 };
 
 
-/** @brief OpenGL configuration. */
+/**
+ * @brief OpenGL configuration.
+ */
 class GglConfig {
 public:
     GglConfig(GglConfigBuilder *b);

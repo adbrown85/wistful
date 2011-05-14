@@ -6,17 +6,23 @@
  */
 #include "GglConfigFactoryGlx.hpp"
 
-/** Creates an OpenGL configuration factory. */
+/**
+ * Creates an OpenGL configuration factory.
+ */
 GglConfigFactoryGlx::GglConfigFactoryGlx() {
     display = createDisplay();
 }
 
-/** Destroys the factory. */
+/**
+ * Destroys the factory.
+ */
 GglConfigFactoryGlx::~GglConfigFactoryGlx() {
     XCloseDisplay(display);
 }
 
-/** Returns OpenGL configurations meeting certain requirements. */
+/**
+ * Returns OpenGL configurations meeting certain requirements.
+ */
 GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
     const int *reqs = toArray(requirements);
     int len;
@@ -47,12 +53,16 @@ GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
 // Helpers
 //
 
-/** Returns pointer to the default X display. */
+/**
+ * Returns pointer to the default X display.
+ */
 Display* GglConfigFactoryGlx::createDisplay() {
     return XOpenDisplay(NULL);
 }
 
-/** Actually creates a configuration. */
+/**
+ * Actually creates a configuration.
+ */
 GglConfig* GglConfigFactoryGlx::doCreate(GLXFBConfig &fbc) {
     
     GglConfigGlxBuilder b;
@@ -69,7 +79,8 @@ GglConfig* GglConfigFactoryGlx::doCreate(GLXFBConfig &fbc) {
     return new GglConfigGlx(&b);
 }
 
-/** Converts a map of integers to an array.
+/**
+ * Converts a map of integers to an array.
  * 
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
@@ -89,7 +100,8 @@ const int* GglConfigFactoryGlx::toArray(const map<int,int> &m) {
     return const_cast<const int*>(arr);
 }
 
-/** Returns the value of an attribute.
+/**
+ * Returns the value of an attribute.
  * 
  * @param display Current X screen
  * @param fbc GLX Framebuffer configuration

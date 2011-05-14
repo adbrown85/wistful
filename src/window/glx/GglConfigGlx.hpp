@@ -10,7 +10,9 @@
 #include "GglConfig.hpp"
 
 
-/** @brief <i>Builder</i> for @GglConfigGlx. */
+/**
+ * @brief <i>Builder</i> for @GglConfigGlx.
+ */
 class GglConfigGlxBuilder : public GglConfigBuilder {
 public:
     int id;                                 // Identifier from X
@@ -18,7 +20,9 @@ public:
 };
 
 
-/** @brief OpenGL configuration with GLX. */
+/**
+ * @brief OpenGL configuration with GLX.
+ */
 class GglConfigGlx : public GglConfig {
 public:
     GglConfigGlx(GglConfigGlxBuilder *b);
