@@ -8,9 +8,11 @@
 #define GGLFACTORY_HPP
 #include "ggl_common.h"
 #include "GglConfigFactory.hpp"
-#include "GglConfigFactoryGlx.hpp"
 #include "GglWindowFactory.hpp"
+#ifdef HAVE_GLX
+#include "GglConfigFactoryGlx.hpp"
 #include "GglWindowFactoryGlx.hpp"
+#endif
 
 
 /**
