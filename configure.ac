@@ -56,6 +56,11 @@ else
         [AC_DEFINE([HAVE_GLX], [1], [Define to 1 if have GLX.])])
 fi
 
+# Set up exclusions
+if test "$host_vendor" = 'apple'; then
+    AC_SUBST([EXCLUSIONS], [window/glx])
+fi
+
 # Finish
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
@@ -72,6 +77,7 @@ echo \
  LDFLAGS     ${LDFLAGS}
  LIBS        ${LIBS}
  DEFS        ${DEFS}
+ EXCLUSIONS  ${EXCLUSIONS}
  
  Now type 'make' then 'sudo make install'
 --------------------------------------------------------------"
