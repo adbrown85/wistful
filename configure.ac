@@ -20,6 +20,10 @@ AC_CANONICAL_HOST
 AC_PROG_CC
 AC_PROG_CXX
 AC_LANG([C++])
+if test "$host_vendor" = 'apple'; then
+    AC_PROG_OBJCXX
+    AC_LANG([Objective C++])
+fi
 
 # Check for common headers
 AC_HEADER_STDBOOL
