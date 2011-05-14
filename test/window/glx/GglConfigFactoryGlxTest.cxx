@@ -5,7 +5,6 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglConfigFactoryGlx.hpp"
-#ifdef HAVE_GLX
 
 /** Test for GglConfigFactoryGlx. */
 class GglConfigFactoryGlxTest {
@@ -35,14 +34,11 @@ void GglConfigFactoryGlxTest::testCreate() {
     cout << "  " << config->getDepthSize() << endl;
     cout << "  " << config->getStencilSize() << endl;
 }
-#endif
 
 /** Runs the test. */
 int main(int argc, char *argv[]) {
-#ifdef HAVE_GLX
     GglConfigFactoryGlxTest test;
     
     test.testCreate();
-#endif HAVE_GLX
     return 0;
 }

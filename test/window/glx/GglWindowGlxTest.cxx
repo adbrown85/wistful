@@ -4,7 +4,6 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifdef HAVE_GLX
 #include "GglFactory.hpp"
 #include <iostream>
 using namespace std;
@@ -56,13 +55,10 @@ void GglWindowGlxTest::testOpen() {
     
     cerr << "End of GglWindowGlxTest::testOpen()" << endl;
 }
-#endif
 
 /** Runs the test. */
 int main(int argc, char *argv[]) {
-#ifdef HAVE_GLX
     GglWindowGlxTest test;
     
     test.testOpen();
-#endif
 }
