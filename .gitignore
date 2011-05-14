@@ -19,3 +19,4 @@ configure.scan
 install-sh
 Makefile
 libggl.so.*
+ltmain.sh
