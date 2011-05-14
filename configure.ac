@@ -26,6 +26,7 @@ AC_HEADER_STDBOOL
 
 # Check for tools
 AC_PROG_INSTALL
+AC_PROG_SED
 
 # Check for OpenGL
 error_no_gl() {
