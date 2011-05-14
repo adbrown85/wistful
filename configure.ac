@@ -21,6 +21,9 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_LANG([C++])
 
+# Check for common headers
+AC_HEADER_STDBOOL
+
 # Check for tools
 AC_PROG_INSTALL
 
