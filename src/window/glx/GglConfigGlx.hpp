@@ -30,8 +30,8 @@ public:
     virtual GLXFBConfig getFBConfig();
     virtual int getId();
 private:
+    int id;                                 // Identifier from X
     GLXFBConfig glxFBConfig;                // GLX Framebuffer configuration
-    int id;                                 // Identifier from GLX
 };
 
 #endif
