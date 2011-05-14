@@ -45,11 +45,16 @@ if test "$host_vendor" != 'apple'; then
     AC_CHECK_HEADER([GL/gl.h], , [error_no_gl])
 fi
 
-# Check for GLX
-define_have_glx() {
-    AC_DEFINE([HAVE_GLX], [1], [Define to 1 if GLX is available.])
-}
-AC_CHECK_HEADER([GL/glx.h], [define_have_glx])
+# Check for backend
+if test "$host_vendor" = 'apple'; then
+    AC_CHECK_HEADER(
+        [Cocoa/Cocoa.h],
+        [AC_DEFINE([HAVE_COCOA], [1], [Define to 1 if have Cocoa.])])
+else
+    AC_CHECK_HEADER(
+        [GL/glx.h],
+        [AC_DEFINE([HAVE_GLX], [1], [Define to 1 if have GLX.])])
+fi
 
 # Finish
 AC_CONFIG_FILES([Makefile])
