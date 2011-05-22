@@ -12,7 +12,6 @@
 GglWindowCocoa::GglWindowCocoa() {
     pool = NULL;
     application = NULL;
-    delegate = NULL;
     window = NULL;
     view = NULL;
 }
@@ -38,8 +37,9 @@ void GglWindowCocoa::doActivateWindow() {
 void GglWindowCocoa::doCreateConnection() throw(GglException) {
     cerr << "GglWindowCocoa::doCreateConnection()" << endl;
     
-    ProcessSerialNumber psn;
+    MyApplicationDelegate *delegate;
     NSMenu *menu;
+    ProcessSerialNumber psn;
     
     pool = [[NSAutoreleasePool alloc] init];
     application = [NSApplication sharedApplication];

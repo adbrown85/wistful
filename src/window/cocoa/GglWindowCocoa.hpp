@@ -11,18 +11,6 @@
 #include "GglWindow.hpp"
 
 
-@interface MyApplicationDelegate: NSObject <NSApplicationDelegate> {
-    ;
-}
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
-@end
-
-@interface MyOpenGLView : NSOpenGLView {
-    ;
-}
-- (void)keyDown:(NSEvent*)event;
-@end
-
 /**
  * @brief Window implemented with Cocoa.
  */
@@ -44,9 +32,8 @@ public:
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;
-    MyApplicationDelegate *delegate;
     NSWindow *window;
-    MyOpenGLView *view;
+    NSView *view;
 // Helpers
     NSUInteger createWindowStyle();
     NSMenu* createMenu();
@@ -55,6 +42,24 @@ private:
     NSMenuItem* createEmptyMenuItem();
     NSMenu* createEmptyMenu();
 };
+
+/*
+ * Application delegate for window.
+ */
+@interface MyApplicationDelegate: NSObject <NSApplicationDelegate> {
+    ;
+}
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
+@end
+
+/*
+ * OpenGL view for window.
+ */
+@interface MyOpenGLView : NSOpenGLView {
+    ;
+}
+- (void)keyDown:(NSEvent*)event;
+@end
 
 
 #endif
