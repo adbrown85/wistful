@@ -10,10 +10,17 @@
 #import <Cocoa/Cocoa.h>
 #include "GglWindow.hpp"
 
+
 @interface MyApplicationDelegate: NSObject <NSApplicationDelegate> {
     ;
 }
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
+@end
+
+@interface MyOpenGLView : NSOpenGLView {
+    ;
+}
+- (void)keyDown:(NSEvent*)event;
 @end
 
 /**
@@ -39,6 +46,7 @@ private:
     NSApplication *application;
     MyApplicationDelegate *delegate;
     NSWindow *window;
+    MyOpenGLView *view;
 // Helpers
     NSUInteger createWindowStyle();
     NSMenu* createMenu();

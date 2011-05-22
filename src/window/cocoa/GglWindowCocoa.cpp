@@ -14,6 +14,7 @@ GglWindowCocoa::GglWindowCocoa() {
     application = NULL;
     delegate = NULL;
     window = NULL;
+    view = NULL;
 }
 
 /**
@@ -56,13 +57,23 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
 void GglWindowCocoa::doCreateWindow() throw(GglException) {
     cerr << "GglWindowCocoa::doCreateWindow()" << endl;
     
-    NSRect rect = NSMakeRect(0, 50, 512, 512);
     NSUInteger style = createWindowStyle();
+    NSRect rect;
     
+    // Make window
+    rect = NSMakeRect(0, 50, 512, 512);
     window = [[NSWindow alloc] initWithContentRect:rect
                                styleMask:style
                                backing:NSBackingStoreBuffered
                                defer:NO];
+    
+    // Make view
+    rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
+    view = [[MyOpenGLView alloc] initWithFrame:rect];
+    
+    // Add the view to the window
+    [window setContentView:view];
+    [window makeFirstResponder:view];
 }
 
 void GglWindowCocoa::doCreateContext() throw(GglException) {
@@ -160,5 +171,11 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
 @implementation MyApplicationDelegate
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication*)app {
     return YES;
+}
+@end
+
+@implementation MyOpenGLView
+- (void)keyDown:(NSEvent*)event {
+    ;
 }
 @end
