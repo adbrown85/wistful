@@ -51,6 +51,7 @@ if test "$host_vendor" = 'apple'; then
         [Cocoa/Cocoa.h],
         [AC_DEFINE([HAVE_COCOA], [1], [Define to 1 if have Cocoa.])])
     LDFLAGS="-framework Cocoa -framework OpenGL"
+    CPPFLAGS='-ObjC++'
     AC_LANG_POP()
 else
     AC_CHECK_HEADER(
