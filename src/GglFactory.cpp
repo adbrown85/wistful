@@ -24,7 +24,7 @@ GglWindow* GglFactory::createWindow() {
  * @return Pointer to new config factory, or NULL if none available
  */
 GglConfigFactory* GglFactory::getConfigFactory() {
-#ifdef HAVE_GLX
+#if defined(HAVE_GLX)
     return new GglConfigFactoryGlx();
 #endif
     return NULL;
@@ -36,8 +36,10 @@ GglConfigFactory* GglFactory::getConfigFactory() {
  * @return Pointer to new window factory, or NULL if none available
  */
 GglWindowFactory* GglFactory::getWindowFactory() {
-#ifdef HAVE_GLX
+#if defined(HAVE_GLX)
     return new GglWindowFactoryGlx();
+#elif defined(HAVE_COCOA)
+    return new GglWindowFactoryCocoa();
 #endif
     return NULL;
 }

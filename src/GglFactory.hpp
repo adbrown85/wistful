@@ -9,9 +9,11 @@
 #include "ggl_common.h"
 #include "GglConfigFactory.hpp"
 #include "GglWindowFactory.hpp"
-#ifdef HAVE_GLX
+#if defined(HAVE_GLX)
 #include "GglConfigFactoryGlx.hpp"
 #include "GglWindowFactoryGlx.hpp"
+#elif defined(HAVE_COCOA)
+#include "GglWindowFactoryCocoa.hpp"
 #endif
 
 
