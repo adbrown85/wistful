@@ -7,6 +7,7 @@
 #ifndef GGLWINDOWCOCOA_HPP
 #define GGLWINDOWCOCOA_HPP
 #include "ggl_common.h"
+#import <Cocoa/Cocoa.h>
 #include "GglWindow.hpp"
 
 
