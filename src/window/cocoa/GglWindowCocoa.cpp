@@ -28,6 +28,9 @@ void GglWindowCocoa::doActivateContext() {
 
 void GglWindowCocoa::doActivateWindow() {
     cerr << "GglWindowCocoa::doActivateWindow()" << endl;
+    
+    [window makeKeyAndOrderFront:nil];
+    [application activateIgnoringOtherApps:YES];
 }
 
 void GglWindowCocoa::doCreateConnection() throw(GglException) {
@@ -48,11 +51,10 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     NSRect rect = NSMakeRect(0, 50, 512, 512);
     NSUInteger style = createWindowStyle();
     
-    window = [NSWindow alloc];
-    [window initWithContentRect:rect
-            styleMask:style
-            backing:NSBackingStoreBuffered
-            defer:NO];
+    window = [[NSWindow alloc] initWithContentRect:rect
+                               styleMask:style
+                               backing:NSBackingStoreBuffered
+                               defer:NO];
 }
 
 void GglWindowCocoa::doCreateContext() throw(GglException) {
