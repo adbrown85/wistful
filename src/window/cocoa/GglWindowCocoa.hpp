@@ -41,6 +41,11 @@ private:
     NSWindow *window;
 // Helpers
     NSUInteger createWindowStyle();
+    NSMenu* createMenu();
+    NSMenu* createAppleMenu();
+    NSMenuItem* createAppleMenuQuitItem();
+    NSMenuItem* createEmptyMenuItem();
+    NSMenu* createEmptyMenu();
 };
 
 

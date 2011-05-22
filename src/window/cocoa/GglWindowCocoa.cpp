@@ -38,12 +38,16 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
     cerr << "GglWindowCocoa::doCreateConnection()" << endl;
     
     ProcessSerialNumber psn;
+    NSMenu *menu;
     
     pool = [[NSAutoreleasePool alloc] init];
     application = [NSApplication sharedApplication];
-    delegate = [[MyApplicationDelegate alloc] init];
     
+    delegate = [[MyApplicationDelegate alloc] init];
     [application setDelegate:delegate];
+    
+    menu = createMenu();
+    [application setMainMenu: menu];
     
     GetCurrentProcess(&psn);
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
@@ -100,6 +104,55 @@ NSUInteger GglWindowCocoa::createWindowStyle() {
            NSMiniaturizableWindowMask |
            NSResizableWindowMask;
 }
+
+NSMenu* GglWindowCocoa::createMenu() {
+    
+    NSMenu *menu = createEmptyMenu();
+    NSMenuItem *item = createEmptyMenuItem();
+    NSMenu *submenu;
+    
+    submenu = createAppleMenu();
+    [item setSubmenu: submenu];
+    [menu addItem: item];
+    
+    return menu;
+}
+
+NSMenuItem* GglWindowCocoa::createAppleMenuQuitItem() {
+    
+    NSMenuItem *item = [NSMenuItem alloc];
+    
+    [item initWithTitle:@"Quit"
+          action:@selector(terminate:)
+          keyEquivalent:@"q"];
+    return item;
+}
+
+NSMenu* GglWindowCocoa::createAppleMenu() {
+    
+    NSMenu *menu = createEmptyMenu();
+    NSMenuItem *item = createAppleMenuQuitItem();
+    
+    [menu addItem: item];
+    return menu;
+}
+
+NSMenu* GglWindowCocoa::createEmptyMenu() {
+    
+    NSMenu *menu = [NSMenu alloc];
+    
+    [menu initWithTitle:@""];
+    return menu;
+}
+
+NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
+    
+    NSMenuItem *item = [NSMenuItem alloc];
+    
+    [item initWithTitle:@"" action:nil keyEquivalent:@""];
+    return item;
+}
+
 
 @implementation MyApplicationDelegate
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication*)app {
