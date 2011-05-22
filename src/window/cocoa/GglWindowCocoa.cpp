@@ -12,6 +12,7 @@
 GglWindowCocoa::GglWindowCocoa() {
     pool = NULL;
     application = NULL;
+    window = NULL;
 }
 
 /**
@@ -41,7 +42,15 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateWindow() throw(GglException) {
-    cout << "GglWindowCocoa::doCreateWindow()" << endl;
+    
+    NSRect rect = NSMakeRect(0, 50, 512, 512);
+    NSUInteger style = createWindowStyle();
+    
+    window = [NSWindow alloc];
+    [window initWithContentRect:rect
+            styleMask:style
+            backing:NSBackingStoreBuffered
+            defer:NO];
 }
 
 void GglWindowCocoa::doCreateContext() throw(GglException) {
@@ -71,4 +80,15 @@ GglEvent GglWindowCocoa::doGetEvent() {
 void GglWindowCocoa::doRun() {
     [pool drain];
     [application run];
+}
+
+//----------------------------------------
+// Helpers
+//
+
+NSUInteger GglWindowCocoa::createWindowStyle() {
+    return NSTitledWindowMask |
+           NSClosableWindowMask |
+           NSMiniaturizableWindowMask |
+           NSResizableWindowMask;
 }

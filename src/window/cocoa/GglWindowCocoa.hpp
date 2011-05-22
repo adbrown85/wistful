@@ -32,6 +32,9 @@ public:
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;
+    NSWindow *window;
+// Helpers
+    NSUInteger createWindowStyle();
 };
 
 #endif
