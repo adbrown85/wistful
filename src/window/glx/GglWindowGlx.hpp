@@ -31,6 +31,7 @@ protected:
     virtual void doDestroyWindow();
     virtual void doDestroyContext();
     virtual void doFlush();
+    virtual void doRun();
     virtual GglEvent doGetEvent();
 private:
     Display *display;

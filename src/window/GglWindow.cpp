@@ -45,26 +45,7 @@ void GglWindow::close() {
  */
 void GglWindow::open(GglWindow *window) {
     window->create();
-    while (!window->isClosed()) {
-        GglEvent event = window->doGetEvent();
-        switch (event.getType()) {
-        case MAP:
-            window->fireInitEvent();
-            break;
-        case EXPOSE:
-            window->fireDisplayEvent();
-            break;
-        case DESTROY:
-            window->fireDestroyEvent();
-            window->close();
-            break;
-        case KEY:
-            window->fireKeyEvent(event);
-            break;
-        default:
-            continue;
-        }
-    }
+    window->run();
     window->destroy();
 }
 
@@ -208,6 +189,13 @@ void GglWindow::fireInitEvent() {
     for (it=listeners.begin(); it!=listeners.end(); ++it) {
         (*it)->onInit((*this));
     }
+}
+
+/**
+ * Initiates the run loop to handle events.
+ */
+void GglWindow::run() {
+    doRun();
 }
 
 //--------------------------------------------------

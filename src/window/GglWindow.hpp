@@ -70,6 +70,11 @@ protected:
     virtual void doDestroyContext() = 0;
     virtual void doFlush() = 0;
     virtual GglEvent doGetEvent() = 0;
+    virtual void doRun() = 0;
+    void fireKeyEvent(GglEvent &event);
+    void fireDestroyEvent();
+    void fireDisplayEvent();
+    void fireInitEvent();
 private:
     bool created;
     bool destroyed;
@@ -84,11 +89,8 @@ private:
     void createConnection() throw(GglException);
     void createWindow() throw(GglException);
     void createContext() throw(GglException);
+    void run();
     void destroy();
-    void fireKeyEvent(GglEvent &event);
-    void fireDestroyEvent();
-    void fireDisplayEvent();
-    void fireInitEvent();
 // Constants
     static const int DEFAULT_WIDTH = 512;
     static const int DEFAULT_HEIGHT = 512;

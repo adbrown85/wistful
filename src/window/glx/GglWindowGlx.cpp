@@ -124,6 +124,32 @@ void GglWindowGlx::doFlush() {
 }
 
 /**
+ * Starts the run loop.
+ */
+void GglWindowGlx::doRun() {
+    while (!isClosed()) {
+        GglEvent event = doGetEvent();
+        switch (event.getType()) {
+        case MAP:
+            fireInitEvent();
+            break;
+        case EXPOSE:
+            fireDisplayEvent();
+            break;
+        case DESTROY:
+            fireDestroyEvent();
+            close();
+            break;
+        case KEY:
+            fireKeyEvent(event);
+            break;
+        default:
+            continue;
+        }
+    }
+}
+
+/**
  * Returns next event from window.
  */
 GglEvent GglWindowGlx::doGetEvent() {
