@@ -12,6 +12,7 @@
 GglWindowCocoa::GglWindowCocoa() {
     pool = NULL;
     application = NULL;
+    delegate = NULL;
     window = NULL;
 }
 
@@ -40,6 +41,9 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
     
     pool = [[NSAutoreleasePool alloc] init];
     application = [NSApplication sharedApplication];
+    delegate = [[MyApplicationDelegate alloc] init];
+    
+    [application setDelegate:delegate];
     
     GetCurrentProcess(&psn);
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
@@ -96,3 +100,9 @@ NSUInteger GglWindowCocoa::createWindowStyle() {
            NSMiniaturizableWindowMask |
            NSResizableWindowMask;
 }
+
+@implementation MyApplicationDelegate
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication*)app {
+    return YES;
+}
+@end

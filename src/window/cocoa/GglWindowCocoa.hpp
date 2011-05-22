@@ -10,6 +10,11 @@
 #import <Cocoa/Cocoa.h>
 #include "GglWindow.hpp"
 
+@interface MyApplicationDelegate: NSObject <NSApplicationDelegate> {
+    ;
+}
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
+@end
 
 /**
  * @brief Window implemented with Cocoa.
@@ -32,9 +37,11 @@ public:
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;
+    MyApplicationDelegate *delegate;
     NSWindow *window;
 // Helpers
     NSUInteger createWindowStyle();
 };
+
 
 #endif
