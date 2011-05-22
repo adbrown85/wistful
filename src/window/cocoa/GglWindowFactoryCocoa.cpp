@@ -26,5 +26,5 @@ GglWindowFactoryCocoa::~GglWindowFactoryCocoa() {
  * @return Pointer to the new window
  */
 GglWindow* GglWindowFactoryCocoa::create() {
-    return NULL;
+    return new GglWindowCocoa();
 }
