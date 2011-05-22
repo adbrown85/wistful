@@ -22,7 +22,6 @@ AC_PROG_CXX
 AC_LANG([C++])
 if test "$host_vendor" = 'apple'; then
     AC_PROG_OBJCXX
-    AC_LANG([Objective C++])
 fi
 
 # Check for common headers
@@ -47,9 +46,11 @@ fi
 
 # Check for backend
 if test "$host_vendor" = 'apple'; then
+    AC_LANG_PUSH([Objective C++])
     AC_CHECK_HEADER(
         [Cocoa/Cocoa.h],
         [AC_DEFINE([HAVE_COCOA], [1], [Define to 1 if have Cocoa.])])
+    AC_LANG_POP()
 else
     AC_CHECK_HEADER(
         [GL/glx.h],
