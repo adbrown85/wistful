@@ -29,6 +29,9 @@ public:
     virtual void doFlush();
     virtual void doRun();
     virtual GglEvent doGetEvent();
+private:
+    NSAutoreleasePool *pool;
+    NSApplication *application;
 };
 
 #endif

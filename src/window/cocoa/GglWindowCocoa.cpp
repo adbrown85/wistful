@@ -10,7 +10,8 @@
  * Creates the window.
  */
 GglWindowCocoa::GglWindowCocoa() {
-    ;
+    pool = NULL;
+    application = NULL;
 }
 
 /**
@@ -29,7 +30,14 @@ void GglWindowCocoa::doActivateWindow() {
 }
 
 void GglWindowCocoa::doCreateConnection() throw(GglException) {
-    cout << "GglWindowCocoa::doCreateConnection()" << endl;
+    
+    ProcessSerialNumber psn;
+    
+    pool = [[NSAutoreleasePool alloc] init];
+    application = [NSApplication sharedApplication];
+    
+    GetCurrentProcess(&psn);
+    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 }
 
 void GglWindowCocoa::doCreateWindow() throw(GglException) {
@@ -61,5 +69,6 @@ GglEvent GglWindowCocoa::doGetEvent() {
 }
 
 void GglWindowCocoa::doRun() {
-    cout << "GglWindowCocoa::doRun()" << endl;
+    [pool drain];
+    [application run];
 }
