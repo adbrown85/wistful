@@ -153,6 +153,9 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
     return item;
 }
 
+//----------------------------------------
+// Objective C
+//
 
 @implementation MyApplicationDelegate
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication*)app {
