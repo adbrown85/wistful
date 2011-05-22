@@ -50,6 +50,7 @@ if test "$host_vendor" = 'apple'; then
     AC_CHECK_HEADER(
         [Cocoa/Cocoa.h],
         [AC_DEFINE([HAVE_COCOA], [1], [Define to 1 if have Cocoa.])])
+    LDFLAGS="-framework Cocoa -framework OpenGL"
 else
     AC_CHECK_HEADER(
         [GL/glx.h],
