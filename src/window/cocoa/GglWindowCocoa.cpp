@@ -23,14 +23,15 @@ GglWindowCocoa::~GglWindowCocoa() {
 }
 
 void GglWindowCocoa::doActivateContext() {
-    cout << "GglWindowCocoa::doActivateContext()" << endl;
+    cerr << "GglWindowCocoa::doActivateContext()" << endl;
 }
 
 void GglWindowCocoa::doActivateWindow() {
-    cout << "GglWindowCocoa::doActivateWindow()" << endl;
+    cerr << "GglWindowCocoa::doActivateWindow()" << endl;
 }
 
 void GglWindowCocoa::doCreateConnection() throw(GglException) {
+    cerr << "GglWindowCocoa::doCreateConnection()" << endl;
     
     ProcessSerialNumber psn;
     
@@ -42,6 +43,7 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateWindow() throw(GglException) {
+    cerr << "GglWindowCocoa::doCreateWindow()" << endl;
     
     NSRect rect = NSMakeRect(0, 50, 512, 512);
     NSUInteger style = createWindowStyle();
@@ -54,23 +56,23 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateContext() throw(GglException) {
-    cout << "GglWindowCocoa::doCreateContext()" << endl;
+    cerr << "GglWindowCocoa::doCreateContext()" << endl;
 }
 
 void GglWindowCocoa::doDestroyConnection() {
-    cout << "GglWindowCocoa::doDestroyConnection()" << endl;
+    cerr << "GglWindowCocoa::doDestroyConnection()" << endl;
 }
 
 void GglWindowCocoa::doDestroyContext() {
-    cout << "GglWindowCocoa::doDestroyContext()" << endl;
+    cerr << "GglWindowCocoa::doDestroyContext()" << endl;
 }
 
 void GglWindowCocoa::doDestroyWindow() {
-    cout << "GglWindowCocoa::doDestroyWindow()" << endl;
+    cerr << "GglWindowCocoa::doDestroyWindow()" << endl;
 }
 
 void GglWindowCocoa::doFlush() {
-    cout << "GglWindowCocoa::doFlush()" << endl;
+    cerr << "GglWindowCocoa::doFlush()" << endl;
 }
 
 GglEvent GglWindowCocoa::doGetEvent() {
