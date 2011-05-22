@@ -32,6 +32,7 @@ VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
 CXX          := @CXX@
 INCLUDES     := -I./ -I$(srcdir)/ ${addprefix -I,$(srcmods)}
 DEFS         := @DEFS@
+CPPFLAGS     := @CPPFLAGS@
 CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES)
 LIBS         := @LIBS@
 LDFLAGS      := @LDFLAGS@
@@ -76,7 +77,7 @@ objects: $(objects)
 %.lo: %.cpp %.hpp
 	@echo "  CXX   $@"
 	@libtool --mode=compile --quiet \
-            $(CXX) $(CXXFLAGS) \
+            $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
             -c $< -o $(builddir)/$@
 
 # Tests
@@ -86,7 +87,7 @@ tests: $(tests)
 	@echo "  CXX   $@"
 	@libtool --mode=link --quiet \
         $(CXX) \
-        $(CXXFLAGS) $(LDFLAGS) \
+        $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
         $< -o $(builddir)/$@ \
         ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}} \
         $(LIBS)
@@ -136,14 +137,14 @@ $(builddir)/%.d: %.hpp
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
-            $(CXXFLAGS) \
+            $(CPPFLAGS) $(CXXFLAGS) \
             -MM ${subst .hpp,.cpp,$<} \
             > $@
 $(builddir)/%.d: %.cxx
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
-            $(CXXFLAGS) \
+            $(CPPFLAGS) $(CXXFLAGS) \
             -MM $< \
             | sed 's|\.o||' \
             | sed 's|\.hpp|\.lo|g' \
