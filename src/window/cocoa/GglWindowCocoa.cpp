@@ -13,7 +13,6 @@ GglWindowCocoa::GglWindowCocoa() {
     pool = NULL;
     application = NULL;
     window = NULL;
-    view = NULL;
 }
 
 /**
@@ -59,6 +58,7 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
+    MyOpenGLView *view;
     
     // Make window
     rect = NSMakeRect(0, 50, 512, 512);
@@ -70,6 +70,7 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     // Make view
     rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
     view = [[MyOpenGLView alloc] initWithFrame:rect];
+    [view setGglListener:this];
     
     // Add the view to the window
     [window setContentView:view];
@@ -94,6 +95,7 @@ void GglWindowCocoa::doDestroyWindow() {
 
 void GglWindowCocoa::doFlush() {
     cerr << "GglWindowCocoa::doFlush()" << endl;
+    glFlush();
 }
 
 GglEvent GglWindowCocoa::doGetEvent() {
@@ -103,6 +105,22 @@ GglEvent GglWindowCocoa::doGetEvent() {
 void GglWindowCocoa::doRun() {
     [pool drain];
     [application run];
+}
+
+void GglWindowCocoa::onInit(GglWindow *window) {
+    ;
+}
+
+void GglWindowCocoa::onDisplay(GglWindow *window) {
+    fireDisplayEvent();
+}
+
+void GglWindowCocoa::onKey(GglWindow *window, GglEvent &event) {
+    ;
+}
+
+void GglWindowCocoa::onDestroy(GglWindow *window) {
+    ;
 }
 
 //----------------------------------------
@@ -177,5 +195,13 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
 @implementation MyOpenGLView
 - (void)keyDown:(NSEvent*)event {
     ;
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    gglListener->onDisplay(NULL);
+}
+
+- (void)setGglListener:(GglListener*)listener {
+    gglListener = listener;
 }
 @end

@@ -11,10 +11,12 @@
 #include "GglWindow.hpp"
 
 
+
+
 /**
  * @brief Window implemented with Cocoa.
  */
-class GglWindowCocoa : public GglWindow {
+class GglWindowCocoa : public GglWindow, public GglListener {
 public:
     GglWindowCocoa();
     virtual ~GglWindowCocoa();
@@ -29,11 +31,14 @@ public:
     virtual void doFlush();
     virtual void doRun();
     virtual GglEvent doGetEvent();
+    virtual void onInit(GglWindow *window);
+    virtual void onDisplay(GglWindow *window);
+    virtual void onDestroy(GglWindow *window);
+    virtual void onKey(GglWindow *window, GglEvent &event);
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;
     NSWindow *window;
-    NSView *view;
 // Helpers
     NSUInteger createWindowStyle();
     NSMenu* createMenu();
@@ -56,9 +61,11 @@ private:
  * OpenGL view for window.
  */
 @interface MyOpenGLView : NSOpenGLView {
-    ;
+    GglListener *gglListener;
 }
 - (void)keyDown:(NSEvent*)event;
+- (void)drawRect:(NSRect)dirtyRect;
+- (void)setGglListener:(GglListener*)listener;
 @end
 
 
