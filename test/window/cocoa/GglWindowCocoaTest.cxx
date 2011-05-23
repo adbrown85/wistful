@@ -20,7 +20,11 @@ public:
  * Ensures window can be opened.
  */
 void GglWindowCocoaTest::testOpen() {
-    cout << "GglWindowCocoaTest::testOpen()" << endl;
+    
+    GglWindowFactory *factory = GglFactory::getWindowFactory();
+    GglWindow *window = factory->create();
+    
+    GglWindow::open(window);
 }
 
 /*
