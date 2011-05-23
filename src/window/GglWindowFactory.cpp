@@ -25,7 +25,7 @@ GglWindowFactory::~GglWindowFactory() {
  * 
  * @return Pointer to the new window
  */
-GglWindow* GglWindowFactory::create() {
+GglWindow* GglWindowFactory::createWindow() {
 #if defined(HAVE_COCOA)
     return new GglWindowCocoa();
 #elif defined(HAVE_GLX)

@@ -22,7 +22,7 @@ class GglWindowFactory {
 public:
     GglWindowFactory();
     virtual ~GglWindowFactory();
-    GglWindow* create();
+    GglWindow* createWindow();
 };
 
 #endif

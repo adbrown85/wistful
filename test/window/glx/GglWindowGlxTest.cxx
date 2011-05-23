@@ -47,7 +47,7 @@ public:
 void GglWindowGlxTest::testOpen() {
     
     GglWindowFactory factory;
-    GglWindow *window = factory.create();
+    GglWindow *window = factory.createWindow();
     
     window->setLocation(50, 50);
     window->setSize(640, 480);
