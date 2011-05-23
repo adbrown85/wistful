@@ -39,7 +39,7 @@ private:
     GLXContext context;
     GglConfigGlx *config;
 // Helpers
-    GglEvent getEvent();
+    GglWindowEvent getEvent();
     static void subscribe(Display *display, Window window);
     static GglConfigGlx* createConfig();
     static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
@@ -47,7 +47,7 @@ private:
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
     static XSetWindowAttributes getWindowAttributes(Colormap cm);
-    static GglEvent toGglEvent(XKeyEvent &xke);
+    static GglWindowEvent toGglEvent(XKeyEvent &xke);
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
     static PFNGLXCCAA getGlXCCAA();

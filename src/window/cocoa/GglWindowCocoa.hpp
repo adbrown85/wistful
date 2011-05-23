@@ -33,7 +33,7 @@ public:
     virtual void onInit(GglWindow *window);
     virtual void onDisplay(GglWindow *window);
     virtual void onDestroy(GglWindow *window);
-    virtual void onKey(GglWindow *window, GglEvent &event);
+    virtual void onKey(GglWindow *window, GglWindowEvent &event);
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;

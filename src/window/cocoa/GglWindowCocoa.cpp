@@ -111,7 +111,7 @@ void GglWindowCocoa::onDisplay(GglWindow *window) {
     fireDisplayEvent();
 }
 
-void GglWindowCocoa::onKey(GglWindow *window, GglEvent &event) {
+void GglWindowCocoa::onKey(GglWindow *window, GglWindowEvent &event) {
     ;
 }
 

@@ -145,7 +145,7 @@ void GglWindow::destroy() {
 /**
  * Sends a key event to all listeners.
  */
-void GglWindow::fireKeyEvent(GglEvent &event) {
+void GglWindow::fireKeyEvent(GglWindowEvent &event) {
     
     list<GglWindowListener*>::iterator it;
     

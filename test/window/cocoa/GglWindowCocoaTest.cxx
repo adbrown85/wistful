@@ -30,7 +30,7 @@ public:
     virtual void onDestroy(GglWindow *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(GglWindow *window, GglEvent &event) {
+    virtual void onKey(GglWindow *window, GglWindowEvent &event) {
         cerr << "FakeGglListener::onKey()" << endl;
     }
 };

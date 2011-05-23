@@ -7,7 +7,7 @@
 #ifndef GGLWINDOWLISTENER_HPP
 #define GGLWINDOWLISTENER_HPP
 #include "ggl_common.h"
-#include "GglEvent.hpp"
+#include "GglWindowEvent.hpp"
 
 
 /* Forward declaration of window. */
@@ -24,7 +24,7 @@ public:
     virtual void onInit(GglWindow *window) = 0;
     virtual void onDisplay(GglWindow *window) = 0;
     virtual void onDestroy(GglWindow *window) = 0;
-    virtual void onKey(GglWindow *window, GglEvent &event) = 0;
+    virtual void onKey(GglWindow *window, GglWindowEvent &event) = 0;
 };
 
 #endif

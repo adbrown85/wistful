@@ -10,7 +10,7 @@
 #include "ggl_keys.h"
 #include "GglException.hpp"
 #include "GglConfig.hpp"
-#include "GglEvent.hpp"
+#include "GglWindowEvent.hpp"
 #include "GglWindowListener.hpp"
 
 
@@ -70,7 +70,7 @@ protected:
     virtual void doDestroyContext() = 0;
     virtual void doFlush() = 0;
     virtual void doRun() = 0;
-    void fireKeyEvent(GglEvent &event);
+    void fireKeyEvent(GglWindowEvent &event);
     void fireDestroyEvent();
     void fireDisplayEvent();
     void fireInitEvent();

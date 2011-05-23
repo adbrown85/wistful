@@ -128,7 +128,7 @@ void GglWindowGlx::doFlush() {
  */
 void GglWindowGlx::doRun() {
     while (!isClosed()) {
-        GglEvent event = getEvent();
+        GglWindowEvent event = getEvent();
         switch (event.getType()) {
         case MAP:
             fireInitEvent();
@@ -188,7 +188,7 @@ GglConfigGlx* GglWindowGlx::createConfig() {
 /**
  * Returns next event from window.
  */
-GglEvent GglWindowGlx::getEvent() {
+GglWindowEvent GglWindowGlx::getEvent() {
     
     XEvent xEvent;
     
@@ -198,17 +198,17 @@ GglEvent GglWindowGlx::getEvent() {
         XNextEvent(display, &xEvent);
         switch (xEvent.type) {
         case ClientMessage:
-            return GglEvent(DESTROY);
+            return GglWindowEvent(DESTROY);
         case MapNotify:
-            return GglEvent(MAP);
+            return GglWindowEvent(MAP);
         case Expose:
             if (xEvent.xexpose.count == 0) {
-                return GglEvent(EXPOSE);
+                return GglWindowEvent(EXPOSE);
             }
         case KeyPress:
             return toGglEvent(xEvent.xkey);
         default:
-            return GglEvent(OTHER);
+            return GglWindowEvent(OTHER);
         }
     }
 }
@@ -290,9 +290,9 @@ PFNGLXCCAA GglWindowGlx::getGlXCCAA() {
  * @param xke X11 Key event
  * @return Equivalent GGL event
  */
-GglEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
+GglWindowEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
     
-    GglEvent ge(KEY);
+    GglWindowEvent ge(KEY);
     KeySym ks = XLookupKeysym(&xke, 0);
     
     ge.setTrigger(ks);
