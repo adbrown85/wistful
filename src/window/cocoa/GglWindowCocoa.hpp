@@ -16,7 +16,7 @@
 /**
  * @brief Window implemented with Cocoa.
  */
-class GglWindowCocoa : public GglWindow, public GglListener {
+class GglWindowCocoa : public GglWindow, public GglWindowListener {
 public:
     GglWindowCocoa();
     virtual ~GglWindowCocoa();
@@ -61,11 +61,11 @@ private:
  * OpenGL view for window.
  */
 @interface MyOpenGLView : NSOpenGLView {
-    GglListener *gglListener;
+    GglWindowListener *windowListener;
 }
 - (void)keyDown:(NSEvent*)event;
 - (void)drawRect:(NSRect)dirtyRect;
-- (void)setGglListener:(GglListener*)listener;
+- (void)setWindowListener:(GglWindowListener*)listener;
 @end
 
 

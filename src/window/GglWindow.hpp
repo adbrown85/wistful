@@ -11,7 +11,7 @@
 #include "GglException.hpp"
 #include "GglConfig.hpp"
 #include "GglEvent.hpp"
-#include "GglListener.hpp"
+#include "GglWindowListener.hpp"
 
 
 /**
@@ -48,7 +48,7 @@ class GglWindow {
 public:
     GglWindow();
     virtual ~GglWindow();
-    void addListener(GglListener *listener);
+    void addWindowListener(GglWindowListener *listener);
     void close();
     static void open(GglWindow *window);
 // Getters and setters
@@ -83,7 +83,7 @@ private:
     int x;
     int y;
     bool closed;
-    list<GglListener*> listeners;
+    list<GglWindowListener*> windowListeners;
 // Helpers
     void create();
     void createConnection() throw(GglException);

@@ -1,11 +1,11 @@
 /*
- * GglListener.hpp
+ * GglWindowListener.hpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLLISTENER_HPP
-#define GGLLISTENER_HPP
+#ifndef GGLWINDOWLISTENER_HPP
+#define GGLWINDOWLISTENER_HPP
 #include "ggl_common.h"
 #include "GglEvent.hpp"
 
@@ -17,10 +17,10 @@ class GglWindow;
 /**
  * @brief Object that listens to GGL events.
  */
-class GglListener {
+class GglWindowListener {
 public:
-    GglListener();
-    virtual ~GglListener();
+    GglWindowListener();
+    virtual ~GglWindowListener();
     virtual void onInit(GglWindow *window) = 0;
     virtual void onDisplay(GglWindow *window) = 0;
     virtual void onDestroy(GglWindow *window) = 0;

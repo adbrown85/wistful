@@ -70,7 +70,7 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     // Make view
     rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
     view = [[MyOpenGLView alloc] initWithFrame:rect];
-    [view setGglListener:this];
+    [view setWindowListener:this];
     
     // Add the view to the window
     [window setContentView:view];
@@ -198,10 +198,10 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    gglListener->onDisplay(NULL);
+    windowListener->onDisplay(NULL);
 }
 
-- (void)setGglListener:(GglListener*)listener {
-    gglListener = listener;
+- (void)setWindowListener:(GglWindowListener*)listener {
+    windowListener = listener;
 }
 @end

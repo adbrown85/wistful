@@ -14,7 +14,7 @@ public:
     void testOpen();
 };
 
-class FakeGglListener : public GglListener {
+class FakeWindowListener : public GglWindowListener {
 public:
     virtual void onInit(GglWindow *window) {
         cerr << "FakeGglListener::init()" << endl;
@@ -51,7 +51,7 @@ void GglWindowGlxTest::testOpen() {
     
     window->setLocation(50, 50);
     window->setSize(640, 480);
-    window->addListener(new FakeGglListener());
+    window->addWindowListener(new FakeWindowListener());
     GglWindow::open(window);
     
     cerr << "End of GglWindowGlxTest::testOpen()" << endl;

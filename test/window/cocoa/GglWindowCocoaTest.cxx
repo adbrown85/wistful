@@ -16,7 +16,7 @@ public:
     void testOpen();
 };
 
-class FakeGglListener : public GglListener {
+class FakeWindowListener : public GglWindowListener {
 public:
     virtual void onInit(GglWindow *window) {
         cerr << "FakeGglListener::init()" << endl;
@@ -43,7 +43,7 @@ void GglWindowCocoaTest::testOpen() {
     GglWindowFactory factory;
     GglWindow *window = factory.create();
     
-    window->addListener(new FakeGglListener());
+    window->addWindowListener(new FakeWindowListener());
     GglWindow::open(window);
 }
 
