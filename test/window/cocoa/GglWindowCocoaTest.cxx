@@ -26,6 +26,7 @@ public:
         glViewport(0, 0, 512, 512);
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
+        cout << glGetString(GL_VERSION) << endl;
     }
     virtual void onDestroy(GglWindow *window) {
         cerr << "FakeGglListener::destroy()" << endl;

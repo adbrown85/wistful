@@ -67,9 +67,24 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
                                backing:NSBackingStoreBuffered
                                defer:NO];
     
+    // Make pixel format
+    NSOpenGLPixelFormatAttribute attributes[] = {
+            NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
+            NSOpenGLPFAColorSize, 24,
+//            NSOpenGLPFADoubleBuffer,
+//            NSOpenGLPFAWindow,
+            NSOpenGLPFAAccelerated,
+            nil
+    };
+    NSOpenGLPixelFormat *format;
+    format = [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
+    if (format == nil) {
+        throw GglException("Could not make pixel format!");
+    }
+    
     // Make view
     rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
-    view = [[MyOpenGLView alloc] initWithFrame:rect];
+    view = [[MyOpenGLView alloc] initWithFrame:rect pixelFormat:format];
     [view setWindowListener:this];
     
     // Add the view to the window
