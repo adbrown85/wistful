@@ -16,22 +16,22 @@ public:
 
 class FakeGglListener : public GglListener {
 public:
-    virtual void onInit(GglWindow &window) {
+    virtual void onInit(GglWindow *window) {
         cerr << "FakeGglListener::init()" << endl;
     }
-    virtual void onDisplay(GglWindow &window) {
+    virtual void onDisplay(GglWindow *window) {
         cerr << "FakeGglListener::display()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void onDestroy(GglWindow &window) {
+    virtual void onDestroy(GglWindow *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(GglWindow &window, GglEvent &event) {
+    virtual void onKey(GglWindow *window, GglEvent &event) {
         switch (event.getTrigger()) {
         case GGL_ESCAPE:
             cerr << "GGL_ESCAPE" << endl;
-            window.close();
+            window->close();
             break;
         case GGL_A:
             cerr << "GGL_A" << endl;
