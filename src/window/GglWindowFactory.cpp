@@ -19,3 +19,16 @@ GglWindowFactory::GglWindowFactory() {
 GglWindowFactory::~GglWindowFactory() {
     ;
 }
+
+/**
+ * Creates a window.
+ * 
+ * @return Pointer to the new window
+ */
+GglWindow* GglWindowFactory::create() {
+#if defined(HAVE_COCOA)
+    return new GglWindowCocoa();
+#elif defined(HAVE_GLX)
+    return new GglWindowGlx();
+#endif
+}

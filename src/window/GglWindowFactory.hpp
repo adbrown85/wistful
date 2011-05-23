@@ -8,6 +8,11 @@
 #define GGLWINDOWFACTORY_HPP
 #include "ggl_common.h"
 #include "GglWindow.hpp"
+#if defined(HAVE_COCOA)
+#include "GglWindowCocoa.hpp"
+#elif defined(HAVE_GLX)
+#include "GglWindowGlx.hpp"
+#endif
 
 
 /**
@@ -17,7 +22,7 @@ class GglWindowFactory {
 public:
     GglWindowFactory();
     virtual ~GglWindowFactory();
-    virtual GglWindow* create() = 0;
+    GglWindow* create();
 };
 
 #endif

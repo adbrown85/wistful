@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "GglWindowCocoa.hpp"
-#include "GglFactory.hpp"
+#include "GglWindowFactory.hpp"
 using namespace std;
 
 /**
@@ -40,8 +40,8 @@ public:
  */
 void GglWindowCocoaTest::testOpen() {
     
-    GglWindowFactory *factory = GglFactory::getWindowFactory();
-    GglWindow *window = factory->create();
+    GglWindowFactory factory;
+    GglWindow *window = factory.create();
     
     window->addListener(new FakeGglListener());
     GglWindow::open(window);
