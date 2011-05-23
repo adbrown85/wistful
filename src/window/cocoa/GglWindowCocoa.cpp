@@ -98,10 +98,6 @@ void GglWindowCocoa::doFlush() {
     glFlush();
 }
 
-GglEvent GglWindowCocoa::doGetEvent() {
-    return GglEvent(OTHER);
-}
-
 void GglWindowCocoa::doRun() {
     [pool drain];
     [application run];

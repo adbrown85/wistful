@@ -30,7 +30,6 @@ public:
     virtual void doDestroyWindow();
     virtual void doFlush();
     virtual void doRun();
-    virtual GglEvent doGetEvent();
     virtual void onInit(GglWindow *window);
     virtual void onDisplay(GglWindow *window);
     virtual void onDestroy(GglWindow *window);

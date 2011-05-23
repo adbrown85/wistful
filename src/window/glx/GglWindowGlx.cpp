@@ -128,7 +128,7 @@ void GglWindowGlx::doFlush() {
  */
 void GglWindowGlx::doRun() {
     while (!isClosed()) {
-        GglEvent event = doGetEvent();
+        GglEvent event = getEvent();
         switch (event.getType()) {
         case MAP:
             fireInitEvent();
@@ -145,34 +145,6 @@ void GglWindowGlx::doRun() {
             break;
         default:
             continue;
-        }
-    }
-}
-
-/**
- * Returns next event from window.
- */
-GglEvent GglWindowGlx::doGetEvent() {
-    
-    XEvent xEvent;
-    
-    XSelectInput(display, window, DEFAULT_EVENT_MASK);
-    
-    while (true) {
-        XNextEvent(display, &xEvent);
-        switch (xEvent.type) {
-        case ClientMessage:
-            return GglEvent(DESTROY);
-        case MapNotify:
-            return GglEvent(MAP);
-        case Expose:
-            if (xEvent.xexpose.count == 0) {
-                return GglEvent(EXPOSE);
-            }
-        case KeyPress:
-            return toGglEvent(xEvent.xkey);
-        default:
-            return GglEvent(OTHER);
         }
     }
 }
@@ -211,6 +183,34 @@ GglConfigGlx* GglWindowGlx::createConfig() {
     reqs[GLX_ALPHA_SIZE] = 8;
     
     return (GglConfigGlx*) cf.create(reqs);
+}
+
+/**
+ * Returns next event from window.
+ */
+GglEvent GglWindowGlx::getEvent() {
+    
+    XEvent xEvent;
+    
+    XSelectInput(display, window, DEFAULT_EVENT_MASK);
+    
+    while (true) {
+        XNextEvent(display, &xEvent);
+        switch (xEvent.type) {
+        case ClientMessage:
+            return GglEvent(DESTROY);
+        case MapNotify:
+            return GglEvent(MAP);
+        case Expose:
+            if (xEvent.xexpose.count == 0) {
+                return GglEvent(EXPOSE);
+            }
+        case KeyPress:
+            return toGglEvent(xEvent.xkey);
+        default:
+            return GglEvent(OTHER);
+        }
+    }
 }
 
 /**

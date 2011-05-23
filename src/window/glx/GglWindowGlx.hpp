@@ -32,7 +32,6 @@ protected:
     virtual void doDestroyContext();
     virtual void doFlush();
     virtual void doRun();
-    virtual GglEvent doGetEvent();
 private:
     Display *display;
     XVisualInfo *info;
@@ -40,6 +39,7 @@ private:
     GLXContext context;
     GglConfigGlx *config;
 // Helpers
+    GglEvent getEvent();
     static void subscribe(Display *display, Window window);
     static GglConfigGlx* createConfig();
     static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
