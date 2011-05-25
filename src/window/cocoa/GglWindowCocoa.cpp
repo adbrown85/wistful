@@ -70,6 +70,8 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     NSUInteger style = createWindowStyle();
     NSRect rect;
     MyOpenGLView *view;
+    NSOpenGLPixelFormatAttribute *attributes;
+    NSOpenGLPixelFormat *pixelFormat;
     
     // Make window
     rect = NSMakeRect(0, 50, 512, 512);
@@ -79,23 +81,16 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
                                defer:NO];
     
     // Make pixel format
-    NSOpenGLPixelFormatAttribute attributes[] = {
-            NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
-            NSOpenGLPFAColorSize, 24,
-//            NSOpenGLPFADoubleBuffer,
-//            NSOpenGLPFAWindow,
-            NSOpenGLPFAAccelerated,
-            nil
-    };
-    NSOpenGLPixelFormat *format;
-    format = [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
-    if (format == nil) {
+    attributes = toArray(getWindowFormat());
+    pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
+    if (pixelFormat == nil) {
         throw GglException("Could not make pixel format!");
     }
+    delete[] attributes;
     
     // Make view
     rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
-    view = [[MyOpenGLView alloc] initWithFrame:rect pixelFormat:format];
+    view = [[MyOpenGLView alloc] initWithFrame:rect pixelFormat:pixelFormat];
     [view setWindowListener:this];
     
     // Add the view to the window
@@ -202,6 +197,41 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
     
     [item initWithTitle:@"" action:nil keyEquivalent:@""];
     return item;
+}
+
+/**
+ * Converts a window format to an attributes array.
+ * 
+ * @param wf Configuration of window
+ * @return New array of attributes, which should be freed
+ */
+NSOpenGLPixelFormatAttribute*
+GglWindowCocoa::toArray(const GglWindowFormat &wf) {
+    
+    NSOpenGLPixelFormatAttribute *array;
+    list<NSOpenGLPixelFormatAttribute> attributes;
+    list<NSOpenGLPixelFormatAttribute>::iterator ai;
+    int length;
+    int count;
+    
+    // Add attributes
+    attributes.push_back(NSOpenGLPFAAccelerated);
+    attributes.push_back(NSOpenGLPFAOpenGLProfile);
+    attributes.push_back(NSOpenGLProfileVersion3_2Core);
+    attributes.push_back(NSOpenGLPFAColorSize);
+    attributes.push_back(24);
+    
+    // Make array
+    length = attributes.size() + 1;
+    array = new NSOpenGLPixelFormatAttribute[length];
+    count = 0;
+    for (ai=attributes.begin(); ai!=attributes.end(); ++ai) {
+        array[count] = (*ai);
+        ++count;
+    }
+    array[count] = nil;
+    
+    return array;
 }
 
 //----------------------------------------
