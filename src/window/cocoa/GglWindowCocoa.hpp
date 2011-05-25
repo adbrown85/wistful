@@ -11,8 +11,6 @@
 #include "GglWindow.hpp"
 
 
-
-
 /**
  * @brief Window implemented with Cocoa.
  */
@@ -48,6 +46,7 @@ private:
     NSMenu* createEmptyMenu();
 };
 
+
 /*
  * Application delegate for window.
  */
@@ -56,6 +55,7 @@ private:
 }
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
 @end
+
 
 /*
  * OpenGL view for window.
