@@ -12,6 +12,7 @@
 #include "GglConfig.hpp"
 #include "GglWindowEvent.hpp"
 #include "GglWindowListener.hpp"
+#include "GglWindowFormat.hpp"
 
 
 /**
@@ -47,6 +48,7 @@
 class GglWindow {
 public:
     GglWindow();
+    GglWindow(const GglWindowFormat &wf);
     virtual ~GglWindow();
     void addWindowListener(GglWindowListener *listener);
     void close();
@@ -59,6 +61,7 @@ public:
     int getY() const;
     void setLocation(int x, int y);
     bool isClosed() const;
+    GglWindowFormat getWindowFormat() const;
 protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
@@ -83,6 +86,7 @@ private:
     int y;
     bool closed;
     list<GglWindowListener*> windowListeners;
+    GglWindowFormat windowFormat;
 // Helpers
     void create();
     void createConnection() throw(GglException);

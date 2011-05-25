@@ -20,6 +20,22 @@ GglWindow::GglWindow() {
 }
 
 /**
+ * Creates a window from a format.
+ * 
+ * @param wf Configuration of window
+ */
+GglWindow::GglWindow(const GglWindowFormat &wf) {
+    this->created = false;
+    this->destroyed = false;
+    this->width = DEFAULT_WIDTH;
+    this->height = DEFAULT_HEIGHT;
+    this->x = DEFAULT_X;
+    this->y = DEFAULT_Y;
+    this->closed = false;
+    this->windowFormat = wf;
+}
+
+/**
  * Destroys the window.
  */
 GglWindow::~GglWindow() {
@@ -251,4 +267,12 @@ void GglWindow::setLocation(int x, int y) {
  */
 bool GglWindow::isClosed() const {
     return closed;
+}
+
+/**
+ * Returns copy of configuration used to create window.
+ */
+GglWindowFormat
+GglWindow::getWindowFormat() const {
+    return windowFormat;
 }

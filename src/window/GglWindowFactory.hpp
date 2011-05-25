@@ -23,6 +23,7 @@ public:
     GglWindowFactory();
     virtual ~GglWindowFactory();
     GglWindow* createWindow();
+    GglWindow* createWindow(const GglWindowFormat &wf);
 };
 
 #endif

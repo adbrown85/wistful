@@ -7,6 +7,17 @@
 #include "GglWindowCocoa.hpp"
 
 /**
+ * Creates a window.
+ * 
+ * @param wf Configuration of window
+ */
+GglWindowCocoa::GglWindowCocoa(const GglWindowFormat &wf) : GglWindow(wf) {
+    this->pool = NULL;
+    this->application = NULL;
+    this->window = NULL;
+}
+
+/**
  * Creates the window.
  */
 GglWindowCocoa::GglWindowCocoa() {
