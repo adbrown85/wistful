@@ -34,8 +34,10 @@ public:
     int getOpenGLMajorVersion() const;
     int getOpenGLMinorVersion() const;
     void setOpenGLVersion(int major, int minor);
+    bool isOpenGLVersion(int major, int minor) const;
     GglOpenGLProfile getOpenGLProfile() const;
     void setOpenGLProfile(GglOpenGLProfile profile);
+    bool isOpenGLProfile(GglOpenGLProfile profile) const;
 private:
     int colorSize;
     int depthSize;

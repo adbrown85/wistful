@@ -107,6 +107,19 @@ GglWindowFormat::setOpenGLVersion(int major,
 }
 
 /**
+ * Checks if an OpenGL version matches the format's version.
+ * 
+ * @param major OpenGL major version number
+ * @param minor OpenGL minor version number
+ * @return <tt>true</tt> if the versions match
+ */
+bool
+GglWindowFormat::isOpenGLVersion(int major,
+                                 int minor) const {
+    return (this->majorVersion == major) && (this->minorVersion == minor);
+}
+
+/**
  * Returns OpenGL profile for the window.
  */
 GglOpenGLProfile
@@ -122,4 +135,15 @@ GglWindowFormat::getOpenGLProfile() const {
 void
 GglWindowFormat::setOpenGLProfile(GglOpenGLProfile profile) {
     this->profile = profile;
+}
+
+/**
+ * Checks if an OpenGL profile matches the format's profile.
+ * 
+ * @param profile Profile to check
+ * @return <tt>true</tt> if the profiles match
+ */
+bool
+GglWindowFormat::isOpenGLProfile(GglOpenGLProfile profile) const {
+    return this->profile == profile;
 }
