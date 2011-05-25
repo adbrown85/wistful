@@ -205,26 +205,17 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
  * @param wf Configuration of window
  * @return New array of attributes, which should be freed
  */
-NSOpenGLPixelFormatAttribute*
+GLuint*
 GglWindowCocoa::toArray(const GglWindowFormat &wf) {
     
     NSOpenGLPixelFormatAttribute *array;
-    list<NSOpenGLPixelFormatAttribute> attributes;
-    list<NSOpenGLPixelFormatAttribute>::iterator ai;
-    int length;
-    int count;
-    
-    // Add attributes
-    attributes.push_back(NSOpenGLPFAAccelerated);
-    attributes.push_back(NSOpenGLPFAOpenGLProfile);
-    attributes.push_back(NSOpenGLProfileVersion3_2Core);
-    attributes.push_back(NSOpenGLPFAColorSize);
-    attributes.push_back(24);
+    list<GLuint> attributes = toList(wf);
+    list<GLuint>::iterator ai;
+    int length = attributes.size() + 1;
+    int count = 0;
     
     // Make array
-    length = attributes.size() + 1;
     array = new NSOpenGLPixelFormatAttribute[length];
-    count = 0;
     for (ai=attributes.begin(); ai!=attributes.end(); ++ai) {
         array[count] = (*ai);
         ++count;
@@ -232,6 +223,47 @@ GglWindowCocoa::toArray(const GglWindowFormat &wf) {
     array[count] = nil;
     
     return array;
+}
+
+/**
+ * Converts a window format to an attributes list.
+ * 
+ * @param wf Configuration of window
+ * @return List of attributes
+ */
+list<GLuint>
+GglWindowCocoa::toList(const GglWindowFormat &wf) {
+    
+    list<GLuint> attributes;
+    
+    // Add default attributes
+    attributes.push_back(NSOpenGLPFAAccelerated);
+    
+    // Profile and version
+    attributes.push_back(NSOpenGLPFAOpenGLProfile);
+    if (wf.isOpenGLProfile(GGL_CORE_PROFILE)) {
+        if (wf.isOpenGLVersion(3, 2)) {
+            attributes.push_back(NSOpenGLProfileVersion3_2Core);
+        } else {
+            throw GglException("Core profile only supported with OpenGL 3.2!");
+        }
+    } else {
+        if (wf.isOpenGLVersion(2, 1)) {
+            attributes.push_back(NSOpenGLProfileVersionLegacy);
+        } else {
+            throw GglException("Legacy profile should use OpenGL 2.1!");
+        }
+    }
+    
+    // Color size
+    attributes.push_back(NSOpenGLPFAColorSize);
+    attributes.push_back(wf.getColorSize());
+    
+    // Depth size
+    attributes.push_back(NSOpenGLPFADepthSize);
+    attributes.push_back(wf.getDepthSize());
+    
+    return attributes;
 }
 
 //----------------------------------------

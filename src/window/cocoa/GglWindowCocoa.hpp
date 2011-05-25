@@ -44,7 +44,8 @@ private:
     NSMenuItem* createAppleMenuQuitItem();
     NSMenuItem* createEmptyMenuItem();
     NSMenu* createEmptyMenu();
-    static NSOpenGLPixelFormatAttribute* toArray(const GglWindowFormat &wf);
+    static GLuint* toArray(const GglWindowFormat &wf);
+    static list<GLuint> toList(const GglWindowFormat &wf);
 };
 
 
