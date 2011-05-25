@@ -29,6 +29,8 @@ public:
 // Accessors and mutators
     int getColorSize() const;
     void setColorSize(int bits);
+    int getAlphaSize() const;
+    void setAlphaSize(int bits);
     int getDepthSize() const;
     void setDepthSize(int bits);
     int getOpenGLMajorVersion() const;
@@ -40,12 +42,14 @@ public:
     bool isOpenGLProfile(GglOpenGLProfile profile) const;
 private:
     int colorSize;
+    int alphaSize;
     int depthSize;
     int majorVersion;
     int minorVersion;
     GglOpenGLProfile profile;
 // Constants
     static const int DEFAULT_COLOR_SIZE = 24;
+    static const int DEFAULT_ALPHA_SIZE = 8;
     static const int DEFAULT_DEPTH_SIZE = 16;
     static const int DEFAULT_MAJOR_VERSION = 3;
     static const int DEFAULT_MINOR_VERSION = 2;

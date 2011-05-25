@@ -11,6 +11,7 @@
  */
 GglWindowFormat::GglWindowFormat() {
     colorSize = DEFAULT_COLOR_SIZE;
+    alphaSize = DEFAULT_ALPHA_SIZE;
     depthSize = DEFAULT_DEPTH_SIZE;
     majorVersion = DEFAULT_MAJOR_VERSION;
     minorVersion = DEFAULT_MINOR_VERSION;
@@ -43,6 +44,29 @@ GglWindowFormat::setColorSize(int colorSize) {
         throw GglException("Color size is negative!");
     } else {
         this->colorSize = colorSize;
+    }
+}
+
+/**
+ * Returns number of bits used for a pixel's alpha component.
+ */
+int
+GglWindowFormat::getAlphaSize() const {
+    return alphaSize;
+}
+
+/**
+ * Changes number of bits used for a pixel's alpha component.
+ * 
+ * @param alphaSize Number of bits to store opacity
+ * @throw GglException if size is negative
+ */
+void
+GglWindowFormat::setAlphaSize(int alphaSize) {
+    if (alphaSize < 0) {
+        throw GglException("Alpha size is negative!");
+    } else {
+        this->alphaSize = alphaSize;
     }
 }
 
