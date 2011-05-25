@@ -255,11 +255,11 @@ GglWindowCocoa::toList(const GglWindowFormat &wf) {
         }
     }
     
-    // Color size
+    // Pixel sizes
     attributes.push_back(NSOpenGLPFAColorSize);
     attributes.push_back(wf.getColorSize());
-    
-    // Depth size
+    attributes.push_back(NSOpenGLPFAAlphaSize);
+    attributes.push_back(wf.getAlphaSize());
     attributes.push_back(NSOpenGLPFADepthSize);
     attributes.push_back(wf.getDepthSize());
     
