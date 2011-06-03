@@ -62,6 +62,8 @@ fi
 # Set up exclusions
 if test "$host_vendor" = 'apple'; then
     AC_SUBST([EXCLUSIONS], [window/glx])
+else
+    AC_SUBST([EXCLUSIONS], [window/cocoa])
 fi
 
 # Finish
