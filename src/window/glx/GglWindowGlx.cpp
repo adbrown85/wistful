@@ -14,7 +14,7 @@ long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 GglWindowGlx::GglWindowGlx() {
     this->display = NULL;
     this->info = NULL;
-    this->window = NULL;
+    this->window = (Window) NULL;
     this->context = NULL;
     this->config = createConfig();
 }
@@ -73,7 +73,7 @@ void GglWindowGlx::doActivateWindow() {
 
 void GglWindowGlx::doDestroyWindow() {
     XDestroyWindow(display, window);
-    window = NULL;
+    window = (Window) NULL;
 }
 
 void GglWindowGlx::doCreateContext() throw(GglException) {
@@ -84,7 +84,7 @@ void GglWindowGlx::doCreateContext() throw(GglException) {
             GLX_CONTEXT_MAJOR_VERSION_ARB, 2,
             GLX_CONTEXT_MINOR_VERSION_ARB, 1,
 //            GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
-            NULL
+            (GLint) NULL
     };
     
     // Remove default error handler

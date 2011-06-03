@@ -96,7 +96,7 @@ const int* GglConfigFactoryGlx::toArray(const map<int,int> &m) {
         arr[i++] = it->first;
         arr[i++] = it->second;
     }
-    arr[i] = NULL;
+    arr[i] = (int) NULL;
     return const_cast<const int*>(arr);
 }
 
