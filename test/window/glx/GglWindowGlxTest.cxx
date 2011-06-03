@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglFactory.hpp"
+#include "GglWindowFactory.hpp"
 #include <iostream>
 using namespace std;
 
