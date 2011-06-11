@@ -9,6 +9,7 @@
 #include "ggl_common.h"
 #include "GglConfigFactory.hpp"
 #include "GglConfigGlx.hpp"
+#include "GglWindowFormat.hpp"
 
 
 /**
@@ -18,6 +19,7 @@ class GglConfigFactoryGlx : public GglConfigFactory {
 public:
     GglConfigFactoryGlx();
     virtual ~GglConfigFactoryGlx();
+    virtual GglConfig* create(const GglWindowFormat &wf);
     virtual GglConfig* create(const map<int,int> &requirements);
 private:
     Display *display;

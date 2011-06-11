@@ -21,6 +21,30 @@ GglConfigFactoryGlx::~GglConfigFactoryGlx() {
 }
 
 /**
+ * Returns OpenGL configuration matching a window format.
+ * 
+ * @param wf Container with window settings
+ */
+GglConfig* GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
+    
+    map<int,int> m;
+    int colorComponentSize = wf.getColorSize() / 8;
+    
+    m[GLX_X_RENDERABLE] = 1;
+    m[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
+    m[GLX_RENDER_TYPE] = GLX_RGBA_BIT;
+    m[GLX_CONFIG_CAVEAT] = GLX_NONE;
+    m[GLX_DOUBLEBUFFER] = 1;
+    m[GLX_RED_SIZE] = colorComponentSize;
+    m[GLX_GREEN_SIZE] = colorComponentSize;
+    m[GLX_BLUE_SIZE] = colorComponentSize;
+    m[GLX_ALPHA_SIZE] = wf.getAlphaSize();
+    m[GLX_DEPTH_SIZE] = wf.getDepthSize();
+    
+    return create(m);
+}
+
+/**
  * Returns OpenGL configurations meeting certain requirements.
  */
 GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {

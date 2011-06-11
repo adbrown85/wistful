@@ -20,6 +20,19 @@ GglWindowGlx::GglWindowGlx() {
 }
 
 /**
+ * Creates a GLX window from a window format.
+ * 
+ * @param wf Container with window settings
+ */
+GglWindowGlx::GglWindowGlx(const GglWindowFormat &wf) {
+    this->display = NULL;
+    this->info = NULL;
+    this->window = (Window) NULL;
+    this->context = NULL;
+    this->config = createConfig(wf);
+}
+
+/**
  * Destroys the window.
  */
 GglWindowGlx::~GglWindowGlx() {
@@ -182,6 +195,18 @@ GglConfigGlx* GglWindowGlx::createConfig() {
     reqs[GLX_ALPHA_SIZE] = 8;
     
     return (GglConfigGlx*) cf.create(reqs);
+}
+
+/**
+ * Returns an OpenGL configuration for use with the window.
+ * 
+ * @param wf Container with window settings
+ */
+GglConfigGlx* GglWindowGlx::createConfig(const GglWindowFormat &wf) {
+    
+    GglConfigFactoryGlx cf;
+    
+    return (GglConfigGlx*) cf.create(wf);
 }
 
 /**

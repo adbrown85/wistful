@@ -20,6 +20,7 @@ typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
 class GglWindowGlx : public GglWindow {
 public:
     GglWindowGlx();
+    GglWindowGlx(const GglWindowFormat &wf);
     virtual ~GglWindowGlx();
 protected:
     virtual void doActivateContext();
@@ -42,6 +43,7 @@ private:
     GglWindowEvent getEvent();
     static void subscribe(Display *display, Window window);
     static GglConfigGlx* createConfig();
+    static GglConfigGlx* createConfig(const GglWindowFormat &wf);
     static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
     static long getEventMask();
     static long getWindowMask();

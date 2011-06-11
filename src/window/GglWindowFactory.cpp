@@ -44,6 +44,6 @@ GglWindowFactory::createWindow(const GglWindowFormat &wf) {
 #if defined(HAVE_COCOA)
     return new GglWindowCocoa(wf);
 #elif defined(HAVE_GLX)
-    return new GglWindowGlx();
+    return new GglWindowGlx(wf);
 #endif
 }
