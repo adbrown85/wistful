@@ -17,7 +17,7 @@ void GglConfigFactoryGlxTest::testCreate() {
     
     GglConfigFactoryGlx cf;
     map<int,int> reqs;
-    GglConfig *config;
+    GLXFBConfig config;
     
     reqs[GLX_X_RENDERABLE] = 1;
     reqs[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
@@ -29,10 +29,6 @@ void GglConfigFactoryGlxTest::testCreate() {
     reqs[GLX_BLUE_SIZE] = 8;
     reqs[GLX_ALPHA_SIZE] = 8;
     config = cf.create(reqs);
-    
-    cout << "  " << ((GglConfigGlx*) config)->getId() << endl;
-    cout << "  " << config->getDepthSize() << endl;
-    cout << "  " << config->getStencilSize() << endl;
 }
 
 /** Runs the test. */

@@ -91,7 +91,6 @@ void GglWindowGlx::doDestroyWindow() {
 void GglWindowGlx::doCreateContext() throw(GglException) {
     
     XErrorHandler handler = NULL;
-    GLXFBConfig fbc = config->getFBConfig();
     GLint attribs[] = {
             GLX_CONTEXT_MAJOR_VERSION_ARB, 2,
             GLX_CONTEXT_MINOR_VERSION_ARB, 1,
@@ -105,7 +104,7 @@ void GglWindowGlx::doCreateContext() throw(GglException) {
     // Create context
     context = glXCreateContextAttribsARB(
             display,  // display
-            fbc,      // framebuffer configuration
+            config,   // framebuffer configuration
             0,        // render type
             True,     // direct
             attribs); // attributes
@@ -169,17 +168,18 @@ void GglWindowGlx::doRun() {
  * Creates visual information about a screen.
  * 
  * @param display Connection to machine showing content
- * @param config Desired framebuffer configuration of window
+ * @param fbc Desired framebuffer configuration of window
  * @return Visual information about a compatible window
  */
-XVisualInfo* GglWindowGlx::createInfo(Display *display, GglConfigGlx *config) {
-    return glXGetVisualFromFBConfig(display, config->getFBConfig());
+XVisualInfo* GglWindowGlx::createInfo(Display *display,
+                                      const GLXFBConfig &fbc) {
+    return glXGetVisualFromFBConfig(display, fbc);
 }
 
 /**
  * Returns an OpenGL configuration for use with the window. 
  */
-GglConfigGlx* GglWindowGlx::createConfig() {
+GLXFBConfig GglWindowGlx::createConfig() {
     
     GglConfigFactoryGlx cf;
     map<int,int> reqs;
@@ -194,7 +194,7 @@ GglConfigGlx* GglWindowGlx::createConfig() {
     reqs[GLX_BLUE_SIZE] = 8;
     reqs[GLX_ALPHA_SIZE] = 8;
     
-    return (GglConfigGlx*) cf.create(reqs);
+    return cf.create(reqs);
 }
 
 /**
@@ -202,11 +202,11 @@ GglConfigGlx* GglWindowGlx::createConfig() {
  * 
  * @param wf Container with window settings
  */
-GglConfigGlx* GglWindowGlx::createConfig(const GglWindowFormat &wf) {
+GLXFBConfig GglWindowGlx::createConfig(const GglWindowFormat &wf) {
     
     GglConfigFactoryGlx cf;
     
-    return (GglConfigGlx*) cf.create(wf);
+    return cf.create(wf);
 }
 
 /**

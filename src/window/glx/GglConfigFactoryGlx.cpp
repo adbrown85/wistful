@@ -25,7 +25,7 @@ GglConfigFactoryGlx::~GglConfigFactoryGlx() {
  * 
  * @param wf Container with window settings
  */
-GglConfig* GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
+GLXFBConfig GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
     
     map<int,int> m;
     int colorComponentSize = wf.getColorSize() / 8;
@@ -47,30 +47,25 @@ GglConfig* GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
 /**
  * Returns OpenGL configurations meeting certain requirements.
  */
-GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
+GLXFBConfig GglConfigFactoryGlx::create(const map<int,int> &requirements) {
     
     const int *reqs = toArray(requirements);
     int len;
     GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
-    GglConfig *config;
-    int id;
+    GLXFBConfig config;
     
     // Validate
     if (len == 0) {
         throw GglException("No configuration found for requirements!");
     }
     
-    // Convert configurations
-    id = getValue(fbcs[0], GLX_FBCONFIG_ID);
-    config = find(id);
-    if (config == NULL) {
-        config = doCreate(fbcs[0]);
-        add(id, config);
-    }
+    // Copy the first config
+    config = fbcs[0];
     
-    // Finish
+    // Clean up
     delete[] reqs;
     XFree(fbcs);
+    
     return config;
 }
 
@@ -79,52 +74,10 @@ GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
 //
 
 /**
- * Adds a configuration to the factory.
- * 
- * @param id Identifier of configuration
- * @param config Pointer to the configuration
- */
-void GglConfigFactoryGlx::add(int id, GglConfig *config) {
-    configs[id] = config;
-}
-
-/**
  * Returns pointer to the default X display.
  */
 Display* GglConfigFactoryGlx::createDisplay() {
     return XOpenDisplay(NULL);
-}
-
-/**
- * Actually creates a configuration.
- */
-GglConfig* GglConfigFactoryGlx::doCreate(GLXFBConfig &fbc) {
-    
-    GglConfigGlxBuilder b;
-    
-    b.glxFBConfig = fbc;
-    b.red = getValue(fbc, GLX_RED_SIZE);
-    b.green = getValue(fbc, GLX_GREEN_SIZE);
-    b.blue = getValue(fbc, GLX_BLUE_SIZE);
-    b.alpha = getValue(fbc, GLX_ALPHA_SIZE);
-    b.depth = getValue(fbc, GLX_DEPTH_SIZE);
-    b.stencil = getValue(fbc, GLX_STENCIL_SIZE);
-    b.doubleBuffered = getValue(fbc, GLX_DOUBLEBUFFER);
-    b.id = getValue(fbc, GLX_FBCONFIG_ID);
-    return new GglConfigGlx(&b);
-}
-
-/**
- * Finds a configuration that was already built.
- * 
- * @param id Identifier of configuration
- * @return Pointer to the configuration, or NULL if not found
- */
-GglConfig* GglConfigFactoryGlx::find(int id) {
-    
-    map<int,GglConfig*>::iterator it = configs.find(id);
-    
-    return (it == configs.end()) ? NULL : it->second;
 }
 
 /**
@@ -146,19 +99,4 @@ const int* GglConfigFactoryGlx::toArray(const map<int,int> &m) {
     }
     arr[i] = (int) NULL;
     return const_cast<const int*>(arr);
-}
-
-/**
- * Returns the value of an attribute.
- * 
- * @param display Current X screen
- * @param fbc GLX Framebuffer configuration
- * @param key Name of attribute
- */
-int GglConfigFactoryGlx::getValue(GLXFBConfig fbc, int key) {
-    
-    int value;
-    
-    glXGetFBConfigAttrib(display, fbc, key, &value);
-    return value;
 }

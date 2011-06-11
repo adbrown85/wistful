@@ -38,13 +38,13 @@ private:
     XVisualInfo *info;
     Window window;
     GLXContext context;
-    GglConfigGlx *config;
+    GLXFBConfig config;
 // Helpers
     GglWindowEvent getEvent();
     static void subscribe(Display *display, Window window);
-    static GglConfigGlx* createConfig();
-    static GglConfigGlx* createConfig(const GglWindowFormat &wf);
-    static XVisualInfo* createInfo(Display *display, GglConfigGlx *config);
+    static GLXFBConfig createConfig();
+    static GLXFBConfig createConfig(const GglWindowFormat &wf);
+    static XVisualInfo* createInfo(Display *display, const GLXFBConfig &fbc);
     static long getEventMask();
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
