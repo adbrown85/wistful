@@ -19,11 +19,6 @@ public:
     GglConfigFactory();
     virtual ~GglConfigFactory();
     virtual GglConfig* create(const map<int,int> &requirements) = 0;
-protected:
-    void add(int id, GglConfig *config);
-    GglConfig* find(int id);
-private:
-    map<int,GglConfig*> configs;
 };
 
 #endif

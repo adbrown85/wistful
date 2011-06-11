@@ -23,10 +23,13 @@ public:
     virtual GglConfig* create(const map<int,int> &requirements);
 private:
     Display *display;
+    map<int,GglConfig*> configs;
 // Helpers
+    void add(int id, GglConfig *config);
     static Display* createDisplay();
     GglConfig* doCreate(GLXFBConfig &fbc);
     static const int* toArray(const map<int,int> &m);
+    GglConfig* find(int id);
     int getValue(GLXFBConfig fbc, int key);
 };
 
