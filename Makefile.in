@@ -151,6 +151,6 @@ $(builddir)/%.d: %.cxx
             | sed 's|\.hpp|\.lo|g' \
             | sed 's|[[:alnum:]/]*/||g' \
             > $@
-ifneq ($(MAKECMDGOALS),clean)
+ifneq (clean,${findstring clean,$(MAKECMDGOALS)})
   -include ${addprefix $(builddir)/,$(depends)}
 endif
