@@ -48,6 +48,7 @@ GglConfig* GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
  * Returns OpenGL configurations meeting certain requirements.
  */
 GglConfig* GglConfigFactoryGlx::create(const map<int,int> &requirements) {
+    
     const int *reqs = toArray(requirements);
     int len;
     GLXFBConfig *fbcs = glXChooseFBConfig(display, 0, reqs, &len);
