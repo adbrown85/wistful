@@ -26,7 +26,6 @@ GglWindowGlx::~GglWindowGlx() {
     ;
 }
 
-
 void GglWindowGlx::doCreateConnection() throw(GglException) {
     
     display = XOpenDisplay(NULL);
