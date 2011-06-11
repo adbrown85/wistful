@@ -65,6 +65,7 @@ maintainer-clean: distclean
 	$(RM) configure.scan
 	$(RM) config.guess
 	$(RM) config.h.in
+	$(RM) config.h.in~
 	$(RM) config.sub
 	$(RM) configure
 	$(RM) install-sh
