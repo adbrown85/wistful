@@ -15,6 +15,7 @@ GglWindowFormat::GglWindowFormat() {
     depthSize = DEFAULT_DEPTH_SIZE;
     majorVersion = DEFAULT_MAJOR_VERSION;
     minorVersion = DEFAULT_MINOR_VERSION;
+    profile = DEFAULT_PROFILE;
 }
 
 /**

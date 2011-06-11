@@ -53,6 +53,7 @@ private:
     static const int DEFAULT_DEPTH_SIZE = 16;
     static const int DEFAULT_MAJOR_VERSION = 3;
     static const int DEFAULT_MINOR_VERSION = 2;
+    static const GglOpenGLProfile DEFAULT_PROFILE = GGL_CORE_PROFILE;
 };
 
 #endif
