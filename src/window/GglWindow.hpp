@@ -9,7 +9,6 @@
 #include "ggl_common.h"
 #include "ggl_keys.h"
 #include "GglException.hpp"
-#include "GglConfig.hpp"
 #include "GglWindowEvent.hpp"
 #include "GglWindowListener.hpp"
 #include "GglWindowFormat.hpp"
