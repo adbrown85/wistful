@@ -7,7 +7,6 @@
 #ifndef GGLCONFIGFACTORYGLX_HPP
 #define GGLCONFIGFACTORYGLX_HPP
 #include "ggl_common.h"
-#include "GglConfigFactory.hpp"
 #include "GglConfigGlx.hpp"
 #include "GglWindowFormat.hpp"
 
@@ -15,7 +14,7 @@
 /**
  * Utility for creating OpenGL configurations.
  */
-class GglConfigFactoryGlx : public GglConfigFactory {
+class GglConfigFactoryGlx {
 public:
     GglConfigFactoryGlx();
     virtual ~GglConfigFactoryGlx();
