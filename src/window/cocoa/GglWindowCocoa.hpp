@@ -16,7 +16,6 @@
  */
 class GglWindowCocoa : public GglWindow, public GglWindowListener {
 public:
-    GglWindowCocoa();
     GglWindowCocoa(const GglWindowFormat &wf);
     virtual ~GglWindowCocoa();
     virtual void doActivateContext();

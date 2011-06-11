@@ -18,15 +18,6 @@ GglWindowCocoa::GglWindowCocoa(const GglWindowFormat &wf) : GglWindow(wf) {
 }
 
 /**
- * Creates the window.
- */
-GglWindowCocoa::GglWindowCocoa() {
-    pool = NULL;
-    application = NULL;
-    window = NULL;
-}
-
-/**
  * Destroys the window.
  */
 GglWindowCocoa::~GglWindowCocoa() {
