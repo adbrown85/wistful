@@ -24,6 +24,8 @@ public:
     virtual ~GglWindowFactory();
     GglWindow* createWindow();
     GglWindow* createWindow(const GglWindowFormat &wf);
+private:
+    GglWindowFormat defaultWindowFormat;
 };
 
 #endif

@@ -27,9 +27,9 @@ GglWindowFactory::~GglWindowFactory() {
  */
 GglWindow* GglWindowFactory::createWindow() {
 #if defined(HAVE_COCOA)
-    return new GglWindowCocoa();
+    return new GglWindowCocoa(defaultWindowFormat);
 #elif defined(HAVE_GLX)
-    return new GglWindowGlx();
+    return new GglWindowGlx(defaultWindowFormat);
 #endif
 }
 
