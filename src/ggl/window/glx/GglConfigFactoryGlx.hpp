@@ -6,8 +6,8 @@
  */
 #ifndef GGLCONFIGFACTORYGLX_HPP
 #define GGLCONFIGFACTORYGLX_HPP
-#include "ggl_common.h"
-#include "GglWindowFormat.hpp"
+#include "ggl/ggl_common.h"
+#include "ggl/window/GglWindowFormat.hpp"
 
 
 /**

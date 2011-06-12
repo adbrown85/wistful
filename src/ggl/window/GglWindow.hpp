@@ -6,12 +6,12 @@
  */
 #ifndef GGLWINDOW_HPP
 #define GGLWINDOW_HPP
-#include "ggl_common.h"
-#include "ggl_keys.h"
-#include "GglException.hpp"
-#include "GglWindowEvent.hpp"
-#include "GglWindowListener.hpp"
-#include "GglWindowFormat.hpp"
+#include "ggl/ggl_common.h"
+#include "ggl/GglException.hpp"
+#include "ggl/window/ggl_keys.h"
+#include "ggl/window/GglWindowEvent.hpp"
+#include "ggl/window/GglWindowListener.hpp"
+#include "ggl/window/GglWindowFormat.hpp"
 
 
 /**

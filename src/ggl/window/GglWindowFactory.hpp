@@ -6,12 +6,12 @@
  */
 #ifndef GGLWINDOWFACTORY_HPP
 #define GGLWINDOWFACTORY_HPP
-#include "ggl_common.h"
-#include "GglWindow.hpp"
+#include "ggl/ggl_common.h"
+#include "ggl/window/GglWindow.hpp"
 #if defined(HAVE_COCOA)
-#include "GglWindowCocoa.hpp"
+#include "ggl/window/cocoa/GglWindowCocoa.hpp"
 #elif defined(HAVE_GLX)
-#include "GglWindowGlx.hpp"
+#include "ggl/window/glx/GglWindowGlx.hpp"
 #endif
 
 

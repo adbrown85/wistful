@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglException.hpp"
+#include "ggl/GglException.hpp"
 
 /**
  * Creates a GGL exception.

@@ -6,7 +6,7 @@
  */
 #ifndef GGLWINDOWEVENT_HPP
 #define GGLWINDOWEVENT_HPP
-#include "ggl_common.h"
+#include "ggl/ggl_common.h"
 
 
 enum GglWindowEventType {

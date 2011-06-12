@@ -10,7 +10,7 @@ define([MY_EMAIL], [adb1413@rit.edu])
 AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL)
 AC_SUBST([PACKAGE_MAJOR_VERSION], MY_MAJOR_VERSION)
 AC_SUBST([PACKAGE_MINOR_VERSION], MY_MINOR_VERSION)
-AC_CONFIG_SRCDIR([src/ggl_common.h])
+AC_CONFIG_SRCDIR([src/ggl/ggl_common.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Check for system
@@ -61,9 +61,9 @@ fi
 
 # Set up exclusions
 if test "$host_vendor" = 'apple'; then
-    AC_SUBST([EXCLUSIONS], [window/glx])
+    AC_SUBST([EXCLUSIONS], [ggl/window/glx])
 else
-    AC_SUBST([EXCLUSIONS], [window/cocoa])
+    AC_SUBST([EXCLUSIONS], [ggl/window/cocoa])
 fi
 
 # Finish

@@ -6,10 +6,10 @@
  */
 #ifndef GGL_KEYS_H_
 #define GGL_KEYS_H_
-#include "ggl_common.h"
+#include "ggl/ggl_common.h"
 
 #ifdef HAVE_GLX
-#include "ggl_keys_glx.h"
+#include "ggl/window/glx/ggl_keys_glx.h"
 #endif
 
 

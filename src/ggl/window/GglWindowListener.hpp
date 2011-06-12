@@ -6,8 +6,8 @@
  */
 #ifndef GGLWINDOWLISTENER_HPP
 #define GGLWINDOWLISTENER_HPP
-#include "ggl_common.h"
-#include "GglWindowEvent.hpp"
+#include "ggl/ggl_common.h"
+#include "ggl/window/GglWindowEvent.hpp"
 
 
 /* Forward declaration of window. */

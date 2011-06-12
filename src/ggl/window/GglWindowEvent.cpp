@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglWindowEvent.hpp"
+#include "ggl/window/GglWindowEvent.hpp"
 
 GglWindowEvent::GglWindowEvent(GglWindowEventType type) {
     this->type = type;

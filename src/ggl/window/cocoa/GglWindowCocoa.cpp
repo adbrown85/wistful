@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "GglWindowCocoa.hpp"
+#include "ggl/window/cocoa/GglWindowCocoa.hpp"
 
 /**
  * Creates a window.
