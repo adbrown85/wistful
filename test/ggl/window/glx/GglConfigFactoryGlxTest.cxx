@@ -16,7 +16,7 @@ public:
 void GglConfigFactoryGlxTest::testCreate() {
     
     GglConfigFactoryGlx cf;
-    map<int,int> reqs;
+    std::map<int,int> reqs;
     GLXFBConfig config;
     
     reqs[GLX_X_RENDERABLE] = 1;

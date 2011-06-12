@@ -171,7 +171,7 @@ XVisualInfo* GglWindowGlx::createInfo(Display *display,
 GLXFBConfig GglWindowGlx::createConfig() {
     
     GglConfigFactoryGlx cf;
-    map<int,int> reqs;
+    std::map<int,int> reqs;
     
     reqs[GLX_X_RENDERABLE] = 1;
     reqs[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
