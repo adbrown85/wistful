@@ -9,7 +9,7 @@
 #include "ggl/common.h"
 
 #ifdef HAVE_GLX
-#include "ggl/window/glx/ggl_keys_glx.h"
+#include "ggl/window/glx/keys_glx.h"
 #endif
 
 

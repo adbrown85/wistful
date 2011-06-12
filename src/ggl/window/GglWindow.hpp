@@ -8,7 +8,7 @@
 #define GGLWINDOW_HPP
 #include "ggl/common.h"
 #include "ggl/GglException.hpp"
-#include "ggl/window/ggl_keys.h"
+#include "ggl/window/keys.h"
 #include "ggl/window/GglWindowEvent.hpp"
 #include "ggl/window/GglWindowListener.hpp"
 #include "ggl/window/GglWindowFormat.hpp"
