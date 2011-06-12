@@ -9,9 +9,6 @@ autom4te.cache/
 autoscan.log
 config.guess
 config.sub
-config.h
-config.h.in
-config.h.in~
 config.log
 config.status
 configure
@@ -20,3 +17,6 @@ install-sh
 Makefile
 libggl.so.*
 ltmain.sh
+src/ggl/config.h
+src/ggl/config.h.in
+src/ggl/config.h.in~

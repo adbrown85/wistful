@@ -19,7 +19,7 @@
 using namespace std;
 
 //#ifdef HAVE_CONFIG_H
-#include "config.h"
+#include "ggl/config.h"
 //#endif
 
 #endif
