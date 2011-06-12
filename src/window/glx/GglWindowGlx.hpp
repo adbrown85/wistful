@@ -19,7 +19,6 @@ typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
  */
 class GglWindowGlx : public GglWindow {
 public:
-    GglWindowGlx();
     GglWindowGlx(const GglWindowFormat &wf);
     virtual ~GglWindowGlx();
 protected:
