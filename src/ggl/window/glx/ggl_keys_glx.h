@@ -6,7 +6,7 @@
  */
 #ifndef GGL_KEYS_GLX_H_
 #define GGL_KEYS_GLX_H_
-#include "ggl/ggl_common.h"
+#include "ggl/common.h"
 
 /* TTY function keys */
 #define GGL_BACKSPACE    XK_BACKSPACE

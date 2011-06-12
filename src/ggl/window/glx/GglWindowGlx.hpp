@@ -6,7 +6,7 @@
  */
 #ifndef GGLWINDOWGLX_HPP
 #define GGLWINDOWGLX_HPP
-#include "ggl/ggl_common.h"
+#include "ggl/common.h"
 #include "ggl/GglException.hpp"
 #include "ggl/window/GglWindow.hpp"
 #include "ggl/window/glx/GglConfigFactoryGlx.hpp"
