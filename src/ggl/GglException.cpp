@@ -11,7 +11,7 @@
  * 
  * @param message Explanation shown to the user
  */
-GglException::GglException(const string &message) throw() {
+GglException::GglException(const std::string &message) throw() {
     this->message = message;
 }
 

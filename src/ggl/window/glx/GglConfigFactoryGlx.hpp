@@ -18,12 +18,12 @@ public:
     GglConfigFactoryGlx();
     virtual ~GglConfigFactoryGlx();
     virtual GLXFBConfig create(const GglWindowFormat &wf);
-    virtual GLXFBConfig create(const map<int,int> &requirements);
+    virtual GLXFBConfig create(const std::map<int,int> &requirements);
 private:
     Display *display;
 // Helpers
     static Display* createDisplay();
-    static const int* toArray(const map<int,int> &m);
+    static const int* toArray(const std::map<int,int> &m);
 };
 
 #endif

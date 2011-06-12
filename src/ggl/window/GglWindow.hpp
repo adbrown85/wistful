@@ -84,7 +84,7 @@ private:
     int x;
     int y;
     bool closed;
-    list<GglWindowListener*> windowListeners;
+    std::list<GglWindowListener*> windowListeners;
     GglWindowFormat windowFormat;
 // Helpers
     void create();

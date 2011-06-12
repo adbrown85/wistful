@@ -163,7 +163,7 @@ void GglWindow::destroy() {
  */
 void GglWindow::fireKeyEvent(GglWindowEvent &event) {
     
-    list<GglWindowListener*>::iterator it;
+    std::list<GglWindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onKey(this, event);
@@ -175,7 +175,7 @@ void GglWindow::fireKeyEvent(GglWindowEvent &event) {
  */
 void GglWindow::fireDestroyEvent() {
     
-    list<GglWindowListener*>::iterator it;
+    std::list<GglWindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onDestroy(this);
@@ -187,7 +187,7 @@ void GglWindow::fireDestroyEvent() {
  */
 void GglWindow::fireDisplayEvent() {
     
-    list<GglWindowListener*>::iterator it;
+    std::list<GglWindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onDisplay(this);
@@ -200,7 +200,7 @@ void GglWindow::fireDisplayEvent() {
  */
 void GglWindow::fireInitEvent() {
     
-    list<GglWindowListener*>::iterator it;
+    std::list<GglWindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onInit(this);

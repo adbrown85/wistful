@@ -16,7 +16,6 @@
 #include <GL/gl.h>
 #include <GL/glx.h>
 #endif
-using namespace std;
 
 //#ifdef HAVE_CONFIG_H
 #include "ggl/config.h"

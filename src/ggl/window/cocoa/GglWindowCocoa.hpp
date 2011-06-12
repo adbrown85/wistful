@@ -44,7 +44,7 @@ private:
     NSMenuItem* createEmptyMenuItem();
     NSMenu* createEmptyMenu();
     static GLuint* toArray(const GglWindowFormat &wf);
-    static list<GLuint> toList(const GglWindowFormat &wf);
+    static std::list<GLuint> toList(const GglWindowFormat &wf);
 };
 
 

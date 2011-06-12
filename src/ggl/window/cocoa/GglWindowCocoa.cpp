@@ -25,18 +25,18 @@ GglWindowCocoa::~GglWindowCocoa() {
 }
 
 void GglWindowCocoa::doActivateContext() {
-    cerr << "GglWindowCocoa::doActivateContext()" << endl;
+    std::cerr << "GglWindowCocoa::doActivateContext()" << std::endl;
 }
 
 void GglWindowCocoa::doActivateWindow() {
-    cerr << "GglWindowCocoa::doActivateWindow()" << endl;
+    std::cerr << "GglWindowCocoa::doActivateWindow()" << std::endl;
     
     [window makeKeyAndOrderFront:nil];
     [application activateIgnoringOtherApps:YES];
 }
 
 void GglWindowCocoa::doCreateConnection() throw(GglException) {
-    cerr << "GglWindowCocoa::doCreateConnection()" << endl;
+    std::cerr << "GglWindowCocoa::doCreateConnection()" << std::endl;
     
     MyApplicationDelegate *delegate;
     NSMenu *menu;
@@ -56,7 +56,7 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateWindow() throw(GglException) {
-    cerr << "GglWindowCocoa::doCreateWindow()" << endl;
+    std::cerr << "GglWindowCocoa::doCreateWindow()" << std::endl;
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
@@ -90,23 +90,23 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateContext() throw(GglException) {
-    cerr << "GglWindowCocoa::doCreateContext()" << endl;
+    std::cerr << "GglWindowCocoa::doCreateContext()" << std::endl;
 }
 
 void GglWindowCocoa::doDestroyConnection() {
-    cerr << "GglWindowCocoa::doDestroyConnection()" << endl;
+    std::cerr << "GglWindowCocoa::doDestroyConnection()" << std::endl;
 }
 
 void GglWindowCocoa::doDestroyContext() {
-    cerr << "GglWindowCocoa::doDestroyContext()" << endl;
+    std::cerr << "GglWindowCocoa::doDestroyContext()" << std::endl;
 }
 
 void GglWindowCocoa::doDestroyWindow() {
-    cerr << "GglWindowCocoa::doDestroyWindow()" << endl;
+    std::cerr << "GglWindowCocoa::doDestroyWindow()" << std::endl;
 }
 
 void GglWindowCocoa::doFlush() {
-    cerr << "GglWindowCocoa::doFlush()" << endl;
+    std::cerr << "GglWindowCocoa::doFlush()" << std::endl;
     glFlush();
 }
 
@@ -200,8 +200,8 @@ GLuint*
 GglWindowCocoa::toArray(const GglWindowFormat &wf) {
     
     NSOpenGLPixelFormatAttribute *array;
-    list<GLuint> attributes = toList(wf);
-    list<GLuint>::iterator ai;
+    std::list<GLuint> attributes = toList(wf);
+    std::list<GLuint>::iterator ai;
     int length = attributes.size() + 1;
     int count = 0;
     
@@ -222,10 +222,10 @@ GglWindowCocoa::toArray(const GglWindowFormat &wf) {
  * @param wf Configuration of window
  * @return List of attributes
  */
-list<GLuint>
+std::list<GLuint>
 GglWindowCocoa::toList(const GglWindowFormat &wf) {
     
-    list<GLuint> attributes;
+    std::list<GLuint> attributes;
     
     // Add default attributes
     attributes.push_back(NSOpenGLPFAAccelerated);

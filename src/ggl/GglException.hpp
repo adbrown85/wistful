@@ -12,13 +12,13 @@
 /**
  * @brief Exception thrown from within GGL.
  */
-class GglException : public exception {
+class GglException : public std::exception {
 public:
-    GglException(const string &message) throw();
+    GglException(const std::string &message) throw();
     virtual ~GglException() throw();
     virtual const char* what() const throw();
 private:
-    string message;
+    std::string message;
 };
 
 #endif

@@ -27,7 +27,7 @@ GglConfigFactoryGlx::~GglConfigFactoryGlx() {
  */
 GLXFBConfig GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
     
-    map<int,int> m;
+    std::map<int,int> m;
     int colorComponentSize = wf.getColorSize() / 8;
     
     m[GLX_X_RENDERABLE] = 1;
@@ -47,7 +47,8 @@ GLXFBConfig GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
 /**
  * Returns OpenGL configurations meeting certain requirements.
  */
-GLXFBConfig GglConfigFactoryGlx::create(const map<int,int> &requirements) {
+GLXFBConfig
+GglConfigFactoryGlx::create(const std::map<int,int> &requirements) {
     
     const int *reqs = toArray(requirements);
     int len;
@@ -86,11 +87,11 @@ Display* GglConfigFactoryGlx::createDisplay() {
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
  */
-const int* GglConfigFactoryGlx::toArray(const map<int,int> &m) {
+const int* GglConfigFactoryGlx::toArray(const std::map<int,int> &m) {
     
     int len = (m.size() * 2) + 1;           // Length of array
     int *arr = new int[len];                // Array of integers
-    map<int,int>::const_iterator it;        // Iterator over map
+    std::map<int,int>::const_iterator it;   // Iterator over map
     int i = 0;                              // Index into array
     
     for (it=m.begin(); it!=m.end(); ++it) {
