@@ -82,7 +82,7 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     // Make view
     rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
     view = [[MyOpenGLView alloc] initWithFrame:rect pixelFormat:pixelFormat];
-    [view setWindowListener:this];
+    [view setOpenGLViewListener:this];
     
     // Add the view to the window
     [window setContentView:view];
@@ -115,19 +115,19 @@ void GglWindowCocoa::doRun() {
     [application run];
 }
 
-void GglWindowCocoa::onInit(GglWindow *window) {
+void GglWindowCocoa::onOpenGLViewInit() {
     ;
 }
 
-void GglWindowCocoa::onDisplay(GglWindow *window) {
+void GglWindowCocoa::onOpenGLViewDisplay() {
     fireDisplayEvent();
 }
 
-void GglWindowCocoa::onKey(GglWindow *window, GglWindowEvent &event) {
+void GglWindowCocoa::onOpenGLViewKey() {
     ;
 }
 
-void GglWindowCocoa::onDestroy(GglWindow *window) {
+void GglWindowCocoa::onOpenGLViewDestroy() {
     ;
 }
 
@@ -273,10 +273,10 @@ GglWindowCocoa::toList(const GglWindowFormat &wf) {
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    windowListener->onDisplay(NULL);
+    openGLViewListener->onOpenGLViewDisplay();
 }
 
-- (void)setWindowListener:(GglWindowListener*)listener {
-    windowListener = listener;
+- (void)setOpenGLViewListener:(GglOpenGLViewListener*)listener {
+    openGLViewListener = listener;
 }
 @end

@@ -12,9 +12,23 @@
 
 
 /**
+ * @brief Observer of an OpenGL view.
+ */
+class GglOpenGLViewListener {
+public:
+    GglOpenGLViewListener() {}
+    virtual ~GglOpenGLViewListener() {}
+    virtual void onOpenGLViewInit() = 0;
+    virtual void onOpenGLViewDisplay() = 0;
+    virtual void onOpenGLViewDestroy() = 0;
+    virtual void onOpenGLViewKey() = 0;
+};
+
+
+/**
  * @brief Window implemented with Cocoa.
  */
-class GglWindowCocoa : public GglWindow, public GglWindowListener {
+class GglWindowCocoa : public GglWindow, public GglOpenGLViewListener {
 public:
     GglWindowCocoa(const GglWindowFormat &wf);
     virtual ~GglWindowCocoa();
@@ -28,10 +42,10 @@ public:
     virtual void doDestroyWindow();
     virtual void doFlush();
     virtual void doRun();
-    virtual void onInit(GglWindow *window);
-    virtual void onDisplay(GglWindow *window);
-    virtual void onDestroy(GglWindow *window);
-    virtual void onKey(GglWindow *window, GglWindowEvent &event);
+    virtual void onOpenGLViewInit();
+    virtual void onOpenGLViewDisplay();
+    virtual void onOpenGLViewDestroy();
+    virtual void onOpenGLViewKey();
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;
@@ -62,11 +76,11 @@ private:
  * OpenGL view for window.
  */
 @interface MyOpenGLView : NSOpenGLView {
-    GglWindowListener *windowListener;
+    GglOpenGLViewListener *openGLViewListener;
 }
 - (void)keyDown:(NSEvent*)event;
 - (void)drawRect:(NSRect)dirtyRect;
-- (void)setWindowListener:(GglWindowListener*)listener;
+- (void)setOpenGLViewListener:(GglOpenGLViewListener*)listener;
 @end
 
 
