@@ -123,7 +123,7 @@ void GglWindowCocoa::onOpenGLViewDisplay() {
     fireDisplayEvent();
 }
 
-void GglWindowCocoa::onOpenGLViewKey() {
+void GglWindowCocoa::onOpenGLViewKey(int key) {
     ;
 }
 
@@ -269,7 +269,7 @@ GglWindowCocoa::toList(const GglWindowFormat &wf) {
 
 @implementation MyOpenGLView
 - (void)keyDown:(NSEvent*)event {
-    ;
+    openGLViewListener->onOpenGLViewKey([event keyCode]);
 }
 
 - (void)drawRect:(NSRect)dirtyRect {

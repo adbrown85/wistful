@@ -21,7 +21,7 @@ public:
     virtual void onOpenGLViewInit() = 0;
     virtual void onOpenGLViewDisplay() = 0;
     virtual void onOpenGLViewDestroy() = 0;
-    virtual void onOpenGLViewKey() = 0;
+    virtual void onOpenGLViewKey(int key) = 0;
 };
 
 
@@ -45,7 +45,7 @@ public:
     virtual void onOpenGLViewInit();
     virtual void onOpenGLViewDisplay();
     virtual void onOpenGLViewDestroy();
-    virtual void onOpenGLViewKey();
+    virtual void onOpenGLViewKey(int key);
 private:
     NSAutoreleasePool *pool;
     NSApplication *application;
