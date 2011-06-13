@@ -116,15 +116,19 @@ install:
 	@libtool --mode=install --quiet \
 			$(INSTALL) $(builddir)/$(library) $(libdir)
 	@libtool --mode=finish -n --quiet $(libdir)
-	@echo "  INSTALL *.hpp *.h"
 	@$(INSTALL) -d $(myincludedir)
-	@$(INSTALL) -m 0644 config.h $(myincludedir)
-	@$(INSTALL) -m 0644 src/*.hpp $(myincludedir)
-	@$(INSTALL) -m 0644 src/*.h $(myincludedir)
-	@$(INSTALL) -m 0644 src/*/*.hpp $(myincludedir)
-	@$(INSTALL) -m 0644 src/*/*.h $(myincludedir)
-	@$(INSTALL) -m 0644 src/*/*/*.hpp $(myincludedir)
-	@$(INSTALL) -m 0644 src/*/*/*.h $(myincludedir)
+	@for i in $(srcmods); do \
+            mod=`echo $$i | sed 's|$(srcdir)/||'`; \
+            if test -n "$$mod"; then \
+                $(INSTALL) -d $(myincludedir)/$$mod; \
+                for j in $$i*.h $$i*.hpp; do \
+                    if test -e $$j; then \
+                        echo "  INSTALL $$j"; \
+                        $(INSTALL) -m 0644 $$j $(myincludedir)/$$mod; \
+                    fi \
+                done \
+            fi \
+        done
 uninstall:
 	@echo "  UNINSTALL $(library)"
 	@$(RM) $(libdir)/$(library)
