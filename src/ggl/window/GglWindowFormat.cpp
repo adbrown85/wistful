@@ -144,11 +144,19 @@ GglWindowFormat::isOpenGLVersion(int major,
     return (this->majorVersion == major) && (this->minorVersion == minor);
 }
 
+/**
+ * Returns <tt>true</tt> if using OpenGL core profile.
+ */
 bool
 GglWindowFormat::isOpenGLCoreProfile() const {
     return coreProfile;
 }
 
+/**
+ * Changes whether to use the OpenGL core profile.
+ * 
+ * @param coreProfile <tt>true</tt> to use the core profile
+ */
 void
 GglWindowFormat::setOpenGLCoreProfile(bool coreProfile) {
     this->coreProfile = coreProfile;
