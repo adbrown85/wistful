@@ -33,6 +33,15 @@ public:
     }
     virtual void onKey(GglWindow *window, GglWindowEvent &event) {
         cerr << "FakeGglListener::onKey()" << endl;
+        int trigger = event.getTrigger();
+        
+        if (trigger == GGL_a) {
+            cerr << 'a' << endl;
+        } else if (trigger == GGL_A) {
+            cerr << "A" << endl;
+        } else if (trigger == GGL_UP) {
+            cerr << "Up" << endl;
+        }
     }
 };
 
