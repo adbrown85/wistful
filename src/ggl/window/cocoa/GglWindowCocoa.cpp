@@ -47,6 +47,7 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
     
     delegate = [[MyApplicationDelegate alloc] init];
     [application setDelegate:delegate];
+    [delegate setApplicationListener:this];
     
     menu = createMenu();
     [application setMainMenu: menu];
@@ -113,6 +114,10 @@ void GglWindowCocoa::doFlush() {
 void GglWindowCocoa::doRun() {
     [pool drain];
     [application run];
+}
+
+void GglWindowCocoa::onApplicationTerminate() {
+    fireDestroyEvent();
 }
 
 void GglWindowCocoa::onOpenGLViewInit() {
@@ -268,6 +273,14 @@ GglWindowCocoa::toList(const GglWindowFormat &wf) {
 @implementation MyApplicationDelegate
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication*)app {
     return YES;
+}
+
+- (void)applicationWillTerminate:(NSNotification*)notification {
+    applicationListener->onApplicationTerminate();
+}
+
+- (void)setApplicationListener:(GglApplicationListener*)listener {
+    applicationListener = listener;
 }
 @end
 

@@ -12,6 +12,17 @@
 
 
 /**
+ * @brief Observer of an application.
+ */
+class GglApplicationListener {
+public:
+    GglApplicationListener() {}
+    virtual ~GglApplicationListener() {}
+    virtual void onApplicationTerminate() = 0;
+};
+
+
+/**
  * @brief Observer of an OpenGL view.
  */
 class GglOpenGLViewListener {
@@ -28,7 +39,9 @@ public:
 /**
  * @brief Window implemented with Cocoa.
  */
-class GglWindowCocoa : public GglWindow, public GglOpenGLViewListener {
+class GglWindowCocoa : public GglWindow,
+                       public GglApplicationListener,
+                       public GglOpenGLViewListener {
 public:
     GglWindowCocoa(const GglWindowFormat &wf);
     virtual ~GglWindowCocoa();
@@ -42,6 +55,7 @@ public:
     virtual void doDestroyWindow();
     virtual void doFlush();
     virtual void doRun();
+    virtual void onApplicationTerminate();
     virtual void onOpenGLViewInit();
     virtual void onOpenGLViewDisplay();
     virtual void onOpenGLViewDestroy();
@@ -66,9 +80,11 @@ private:
  * Application delegate for window.
  */
 @interface MyApplicationDelegate: NSObject <NSApplicationDelegate> {
-    ;
+    GglApplicationListener *applicationListener;
 }
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
+- (void)applicationWillTerminate:(NSNotification*)notification;
+- (void)setApplicationListener:(GglApplicationListener*)listener;
 @end
 
 
