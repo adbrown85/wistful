@@ -232,7 +232,7 @@ GglWindowCocoa::toList(const GglWindowFormat &wf) {
     
     // Profile and version
     attributes.push_back(NSOpenGLPFAOpenGLProfile);
-    if (wf.isOpenGLProfile(GGL_CORE_PROFILE)) {
+    if (wf.isOpenGLCoreProfile()) {
         if (wf.isOpenGLVersion(3, 2)) {
             attributes.push_back(NSOpenGLProfileVersion3_2Core);
         } else {

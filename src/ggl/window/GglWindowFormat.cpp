@@ -15,7 +15,6 @@ GglWindowFormat::GglWindowFormat() {
     depthSize = DEFAULT_DEPTH_SIZE;
     majorVersion = DEFAULT_MAJOR_VERSION;
     minorVersion = DEFAULT_MINOR_VERSION;
-    profile = DEFAULT_PROFILE;
     coreProfile = DEFAULT_CORE_PROFILE;
 }
 
@@ -143,35 +142,6 @@ bool
 GglWindowFormat::isOpenGLVersion(int major,
                                  int minor) const {
     return (this->majorVersion == major) && (this->minorVersion == minor);
-}
-
-/**
- * Returns OpenGL profile for the window.
- */
-GglOpenGLProfile
-GglWindowFormat::getOpenGLProfile() const {
-    return profile;
-}
-
-/**
- * Changes the OpenGL profile.
- * 
- * @param profile Either GGL_CORE_PROFILE or GGL_COMPATIBILITY_PROFILE
- */
-void
-GglWindowFormat::setOpenGLProfile(GglOpenGLProfile profile) {
-    this->profile = profile;
-}
-
-/**
- * Checks if an OpenGL profile matches the format's profile.
- * 
- * @param profile Profile to check
- * @return <tt>true</tt> if the profiles match
- */
-bool
-GglWindowFormat::isOpenGLProfile(GglOpenGLProfile profile) const {
-    return this->profile == profile;
 }
 
 bool
