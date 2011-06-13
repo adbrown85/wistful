@@ -283,6 +283,10 @@ GglWindowCocoa::toList(const GglWindowFormat &wf) {
     openGLViewListener->onOpenGLViewDisplay();
 }
 
+- (void)prepareOpenGL {
+    openGLViewListener->onOpenGLViewInit();
+}
+
 - (void)setOpenGLViewListener:(GglOpenGLViewListener*)listener {
     openGLViewListener = listener;
 }

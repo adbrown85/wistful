@@ -80,6 +80,7 @@ private:
 }
 - (void)keyDown:(NSEvent*)event;
 - (void)drawRect:(NSRect)dirtyRect;
+- (void)prepareOpenGL;
 - (void)setOpenGLViewListener:(GglOpenGLViewListener*)listener;
 @end
 
