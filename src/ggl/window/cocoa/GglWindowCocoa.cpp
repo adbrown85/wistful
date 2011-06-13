@@ -25,18 +25,15 @@ GglWindowCocoa::~GglWindowCocoa() {
 }
 
 void GglWindowCocoa::doActivateContext() {
-    std::cerr << "GglWindowCocoa::doActivateContext()" << std::endl;
+    ;
 }
 
 void GglWindowCocoa::doActivateWindow() {
-    std::cerr << "GglWindowCocoa::doActivateWindow()" << std::endl;
-    
     [window makeKeyAndOrderFront:nil];
     [application activateIgnoringOtherApps:YES];
 }
 
 void GglWindowCocoa::doCreateConnection() throw(GglException) {
-    std::cerr << "GglWindowCocoa::doCreateConnection()" << std::endl;
     
     MyApplicationDelegate *delegate;
     NSMenu *menu;
@@ -57,7 +54,6 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateWindow() throw(GglException) {
-    std::cerr << "GglWindowCocoa::doCreateWindow()" << std::endl;
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
@@ -91,23 +87,22 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
 }
 
 void GglWindowCocoa::doCreateContext() throw(GglException) {
-    std::cerr << "GglWindowCocoa::doCreateContext()" << std::endl;
+    ;
 }
 
 void GglWindowCocoa::doDestroyConnection() {
-    std::cerr << "GglWindowCocoa::doDestroyConnection()" << std::endl;
+    ;
 }
 
 void GglWindowCocoa::doDestroyContext() {
-    std::cerr << "GglWindowCocoa::doDestroyContext()" << std::endl;
+    ;
 }
 
 void GglWindowCocoa::doDestroyWindow() {
-    std::cerr << "GglWindowCocoa::doDestroyWindow()" << std::endl;
+    ;
 }
 
 void GglWindowCocoa::doFlush() {
-    std::cerr << "GglWindowCocoa::doFlush()" << std::endl;
     glFlush();
 }
 
