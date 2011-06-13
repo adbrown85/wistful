@@ -16,6 +16,7 @@ GglWindowFormat::GglWindowFormat() {
     majorVersion = DEFAULT_MAJOR_VERSION;
     minorVersion = DEFAULT_MINOR_VERSION;
     profile = DEFAULT_PROFILE;
+    coreProfile = DEFAULT_CORE_PROFILE;
 }
 
 /**
@@ -171,4 +172,14 @@ GglWindowFormat::setOpenGLProfile(GglOpenGLProfile profile) {
 bool
 GglWindowFormat::isOpenGLProfile(GglOpenGLProfile profile) const {
     return this->profile == profile;
+}
+
+bool
+GglWindowFormat::isOpenGLCoreProfile() const {
+    return coreProfile;
+}
+
+void
+GglWindowFormat::setOpenGLCoreProfile(bool coreProfile) {
+    this->coreProfile = coreProfile;
 }
