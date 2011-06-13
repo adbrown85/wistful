@@ -116,7 +116,7 @@ void GglWindowCocoa::doRun() {
 }
 
 void GglWindowCocoa::onOpenGLViewInit() {
-    ;
+    fireInitEvent();
 }
 
 void GglWindowCocoa::onOpenGLViewDisplay() {
