@@ -75,10 +75,10 @@ void GglWindow::open(GglWindow *window) {
 /**
  * Shows the window.
  * 
- * @throw GglException if cannot activate native window
- * @throw GglException if cannot activate OpenGL context
+ * @throw std::exception if cannot activate native window
+ * @throw std::exception if cannot activate OpenGL context
  */
-void GglWindow::activate() throw(GglException) {
+void GglWindow::activate() throw(std::exception) {
     
     // Guard against bad requests
     if (!created || activated || destroyed) {
@@ -101,11 +101,11 @@ void GglWindow::activate() throw(GglException) {
 /**
  * Creates the window.
  * 
- * @throw GglException if cannot make connection to windowing system
- * @throw GglException if cannot make native window
- * @throw GglException if cannot make OpenGL context
+ * @throw std::exception if cannot make connection to windowing system
+ * @throw std::exception if cannot make native window
+ * @throw std::exception if cannot make OpenGL context
  */
-void GglWindow::create() throw(GglException) {
+void GglWindow::create() throw(std::exception) {
     
     // Guard against bad requests
     if (created || destroyed) {
@@ -124,9 +124,9 @@ void GglWindow::create() throw(GglException) {
 /**
  * Makes a connection to the windowing system.
  * 
- * @throw GglException if could not make connection
+ * @throw std::exception if could not make connection
  */
-void GglWindow::createConnection() throw(GglException) {
+void GglWindow::createConnection() throw(std::exception) {
     try {
         doCreateConnection();
     } catch (GglException &e) {
@@ -137,9 +137,9 @@ void GglWindow::createConnection() throw(GglException) {
 /**
  * Makes a native window.
  * 
- * @throw GglException if window could not be made
+ * @throw std::exception if window could not be made
  */
-void GglWindow::createWindow() throw(GglException) {
+void GglWindow::createWindow() throw(std::exception) {
     try {
         doCreateWindow();
     } catch (GglException &e) {
@@ -151,9 +151,9 @@ void GglWindow::createWindow() throw(GglException) {
 /**
  * Makes and activates an OpenGL context.
  * 
- * @throw GglException if context could not be made
+ * @throw std::exception if context could not be made
  */
-void GglWindow::createContext() throw(GglException) {
+void GglWindow::createContext() throw(std::exception) {
     try {
         doCreateContext();
     } catch (GglException &e) {

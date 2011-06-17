@@ -88,11 +88,11 @@ private:
     std::list<GglWindowListener*> windowListeners;
     GglWindowFormat windowFormat;
 // Helpers
-    void activate() throw(GglException);
-    void create() throw(GglException);
-    void createConnection() throw(GglException);
-    void createWindow() throw(GglException);
-    void createContext() throw(GglException);
+    void activate() throw(std::exception);
+    void create() throw(std::exception);
+    void createConnection() throw(std::exception);
+    void createWindow() throw(std::exception);
+    void createContext() throw(std::exception);
     void run();
     void destroy();
 // Constants
