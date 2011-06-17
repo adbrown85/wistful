@@ -46,7 +46,6 @@
  */
 class GglWindow {
 public:
-    GglWindow();
     GglWindow(const GglWindowFormat &wf);
     virtual ~GglWindow();
     void addWindowListener(GglWindowListener *listener);

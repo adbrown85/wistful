@@ -7,20 +7,6 @@
 #include "ggl/window/GglWindow.hpp"
 
 /**
- * Creates a window.
- */
-GglWindow::GglWindow() {
-    this->activated = false;
-    this->created = false;
-    this->destroyed = false;
-    this->width = DEFAULT_WIDTH;
-    this->height = DEFAULT_HEIGHT;
-    this->x = DEFAULT_X;
-    this->y = DEFAULT_Y;
-    this->closed = false;
-}
-
-/**
  * Creates a window from a format.
  * 
  * @param wf Configuration of window
