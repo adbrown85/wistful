@@ -48,10 +48,15 @@ void GglWindow::close() {
  * Shows a window and begins sending events.
  */
 void GglWindow::open(GglWindow *window) {
-    window->create();
-    window->activate();
-    window->run();
-    window->destroy();
+    try {
+        window->create();
+        window->activate();
+        window->run();
+        window->destroy();
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
+    }
 }
 
 //--------------------------------------------------
