@@ -28,7 +28,7 @@ GglWindowGlx::~GglWindowGlx() {
     ;
 }
 
-void GglWindowGlx::doCreateConnection() throw(GglException) {
+void GglWindowGlx::doCreateConnection() throw(std::exception) {
     
     display = XOpenDisplay(NULL);
     
@@ -42,7 +42,7 @@ void GglWindowGlx::doDestroyConnection() {
     display = NULL;
 }
 
-void GglWindowGlx::doCreateWindow() throw(GglException) {
+void GglWindowGlx::doCreateWindow() throw(std::exception) {
     
     int winmask = getWindowMask();
     XVisualInfo *info = createInfo(display, config);
@@ -77,7 +77,7 @@ void GglWindowGlx::doDestroyWindow() {
     window = (Window) NULL;
 }
 
-void GglWindowGlx::doCreateContext() throw(GglException) {
+void GglWindowGlx::doCreateContext() throw(std::exception) {
     
     XErrorHandler handler = NULL;
     GLint attribs[] = {

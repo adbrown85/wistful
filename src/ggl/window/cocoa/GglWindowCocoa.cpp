@@ -33,7 +33,7 @@ void GglWindowCocoa::doActivateWindow() {
     [application activateIgnoringOtherApps:YES];
 }
 
-void GglWindowCocoa::doCreateConnection() throw(GglException) {
+void GglWindowCocoa::doCreateConnection() throw(std::exception) {
     
     MyApplicationDelegate *delegate;
     NSMenu *menu;
@@ -53,7 +53,7 @@ void GglWindowCocoa::doCreateConnection() throw(GglException) {
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 }
 
-void GglWindowCocoa::doCreateWindow() throw(GglException) {
+void GglWindowCocoa::doCreateWindow() throw(std::exception) {
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
@@ -86,7 +86,7 @@ void GglWindowCocoa::doCreateWindow() throw(GglException) {
     [window makeFirstResponder:view];
 }
 
-void GglWindowCocoa::doCreateContext() throw(GglException) {
+void GglWindowCocoa::doCreateContext() throw(std::exception) {
     ;
 }
 

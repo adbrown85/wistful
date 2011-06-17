@@ -24,9 +24,9 @@ public:
 protected:
     virtual void doActivateContext();
     virtual void doActivateWindow();
-    virtual void doCreateConnection() throw(GglException);
-    virtual void doCreateWindow() throw(GglException);
-    virtual void doCreateContext() throw(GglException);
+    virtual void doCreateConnection() throw(std::exception);
+    virtual void doCreateWindow() throw(std::exception);
+    virtual void doCreateContext() throw(std::exception);
     virtual void doDestroyConnection();
     virtual void doDestroyWindow();
     virtual void doDestroyContext();
