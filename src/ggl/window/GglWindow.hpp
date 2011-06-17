@@ -89,7 +89,7 @@ private:
     GglWindowFormat windowFormat;
 // Helpers
     void activate() throw(GglException);
-    void create();
+    void create() throw(GglException);
     void createConnection() throw(GglException);
     void createWindow() throw(GglException);
     void createContext() throw(GglException);

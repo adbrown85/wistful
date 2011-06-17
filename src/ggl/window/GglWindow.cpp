@@ -105,7 +105,7 @@ void GglWindow::activate() throw(GglException) {
  * @throw GglException if cannot make native window
  * @throw GglException if cannot make OpenGL context
  */
-void GglWindow::create() {
+void GglWindow::create() throw(GglException) {
     
     // Guard against bad requests
     if (created || destroyed) {
