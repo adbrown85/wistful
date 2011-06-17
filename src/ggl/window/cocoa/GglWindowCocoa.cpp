@@ -111,6 +111,10 @@ void GglWindowCocoa::doRun() {
     [application run];
 }
 
+void GglWindowCocoa::doClose() {
+    [application terminate:nil];
+}
+
 void GglWindowCocoa::onApplicationTerminate() {
     fireDestroyEvent();
 }

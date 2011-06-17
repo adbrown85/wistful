@@ -47,6 +47,7 @@ public:
     virtual ~GglWindowCocoa();
     virtual void doActivateContext();
     virtual void doActivateWindow();
+    virtual void doClose();
     virtual void doCreateConnection() throw (std::exception);
     virtual void doCreateWindow() throw (std::exception);
     virtual void doCreateContext()throw (std::exception);

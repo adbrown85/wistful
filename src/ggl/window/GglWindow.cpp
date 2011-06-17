@@ -19,7 +19,6 @@ GglWindow::GglWindow(const GglWindowFormat &wf) {
     this->height = DEFAULT_HEIGHT;
     this->x = DEFAULT_X;
     this->y = DEFAULT_Y;
-    this->closed = false;
     this->windowFormat = wf;
 }
 
@@ -41,7 +40,7 @@ void GglWindow::addWindowListener(GglWindowListener *listener) {
  * Marks the window as destroyed.
  */
 void GglWindow::close() {
-    closed = true;
+    doClose();
 }
 
 /**
@@ -248,13 +247,6 @@ int GglWindow::getY() const {
 void GglWindow::setLocation(int x, int y) {
     this->x = x;
     this->y = y;
-}
-
-/**
- * Returns <tt>true</tt> if window has been destroyed.
- */
-bool GglWindow::isClosed() const {
-    return closed;
 }
 
 /**

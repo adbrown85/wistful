@@ -14,6 +14,7 @@ long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
  * @param wf Container with window settings
  */
 GglWindowGlx::GglWindowGlx(const GglWindowFormat &wf) : GglWindow(wf) {
+    this->closed = false;
     this->display = NULL;
     this->info = NULL;
     this->window = (Window) NULL;
@@ -127,7 +128,7 @@ void GglWindowGlx::doFlush() {
  * Starts the run loop.
  */
 void GglWindowGlx::doRun() {
-    while (!isClosed()) {
+    while (!closed) {
         GglWindowEvent event = getEvent();
         switch (event.getType()) {
         case MAP:
@@ -147,6 +148,10 @@ void GglWindowGlx::doRun() {
             continue;
         }
     }
+}
+
+void GglWindowGlx::doClose() {
+    closed = true;
 }
 
 //---------------------------------------------------------

@@ -58,11 +58,11 @@ public:
     int getX() const;
     int getY() const;
     void setLocation(int x, int y);
-    bool isClosed() const;
     GglWindowFormat getWindowFormat() const;
 protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
+    virtual void doClose() = 0;
     virtual void doCreateConnection() throw(std::exception) = 0;
     virtual void doCreateWindow() throw(std::exception) = 0;
     virtual void doCreateContext() throw(std::exception) = 0;
@@ -83,7 +83,6 @@ private:
     int height;
     int x;
     int y;
-    bool closed;
     std::list<GglWindowListener*> windowListeners;
     GglWindowFormat windowFormat;
 // Helpers
