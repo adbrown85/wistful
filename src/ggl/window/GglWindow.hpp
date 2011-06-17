@@ -89,9 +89,6 @@ private:
 // Helpers
     void activate() throw(std::exception);
     void create() throw(std::exception);
-    void createConnection() throw(std::exception);
-    void createWindow() throw(std::exception);
-    void createContext() throw(std::exception);
     void run();
     void destroy();
 // Constants

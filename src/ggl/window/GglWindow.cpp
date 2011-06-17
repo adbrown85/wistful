@@ -98,55 +98,28 @@ void GglWindow::create() throw(std::exception) {
         return;
     }
     
-    // Try to make objects
-    createConnection();
-    createWindow();
-    createContext();
+    // Try to make connection
+    doCreateConnection();
+    
+    // Try to make window
+    try {
+        doCreateWindow();
+    } catch (std::exception &e) {
+        doDestroyConnection();
+        throw e;
+    }
+    
+    // Try to make context
+    try {
+        doCreateContext();
+    } catch (std::exception &e) {
+        doDestroyWindow();
+        doDestroyConnection();
+        throw e;
+    }
     
     // Successfully created
     created = true;
-}
-
-/**
- * Makes a connection to the windowing system.
- * 
- * @throw std::exception if could not make connection
- */
-void GglWindow::createConnection() throw(std::exception) {
-    try {
-        doCreateConnection();
-    } catch (GglException &e) {
-        throw GglException("Could not make connection to windowing system!");
-    }
-}
-
-/**
- * Makes a native window.
- * 
- * @throw std::exception if window could not be made
- */
-void GglWindow::createWindow() throw(std::exception) {
-    try {
-        doCreateWindow();
-    } catch (GglException &e) {
-        doDestroyConnection();
-        throw GglException("Could not make native window!");
-    }
-}
-
-/**
- * Makes and activates an OpenGL context.
- * 
- * @throw std::exception if context could not be made
- */
-void GglWindow::createContext() throw(std::exception) {
-    try {
-        doCreateContext();
-    } catch (GglException &e) {
-        doDestroyWindow();
-        doDestroyConnection();
-        throw GglException("Could not make OpenGL context!");
-    }
 }
 
 /**
