@@ -10,6 +10,7 @@
  * Creates a window.
  */
 GglWindow::GglWindow() {
+    this->activated = false;
     this->created = false;
     this->destroyed = false;
     this->width = DEFAULT_WIDTH;
@@ -25,6 +26,7 @@ GglWindow::GglWindow() {
  * @param wf Configuration of window
  */
 GglWindow::GglWindow(const GglWindowFormat &wf) {
+    this->activated = false;
     this->created = false;
     this->destroyed = false;
     this->width = DEFAULT_WIDTH;
@@ -61,6 +63,7 @@ void GglWindow::close() {
  */
 void GglWindow::open(GglWindow *window) {
     window->create();
+    window->activate();
     window->run();
     window->destroy();
 }
@@ -68,6 +71,32 @@ void GglWindow::open(GglWindow *window) {
 //--------------------------------------------------
 // Helpers
 //
+
+/**
+ * Shows the window.
+ * 
+ * @throw GglException if cannot activate native window
+ * @throw GglException if cannot activate OpenGL context
+ */
+void GglWindow::activate() throw(GglException) {
+    
+    // Guard against bad requests
+    if (!created || activated || destroyed) {
+        return;
+    }
+    
+    // Try to activate objects
+    try {
+        doActivateContext();
+        doActivateWindow();
+    } catch (std::exception &e) {
+        destroy();
+        throw e;
+    }
+    
+    // Successfully activated
+    activated = true;
+}
 
 /**
  * Creates the window.
@@ -88,7 +117,7 @@ void GglWindow::create() {
     createWindow();
     createContext();
     
-    // Successfully shown
+    // Successfully created
     created = true;
 }
 
@@ -106,14 +135,13 @@ void GglWindow::createConnection() throw(GglException) {
 }
 
 /**
- * Makes and activates a native window.
+ * Makes a native window.
  * 
  * @throw GglException if window could not be made
  */
 void GglWindow::createWindow() throw(GglException) {
     try {
         doCreateWindow();
-        doActivateWindow();
     } catch (GglException &e) {
         doDestroyConnection();
         throw GglException("Could not make native window!");
@@ -128,7 +156,6 @@ void GglWindow::createWindow() throw(GglException) {
 void GglWindow::createContext() throw(GglException) {
     try {
         doCreateContext();
-        doActivateContext();
     } catch (GglException &e) {
         doDestroyWindow();
         doDestroyConnection();

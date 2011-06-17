@@ -77,6 +77,7 @@ protected:
     void fireDisplayEvent();
     void fireInitEvent();
 private:
+    bool activated;
     bool created;
     bool destroyed;
     int width;
@@ -87,6 +88,7 @@ private:
     std::list<GglWindowListener*> windowListeners;
     GglWindowFormat windowFormat;
 // Helpers
+    void activate() throw(GglException);
     void create();
     void createConnection() throw(GglException);
     void createWindow() throw(GglException);
