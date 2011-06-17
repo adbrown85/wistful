@@ -88,9 +88,6 @@ void GglWindow::create() {
     createWindow();
     createContext();
     
-    // Set up OpenGL
-//    glViewport(0, 0, getWidth(), getHeight());
-    
     // Successfully shown
     created = true;
 }
