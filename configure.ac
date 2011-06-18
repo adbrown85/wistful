@@ -57,6 +57,7 @@ else
     AC_CHECK_HEADER(
         [GL/glx.h],
         [AC_DEFINE([HAVE_GLX], [1], [Define to 1 if have GLX.])])
+    LIBS="${LIBS} -lX11"
 fi
 
 # Set up exclusions
