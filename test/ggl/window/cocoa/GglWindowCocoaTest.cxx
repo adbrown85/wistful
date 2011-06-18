@@ -41,6 +41,9 @@ public:
             cerr << "A" << endl;
         } else if (trigger == GGL_UP) {
             cerr << "Up" << endl;
+        } else if (trigger == GGL_ESCAPE) {
+            cerr << "Escape" << endl;
+            window->close();
         }
     }
 };
