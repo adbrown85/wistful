@@ -128,11 +128,7 @@ void GglWindowCocoa::onOpenGLViewDisplay() {
 }
 
 void GglWindowCocoa::onOpenGLViewKey(int key) {
-    
-    GglWindowEvent event(KEY);
-    
-    event.setTrigger(key);
-    fireKeyEvent(event);
+    fireKeyEvent(key);
 }
 
 void GglWindowCocoa::onOpenGLViewDestroy() {

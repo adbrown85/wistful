@@ -142,7 +142,7 @@ void GglWindowGlx::doRun() {
             close();
             break;
         case KEY:
-            fireKeyEvent(event);
+            fireKeyEvent(event.getTrigger());
             break;
         default:
             continue;

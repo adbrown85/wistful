@@ -71,7 +71,7 @@ protected:
     virtual void doDestroyContext() = 0;
     virtual void doFlush() = 0;
     virtual void doRun() = 0;
-    void fireKeyEvent(GglWindowEvent &event);
+    void fireKeyEvent(int key);
     void fireDestroyEvent();
     void fireDisplayEvent();
     void fireInitEvent();
