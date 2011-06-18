@@ -10,10 +10,10 @@
 #include <Cocoa/Cocoa.h>
 
 /* TTY function keys */
-#define GGL_BACKSPACE    0x010
-#define GGL_TAB          0x011
-#define GGL_RETURN       0x015
-#define GGL_ESCAPE       0x033
+#define GGL_BACKSPACE    010
+#define GGL_TAB          011
+#define GGL_RETURN       015
+#define GGL_ESCAPE       033
 
 /* Cursor control and motion */
 #define GGL_INSERT       NSInsertFunctionKey
