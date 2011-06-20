@@ -13,19 +13,21 @@
 #elif defined(HAVE_GLX)
 #include "ggl/window/glx/GglWindowGlx.hpp"
 #endif
+namespace Ggl {
 
 
 /**
  * Abstract base class for a utility to create windows.
  */
-class GglWindowFactory {
+class WindowFactory {
 public:
-    GglWindowFactory();
-    virtual ~GglWindowFactory();
+    WindowFactory();
+    virtual ~WindowFactory();
     Ggl::Window* createWindow();
     Ggl::Window* createWindow(const GglWindowFormat &wf);
 private:
     GglWindowFormat defaultWindowFormat;
 };
 
+}
 #endif

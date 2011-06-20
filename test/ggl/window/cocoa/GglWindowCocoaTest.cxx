@@ -53,7 +53,7 @@ public:
  */
 void GglWindowCocoaTest::testOpen() {
     
-    GglWindowFactory factory;
+    Ggl::WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
     
     window->addWindowListener(new FakeWindowListener());
