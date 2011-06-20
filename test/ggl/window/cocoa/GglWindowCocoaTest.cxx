@@ -18,20 +18,20 @@ public:
 
 class FakeWindowListener : public GglWindowListener {
 public:
-    virtual void onInit(Ggl::GglWindow *window) {
+    virtual void onInit(Ggl::Window *window) {
         cerr << "FakeGglListener::init()" << endl;
         cerr << glGetString(GL_VERSION) << endl;
         glViewport(0, 0, 512, 512);
     }
-    virtual void onDisplay(Ggl::GglWindow *window) {
+    virtual void onDisplay(Ggl::Window *window) {
         cerr << "FakeGglListener::display()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void onDestroy(Ggl::GglWindow *window) {
+    virtual void onDestroy(Ggl::Window *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(Ggl::GglWindow *window, GglWindowEvent &event) {
+    virtual void onKey(Ggl::Window *window, GglWindowEvent &event) {
         cerr << "FakeGglListener::onKey()" << endl;
         int trigger = event.getTrigger();
         
@@ -54,10 +54,10 @@ public:
 void GglWindowCocoaTest::testOpen() {
     
     GglWindowFactory factory;
-    Ggl::GglWindow *window = factory.createWindow();
+    Ggl::Window *window = factory.createWindow();
     
     window->addWindowListener(new FakeWindowListener());
-    Ggl::GglWindow::open(window);
+    Ggl::Window::open(window);
 }
 
 /*

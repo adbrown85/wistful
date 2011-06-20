@@ -45,13 +45,13 @@ namespace Ggl {
  * event generated when the user closes the window.  Second, it should
  * implement <i>doFlush()</i>, which typically swaps the buffers.
  */
-class GglWindow {
+class Window {
 public:
-    GglWindow(const GglWindowFormat &wf);
-    virtual ~GglWindow();
+    Window(const GglWindowFormat &wf);
+    virtual ~Window();
     void addWindowListener(GglWindowListener *listener);
     void close();
-    static void open(GglWindow *window);
+    static void open(Window *window);
 // Getters and setters
     int getWidth() const;
     int getHeight() const;

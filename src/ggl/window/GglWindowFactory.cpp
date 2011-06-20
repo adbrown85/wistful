@@ -25,7 +25,7 @@ GglWindowFactory::~GglWindowFactory() {
  * 
  * @return Pointer to the new window
  */
-Ggl::GglWindow* GglWindowFactory::createWindow() {
+Ggl::Window* GglWindowFactory::createWindow() {
 #if defined(HAVE_COCOA)
     return new GglWindowCocoa(defaultWindowFormat);
 #elif defined(HAVE_GLX)
@@ -39,7 +39,7 @@ Ggl::GglWindow* GglWindowFactory::createWindow() {
  * @param wf Format to use for the window
  * @return Pointer to the new window
  */
-Ggl::GglWindow*
+Ggl::Window*
 GglWindowFactory::createWindow(const GglWindowFormat &wf) {
 #if defined(HAVE_COCOA)
     return new GglWindowCocoa(wf);

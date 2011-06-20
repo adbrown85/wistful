@@ -11,7 +11,7 @@
  * 
  * @param wf Configuration of window
  */
-GglWindowCocoa::GglWindowCocoa(const GglWindowFormat &wf) : Ggl::GglWindow(wf) {
+GglWindowCocoa::GglWindowCocoa(const GglWindowFormat &wf) : Ggl::Window(wf) {
     this->pool = NULL;
     this->application = NULL;
     this->window = NULL;
