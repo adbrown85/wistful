@@ -8,25 +8,25 @@
 #define GGLWINDOWLISTENER_HPP
 #include "ggl/common.h"
 #include "ggl/window/GglWindowEvent.hpp"
+namespace Ggl {
 
 
 /* Forward declaration of window. */
-namespace Ggl {
 class Window;
-}
 
 
 /**
  * @brief Object that listens to GGL events.
  */
-class GglWindowListener {
+class WindowListener {
 public:
-    GglWindowListener();
-    virtual ~GglWindowListener();
-    virtual void onInit(Ggl::Window *window) = 0;
-    virtual void onDisplay(Ggl::Window *window) = 0;
-    virtual void onDestroy(Ggl::Window *window) = 0;
-    virtual void onKey(Ggl::Window *window, Ggl::WindowEvent &event) = 0;
+    WindowListener();
+    virtual ~WindowListener();
+    virtual void onInit(Window *window) = 0;
+    virtual void onDisplay(Window *window) = 0;
+    virtual void onDestroy(Window *window) = 0;
+    virtual void onKey(Window *window, WindowEvent &event) = 0;
 };
 
+}
 #endif

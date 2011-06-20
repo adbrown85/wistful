@@ -16,7 +16,7 @@ public:
     void testOpen();
 };
 
-class FakeWindowListener : public GglWindowListener {
+class FakeWindowListener : public Ggl::WindowListener {
 public:
     virtual void onInit(Ggl::Window *window) {
         cerr << "FakeGglListener::init()" << endl;

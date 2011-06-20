@@ -49,7 +49,7 @@ class Window {
 public:
     Window(const WindowFormat &wf);
     virtual ~Window();
-    void addWindowListener(GglWindowListener *listener);
+    void addWindowListener(WindowListener *listener);
     void close();
     static void open(Window *window);
 // Getters and setters
@@ -84,7 +84,7 @@ private:
     int height;
     int x;
     int y;
-    std::list<GglWindowListener*> windowListeners;
+    std::list<WindowListener*> windowListeners;
     WindowFormat windowFormat;
 // Helpers
     void activate() throw(std::exception);

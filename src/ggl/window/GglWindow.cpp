@@ -32,7 +32,7 @@ Ggl::Window::~Window() {
 /**
  * Adds an object that will be notified of events.
  */
-void Ggl::Window::addWindowListener(GglWindowListener *listener) {
+void Ggl::Window::addWindowListener(Ggl::WindowListener *listener) {
     windowListeners.push_back(listener);
 }
 
@@ -150,7 +150,7 @@ void Ggl::Window::destroy() {
  */
 void Ggl::Window::fireKeyEvent(int key) {
     
-    std::list<GglWindowListener*>::iterator it;
+    std::list<WindowListener*>::iterator it;
     Ggl::WindowEvent event(KEY);
     
     event.setTrigger(key);
@@ -165,7 +165,7 @@ void Ggl::Window::fireKeyEvent(int key) {
  */
 void Ggl::Window::fireDestroyEvent() {
     
-    std::list<GglWindowListener*>::iterator it;
+    std::list<WindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onDestroy(this);
@@ -177,7 +177,7 @@ void Ggl::Window::fireDestroyEvent() {
  */
 void Ggl::Window::fireDisplayEvent() {
     
-    std::list<GglWindowListener*>::iterator it;
+    std::list<WindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onDisplay(this);
@@ -190,7 +190,7 @@ void Ggl::Window::fireDisplayEvent() {
  */
 void Ggl::Window::fireInitEvent() {
     
-    std::list<GglWindowListener*>::iterator it;
+    std::list<WindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onInit(this);

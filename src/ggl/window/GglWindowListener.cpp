@@ -6,10 +6,10 @@
  */
 #include "GglWindowListener.hpp"
 
-GglWindowListener::GglWindowListener() {
+Ggl::WindowListener::WindowListener() {
     ;
 }
 
-GglWindowListener::~GglWindowListener() {
+Ggl::WindowListener::~WindowListener() {
     ;
 }
