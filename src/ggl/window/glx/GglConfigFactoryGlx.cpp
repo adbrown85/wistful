@@ -9,14 +9,14 @@
 /**
  * Creates an OpenGL configuration factory.
  */
-GglConfigFactoryGlx::GglConfigFactoryGlx() {
+Ggl::ConfigFactoryGlx::ConfigFactoryGlx() {
     display = createDisplay();
 }
 
 /**
  * Destroys the factory.
  */
-GglConfigFactoryGlx::~GglConfigFactoryGlx() {
+Ggl::ConfigFactoryGlx::~ConfigFactoryGlx() {
     XCloseDisplay(display);
 }
 
@@ -25,7 +25,7 @@ GglConfigFactoryGlx::~GglConfigFactoryGlx() {
  * 
  * @param wf Container with window settings
  */
-GLXFBConfig GglConfigFactoryGlx::create(const Ggl::WindowFormat &wf) {
+GLXFBConfig Ggl::ConfigFactoryGlx::create(const WindowFormat &wf) {
     
     std::map<int,int> m;
     int colorComponentSize = wf.getColorSize() / 8;
@@ -48,7 +48,7 @@ GLXFBConfig GglConfigFactoryGlx::create(const Ggl::WindowFormat &wf) {
  * Returns OpenGL configurations meeting certain requirements.
  */
 GLXFBConfig
-GglConfigFactoryGlx::create(const std::map<int,int> &requirements) {
+Ggl::ConfigFactoryGlx::create(const std::map<int,int> &requirements) {
     
     const int *reqs = toArray(requirements);
     int len;
@@ -77,7 +77,7 @@ GglConfigFactoryGlx::create(const std::map<int,int> &requirements) {
 /**
  * Returns pointer to the default X display.
  */
-Display* GglConfigFactoryGlx::createDisplay() {
+Display* Ggl::ConfigFactoryGlx::createDisplay() {
     return XOpenDisplay(NULL);
 }
 
@@ -87,7 +87,7 @@ Display* GglConfigFactoryGlx::createDisplay() {
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
  */
-const int* GglConfigFactoryGlx::toArray(const std::map<int,int> &m) {
+const int* Ggl::ConfigFactoryGlx::toArray(const std::map<int,int> &m) {
     
     int len = (m.size() * 2) + 1;           // Length of array
     int *arr = new int[len];                // Array of integers

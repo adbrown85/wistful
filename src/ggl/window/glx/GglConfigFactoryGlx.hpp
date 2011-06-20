@@ -8,16 +8,17 @@
 #define GGLCONFIGFACTORYGLX_HPP
 #include "ggl/common.h"
 #include "ggl/window/GglWindowFormat.hpp"
+namespace Ggl {
 
 
 /**
  * Utility for creating OpenGL configurations.
  */
-class GglConfigFactoryGlx {
+class ConfigFactoryGlx {
 public:
-    GglConfigFactoryGlx();
-    virtual ~GglConfigFactoryGlx();
-    virtual GLXFBConfig create(const Ggl::WindowFormat &wf);
+    ConfigFactoryGlx();
+    virtual ~ConfigFactoryGlx();
+    virtual GLXFBConfig create(const WindowFormat &wf);
     virtual GLXFBConfig create(const std::map<int,int> &requirements);
 private:
     Display *display;
@@ -26,4 +27,5 @@ private:
     static const int* toArray(const std::map<int,int> &m);
 };
 
+}
 #endif

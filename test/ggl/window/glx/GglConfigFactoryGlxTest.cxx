@@ -15,7 +15,7 @@ public:
 /** Ensures configurations can be created correctly. */
 void GglConfigFactoryGlxTest::testCreate() {
     
-    GglConfigFactoryGlx cf;
+    Ggl::ConfigFactoryGlx cf;
     std::map<int,int> reqs;
     GLXFBConfig config;
     

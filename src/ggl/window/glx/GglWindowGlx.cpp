@@ -175,7 +175,7 @@ XVisualInfo* Ggl::WindowGlx::createInfo(Display *display,
  */
 GLXFBConfig Ggl::WindowGlx::createConfig() {
     
-    GglConfigFactoryGlx cf;
+    ConfigFactoryGlx cf;
     std::map<int,int> reqs;
     
     reqs[GLX_X_RENDERABLE] = 1;
@@ -198,7 +198,7 @@ GLXFBConfig Ggl::WindowGlx::createConfig() {
  */
 GLXFBConfig Ggl::WindowGlx::createConfig(const WindowFormat &wf) {
     
-    GglConfigFactoryGlx cf;
+    ConfigFactoryGlx cf;
     
     return cf.create(wf);
 }
