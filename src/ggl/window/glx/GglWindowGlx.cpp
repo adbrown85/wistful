@@ -13,7 +13,7 @@ long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
  * 
  * @param wf Container with window settings
  */
-GglWindowGlx::GglWindowGlx(const GglWindowFormat &wf) : GglWindow(wf) {
+GglWindowGlx::GglWindowGlx(const GglWindowFormat &wf) : Ggl::GglWindow(wf) {
     this->closed = false;
     this->display = NULL;
     this->info = NULL;

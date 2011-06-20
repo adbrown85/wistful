@@ -11,7 +11,9 @@
 
 
 /* Forward declaration of window. */
+namespace Ggl {
 class GglWindow;
+}
 
 
 /**
@@ -21,10 +23,10 @@ class GglWindowListener {
 public:
     GglWindowListener();
     virtual ~GglWindowListener();
-    virtual void onInit(GglWindow *window) = 0;
-    virtual void onDisplay(GglWindow *window) = 0;
-    virtual void onDestroy(GglWindow *window) = 0;
-    virtual void onKey(GglWindow *window, GglWindowEvent &event) = 0;
+    virtual void onInit(Ggl::GglWindow *window) = 0;
+    virtual void onDisplay(Ggl::GglWindow *window) = 0;
+    virtual void onDestroy(Ggl::GglWindow *window) = 0;
+    virtual void onKey(Ggl::GglWindow *window, GglWindowEvent &event) = 0;
 };
 
 #endif

@@ -39,7 +39,7 @@ public:
 /**
  * @brief Window implemented with Cocoa.
  */
-class GglWindowCocoa : public GglWindow,
+class GglWindowCocoa : public Ggl::GglWindow,
                        public GglApplicationListener,
                        public GglOpenGLViewListener {
 public:

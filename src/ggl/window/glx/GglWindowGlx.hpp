@@ -17,7 +17,7 @@ typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
 /**
  * @brief OpenGL Window implemented with GLX.
  */
-class GglWindowGlx : public GglWindow {
+class GglWindowGlx : public Ggl::GglWindow {
 public:
     GglWindowGlx(const GglWindowFormat &wf);
     virtual ~GglWindowGlx();

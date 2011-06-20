@@ -16,18 +16,18 @@ public:
 
 class FakeWindowListener : public GglWindowListener {
 public:
-    virtual void onInit(GglWindow *window) {
+    virtual void onInit(Ggl::GglWindow *window) {
         cerr << "FakeGglListener::init()" << endl;
     }
-    virtual void onDisplay(GglWindow *window) {
+    virtual void onDisplay(Ggl::GglWindow *window) {
         cerr << "FakeGglListener::display()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void onDestroy(GglWindow *window) {
+    virtual void onDestroy(Ggl::GglWindow *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(GglWindow *window, GglWindowEvent &event) {
+    virtual void onKey(Ggl::GglWindow *window, GglWindowEvent &event) {
         switch (event.getTrigger()) {
         case GGL_ESCAPE:
             cerr << "GGL_ESCAPE" << endl;
@@ -47,12 +47,12 @@ public:
 void GglWindowGlxTest::testOpen() {
     
     GglWindowFactory factory;
-    GglWindow *window = factory.createWindow();
+    Ggl::GglWindow *window = factory.createWindow();
     
     window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addWindowListener(new FakeWindowListener());
-    GglWindow::open(window);
+    Ggl::GglWindow::open(window);
     
     cerr << "End of GglWindowGlxTest::testOpen()" << endl;
 }

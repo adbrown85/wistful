@@ -12,6 +12,7 @@
 #include "ggl/window/GglWindowEvent.hpp"
 #include "ggl/window/GglWindowListener.hpp"
 #include "ggl/window/GglWindowFormat.hpp"
+namespace Ggl {
 
 
 /**
@@ -97,4 +98,5 @@ private:
     static const int DEFAULT_Y = 25;
 };
 
+}
 #endif

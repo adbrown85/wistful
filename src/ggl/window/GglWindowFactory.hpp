@@ -22,8 +22,8 @@ class GglWindowFactory {
 public:
     GglWindowFactory();
     virtual ~GglWindowFactory();
-    GglWindow* createWindow();
-    GglWindow* createWindow(const GglWindowFormat &wf);
+    Ggl::GglWindow* createWindow();
+    Ggl::GglWindow* createWindow(const GglWindowFormat &wf);
 private:
     GglWindowFormat defaultWindowFormat;
 };

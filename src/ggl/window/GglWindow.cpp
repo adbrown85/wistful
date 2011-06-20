@@ -11,7 +11,7 @@
  * 
  * @param wf Configuration of window
  */
-GglWindow::GglWindow(const GglWindowFormat &wf) {
+Ggl::GglWindow::GglWindow(const GglWindowFormat &wf) {
     this->activated = false;
     this->created = false;
     this->destroyed = false;
@@ -25,28 +25,28 @@ GglWindow::GglWindow(const GglWindowFormat &wf) {
 /**
  * Destroys the window.
  */
-GglWindow::~GglWindow() {
+Ggl::GglWindow::~GglWindow() {
     destroy();
 }
 
 /**
  * Adds an object that will be notified of events.
  */
-void GglWindow::addWindowListener(GglWindowListener *listener) {
+void Ggl::GglWindow::addWindowListener(GglWindowListener *listener) {
     windowListeners.push_back(listener);
 }
 
 /**
  * Marks the window as destroyed.
  */
-void GglWindow::close() {
+void Ggl::GglWindow::close() {
     doClose();
 }
 
 /**
  * Shows a window and begins sending events.
  */
-void GglWindow::open(GglWindow *window) {
+void Ggl::GglWindow::open(GglWindow *window) {
     try {
         window->create();
         window->activate();
@@ -68,7 +68,7 @@ void GglWindow::open(GglWindow *window) {
  * @throw std::exception if cannot activate native window
  * @throw std::exception if cannot activate OpenGL context
  */
-void GglWindow::activate() throw(std::exception) {
+void Ggl::GglWindow::activate() throw(std::exception) {
     
     // Guard against bad requests
     if (!created || activated || destroyed) {
@@ -95,7 +95,7 @@ void GglWindow::activate() throw(std::exception) {
  * @throw std::exception if cannot make native window
  * @throw std::exception if cannot make OpenGL context
  */
-void GglWindow::create() throw(std::exception) {
+void Ggl::GglWindow::create() throw(std::exception) {
     
     // Guard against bad requests
     if (created || destroyed) {
@@ -129,7 +129,7 @@ void GglWindow::create() throw(std::exception) {
 /**
  * Destroys the window.
  */
-void GglWindow::destroy() {
+void Ggl::GglWindow::destroy() {
     
     // Guard against bad requests
     if (!created || destroyed) {
@@ -148,7 +148,7 @@ void GglWindow::destroy() {
 /**
  * Sends a key event to all listeners.
  */
-void GglWindow::fireKeyEvent(int key) {
+void Ggl::GglWindow::fireKeyEvent(int key) {
     
     std::list<GglWindowListener*>::iterator it;
     GglWindowEvent event(KEY);
@@ -163,7 +163,7 @@ void GglWindow::fireKeyEvent(int key) {
 /**
  * Sends a destroy event to all listeners.
  */
-void GglWindow::fireDestroyEvent() {
+void Ggl::GglWindow::fireDestroyEvent() {
     
     std::list<GglWindowListener*>::iterator it;
     
@@ -175,7 +175,7 @@ void GglWindow::fireDestroyEvent() {
 /**
  * Sends a display event to all listeners.
  */
-void GglWindow::fireDisplayEvent() {
+void Ggl::GglWindow::fireDisplayEvent() {
     
     std::list<GglWindowListener*>::iterator it;
     
@@ -188,7 +188,7 @@ void GglWindow::fireDisplayEvent() {
 /**
  * Sends an initialize event to all listeners.
  */
-void GglWindow::fireInitEvent() {
+void Ggl::GglWindow::fireInitEvent() {
     
     std::list<GglWindowListener*>::iterator it;
     
@@ -200,7 +200,7 @@ void GglWindow::fireInitEvent() {
 /**
  * Initiates the run loop to handle events.
  */
-void GglWindow::run() {
+void Ggl::GglWindow::run() {
     doRun();
 }
 
@@ -211,21 +211,21 @@ void GglWindow::run() {
 /**
  * Returns size of window on X axis.
  */
-int GglWindow::getWidth() const {
+int Ggl::GglWindow::getWidth() const {
     return width;
 }
 
 /**
  * Returns size of window on Y axis.
  */
-int GglWindow::getHeight() const {
+int Ggl::GglWindow::getHeight() const {
     return height;
 }
 
 /**
  * Changes the size of the window.
  */
-void GglWindow::setSize(int width, int height) {
+void Ggl::GglWindow::setSize(int width, int height) {
     this->width = width;
     this->height = height;
 }
@@ -233,21 +233,21 @@ void GglWindow::setSize(int width, int height) {
 /**
  * Returns initial location of window on X axis.
  */
-int GglWindow::getX() const {
+int Ggl::GglWindow::getX() const {
     return x;
 }
 
 /**
  * Returns initial location of window on Y axis.
  */
-int GglWindow::getY() const {
+int Ggl::GglWindow::getY() const {
     return y;
 }
 
 /**
  * Changes the initial location of the window.
  */
-void GglWindow::setLocation(int x, int y) {
+void Ggl::GglWindow::setLocation(int x, int y) {
     this->x = x;
     this->y = y;
 }
@@ -256,6 +256,6 @@ void GglWindow::setLocation(int x, int y) {
  * Returns copy of configuration used to create window.
  */
 GglWindowFormat
-GglWindow::getWindowFormat() const {
+Ggl::GglWindow::getWindowFormat() const {
     return windowFormat;
 }
