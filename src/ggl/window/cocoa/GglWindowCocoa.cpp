@@ -11,7 +11,7 @@
  * 
  * @param wf Configuration of window
  */
-GglWindowCocoa::GglWindowCocoa(const GglWindowFormat &wf) : Ggl::Window(wf) {
+GglWindowCocoa::GglWindowCocoa(const Ggl::WindowFormat &wf) : Ggl::Window(wf) {
     this->pool = NULL;
     this->application = NULL;
     this->window = NULL;
@@ -201,7 +201,7 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
  * @return New array of attributes, which should be freed
  */
 GLuint*
-GglWindowCocoa::toArray(const GglWindowFormat &wf) {
+GglWindowCocoa::toArray(const Ggl::WindowFormat &wf) {
     
     NSOpenGLPixelFormatAttribute *array;
     std::list<GLuint> attributes = toList(wf);
@@ -227,7 +227,7 @@ GglWindowCocoa::toArray(const GglWindowFormat &wf) {
  * @return List of attributes
  */
 std::list<GLuint>
-GglWindowCocoa::toList(const GglWindowFormat &wf) {
+GglWindowCocoa::toList(const Ggl::WindowFormat &wf) {
     
     std::list<GLuint> attributes;
     

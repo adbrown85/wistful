@@ -11,7 +11,7 @@
  * 
  * @param wf Configuration of window
  */
-Ggl::Window::Window(const GglWindowFormat &wf) {
+Ggl::Window::Window(const Ggl::WindowFormat &wf) {
     this->activated = false;
     this->created = false;
     this->destroyed = false;
@@ -255,7 +255,7 @@ void Ggl::Window::setLocation(int x, int y) {
 /**
  * Returns copy of configuration used to create window.
  */
-GglWindowFormat
+Ggl::WindowFormat
 Ggl::Window::getWindowFormat() const {
     return windowFormat;
 }

@@ -8,15 +8,16 @@
 #define GGLWINDOWFORMAT_HPP
 #include "ggl/common.h"
 #include "ggl/GglException.hpp"
+namespace Ggl {
 
 
 /**
  * Container for settings describing a window configuration.
  */
-class GglWindowFormat {
+class WindowFormat {
 public:
-    GglWindowFormat();
-    virtual ~GglWindowFormat();
+    WindowFormat();
+    virtual ~WindowFormat();
 // Accessors and mutators
     int getColorSize() const;
     void setColorSize(int bits);
@@ -46,4 +47,5 @@ private:
     static const bool DEFAULT_CORE_PROFILE = true;
 };
 
+}
 #endif

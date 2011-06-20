@@ -25,7 +25,7 @@ GglConfigFactoryGlx::~GglConfigFactoryGlx() {
  * 
  * @param wf Container with window settings
  */
-GLXFBConfig GglConfigFactoryGlx::create(const GglWindowFormat &wf) {
+GLXFBConfig GglConfigFactoryGlx::create(const Ggl::WindowFormat &wf) {
     
     std::map<int,int> m;
     int colorComponentSize = wf.getColorSize() / 8;

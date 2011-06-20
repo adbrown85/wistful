@@ -9,7 +9,7 @@
 /**
  * Creates a default window format.
  */
-GglWindowFormat::GglWindowFormat() {
+Ggl::WindowFormat::WindowFormat() {
     colorSize = DEFAULT_COLOR_SIZE;
     alphaSize = DEFAULT_ALPHA_SIZE;
     depthSize = DEFAULT_DEPTH_SIZE;
@@ -21,7 +21,7 @@ GglWindowFormat::GglWindowFormat() {
 /**
  * Destroys the window format.
  */
-GglWindowFormat::~GglWindowFormat() {
+Ggl::WindowFormat::~WindowFormat() {
     ;
 }
 
@@ -29,7 +29,7 @@ GglWindowFormat::~GglWindowFormat() {
  * Returns number of bits used for a pixel in the color buffer.
  */
 int
-GglWindowFormat::getColorSize() const {
+Ggl::WindowFormat::getColorSize() const {
     return colorSize;
 }
 
@@ -40,7 +40,7 @@ GglWindowFormat::getColorSize() const {
  * @throw GglException if size is negative
  */
 void
-GglWindowFormat::setColorSize(int colorSize) {
+Ggl::WindowFormat::setColorSize(int colorSize) {
     if (colorSize < 0) {
         throw GglException("Color size is negative!");
     } else {
@@ -52,7 +52,7 @@ GglWindowFormat::setColorSize(int colorSize) {
  * Returns number of bits used for a pixel's alpha component.
  */
 int
-GglWindowFormat::getAlphaSize() const {
+Ggl::WindowFormat::getAlphaSize() const {
     return alphaSize;
 }
 
@@ -63,7 +63,7 @@ GglWindowFormat::getAlphaSize() const {
  * @throw GglException if size is negative
  */
 void
-GglWindowFormat::setAlphaSize(int alphaSize) {
+Ggl::WindowFormat::setAlphaSize(int alphaSize) {
     if (alphaSize < 0) {
         throw GglException("Alpha size is negative!");
     } else {
@@ -75,7 +75,7 @@ GglWindowFormat::setAlphaSize(int alphaSize) {
  * Returns number of bits used for a pixel in the depth buffer.
  */
 int
-GglWindowFormat::getDepthSize() const {
+Ggl::WindowFormat::getDepthSize() const {
     return depthSize;
 }
 
@@ -86,7 +86,7 @@ GglWindowFormat::getDepthSize() const {
  * @throw GglException if size is negative
  */
 void
-GglWindowFormat::setDepthSize(int depthSize) {
+Ggl::WindowFormat::setDepthSize(int depthSize) {
     if (depthSize < 0) {
         throw GglException("Depth size is negative!");
     } else {
@@ -98,7 +98,7 @@ GglWindowFormat::setDepthSize(int depthSize) {
  * Returns major version number of OpenGL.
  */
 int
-GglWindowFormat::getOpenGLMajorVersion() const {
+Ggl::WindowFormat::getOpenGLMajorVersion() const {
     return majorVersion;
 }
 
@@ -106,7 +106,7 @@ GglWindowFormat::getOpenGLMajorVersion() const {
  * Returns minor version number of OpenGL.
  */
 int
-GglWindowFormat::getOpenGLMinorVersion() const {
+Ggl::WindowFormat::getOpenGLMinorVersion() const {
     return minorVersion;
 }
 
@@ -119,7 +119,7 @@ GglWindowFormat::getOpenGLMinorVersion() const {
  * @throw GglException if minor number less than 0
  */
 void
-GglWindowFormat::setOpenGLVersion(int major,
+Ggl::WindowFormat::setOpenGLVersion(int major,
                                   int minor) {
     if (major < 1) {
         throw GglException("Major version less than 1!");
@@ -139,7 +139,7 @@ GglWindowFormat::setOpenGLVersion(int major,
  * @return <tt>true</tt> if the versions match
  */
 bool
-GglWindowFormat::isOpenGLVersion(int major,
+Ggl::WindowFormat::isOpenGLVersion(int major,
                                  int minor) const {
     return (this->majorVersion == major) && (this->minorVersion == minor);
 }
@@ -148,7 +148,7 @@ GglWindowFormat::isOpenGLVersion(int major,
  * Returns <tt>true</tt> if using OpenGL core profile.
  */
 bool
-GglWindowFormat::isOpenGLCoreProfile() const {
+Ggl::WindowFormat::isOpenGLCoreProfile() const {
     return coreProfile;
 }
 
@@ -158,6 +158,6 @@ GglWindowFormat::isOpenGLCoreProfile() const {
  * @param coreProfile <tt>true</tt> to use the core profile
  */
 void
-GglWindowFormat::setOpenGLCoreProfile(bool coreProfile) {
+Ggl::WindowFormat::setOpenGLCoreProfile(bool coreProfile) {
     this->coreProfile = coreProfile;
 }

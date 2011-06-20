@@ -43,7 +43,7 @@ class GglWindowCocoa : public Ggl::Window,
                        public GglApplicationListener,
                        public GglOpenGLViewListener {
 public:
-    GglWindowCocoa(const GglWindowFormat &wf);
+    GglWindowCocoa(const Ggl::WindowFormat &wf);
     virtual ~GglWindowCocoa();
     virtual void doActivateContext();
     virtual void doActivateWindow();
@@ -72,8 +72,8 @@ private:
     NSMenuItem* createAppleMenuQuitItem();
     NSMenuItem* createEmptyMenuItem();
     NSMenu* createEmptyMenu();
-    static GLuint* toArray(const GglWindowFormat &wf);
-    static std::list<GLuint> toList(const GglWindowFormat &wf);
+    static GLuint* toArray(const Ggl::WindowFormat &wf);
+    static std::list<GLuint> toList(const Ggl::WindowFormat &wf);
 };
 
 

@@ -17,7 +17,7 @@ class GglConfigFactoryGlx {
 public:
     GglConfigFactoryGlx();
     virtual ~GglConfigFactoryGlx();
-    virtual GLXFBConfig create(const GglWindowFormat &wf);
+    virtual GLXFBConfig create(const Ggl::WindowFormat &wf);
     virtual GLXFBConfig create(const std::map<int,int> &requirements);
 private:
     Display *display;

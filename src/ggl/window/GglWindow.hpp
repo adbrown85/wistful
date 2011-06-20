@@ -47,7 +47,7 @@ namespace Ggl {
  */
 class Window {
 public:
-    Window(const GglWindowFormat &wf);
+    Window(const WindowFormat &wf);
     virtual ~Window();
     void addWindowListener(GglWindowListener *listener);
     void close();
@@ -59,7 +59,7 @@ public:
     int getX() const;
     int getY() const;
     void setLocation(int x, int y);
-    GglWindowFormat getWindowFormat() const;
+    WindowFormat getWindowFormat() const;
 protected:
     virtual void doActivateContext() = 0;
     virtual void doActivateWindow() = 0;
@@ -85,7 +85,7 @@ private:
     int x;
     int y;
     std::list<GglWindowListener*> windowListeners;
-    GglWindowFormat windowFormat;
+    WindowFormat windowFormat;
 // Helpers
     void activate() throw(std::exception);
     void create() throw(std::exception);
