@@ -27,7 +27,7 @@ public:
     virtual void onDestroy(Ggl::Window *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(Ggl::Window *window, GglWindowEvent &event) {
+    virtual void onKey(Ggl::Window *window, Ggl::WindowEvent &event) {
         switch (event.getTrigger()) {
         case GGL_ESCAPE:
             cerr << "GGL_ESCAPE" << endl;

@@ -7,9 +7,10 @@
 #ifndef GGLWINDOWEVENT_HPP
 #define GGLWINDOWEVENT_HPP
 #include "ggl/common.h"
+namespace Ggl {
 
 
-enum GglWindowEventType {
+enum WindowEventType {
     DESTROY,
     MAP,
     EXPOSE,
@@ -20,16 +21,17 @@ enum GglWindowEventType {
 };
 
 
-class GglWindowEvent {
+class WindowEvent {
 public:
-    GglWindowEvent(GglWindowEventType type);
-    virtual ~GglWindowEvent();
-    virtual GglWindowEventType getType();
+    WindowEvent(WindowEventType type);
+    virtual ~WindowEvent();
+    virtual WindowEventType getType();
     virtual GLuint getTrigger();
     virtual void setTrigger(GLuint trigger);
 private:
-    GglWindowEventType type;
+    WindowEventType type;
     GLuint trigger;
 };
 
+}
 #endif

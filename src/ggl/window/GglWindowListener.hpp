@@ -26,7 +26,7 @@ public:
     virtual void onInit(Ggl::Window *window) = 0;
     virtual void onDisplay(Ggl::Window *window) = 0;
     virtual void onDestroy(Ggl::Window *window) = 0;
-    virtual void onKey(Ggl::Window *window, GglWindowEvent &event) = 0;
+    virtual void onKey(Ggl::Window *window, Ggl::WindowEvent &event) = 0;
 };
 
 #endif

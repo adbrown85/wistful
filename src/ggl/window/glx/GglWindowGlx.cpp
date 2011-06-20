@@ -129,19 +129,19 @@ void GglWindowGlx::doFlush() {
  */
 void GglWindowGlx::doRun() {
     while (!closed) {
-        GglWindowEvent event = getEvent();
+        Ggl::WindowEvent event = getEvent();
         switch (event.getType()) {
-        case MAP:
+        case Ggl::MAP:
             fireInitEvent();
             break;
-        case EXPOSE:
+        case Ggl::EXPOSE:
             fireDisplayEvent();
             break;
-        case DESTROY:
+        case Ggl::DESTROY:
             fireDestroyEvent();
             close();
             break;
-        case KEY:
+        case Ggl::KEY:
             fireKeyEvent(event.getTrigger());
             break;
         default:
@@ -206,7 +206,7 @@ GLXFBConfig GglWindowGlx::createConfig(const GglWindowFormat &wf) {
 /**
  * Returns next event from window.
  */
-GglWindowEvent GglWindowGlx::getEvent() {
+Ggl::WindowEvent GglWindowGlx::getEvent() {
     
     XEvent xEvent;
     
@@ -216,17 +216,17 @@ GglWindowEvent GglWindowGlx::getEvent() {
         XNextEvent(display, &xEvent);
         switch (xEvent.type) {
         case ClientMessage:
-            return GglWindowEvent(DESTROY);
+            return Ggl::WindowEvent(Ggl::DESTROY);
         case MapNotify:
-            return GglWindowEvent(MAP);
+            return Ggl::WindowEvent(Ggl::MAP);
         case Expose:
             if (xEvent.xexpose.count == 0) {
-                return GglWindowEvent(EXPOSE);
+                return Ggl::WindowEvent(Ggl::EXPOSE);
             }
         case KeyPress:
             return toGglEvent(xEvent.xkey);
         default:
-            return GglWindowEvent(OTHER);
+            return Ggl::WindowEvent(Ggl::OTHER);
         }
     }
 }
@@ -308,9 +308,9 @@ PFNGLXCCAA GglWindowGlx::getGlXCCAA() {
  * @param xke X11 Key event
  * @return Equivalent GGL event
  */
-GglWindowEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
+Ggl::WindowEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
     
-    GglWindowEvent ge(KEY);
+    Ggl::WindowEvent ge(Ggl::KEY);
     KeySym ks = XLookupKeysym(&xke, 0);
     
     ge.setTrigger(ks);

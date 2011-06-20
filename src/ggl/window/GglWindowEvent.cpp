@@ -6,22 +6,22 @@
  */
 #include "ggl/window/GglWindowEvent.hpp"
 
-GglWindowEvent::GglWindowEvent(GglWindowEventType type) {
+Ggl::WindowEvent::WindowEvent(Ggl::WindowEventType type) {
     this->type = type;
 }
 
-GglWindowEvent::~GglWindowEvent() {
+Ggl::WindowEvent::~WindowEvent() {
     ;
 }
 
-GglWindowEventType GglWindowEvent::getType() {
+Ggl::WindowEventType Ggl::WindowEvent::getType() {
     return type;
 }
 
-GLuint GglWindowEvent::getTrigger() {
+GLuint Ggl::WindowEvent::getTrigger() {
     return trigger;
 }
 
-void GglWindowEvent::setTrigger(GLuint trigger) {
+void Ggl::WindowEvent::setTrigger(GLuint trigger) {
     this->trigger = trigger;
 }
