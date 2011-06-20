@@ -37,12 +37,12 @@ private:
     bool closed;
     Display *display;
     XVisualInfo *info;
-    Window window;
+    int window;
     GLXContext context;
     GLXFBConfig config;
 // Helpers
     GglWindowEvent getEvent();
-    static void subscribe(Display *display, Window window);
+    static void subscribe(Display *display, int window);
     static GLXFBConfig createConfig();
     static GLXFBConfig createConfig(const GglWindowFormat &wf);
     static XVisualInfo* createInfo(Display *display, const GLXFBConfig &fbc);

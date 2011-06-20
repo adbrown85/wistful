@@ -17,7 +17,7 @@ GglWindowGlx::GglWindowGlx(const GglWindowFormat &wf) : Ggl::GglWindow(wf) {
     this->closed = false;
     this->display = NULL;
     this->info = NULL;
-    this->window = (Window) NULL;
+    this->window = 0;
     this->context = NULL;
     this->config = createConfig(wf);
 }
@@ -75,7 +75,7 @@ void GglWindowGlx::doActivateWindow() {
 
 void GglWindowGlx::doDestroyWindow() {
     XDestroyWindow(display, window);
-    window = (Window) NULL;
+    window = 0;
 }
 
 void GglWindowGlx::doCreateContext() throw(std::exception) {
@@ -285,7 +285,7 @@ XSetWindowAttributes GglWindowGlx::getWindowAttributes(Colormap cm) {
  * @param display Connection to machine showing content
  * @param window Handle to X11 window
  */
-void GglWindowGlx::subscribe(Display *display, Window window) {
+void GglWindowGlx::subscribe(Display *display, int window) {
     
     Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     
