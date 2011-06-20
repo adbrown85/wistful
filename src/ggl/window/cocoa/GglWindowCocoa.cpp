@@ -72,7 +72,7 @@ void GglWindowCocoa::doCreateWindow() throw(std::exception) {
     attributes = toArray(getWindowFormat());
     pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
     if (pixelFormat == nil) {
-        throw GglException("Could not make pixel format!");
+        throw Ggl::Exception("Could not make pixel format!");
     }
     delete[] attributes;
     
@@ -240,13 +240,13 @@ GglWindowCocoa::toList(const Ggl::WindowFormat &wf) {
         if (wf.isOpenGLVersion(3, 2)) {
             attributes.push_back(NSOpenGLProfileVersion3_2Core);
         } else {
-            throw GglException("Core profile only supported with OpenGL 3.2!");
+            throw Ggl::Exception("Core profile only supported with OpenGL 3.2!");
         }
     } else {
         if (wf.isOpenGLVersion(2, 1)) {
             attributes.push_back(NSOpenGLProfileVersionLegacy);
         } else {
-            throw GglException("Legacy profile should use OpenGL 2.1!");
+            throw Ggl::Exception("Legacy profile should use OpenGL 2.1!");
         }
     }
     

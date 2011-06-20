@@ -34,7 +34,7 @@ void GglWindowGlx::doCreateConnection() throw(std::exception) {
     display = XOpenDisplay(NULL);
     
     if (display == NULL) {
-        throw GglException("Could not open default display!");
+        throw Ggl::Exception("Could not open default display!");
     }
 }
 
@@ -104,7 +104,7 @@ void GglWindowGlx::doCreateContext() throw(std::exception) {
     
     // Check if not made correctly
     if (context == NULL) {
-        throw GglException("Could not make OpenGL context!");
+        throw Ggl::Exception("Could not make OpenGL context!");
     }
 }
 

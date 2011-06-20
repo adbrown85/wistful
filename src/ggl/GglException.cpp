@@ -11,20 +11,20 @@
  * 
  * @param message Explanation shown to the user
  */
-GglException::GglException(const std::string &message) throw() {
+Ggl::Exception::Exception(const std::string &message) throw() {
     this->message = message;
 }
 
 /**
  * Destroys the exception.
  */
-GglException::~GglException() throw() {
+Ggl::Exception::~Exception() throw() {
     ;
 }
 
 /**
  * Returns the explanation that will be shown to the user.
  */
-const char* GglException::what() const throw() {
+const char* Ggl::Exception::what() const throw() {
     return message.c_str();
 }

@@ -57,7 +57,7 @@ GglConfigFactoryGlx::create(const std::map<int,int> &requirements) {
     
     // Validate
     if (len == 0) {
-        throw GglException("No configuration found for requirements!");
+        throw Ggl::Exception("No configuration found for requirements!");
     }
     
     // Copy the first config

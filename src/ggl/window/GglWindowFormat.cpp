@@ -42,7 +42,7 @@ Ggl::WindowFormat::getColorSize() const {
 void
 Ggl::WindowFormat::setColorSize(int colorSize) {
     if (colorSize < 0) {
-        throw GglException("Color size is negative!");
+        throw Exception("Color size is negative!");
     } else {
         this->colorSize = colorSize;
     }
@@ -65,7 +65,7 @@ Ggl::WindowFormat::getAlphaSize() const {
 void
 Ggl::WindowFormat::setAlphaSize(int alphaSize) {
     if (alphaSize < 0) {
-        throw GglException("Alpha size is negative!");
+        throw Exception("Alpha size is negative!");
     } else {
         this->alphaSize = alphaSize;
     }
@@ -88,7 +88,7 @@ Ggl::WindowFormat::getDepthSize() const {
 void
 Ggl::WindowFormat::setDepthSize(int depthSize) {
     if (depthSize < 0) {
-        throw GglException("Depth size is negative!");
+        throw Exception("Depth size is negative!");
     } else {
         this->depthSize = depthSize;
     }
@@ -122,9 +122,9 @@ void
 Ggl::WindowFormat::setOpenGLVersion(int major,
                                   int minor) {
     if (major < 1) {
-        throw GglException("Major version less than 1!");
+        throw Exception("Major version less than 1!");
     } else if (minor < 0) {
-        throw GglException("Minor version less than 0!");
+        throw Exception("Minor version less than 0!");
     } else {
         this->majorVersion = major;
         this->minorVersion = minor;
