@@ -10,6 +10,7 @@
 #include "ggl/GglException.hpp"
 #include "ggl/window/GglWindow.hpp"
 #include "ggl/window/glx/GglConfigFactoryGlx.hpp"
+namespace Ggl {
 
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
 
@@ -17,10 +18,10 @@ typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
 /**
  * @brief OpenGL Window implemented with GLX.
  */
-class GglWindowGlx : public Ggl::Window {
+class WindowGlx : public Window {
 public:
-    GglWindowGlx(const Ggl::WindowFormat &wf);
-    virtual ~GglWindowGlx();
+    WindowGlx(const WindowFormat &wf);
+    virtual ~WindowGlx();
 protected:
     virtual void doActivateContext();
     virtual void doActivateWindow();
@@ -41,16 +42,16 @@ private:
     GLXContext context;
     GLXFBConfig config;
 // Helpers
-    Ggl::WindowEvent getEvent();
+    WindowEvent getEvent();
     static void subscribe(Display *display, int window);
     static GLXFBConfig createConfig();
-    static GLXFBConfig createConfig(const Ggl::WindowFormat &wf);
+    static GLXFBConfig createConfig(const WindowFormat &wf);
     static XVisualInfo* createInfo(Display *display, const GLXFBConfig &fbc);
     static long getEventMask();
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
     static XSetWindowAttributes getWindowAttributes(Colormap cm);
-    static Ggl::WindowEvent toGglEvent(XKeyEvent &xke);
+    static WindowEvent toGglEvent(XKeyEvent &xke);
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
     static PFNGLXCCAA getGlXCCAA();
@@ -59,4 +60,5 @@ private:
     static long DEFAULT_EVENT_MASK;
 };
 
+}
 #endif

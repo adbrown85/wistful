@@ -5,15 +5,15 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/glx/GglWindowGlx.hpp"
-PFNGLXCCAA GglWindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
-long GglWindowGlx::DEFAULT_EVENT_MASK = getEventMask();
+Ggl::PFNGLXCCAA Ggl::WindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
+long Ggl::WindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 
 /**
  * Creates a GLX window from a window format.
  * 
  * @param wf Container with window settings
  */
-GglWindowGlx::GglWindowGlx(const Ggl::WindowFormat &wf) : Ggl::Window(wf) {
+Ggl::WindowGlx::WindowGlx(const WindowFormat &wf) : Window(wf) {
     this->closed = false;
     this->display = NULL;
     this->info = NULL;
@@ -25,11 +25,11 @@ GglWindowGlx::GglWindowGlx(const Ggl::WindowFormat &wf) : Ggl::Window(wf) {
 /**
  * Destroys the window.
  */
-GglWindowGlx::~GglWindowGlx() {
+Ggl::WindowGlx::~WindowGlx() {
     ;
 }
 
-void GglWindowGlx::doCreateConnection() throw(std::exception) {
+void Ggl::WindowGlx::doCreateConnection() throw(std::exception) {
     
     display = XOpenDisplay(NULL);
     
@@ -38,12 +38,12 @@ void GglWindowGlx::doCreateConnection() throw(std::exception) {
     }
 }
 
-void GglWindowGlx::doDestroyConnection() {
+void Ggl::WindowGlx::doDestroyConnection() {
     XCloseDisplay(display);
     display = NULL;
 }
 
-void GglWindowGlx::doCreateWindow() throw(std::exception) {
+void Ggl::WindowGlx::doCreateWindow() throw(std::exception) {
     
     int winmask = getWindowMask();
     XVisualInfo *info = createInfo(display, config);
@@ -68,17 +68,17 @@ void GglWindowGlx::doCreateWindow() throw(std::exception) {
 /**
  * Makes the window visible.
  */
-void GglWindowGlx::doActivateWindow() {
+void Ggl::WindowGlx::doActivateWindow() {
     XMapWindow(display, window);
     XFlush(display);
 }
 
-void GglWindowGlx::doDestroyWindow() {
+void Ggl::WindowGlx::doDestroyWindow() {
     XDestroyWindow(display, window);
     window = 0;
 }
 
-void GglWindowGlx::doCreateContext() throw(std::exception) {
+void Ggl::WindowGlx::doCreateContext() throw(std::exception) {
     
     XErrorHandler handler = NULL;
     GLint attribs[] = {
@@ -111,23 +111,23 @@ void GglWindowGlx::doCreateContext() throw(std::exception) {
 /**
  * Makes the OpenGL context current.
  */
-void GglWindowGlx::doActivateContext() {
+void Ggl::WindowGlx::doActivateContext() {
     glXMakeCurrent(display, window, context);
 }
 
-void GglWindowGlx::doDestroyContext() {
+void Ggl::WindowGlx::doDestroyContext() {
     glXDestroyContext(display, context);
     context = NULL;
 }
 
-void GglWindowGlx::doFlush() {
+void Ggl::WindowGlx::doFlush() {
     glXSwapBuffers(display, window);
 }
 
 /**
  * Starts the run loop.
  */
-void GglWindowGlx::doRun() {
+void Ggl::WindowGlx::doRun() {
     while (!closed) {
         Ggl::WindowEvent event = getEvent();
         switch (event.getType()) {
@@ -150,7 +150,7 @@ void GglWindowGlx::doRun() {
     }
 }
 
-void GglWindowGlx::doClose() {
+void Ggl::WindowGlx::doClose() {
     closed = true;
 }
 
@@ -165,15 +165,15 @@ void GglWindowGlx::doClose() {
  * @param fbc Desired framebuffer configuration of window
  * @return Visual information about a compatible window
  */
-XVisualInfo* GglWindowGlx::createInfo(Display *display,
-                                      const GLXFBConfig &fbc) {
+XVisualInfo* Ggl::WindowGlx::createInfo(Display *display,
+                                        const GLXFBConfig &fbc) {
     return glXGetVisualFromFBConfig(display, fbc);
 }
 
 /**
  * Returns an OpenGL configuration for use with the window. 
  */
-GLXFBConfig GglWindowGlx::createConfig() {
+GLXFBConfig Ggl::WindowGlx::createConfig() {
     
     GglConfigFactoryGlx cf;
     std::map<int,int> reqs;
@@ -196,7 +196,7 @@ GLXFBConfig GglWindowGlx::createConfig() {
  * 
  * @param wf Container with window settings
  */
-GLXFBConfig GglWindowGlx::createConfig(const Ggl::WindowFormat &wf) {
+GLXFBConfig Ggl::WindowGlx::createConfig(const WindowFormat &wf) {
     
     GglConfigFactoryGlx cf;
     
@@ -206,7 +206,7 @@ GLXFBConfig GglWindowGlx::createConfig(const Ggl::WindowFormat &wf) {
 /**
  * Returns next event from window.
  */
-Ggl::WindowEvent GglWindowGlx::getEvent() {
+Ggl::WindowEvent Ggl::WindowGlx::getEvent() {
     
     XEvent xEvent;
     
@@ -234,7 +234,7 @@ Ggl::WindowEvent GglWindowGlx::getEvent() {
 /**
  * Returns an event mask for use with the window.
  */
-long GglWindowGlx::getEventMask() {
+long Ggl::WindowGlx::getEventMask() {
     return ExposureMask
             | StructureNotifyMask
             | VisibilityChangeMask
@@ -248,7 +248,7 @@ long GglWindowGlx::getEventMask() {
  * @param display Connection to machine showing content
  * @param vi Visual information about X screen
  */
-Colormap GglWindowGlx::getColormap(Display *display, XVisualInfo *vi) {
+Colormap Ggl::WindowGlx::getColormap(Display *display, XVisualInfo *vi) {
     return XCreateColormap(
             display,
             RootWindow(display, vi->screen),
@@ -259,7 +259,7 @@ Colormap GglWindowGlx::getColormap(Display *display, XVisualInfo *vi) {
 /**
  * Returns mask for specifying window properties.
  */
-long GglWindowGlx::getWindowMask() {
+long Ggl::WindowGlx::getWindowMask() {
     return CWBorderPixel | CWBitGravity | CWEventMask | CWColormap;
 }
 
@@ -268,7 +268,7 @@ long GglWindowGlx::getWindowMask() {
  * 
  * @param cm Description of color capabilities of screen
  */
-XSetWindowAttributes GglWindowGlx::getWindowAttributes(Colormap cm) {
+XSetWindowAttributes Ggl::WindowGlx::getWindowAttributes(Colormap cm) {
     
     XSetWindowAttributes wa;
     
@@ -285,7 +285,7 @@ XSetWindowAttributes GglWindowGlx::getWindowAttributes(Colormap cm) {
  * @param display Connection to machine showing content
  * @param window Handle to X11 window
  */
-void GglWindowGlx::subscribe(Display *display, int window) {
+void Ggl::WindowGlx::subscribe(Display *display, int window) {
     
     Atom atom = XInternAtom(display, "WM_DELETE_WINDOW", 0);
     
@@ -295,7 +295,7 @@ void GglWindowGlx::subscribe(Display *display, int window) {
 /**
  * Returns pointer to <i>glXCreateContextAttribsARB</i> function.
  */
-PFNGLXCCAA GglWindowGlx::getGlXCCAA() {
+Ggl::PFNGLXCCAA Ggl::WindowGlx::getGlXCCAA() {
     
     GLubyte *name = (GLubyte*) "glXCreateContextAttribsARB";
     
@@ -308,7 +308,7 @@ PFNGLXCCAA GglWindowGlx::getGlXCCAA() {
  * @param xke X11 Key event
  * @return Equivalent GGL event
  */
-Ggl::WindowEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
+Ggl::WindowEvent Ggl::WindowGlx::toGglEvent(XKeyEvent &xke) {
     
     Ggl::WindowEvent ge(Ggl::KEY);
     KeySym ks = XLookupKeysym(&xke, 0);
@@ -324,6 +324,6 @@ Ggl::WindowEvent GglWindowGlx::toGglEvent(XKeyEvent &xke) {
  * @param event X11 error event
  * @return Arbitrary integer, which is ignored
  */
-int GglWindowGlx::x11ErrorHandler(Display *display, XErrorEvent *event) {
+int Ggl::WindowGlx::x11ErrorHandler(Display *display, XErrorEvent *event) {
     return 0;
 }
