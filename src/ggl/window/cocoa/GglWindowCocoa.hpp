@@ -97,7 +97,7 @@ private:
 /*
  * OpenGL view for window.
  */
-@interface MyOpenGLView : NSOpenGLView {
+@interface GglOpenGLView : NSOpenGLView {
     Ggl::OpenGLViewListener *openGLViewListener;
 }
 - (void)keyDown:(NSEvent*)event;

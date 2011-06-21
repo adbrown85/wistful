@@ -57,7 +57,7 @@ void Ggl::WindowCocoa::doCreateWindow() throw(std::exception) {
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
-    MyOpenGLView *view;
+    GglOpenGLView *view;
     NSOpenGLPixelFormatAttribute *attributes;
     NSOpenGLPixelFormat *pixelFormat;
     
@@ -78,7 +78,7 @@ void Ggl::WindowCocoa::doCreateWindow() throw(std::exception) {
     
     // Make view
     rect = NSMakeRect(1.0, 1.0, 1.0, 1.0);
-    view = [[MyOpenGLView alloc] initWithFrame:rect pixelFormat:pixelFormat];
+    view = [[GglOpenGLView alloc] initWithFrame:rect pixelFormat:pixelFormat];
     [view setOpenGLViewListener:this];
     
     // Add the view to the window
@@ -279,7 +279,7 @@ Ggl::WindowCocoa::toList(const WindowFormat &wf) {
 }
 @end
 
-@implementation MyOpenGLView
+@implementation GglOpenGLView
 - (void)keyDown:(NSEvent*)event {
     
     int c = [[event characters] characterAtIndex:0];
