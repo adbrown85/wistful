@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLWINDOWLISTENER_HPP
-#define GGLWINDOWLISTENER_HPP
+#ifndef GGL_WINDOWLISTENER_HPP
+#define GGL_WINDOWLISTENER_HPP
 #include "ggl/common.h"
 #include "ggl/window/GglWindowEvent.hpp"
 namespace Ggl {

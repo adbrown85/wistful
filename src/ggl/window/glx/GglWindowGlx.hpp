@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLWINDOWGLX_HPP
-#define GGLWINDOWGLX_HPP
+#ifndef GGL_WINDOWGLX_HPP
+#define GGL_WINDOWGLX_HPP
 #include "ggl/common.h"
 #include "ggl/GglException.hpp"
 #include "ggl/window/GglWindow.hpp"

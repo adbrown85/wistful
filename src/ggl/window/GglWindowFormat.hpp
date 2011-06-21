@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLWINDOWFORMAT_HPP
-#define GGLWINDOWFORMAT_HPP
+#ifndef GGL_WINDOWFORMAT_HPP
+#define GGL_WINDOWFORMAT_HPP
 #include "ggl/common.h"
 #include "ggl/GglException.hpp"
 namespace Ggl {

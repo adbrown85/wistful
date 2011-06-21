@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLWINDOWCOCOA_HPP
-#define GGLWINDOWCOCOA_HPP
+#ifndef GGL_WINDOWCOCOA_HPP
+#define GGL_WINDOWCOCOA_HPP
 #include "ggl/common.h"
 #import <Cocoa/Cocoa.h>
 #include "ggl/window/GglWindow.hpp"

@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLWINDOWFACTORY_HPP
-#define GGLWINDOWFACTORY_HPP
+#ifndef GGL_WINDOWFACTORY_HPP
+#define GGL_WINDOWFACTORY_HPP
 #include "ggl/common.h"
 #include "ggl/window/GglWindow.hpp"
 #if defined(HAVE_COCOA)

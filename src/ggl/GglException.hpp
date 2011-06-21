@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLEXCEPTION_HPP
-#define GGLEXCEPTION_HPP
+#ifndef GGL_EXCEPTION_HPP
+#define GGL_EXCEPTION_HPP
 #include "ggl/common.h"
 namespace Ggl {
 

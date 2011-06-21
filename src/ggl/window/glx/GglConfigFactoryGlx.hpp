@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGLCONFIGFACTORYGLX_HPP
-#define GGLCONFIGFACTORYGLX_HPP
+#ifndef GGL_CONFIGFACTORYGLX_HPP
+#define GGL_CONFIGFACTORYGLX_HPP
 #include "ggl/common.h"
 #include "ggl/window/GglWindowFormat.hpp"
 namespace Ggl {
