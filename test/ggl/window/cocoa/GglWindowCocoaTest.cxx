@@ -7,31 +7,32 @@
 #include "ggl/window/GglWindowFactory.hpp"
 #include "ggl/window/cocoa/GglWindowCocoa.hpp"
 using namespace std;
+namespace Ggl {
 
 /**
  * Test for GglWindowCoca.
  */
-class GglWindowCocoaTest {
+class WindowCocoaTest {
 public:
     void testOpen();
 };
 
-class FakeWindowListener : public Ggl::WindowListener {
+class FakeWindowListener : public WindowListener {
 public:
-    virtual void onInit(Ggl::Window *window) {
+    virtual void onInit(Window *window) {
         cerr << "FakeGglListener::init()" << endl;
         cerr << glGetString(GL_VERSION) << endl;
         glViewport(0, 0, 512, 512);
     }
-    virtual void onDisplay(Ggl::Window *window) {
+    virtual void onDisplay(Window *window) {
         cerr << "FakeGglListener::display()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void onDestroy(Ggl::Window *window) {
+    virtual void onDestroy(Window *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(Ggl::Window *window, Ggl::WindowEvent &event) {
+    virtual void onKey(Window *window, WindowEvent &event) {
         cerr << "FakeGglListener::onKey()" << endl;
         int trigger = event.getTrigger();
         
@@ -51,13 +52,14 @@ public:
 /**
  * Ensures window can be opened.
  */
-void GglWindowCocoaTest::testOpen() {
+void WindowCocoaTest::testOpen() {
     
-    Ggl::WindowFactory factory;
-    Ggl::Window *window = factory.createWindow();
+    WindowFactory factory;
+    Window *window = factory.createWindow();
     
     window->addWindowListener(new FakeWindowListener());
-    Ggl::Window::open(window);
+    Window::open(window);
+}
 }
 
 /*
@@ -65,7 +67,7 @@ void GglWindowCocoaTest::testOpen() {
  */
 int main(int argc, char *argv[]) {
     
-    GglWindowCocoaTest test;
+    Ggl::WindowCocoaTest test;
     
     test.testOpen();
 }
