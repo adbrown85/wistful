@@ -5,18 +5,19 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/glx/ConfigFactoryGlx.hpp"
+using namespace Ggl;
 
 /**
  * Creates an OpenGL configuration factory.
  */
-Ggl::ConfigFactoryGlx::ConfigFactoryGlx() {
+ConfigFactoryGlx::ConfigFactoryGlx() {
     display = createDisplay();
 }
 
 /**
  * Destroys the factory.
  */
-Ggl::ConfigFactoryGlx::~ConfigFactoryGlx() {
+ConfigFactoryGlx::~ConfigFactoryGlx() {
     XCloseDisplay(display);
 }
 
@@ -25,7 +26,7 @@ Ggl::ConfigFactoryGlx::~ConfigFactoryGlx() {
  * 
  * @param wf Container with window settings
  */
-GLXFBConfig Ggl::ConfigFactoryGlx::create(const WindowFormat &wf) {
+GLXFBConfig ConfigFactoryGlx::create(const WindowFormat &wf) {
     
     std::map<int,int> m;
     int colorComponentSize = wf.getColorSize() / 8;
@@ -48,7 +49,7 @@ GLXFBConfig Ggl::ConfigFactoryGlx::create(const WindowFormat &wf) {
  * Returns OpenGL configurations meeting certain requirements.
  */
 GLXFBConfig
-Ggl::ConfigFactoryGlx::create(const std::map<int,int> &requirements) {
+ConfigFactoryGlx::create(const std::map<int,int> &requirements) {
     
     const int *reqs = toArray(requirements);
     int len;
@@ -57,7 +58,7 @@ Ggl::ConfigFactoryGlx::create(const std::map<int,int> &requirements) {
     
     // Validate
     if (len == 0) {
-        throw Ggl::Exception("No configuration found for requirements!");
+        throw Exception("No configuration found for requirements!");
     }
     
     // Copy the first config
@@ -77,7 +78,7 @@ Ggl::ConfigFactoryGlx::create(const std::map<int,int> &requirements) {
 /**
  * Returns pointer to the default X display.
  */
-Display* Ggl::ConfigFactoryGlx::createDisplay() {
+Display* ConfigFactoryGlx::createDisplay() {
     return XOpenDisplay(NULL);
 }
 
@@ -87,7 +88,7 @@ Display* Ggl::ConfigFactoryGlx::createDisplay() {
  * @param m Map of integers to integers
  * @return Pointer to NULL-terminated array
  */
-const int* Ggl::ConfigFactoryGlx::toArray(const std::map<int,int> &m) {
+const int* ConfigFactoryGlx::toArray(const std::map<int,int> &m) {
     
     int len = (m.size() * 2) + 1;           // Length of array
     int *arr = new int[len];                // Array of integers
