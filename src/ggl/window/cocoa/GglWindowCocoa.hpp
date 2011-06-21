@@ -39,11 +39,11 @@ public:
 /**
  * @brief Window implemented with Cocoa.
  */
-class WindowCocoa : public Ggl::Window,
-                    public Ggl::ApplicationListener,
-                    public Ggl::OpenGLViewListener {
+class WindowCocoa : public Window,
+                    public ApplicationListener,
+                    public OpenGLViewListener {
 public:
-    WindowCocoa(const Ggl::WindowFormat &wf);
+    WindowCocoa(const WindowFormat &wf);
     virtual ~WindowCocoa();
     virtual void doActivateContext();
     virtual void doActivateWindow();
@@ -72,8 +72,8 @@ private:
     NSMenuItem* createAppleMenuQuitItem();
     NSMenuItem* createEmptyMenuItem();
     NSMenu* createEmptyMenu();
-    static GLuint* toArray(const Ggl::WindowFormat &wf);
-    static std::list<GLuint> toList(const Ggl::WindowFormat &wf);
+    static GLuint* toArray(const WindowFormat &wf);
+    static std::list<GLuint> toList(const WindowFormat &wf);
 };
 
 } // namespace Ggl
