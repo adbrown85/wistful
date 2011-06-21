@@ -1,10 +1,10 @@
 /*
- * GglException.cpp
+ * Exception.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/GglException.hpp"
+#include "ggl/Exception.hpp"
 
 /**
  * Creates a GGL exception.

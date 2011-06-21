@@ -7,7 +7,7 @@
 #ifndef GGL_WINDOWGLX_HPP
 #define GGL_WINDOWGLX_HPP
 #include "ggl/common.h"
-#include "ggl/GglException.hpp"
+#include "ggl/Exception.hpp"
 #include "ggl/window/GglWindow.hpp"
 #include "ggl/window/glx/GglConfigFactoryGlx.hpp"
 namespace Ggl {
