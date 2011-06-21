@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/window/GglWindowFactory.hpp"
+#include "ggl/window/WindowFactory.hpp"
 #include "ggl/window/cocoa/GglWindowCocoa.hpp"
 using namespace std;
 namespace Ggl {
