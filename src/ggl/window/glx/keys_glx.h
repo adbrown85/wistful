@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGL_KEYS_GLX_H_
-#define GGL_KEYS_GLX_H_
+#ifndef GGL_KEYS_GLX_H
+#define GGL_KEYS_GLX_H
 #include "ggl/common.h"
 
 /* TTY function keys */
