@@ -9,25 +9,22 @@
 #include "ggl/common.h"
 #import <Cocoa/Cocoa.h>
 #include "ggl/window/GglWindow.hpp"
-
+namespace Ggl {
 
 /**
  * @brief Observer of an application.
  */
-namespace Ggl {
 class ApplicationListener {
 public:
     ApplicationListener() {}
     virtual ~ApplicationListener() {}
     virtual void onApplicationTerminate() = 0;
 };
-}
 
 
 /**
  * @brief Observer of an OpenGL view.
  */
-namespace Ggl {
 class OpenGLViewListener {
 public:
     OpenGLViewListener() {}
@@ -37,13 +34,11 @@ public:
     virtual void onOpenGLViewDestroy() = 0;
     virtual void onOpenGLViewKey(int key) = 0;
 };
-}
 
 
 /**
  * @brief Window implemented with Cocoa.
  */
-namespace Ggl {
 class WindowCocoa : public Ggl::Window,
                     public Ggl::ApplicationListener,
                     public Ggl::OpenGLViewListener {
@@ -80,7 +75,8 @@ private:
     static GLuint* toArray(const Ggl::WindowFormat &wf);
     static std::list<GLuint> toList(const Ggl::WindowFormat &wf);
 };
-}
+
+} // namespace Ggl
 
 /*
  * Application delegate for window.
@@ -105,6 +101,5 @@ private:
 - (void)prepareOpenGL;
 - (void)setOpenGLViewListener:(Ggl::OpenGLViewListener*)listener;
 @end
-
 
 #endif
