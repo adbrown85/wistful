@@ -27,9 +27,9 @@ Ggl::WindowFactory::~WindowFactory() {
  */
 Ggl::Window* Ggl::WindowFactory::createWindow() {
 #if defined(HAVE_COCOA)
-    return new Ggl::WindowCocoa(defaultWindowFormat);
+    return new WindowCocoa(defaultWindowFormat);
 #elif defined(HAVE_GLX)
-    return new Ggl::WindowGlx(defaultWindowFormat);
+    return new WindowGlx(defaultWindowFormat);
 #endif
 }
 
@@ -40,10 +40,10 @@ Ggl::Window* Ggl::WindowFactory::createWindow() {
  * @return Pointer to the new window
  */
 Ggl::Window*
-Ggl::WindowFactory::createWindow(const Ggl::WindowFormat &wf) {
+Ggl::WindowFactory::createWindow(const WindowFormat &wf) {
 #if defined(HAVE_COCOA)
-    return new Ggl::WindowCocoa(wf);
+    return new WindowCocoa(wf);
 #elif defined(HAVE_GLX)
-    return new Ggl::WindowGlx(wf);
+    return new WindowGlx(wf);
 #endif
 }

@@ -11,7 +11,7 @@
  * 
  * @param wf Configuration of window
  */
-Ggl::Window::Window(const Ggl::WindowFormat &wf) {
+Ggl::Window::Window(const WindowFormat &wf) {
     this->activated = false;
     this->created = false;
     this->destroyed = false;
@@ -32,7 +32,7 @@ Ggl::Window::~Window() {
 /**
  * Adds an object that will be notified of events.
  */
-void Ggl::Window::addWindowListener(Ggl::WindowListener *listener) {
+void Ggl::Window::addWindowListener(WindowListener *listener) {
     windowListeners.push_back(listener);
 }
 
@@ -151,7 +151,7 @@ void Ggl::Window::destroy() {
 void Ggl::Window::fireKeyEvent(int key) {
     
     std::list<WindowListener*>::iterator it;
-    Ggl::WindowEvent event(KEY);
+    WindowEvent event(KEY);
     
     event.setTrigger(key);
     

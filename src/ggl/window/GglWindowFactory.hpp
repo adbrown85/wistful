@@ -23,8 +23,8 @@ class WindowFactory {
 public:
     WindowFactory();
     virtual ~WindowFactory();
-    Ggl::Window* createWindow();
-    Ggl::Window* createWindow(const WindowFormat &wf);
+    Window* createWindow();
+    Window* createWindow(const WindowFormat &wf);
 private:
     WindowFormat defaultWindowFormat;
 };
