@@ -34,7 +34,7 @@ void Ggl::WindowGlx::doCreateConnection() throw(std::exception) {
     display = XOpenDisplay(NULL);
     
     if (display == NULL) {
-        throw Ggl::Exception("Could not open default display!");
+        throw Exception("Could not open default display!");
     }
 }
 
@@ -104,7 +104,7 @@ void Ggl::WindowGlx::doCreateContext() throw(std::exception) {
     
     // Check if not made correctly
     if (context == NULL) {
-        throw Ggl::Exception("Could not make OpenGL context!");
+        throw Exception("Could not make OpenGL context!");
     }
 }
 
@@ -129,19 +129,19 @@ void Ggl::WindowGlx::doFlush() {
  */
 void Ggl::WindowGlx::doRun() {
     while (!closed) {
-        Ggl::WindowEvent event = getEvent();
+        WindowEvent event = getEvent();
         switch (event.getType()) {
-        case Ggl::MAP:
+        case MAP:
             fireInitEvent();
             break;
-        case Ggl::EXPOSE:
+        case EXPOSE:
             fireDisplayEvent();
             break;
-        case Ggl::DESTROY:
+        case DESTROY:
             fireDestroyEvent();
             close();
             break;
-        case Ggl::KEY:
+        case KEY:
             fireKeyEvent(event.getTrigger());
             break;
         default:
@@ -216,17 +216,17 @@ Ggl::WindowEvent Ggl::WindowGlx::getEvent() {
         XNextEvent(display, &xEvent);
         switch (xEvent.type) {
         case ClientMessage:
-            return Ggl::WindowEvent(Ggl::DESTROY);
+            return WindowEvent(DESTROY);
         case MapNotify:
-            return Ggl::WindowEvent(Ggl::MAP);
+            return WindowEvent(MAP);
         case Expose:
             if (xEvent.xexpose.count == 0) {
-                return Ggl::WindowEvent(Ggl::EXPOSE);
+                return WindowEvent(EXPOSE);
             }
         case KeyPress:
             return toGglEvent(xEvent.xkey);
         default:
-            return Ggl::WindowEvent(Ggl::OTHER);
+            return WindowEvent(OTHER);
         }
     }
 }
@@ -310,7 +310,7 @@ Ggl::PFNGLXCCAA Ggl::WindowGlx::getGlXCCAA() {
  */
 Ggl::WindowEvent Ggl::WindowGlx::toGglEvent(XKeyEvent &xke) {
     
-    Ggl::WindowEvent ge(Ggl::KEY);
+    WindowEvent ge(Ggl::KEY);
     KeySym ks = XLookupKeysym(&xke, 0);
     
     ge.setTrigger(ks);
