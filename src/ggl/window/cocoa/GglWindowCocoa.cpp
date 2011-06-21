@@ -11,7 +11,7 @@
  * 
  * @param wf Configuration of window
  */
-GglWindowCocoa::GglWindowCocoa(const Ggl::WindowFormat &wf) : Ggl::Window(wf) {
+Ggl::WindowCocoa::WindowCocoa(const WindowFormat &wf) : Window(wf) {
     this->pool = NULL;
     this->application = NULL;
     this->window = NULL;
@@ -20,20 +20,20 @@ GglWindowCocoa::GglWindowCocoa(const Ggl::WindowFormat &wf) : Ggl::Window(wf) {
 /**
  * Destroys the window.
  */
-GglWindowCocoa::~GglWindowCocoa() {
+Ggl::WindowCocoa::~WindowCocoa() {
     ;
 }
 
-void GglWindowCocoa::doActivateContext() {
+void Ggl::WindowCocoa::doActivateContext() {
     ;
 }
 
-void GglWindowCocoa::doActivateWindow() {
+void Ggl::WindowCocoa::doActivateWindow() {
     [window makeKeyAndOrderFront:nil];
     [application activateIgnoringOtherApps:YES];
 }
 
-void GglWindowCocoa::doCreateConnection() throw(std::exception) {
+void Ggl::WindowCocoa::doCreateConnection() throw(std::exception) {
     
     MyApplicationDelegate *delegate;
     NSMenu *menu;
@@ -53,7 +53,7 @@ void GglWindowCocoa::doCreateConnection() throw(std::exception) {
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 }
 
-void GglWindowCocoa::doCreateWindow() throw(std::exception) {
+void Ggl::WindowCocoa::doCreateWindow() throw(std::exception) {
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
@@ -86,52 +86,52 @@ void GglWindowCocoa::doCreateWindow() throw(std::exception) {
     [window makeFirstResponder:view];
 }
 
-void GglWindowCocoa::doCreateContext() throw(std::exception) {
+void Ggl::WindowCocoa::doCreateContext() throw(std::exception) {
     ;
 }
 
-void GglWindowCocoa::doDestroyConnection() {
+void Ggl::WindowCocoa::doDestroyConnection() {
     ;
 }
 
-void GglWindowCocoa::doDestroyContext() {
+void Ggl::WindowCocoa::doDestroyContext() {
     ;
 }
 
-void GglWindowCocoa::doDestroyWindow() {
+void Ggl::WindowCocoa::doDestroyWindow() {
     ;
 }
 
-void GglWindowCocoa::doFlush() {
+void Ggl::WindowCocoa::doFlush() {
     glFlush();
 }
 
-void GglWindowCocoa::doRun() {
+void Ggl::WindowCocoa::doRun() {
     [pool drain];
     [application run];
 }
 
-void GglWindowCocoa::doClose() {
+void Ggl::WindowCocoa::doClose() {
     [application terminate:nil];
 }
 
-void GglWindowCocoa::onApplicationTerminate() {
+void Ggl::WindowCocoa::onApplicationTerminate() {
     fireDestroyEvent();
 }
 
-void GglWindowCocoa::onOpenGLViewInit() {
+void Ggl::WindowCocoa::onOpenGLViewInit() {
     fireInitEvent();
 }
 
-void GglWindowCocoa::onOpenGLViewDisplay() {
+void Ggl::WindowCocoa::onOpenGLViewDisplay() {
     fireDisplayEvent();
 }
 
-void GglWindowCocoa::onOpenGLViewKey(int key) {
+void Ggl::WindowCocoa::onOpenGLViewKey(int key) {
     fireKeyEvent(key);
 }
 
-void GglWindowCocoa::onOpenGLViewDestroy() {
+void Ggl::WindowCocoa::onOpenGLViewDestroy() {
     ;
 }
 
@@ -139,14 +139,14 @@ void GglWindowCocoa::onOpenGLViewDestroy() {
 // Helpers
 //
 
-NSUInteger GglWindowCocoa::createWindowStyle() {
+NSUInteger Ggl::WindowCocoa::createWindowStyle() {
     return NSTitledWindowMask |
            NSClosableWindowMask |
            NSMiniaturizableWindowMask |
            NSResizableWindowMask;
 }
 
-NSMenu* GglWindowCocoa::createMenu() {
+NSMenu* Ggl::WindowCocoa::createMenu() {
     
     NSMenu *menu = createEmptyMenu();
     NSMenuItem *item = createEmptyMenuItem();
@@ -159,7 +159,7 @@ NSMenu* GglWindowCocoa::createMenu() {
     return menu;
 }
 
-NSMenuItem* GglWindowCocoa::createAppleMenuQuitItem() {
+NSMenuItem* Ggl::WindowCocoa::createAppleMenuQuitItem() {
     
     NSMenuItem *item = [NSMenuItem alloc];
     
@@ -169,7 +169,7 @@ NSMenuItem* GglWindowCocoa::createAppleMenuQuitItem() {
     return item;
 }
 
-NSMenu* GglWindowCocoa::createAppleMenu() {
+NSMenu* Ggl::WindowCocoa::createAppleMenu() {
     
     NSMenu *menu = createEmptyMenu();
     NSMenuItem *item = createAppleMenuQuitItem();
@@ -178,7 +178,7 @@ NSMenu* GglWindowCocoa::createAppleMenu() {
     return menu;
 }
 
-NSMenu* GglWindowCocoa::createEmptyMenu() {
+NSMenu* Ggl::WindowCocoa::createEmptyMenu() {
     
     NSMenu *menu = [NSMenu alloc];
     
@@ -186,7 +186,7 @@ NSMenu* GglWindowCocoa::createEmptyMenu() {
     return menu;
 }
 
-NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
+NSMenuItem* Ggl::WindowCocoa::createEmptyMenuItem() {
     
     NSMenuItem *item = [NSMenuItem alloc];
     
@@ -201,7 +201,7 @@ NSMenuItem* GglWindowCocoa::createEmptyMenuItem() {
  * @return New array of attributes, which should be freed
  */
 GLuint*
-GglWindowCocoa::toArray(const Ggl::WindowFormat &wf) {
+Ggl::WindowCocoa::toArray(const WindowFormat &wf) {
     
     NSOpenGLPixelFormatAttribute *array;
     std::list<GLuint> attributes = toList(wf);
@@ -227,7 +227,7 @@ GglWindowCocoa::toArray(const Ggl::WindowFormat &wf) {
  * @return List of attributes
  */
 std::list<GLuint>
-GglWindowCocoa::toList(const Ggl::WindowFormat &wf) {
+Ggl::WindowCocoa::toList(const WindowFormat &wf) {
     
     std::list<GLuint> attributes;
     

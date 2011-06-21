@@ -39,12 +39,13 @@ public:
 /**
  * @brief Window implemented with Cocoa.
  */
-class GglWindowCocoa : public Ggl::Window,
-                       public GglApplicationListener,
-                       public GglOpenGLViewListener {
+namespace Ggl {
+class WindowCocoa : public Ggl::Window,
+                    public GglApplicationListener,
+                    public GglOpenGLViewListener {
 public:
-    GglWindowCocoa(const Ggl::WindowFormat &wf);
-    virtual ~GglWindowCocoa();
+    WindowCocoa(const Ggl::WindowFormat &wf);
+    virtual ~WindowCocoa();
     virtual void doActivateContext();
     virtual void doActivateWindow();
     virtual void doClose();
@@ -75,7 +76,7 @@ private:
     static GLuint* toArray(const Ggl::WindowFormat &wf);
     static std::list<GLuint> toList(const Ggl::WindowFormat &wf);
 };
-
+}
 
 /*
  * Application delegate for window.
