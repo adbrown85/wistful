@@ -120,7 +120,7 @@ Ggl::WindowFormat::getOpenGLMinorVersion() const {
  */
 void
 Ggl::WindowFormat::setOpenGLVersion(int major,
-                                  int minor) {
+                                    int minor) {
     if (major < 1) {
         throw Exception("Major version less than 1!");
     } else if (minor < 0) {
@@ -140,7 +140,7 @@ Ggl::WindowFormat::setOpenGLVersion(int major,
  */
 bool
 Ggl::WindowFormat::isOpenGLVersion(int major,
-                                 int minor) const {
+                                   int minor) const {
     return (this->majorVersion == major) && (this->minorVersion == minor);
 }
 
