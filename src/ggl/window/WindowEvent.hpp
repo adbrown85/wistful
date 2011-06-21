@@ -25,8 +25,8 @@ class WindowEvent {
 public:
     WindowEvent(WindowEventType type);
     virtual ~WindowEvent();
-    virtual WindowEventType getType();
-    virtual GLuint getTrigger();
+    virtual WindowEventType getType() const;
+    virtual GLuint getTrigger() const;
     virtual void setTrigger(GLuint trigger);
 private:
     WindowEventType type;

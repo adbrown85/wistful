@@ -16,11 +16,11 @@ WindowEvent::~WindowEvent() {
     ;
 }
 
-WindowEventType WindowEvent::getType() {
+WindowEventType WindowEvent::getType() const {
     return type;
 }
 
-GLuint WindowEvent::getTrigger() {
+GLuint WindowEvent::getTrigger() const {
     return trigger;
 }
 
