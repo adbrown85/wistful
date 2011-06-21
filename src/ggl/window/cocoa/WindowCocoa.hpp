@@ -1,5 +1,5 @@
 /*
- * GglWindowCocoa.hpp
+ * WindowCocoa.hpp
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>

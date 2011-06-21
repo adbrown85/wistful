@@ -9,7 +9,7 @@
 #include "ggl/common.h"
 #include "ggl/window/Window.hpp"
 #if defined(HAVE_COCOA)
-#include "ggl/window/cocoa/GglWindowCocoa.hpp"
+#include "ggl/window/cocoa/WindowCocoa.hpp"
 #elif defined(HAVE_GLX)
 #include "ggl/window/glx/WindowGlx.hpp"
 #endif

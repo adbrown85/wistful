@@ -1,10 +1,10 @@
 /*
- * GglWindowCocoa.cpp
+ * WindowCocoa.cpp
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/window/cocoa/GglWindowCocoa.hpp"
+#include "ggl/window/cocoa/WindowCocoa.hpp"
 
 /**
  * Creates a window.
