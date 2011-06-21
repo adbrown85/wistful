@@ -5,17 +5,18 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/glx/GglConfigFactoryGlx.hpp"
+namespace Ggl {
 
 /** Test for GglConfigFactoryGlx. */
-class GglConfigFactoryGlxTest {
+class ConfigFactoryGlxTest {
 public:
     void testCreate();
 };
 
 /** Ensures configurations can be created correctly. */
-void GglConfigFactoryGlxTest::testCreate() {
+void ConfigFactoryGlxTest::testCreate() {
     
-    Ggl::ConfigFactoryGlx cf;
+    ConfigFactoryGlx cf;
     std::map<int,int> reqs;
     GLXFBConfig config;
     
@@ -31,9 +32,12 @@ void GglConfigFactoryGlxTest::testCreate() {
     config = cf.create(reqs);
 }
 
+} // namespace Ggl
+
 /** Runs the test. */
 int main(int argc, char *argv[]) {
-    GglConfigFactoryGlxTest test;
+    
+    Ggl::ConfigFactoryGlxTest test;
     
     test.testCreate();
     return 0;
