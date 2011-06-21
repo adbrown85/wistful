@@ -11,13 +11,13 @@ namespace Ggl {
 
 
 enum WindowEventType {
-    DESTROY,
-    MAP,
-    EXPOSE,
-    RESHAPE,
-    KEY,
-    MOUSE,
-    OTHER
+    WINDOW_DESTROY_EVENT,
+    WINDOW_MAP_EVENT,
+    WINDOW_EXPOSE_EVENT,
+    WINDOW_RESHAPE_EVENT,
+    WINDOW_KEY_EVENT,
+    WINDOW_MOUSE_EVENT,
+    WINDOW_OTHER_EVENT
 };
 
 

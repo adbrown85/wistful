@@ -134,17 +134,17 @@ void WindowGlx::doRun() {
     while (!closed) {
         WindowEvent event = getEvent();
         switch (event.getType()) {
-        case MAP:
+        case WINDOW_MAP_EVENT:
             fireInitEvent();
             break;
-        case EXPOSE:
+        case WINDOW_EXPOSE_EVENT:
             fireDisplayEvent();
             break;
-        case DESTROY:
+        case WINDOW_DESTROY_EVENT:
             fireDestroyEvent();
             close();
             break;
-        case KEY:
+        case WINDOW_KEY_EVENT:
             fireKeyEvent(event.getTrigger());
             break;
         default:
@@ -198,17 +198,17 @@ WindowEvent WindowGlx::getEvent() {
         XNextEvent(display, &xEvent);
         switch (xEvent.type) {
         case ClientMessage:
-            return WindowEvent(DESTROY);
+            return WindowEvent(WINDOW_DESTROY_EVENT);
         case MapNotify:
-            return WindowEvent(MAP);
+            return WindowEvent(WINDOW_MAP_EVENT);
         case Expose:
             if (xEvent.xexpose.count == 0) {
-                return WindowEvent(EXPOSE);
+                return WindowEvent(WINDOW_EXPOSE_EVENT);
             }
         case KeyPress:
             return toGglEvent(xEvent.xkey);
         default:
-            return WindowEvent(OTHER);
+            return WindowEvent(WINDOW_OTHER_EVENT);
         }
     }
 }
@@ -292,7 +292,7 @@ PFNGLXCCAA WindowGlx::getGlXCCAA() {
  */
 WindowEvent WindowGlx::toGglEvent(XKeyEvent &xke) {
     
-    WindowEvent ge(KEY);
+    WindowEvent ge(WINDOW_KEY_EVENT);
     KeySym ks = XLookupKeysym(&xke, 0);
     
     ge.setTrigger(ks);
