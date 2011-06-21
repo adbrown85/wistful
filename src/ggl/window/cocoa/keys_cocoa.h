@@ -134,6 +134,6 @@
 #define GGL_BRACELEFT    '{'
 #define GGL_BAR          '|'
 #define GGL_BRACERIGHT   '}'
-#define GGL_ASCIITILDE   '~'
+#define GGL_TILDE        '~'
 
 #endif
