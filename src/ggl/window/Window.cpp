@@ -256,7 +256,7 @@ void Ggl::Window::setLocation(int x, int y) {
 /**
  * Returns copy of configuration used to create window.
  */
-Ggl::WindowFormat
+WindowFormat
 Ggl::Window::getWindowFormat() const {
     return windowFormat;
 }
