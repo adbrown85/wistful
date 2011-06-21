@@ -6,6 +6,7 @@
  */
 #include "ggl/window/cocoa/WindowCocoa.hpp"
 using namespace Ggl;
+using namespace std;
 
 /**
  * Creates a window.
@@ -34,7 +35,7 @@ void WindowCocoa::doActivateWindow() {
     [application activateIgnoringOtherApps:YES];
 }
 
-void WindowCocoa::doCreateConnection() throw(std::exception) {
+void WindowCocoa::doCreateConnection() throw(exception) {
     
     GglApplicationDelegate *delegate;
     NSMenu *menu;
@@ -54,7 +55,7 @@ void WindowCocoa::doCreateConnection() throw(std::exception) {
     TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 }
 
-void WindowCocoa::doCreateWindow() throw(std::exception) {
+void WindowCocoa::doCreateWindow() throw(exception) {
     
     NSUInteger style = createWindowStyle();
     NSRect rect;
@@ -87,7 +88,7 @@ void WindowCocoa::doCreateWindow() throw(std::exception) {
     [window makeFirstResponder:view];
 }
 
-void WindowCocoa::doCreateContext() throw(std::exception) {
+void WindowCocoa::doCreateContext() throw(exception) {
     ;
 }
 
@@ -205,8 +206,8 @@ GLuint*
 WindowCocoa::toArray(const WindowFormat &wf) {
     
     NSOpenGLPixelFormatAttribute *array;
-    std::list<GLuint> attributes = toList(wf);
-    std::list<GLuint>::iterator ai;
+    list<GLuint> attributes = toList(wf);
+    list<GLuint>::iterator ai;
     int length = attributes.size() + 1;
     int count = 0;
     
@@ -227,10 +228,10 @@ WindowCocoa::toArray(const WindowFormat &wf) {
  * @param wf Configuration of window
  * @return List of attributes
  */
-std::list<GLuint>
+list<GLuint>
 WindowCocoa::toList(const WindowFormat &wf) {
     
-    std::list<GLuint> attributes;
+    list<GLuint> attributes;
     
     // Add default attributes
     attributes.push_back(NSOpenGLPFAAccelerated);
