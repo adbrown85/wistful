@@ -27,15 +27,17 @@ public:
 /**
  * @brief Observer of an OpenGL view.
  */
-class GglOpenGLViewListener {
+namespace Ggl {
+class OpenGLViewListener {
 public:
-    GglOpenGLViewListener() {}
-    virtual ~GglOpenGLViewListener() {}
+    OpenGLViewListener() {}
+    virtual ~OpenGLViewListener() {}
     virtual void onOpenGLViewInit() = 0;
     virtual void onOpenGLViewDisplay() = 0;
     virtual void onOpenGLViewDestroy() = 0;
     virtual void onOpenGLViewKey(int key) = 0;
 };
+}
 
 
 /**
@@ -44,7 +46,7 @@ public:
 namespace Ggl {
 class WindowCocoa : public Ggl::Window,
                     public Ggl::ApplicationListener,
-                    public GglOpenGLViewListener {
+                    public Ggl::OpenGLViewListener {
 public:
     WindowCocoa(const Ggl::WindowFormat &wf);
     virtual ~WindowCocoa();
@@ -96,12 +98,12 @@ private:
  * OpenGL view for window.
  */
 @interface MyOpenGLView : NSOpenGLView {
-    GglOpenGLViewListener *openGLViewListener;
+    Ggl::OpenGLViewListener *openGLViewListener;
 }
 - (void)keyDown:(NSEvent*)event;
 - (void)drawRect:(NSRect)dirtyRect;
 - (void)prepareOpenGL;
-- (void)setOpenGLViewListener:(GglOpenGLViewListener*)listener;
+- (void)setOpenGLViewListener:(Ggl::OpenGLViewListener*)listener;
 @end
 
 
