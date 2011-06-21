@@ -11,7 +11,7 @@
 #if defined(HAVE_COCOA)
 #include "ggl/window/cocoa/GglWindowCocoa.hpp"
 #elif defined(HAVE_GLX)
-#include "ggl/window/glx/GglWindowGlx.hpp"
+#include "ggl/window/glx/WindowGlx.hpp"
 #endif
 namespace Ggl {
 

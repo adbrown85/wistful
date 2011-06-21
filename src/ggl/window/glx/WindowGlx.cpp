@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/window/glx/GglWindowGlx.hpp"
+#include "ggl/window/glx/WindowGlx.hpp"
 Ggl::PFNGLXCCAA Ggl::WindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
 long Ggl::WindowGlx::DEFAULT_EVENT_MASK = getEventMask();
 
