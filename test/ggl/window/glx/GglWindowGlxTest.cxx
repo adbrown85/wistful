@@ -7,27 +7,28 @@
 #include "ggl/window/GglWindowFactory.hpp"
 #include <iostream>
 using namespace std;
+namespace Ggl {
 
 /** Test for GlWindowGlx. */
-class GglWindowGlxTest {
+class WindowGlxTest {
 public:
     void testOpen();
 };
 
-class FakeWindowListener : public Ggl::WindowListener {
+class FakeWindowListener : public WindowListener {
 public:
-    virtual void onInit(Ggl::Window *window) {
+    virtual void onInit(Window *window) {
         cerr << "FakeGglListener::init()" << endl;
     }
-    virtual void onDisplay(Ggl::Window *window) {
+    virtual void onDisplay(Window *window) {
         cerr << "FakeGglListener::display()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void onDestroy(Ggl::Window *window) {
+    virtual void onDestroy(Window *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(Ggl::Window *window, Ggl::WindowEvent &event) {
+    virtual void onKey(Window *window, WindowEvent &event) {
         switch (event.getTrigger()) {
         case GGL_ESCAPE:
             cerr << "GGL_ESCAPE" << endl;
@@ -44,22 +45,25 @@ public:
 };
 
 /** Ensures window can be opened. */
-void GglWindowGlxTest::testOpen() {
+void Ggl::WindowGlxTest::testOpen() {
     
-    Ggl::WindowFactory factory;
-    Ggl::Window *window = factory.createWindow();
+    WindowFactory factory;
+    Window *window = factory.createWindow();
     
     window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addWindowListener(new FakeWindowListener());
-    Ggl::Window::open(window);
+    Window::open(window);
     
-    cerr << "End of GglWindowGlxTest::testOpen()" << endl;
+    cerr << "End of Ggl::WindowGlxTest::testOpen()" << endl;
 }
+
+} // End of namespace Ggl
 
 /** Runs the test. */
 int main(int argc, char *argv[]) {
-    GglWindowGlxTest test;
+    
+    Ggl::WindowGlxTest test;
     
     test.testOpen();
 }
