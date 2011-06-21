@@ -10,7 +10,7 @@
 #include "ggl/Exception.hpp"
 #include "ggl/window/keys.h"
 #include "ggl/window/WindowEvent.hpp"
-#include "ggl/window/GglWindowListener.hpp"
+#include "ggl/window/WindowListener.hpp"
 #include "ggl/window/GglWindowFormat.hpp"
 namespace Ggl {
 
