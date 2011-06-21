@@ -274,7 +274,7 @@ Ggl::WindowCocoa::toList(const WindowFormat &wf) {
     applicationListener->onApplicationTerminate();
 }
 
-- (void)setApplicationListener:(GglApplicationListener*)listener {
+- (void)setApplicationListener:(Ggl::ApplicationListener*)listener {
     applicationListener = listener;
 }
 @end
