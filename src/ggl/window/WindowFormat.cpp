@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/window/GglWindowFormat.hpp"
+#include "ggl/window/WindowFormat.hpp"
 
 /**
  * Creates a default window format.

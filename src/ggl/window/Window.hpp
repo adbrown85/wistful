@@ -11,7 +11,7 @@
 #include "ggl/window/keys.h"
 #include "ggl/window/WindowEvent.hpp"
 #include "ggl/window/WindowListener.hpp"
-#include "ggl/window/GglWindowFormat.hpp"
+#include "ggl/window/WindowFormat.hpp"
 namespace Ggl {
 
 
