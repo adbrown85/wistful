@@ -31,7 +31,7 @@ public:
     virtual void onDestroy(Window *window) {
         cerr << "FakeGglListener::destroy()" << endl;
     }
-    virtual void onKey(Window *window, WindowEvent &event) {
+    virtual void onKey(Window *window, const WindowEvent &event) {
         cerr << "FakeGglListener::onKey()" << endl;
         int trigger = event.getTrigger();
         

@@ -25,7 +25,7 @@ public:
     virtual void onInit(Window *window) = 0;
     virtual void onDisplay(Window *window) = 0;
     virtual void onDestroy(Window *window) = 0;
-    virtual void onKey(Window *window, WindowEvent &event) = 0;
+    virtual void onKey(Window *window, const WindowEvent &event) = 0;
 };
 
 }
