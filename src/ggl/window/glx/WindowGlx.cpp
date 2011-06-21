@@ -171,27 +171,6 @@ XVisualInfo* Ggl::WindowGlx::createInfo(Display *display,
 }
 
 /**
- * Returns an OpenGL configuration for use with the window. 
- */
-GLXFBConfig Ggl::WindowGlx::createConfig() {
-    
-    ConfigFactoryGlx cf;
-    std::map<int,int> reqs;
-    
-    reqs[GLX_X_RENDERABLE] = 1;
-    reqs[GLX_DRAWABLE_TYPE] = GLX_WINDOW_BIT;
-    reqs[GLX_RENDER_TYPE] = GLX_RGBA_BIT;
-    reqs[GLX_CONFIG_CAVEAT] = GLX_NONE;
-    reqs[GLX_DOUBLEBUFFER] = 1;
-    reqs[GLX_RED_SIZE] = 8;
-    reqs[GLX_GREEN_SIZE] = 8;
-    reqs[GLX_BLUE_SIZE] = 8;
-    reqs[GLX_ALPHA_SIZE] = 8;
-    
-    return cf.create(reqs);
-}
-
-/**
  * Returns an OpenGL configuration for use with the window.
  * 
  * @param wf Container with window settings

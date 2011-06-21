@@ -44,7 +44,6 @@ private:
 // Helpers
     WindowEvent getEvent();
     static void subscribe(Display *display, int window);
-    static GLXFBConfig createConfig();
     static GLXFBConfig createConfig(const WindowFormat &wf);
     static XVisualInfo* createInfo(Display *display, const GLXFBConfig &fbc);
     static long getEventMask();
