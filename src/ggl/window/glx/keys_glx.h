@@ -26,26 +26,6 @@
 #define GGL_UP           XK_Up
 #define GGL_DOWN         XK_Down
 
-/* Keypad */
-#define GGL_KP_ENTER     XK_KP_Enter
-#define GGL_KP_DELETE    XK_KP_Delete
-#define GGL_KP_EQUAL     XK_KP_Equal
-#define GGL_KP_MULTIPLY  XK_KP_Multiply
-#define GGL_KP_ADD       XK_KP_Add
-#define GGL_KP_SUBTRACT  XK_KP_Subtract
-#define GGL_KP_DECIMAL   XK_KP_Decimal
-#define GGL_KP_DIVIDE    XK_KP_Divide
-#define GGL_KP_0         XK_KP_0
-#define GGL_KP_1         XK_KP_1
-#define GGL_KP_2         XK_KP_2
-#define GGL_KP_3         XK_KP_3
-#define GGL_KP_4         XK_KP_4
-#define GGL_KP_5         XK_KP_5
-#define GGL_KP_6         XK_KP_6
-#define GGL_KP_7         XK_KP_7
-#define GGL_KP_8         XK_KP_8
-#define GGL_KP_9         XK_KP_9
-
 /* Function keys */
 #define GGL_F1           XK_F1
 #define GGL_F2           XK_F2
@@ -69,7 +49,6 @@
 #define GGL_PERCENT      XK_percent
 #define GGL_AMPERSAND    XK_ampersand
 #define GGL_APOSTROPHE   XK_apostrophe
-#define GGL_QUOTERIGHT   XK_quoteright
 #define GGL_PARENLEFT    XK_parenleft
 #define GGL_PARENRIGHT   XK_parenright
 #define GGL_ASTERISK     XK_asterisk
@@ -123,10 +102,8 @@
 #define GGL_bracketleft  XK_bracketleft
 #define GGL_backslash    XK_backslash
 #define GGL_bracketright XK_bracketright
-#define GGL_asciicircum  XK_asciicircum
 #define GGL_underscore   XK_underscore
 #define GGL_grave        XK_grave
-#define GGL_quoteleft    XK_quoteleft
 #define GGL_a            XK_a
 #define GGL_b            XK_b
 #define GGL_c            XK_c
