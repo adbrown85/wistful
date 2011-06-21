@@ -8,7 +8,7 @@
 #define GGL_WINDOWCOCOA_HPP
 #include "ggl/common.h"
 #import <Cocoa/Cocoa.h>
-#include "ggl/window/GglWindow.hpp"
+#include "ggl/window/Window.hpp"
 namespace Ggl {
 
 /**

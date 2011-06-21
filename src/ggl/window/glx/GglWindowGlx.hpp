@@ -8,7 +8,7 @@
 #define GGL_WINDOWGLX_HPP
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
-#include "ggl/window/GglWindow.hpp"
+#include "ggl/window/Window.hpp"
 #include "ggl/window/glx/GglConfigFactoryGlx.hpp"
 namespace Ggl {
 

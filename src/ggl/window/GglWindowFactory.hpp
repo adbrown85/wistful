@@ -7,7 +7,7 @@
 #ifndef GGL_WINDOWFACTORY_HPP
 #define GGL_WINDOWFACTORY_HPP
 #include "ggl/common.h"
-#include "ggl/window/GglWindow.hpp"
+#include "ggl/window/Window.hpp"
 #if defined(HAVE_COCOA)
 #include "ggl/window/cocoa/GglWindowCocoa.hpp"
 #elif defined(HAVE_GLX)

@@ -1,10 +1,10 @@
 /*
- * GglWindow.cpp
+ * Window.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/window/GglWindow.hpp"
+#include "ggl/window/Window.hpp"
 
 /**
  * Creates a window from a format.
