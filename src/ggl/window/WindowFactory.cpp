@@ -5,18 +5,19 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/WindowFactory.hpp"
+using namespace Ggl;
 
 /**
  * Creates a window factory.
  */
-Ggl::WindowFactory::WindowFactory() {
+WindowFactory::WindowFactory() {
     ;
 }
 
 /**
  * Destroys the window factory.
  */
-Ggl::WindowFactory::~WindowFactory() {
+WindowFactory::~WindowFactory() {
     ;
 }
 
@@ -25,7 +26,7 @@ Ggl::WindowFactory::~WindowFactory() {
  * 
  * @return Pointer to the new window
  */
-Ggl::Window* Ggl::WindowFactory::createWindow() {
+Ggl::Window* WindowFactory::createWindow() {
 #if defined(HAVE_COCOA)
     return new WindowCocoa(defaultWindowFormat);
 #elif defined(HAVE_GLX)
@@ -40,7 +41,7 @@ Ggl::Window* Ggl::WindowFactory::createWindow() {
  * @return Pointer to the new window
  */
 Ggl::Window*
-Ggl::WindowFactory::createWindow(const WindowFormat &wf) {
+WindowFactory::createWindow(const WindowFormat &wf) {
 #if defined(HAVE_COCOA)
     return new WindowCocoa(wf);
 #elif defined(HAVE_GLX)

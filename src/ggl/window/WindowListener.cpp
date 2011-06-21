@@ -5,11 +5,12 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/WindowListener.hpp"
+using namespace Ggl;
 
-Ggl::WindowListener::WindowListener() {
+WindowListener::WindowListener() {
     ;
 }
 
-Ggl::WindowListener::~WindowListener() {
+WindowListener::~WindowListener() {
     ;
 }

@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/Window.hpp"
+using namespace Ggl;
 
 /**
  * Creates a window from a format.
