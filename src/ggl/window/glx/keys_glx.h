@@ -99,11 +99,11 @@
 #define GGL_X            XK_X
 #define GGL_Y            XK_Y
 #define GGL_Z            XK_Z
-#define GGL_bracketleft  XK_bracketleft
-#define GGL_backslash    XK_backslash
-#define GGL_bracketright XK_bracketright
-#define GGL_underscore   XK_underscore
-#define GGL_grave        XK_grave
+#define GGL_BRACKETLEFT  XK_bracketleft
+#define GGL_BACKSLASH    XK_backslash
+#define GGL_BRACKETRIGHT XK_bracketright
+#define GGL_UNDERSCORE   XK_underscore
+#define GGL_GRAVE        XK_grave
 #define GGL_a            XK_a
 #define GGL_b            XK_b
 #define GGL_c            XK_c
