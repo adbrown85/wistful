@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "WindowFactory.hpp"
+#include "ggl/window/WindowFactory.hpp"
 
 /**
  * Creates a window factory.

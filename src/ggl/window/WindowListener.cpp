@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "WindowListener.hpp"
+#include "ggl/window/WindowListener.hpp"
 
 Ggl::WindowListener::WindowListener() {
     ;
