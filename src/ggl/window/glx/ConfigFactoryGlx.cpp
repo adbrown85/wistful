@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/window/glx/GglConfigFactoryGlx.hpp"
+#include "ggl/window/glx/ConfigFactoryGlx.hpp"
 
 /**
  * Creates an OpenGL configuration factory.

@@ -9,7 +9,7 @@
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
 #include "ggl/window/Window.hpp"
-#include "ggl/window/glx/GglConfigFactoryGlx.hpp"
+#include "ggl/window/glx/ConfigFactoryGlx.hpp"
 namespace Ggl {
 
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
