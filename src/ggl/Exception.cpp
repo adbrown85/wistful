@@ -6,13 +6,14 @@
  */
 #include "ggl/Exception.hpp"
 using namespace Ggl;
+using namespace std;
 
 /**
  * Creates a GGL exception.
  * 
  * @param message Explanation shown to the user
  */
-Exception::Exception(const std::string &message) throw() {
+Exception::Exception(const string &message) throw() {
     this->message = message;
 }
 
