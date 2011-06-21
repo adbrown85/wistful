@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/window/glx/ConfigFactoryGlx.hpp"
+using namespace std;
 namespace Ggl {
 
 /** Test for GglConfigFactoryGlx. */
@@ -17,7 +18,7 @@ public:
 void ConfigFactoryGlxTest::testCreate() {
     
     ConfigFactoryGlx cf;
-    std::map<int,int> reqs;
+    map<int,int> reqs;
     GLXFBConfig config;
     
     reqs[GLX_X_RENDERABLE] = 1;
