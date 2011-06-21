@@ -35,13 +35,13 @@ public:
         cerr << "FakeGglListener::onKey()" << endl;
         int trigger = event.getTrigger();
         
-        if (trigger == GGL_a) {
+        if (trigger == GGL_KEY_a) {
             cerr << 'a' << endl;
-        } else if (trigger == GGL_A) {
+        } else if (trigger == GGL_KEY_A) {
             cerr << "A" << endl;
-        } else if (trigger == GGL_UP) {
+        } else if (trigger == GGL_KEY_UP) {
             cerr << "Up" << endl;
-        } else if (trigger == GGL_ESCAPE) {
+        } else if (trigger == GGL_KEY_ESCAPE) {
             cerr << "Escape" << endl;
             window->close();
         }

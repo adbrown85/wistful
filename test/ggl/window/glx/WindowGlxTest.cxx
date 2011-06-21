@@ -30,15 +30,15 @@ public:
     }
     virtual void onKey(Window *window, const WindowEvent &event) {
         switch (event.getTrigger()) {
-        case GGL_ESCAPE:
-            cerr << "GGL_ESCAPE" << endl;
+        case GGL_KEY_ESCAPE:
+            cerr << "GGL_KEY_ESCAPE" << endl;
             window->close();
             break;
-        case GGL_A:
-            cerr << "GGL_A" << endl;
+        case GGL_KEY_A:
+            cerr << "GGL_KEY_A" << endl;
             break;
-        case GGL_a:
-            cerr << "GGL_a" << endl;
+        case GGL_KEY_a:
+            cerr << "GGL_KEY_a" << endl;
             break;
         }
     }
