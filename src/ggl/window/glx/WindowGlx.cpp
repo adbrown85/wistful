@@ -6,6 +6,7 @@
  */
 #include "ggl/window/glx/WindowGlx.hpp"
 using namespace Ggl;
+using namespace std;
 
 PFNGLXCCAA WindowGlx::glXCreateContextAttribsARB = getGlXCCAA();
 long WindowGlx::DEFAULT_EVENT_MASK = getEventMask();
@@ -31,7 +32,7 @@ WindowGlx::~WindowGlx() {
     ;
 }
 
-void WindowGlx::doCreateConnection() throw(std::exception) {
+void WindowGlx::doCreateConnection() throw(exception) {
     
     display = XOpenDisplay(NULL);
     
@@ -45,7 +46,7 @@ void WindowGlx::doDestroyConnection() {
     display = NULL;
 }
 
-void WindowGlx::doCreateWindow() throw(std::exception) {
+void WindowGlx::doCreateWindow() throw(exception) {
     
     int winmask = getWindowMask();
     XVisualInfo *info = createInfo(display, config);
@@ -80,7 +81,7 @@ void WindowGlx::doDestroyWindow() {
     window = 0;
 }
 
-void WindowGlx::doCreateContext() throw(std::exception) {
+void WindowGlx::doCreateContext() throw(exception) {
     
     XErrorHandler handler = NULL;
     GLint attribs[] = {
