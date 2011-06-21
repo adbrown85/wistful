@@ -7,7 +7,7 @@
 #ifndef GGL_WINDOWLISTENER_HPP
 #define GGL_WINDOWLISTENER_HPP
 #include "ggl/common.h"
-#include "ggl/window/GglWindowEvent.hpp"
+#include "ggl/window/WindowEvent.hpp"
 namespace Ggl {
 
 

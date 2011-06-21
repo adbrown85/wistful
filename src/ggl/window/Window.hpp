@@ -9,7 +9,7 @@
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
 #include "ggl/window/keys.h"
-#include "ggl/window/GglWindowEvent.hpp"
+#include "ggl/window/WindowEvent.hpp"
 #include "ggl/window/GglWindowListener.hpp"
 #include "ggl/window/GglWindowFormat.hpp"
 namespace Ggl {
