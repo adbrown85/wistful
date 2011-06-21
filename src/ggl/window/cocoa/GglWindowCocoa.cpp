@@ -35,14 +35,14 @@ void Ggl::WindowCocoa::doActivateWindow() {
 
 void Ggl::WindowCocoa::doCreateConnection() throw(std::exception) {
     
-    MyApplicationDelegate *delegate;
+    GglApplicationDelegate *delegate;
     NSMenu *menu;
     ProcessSerialNumber psn;
     
     pool = [[NSAutoreleasePool alloc] init];
     application = [NSApplication sharedApplication];
     
-    delegate = [[MyApplicationDelegate alloc] init];
+    delegate = [[GglApplicationDelegate alloc] init];
     [application setDelegate:delegate];
     [delegate setApplicationListener:this];
     
@@ -265,7 +265,7 @@ Ggl::WindowCocoa::toList(const WindowFormat &wf) {
 // Objective C
 //
 
-@implementation MyApplicationDelegate
+@implementation GglApplicationDelegate
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication*)app {
     return YES;
 }

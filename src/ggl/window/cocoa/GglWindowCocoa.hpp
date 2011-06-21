@@ -85,7 +85,7 @@ private:
 /*
  * Application delegate for window.
  */
-@interface MyApplicationDelegate: NSObject <NSApplicationDelegate> {
+@interface GglApplicationDelegate: NSObject <NSApplicationDelegate> {
     Ggl::ApplicationListener *applicationListener;
 }
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app;
