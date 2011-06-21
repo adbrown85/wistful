@@ -6,6 +6,7 @@
  */
 #include "ggl/window/WindowFormat.hpp"
 using namespace Ggl;
+using namespace std;
 
 /**
  * Creates a default window format.

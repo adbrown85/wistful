@@ -6,6 +6,7 @@
  */
 #include "ggl/window/WindowListener.hpp"
 using namespace Ggl;
+using namespace std;
 
 WindowListener::WindowListener() {
     ;

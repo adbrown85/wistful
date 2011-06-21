@@ -6,6 +6,7 @@
  */
 #include "ggl/window/Window.hpp"
 using namespace Ggl;
+using namespace std;
 
 /**
  * Creates a window from a format.
@@ -53,8 +54,8 @@ void Ggl::Window::open(Window *window) {
         window->activate();
         window->run();
         window->destroy();
-    } catch (std::exception &e) {
-        std::cerr << e.what() << std::endl;
+    } catch (exception &e) {
+        cerr << e.what() << endl;
         exit(1);
     }
 }
@@ -69,7 +70,7 @@ void Ggl::Window::open(Window *window) {
  * @throw std::exception if cannot activate native window
  * @throw std::exception if cannot activate OpenGL context
  */
-void Ggl::Window::activate() throw(std::exception) {
+void Ggl::Window::activate() throw(exception) {
     
     // Guard against bad requests
     if (!created || activated || destroyed) {
@@ -80,7 +81,7 @@ void Ggl::Window::activate() throw(std::exception) {
     try {
         doActivateContext();
         doActivateWindow();
-    } catch (std::exception &e) {
+    } catch (exception &e) {
         destroy();
         throw e;
     }
@@ -96,7 +97,7 @@ void Ggl::Window::activate() throw(std::exception) {
  * @throw std::exception if cannot make native window
  * @throw std::exception if cannot make OpenGL context
  */
-void Ggl::Window::create() throw(std::exception) {
+void Ggl::Window::create() throw(exception) {
     
     // Guard against bad requests
     if (created || destroyed) {
@@ -109,7 +110,7 @@ void Ggl::Window::create() throw(std::exception) {
     // Try to make window
     try {
         doCreateWindow();
-    } catch (std::exception &e) {
+    } catch (exception &e) {
         doDestroyConnection();
         throw e;
     }
@@ -117,7 +118,7 @@ void Ggl::Window::create() throw(std::exception) {
     // Try to make context
     try {
         doCreateContext();
-    } catch (std::exception &e) {
+    } catch (exception &e) {
         doDestroyWindow();
         doDestroyConnection();
         throw e;
@@ -151,7 +152,7 @@ void Ggl::Window::destroy() {
  */
 void Ggl::Window::fireKeyEvent(int key) {
     
-    std::list<WindowListener*>::iterator it;
+    list<WindowListener*>::iterator it;
     WindowEvent event(KEY);
     
     event.setTrigger(key);
@@ -166,7 +167,7 @@ void Ggl::Window::fireKeyEvent(int key) {
  */
 void Ggl::Window::fireDestroyEvent() {
     
-    std::list<WindowListener*>::iterator it;
+    list<WindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onDestroy(this);
@@ -178,7 +179,7 @@ void Ggl::Window::fireDestroyEvent() {
  */
 void Ggl::Window::fireDisplayEvent() {
     
-    std::list<WindowListener*>::iterator it;
+    list<WindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onDisplay(this);
@@ -191,7 +192,7 @@ void Ggl::Window::fireDisplayEvent() {
  */
 void Ggl::Window::fireInitEvent() {
     
-    std::list<WindowListener*>::iterator it;
+    list<WindowListener*>::iterator it;
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onInit(this);

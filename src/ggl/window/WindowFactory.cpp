@@ -6,6 +6,7 @@
  */
 #include "ggl/window/WindowFactory.hpp"
 using namespace Ggl;
+using namespace std;
 
 /**
  * Creates a window factory.

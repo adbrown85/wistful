@@ -6,6 +6,7 @@
  */
 #include "ggl/window/WindowEvent.hpp"
 using namespace Ggl;
+using namespace std;
 
 WindowEvent::WindowEvent(WindowEventType type) {
     this->type = type;
