@@ -49,7 +49,7 @@ void WindowGlx::doDestroyConnection() {
 void WindowGlx::doCreateWindow() throw(exception) {
     
     int winmask = getWindowMask();
-    XVisualInfo *info = createInfo(display, config);
+    XVisualInfo *info = createInfo(getWindowFormat());
     Colormap cm = getColormap(display, info);
     XSetWindowAttributes wa = getWindowAttributes(cm);
     
@@ -95,12 +95,21 @@ void WindowGlx::doCreateContext() throw(exception) {
     handler = XSetErrorHandler(&x11ErrorHandler);
     
     // Create context
-    context = glXCreateContextAttribsARB(
-            display,  // display
-            config,   // framebuffer configuration
-            0,        // render type
-            True,     // direct
-            attribs); // attributes
+    if (glXCreateContextAttribsARB != NULL) {
+        context = glXCreateContextAttribsARB(
+                display,  // display
+                config,   // framebuffer configuration
+                0,        // render type
+                True,     // direct
+                attribs); // attributes
+    } else {
+        XVisualInfo *visual = createInfo(getWindowFormat());
+        context = glXCreateContext(
+                display,
+                visual,
+                NULL,
+                True);
+    }
     
     // Restore default error handler
     XSetErrorHandler(handler);
@@ -168,10 +177,10 @@ void WindowGlx::doClose() {
  * @param fbc Desired framebuffer configuration of window
  * @return Visual information about a compatible window
  */
-XVisualInfo* WindowGlx::createInfo(Display *display,
-                                   const GLXFBConfig &fbc) {
+XVisualInfo* WindowGlx::createInfo(const WindowFormat &wf) {
     
-    XVisualInfo *xvi = glXGetVisualFromFBConfig(display, fbc);
+    VisualFactoryGlx visualFactory;
+    XVisualInfo *xvi = visualFactory.createVisualInfo(wf);
 
     if (xvi == NULL) {
         throw Exception("Could not make visual!");

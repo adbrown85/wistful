@@ -10,6 +10,7 @@
 #include "ggl/Exception.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/glx/ConfigFactoryGlx.hpp"
+#include "ggl/window/glx/VisualFactoryGlx.hpp"
 namespace Ggl {
 
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
@@ -45,7 +46,7 @@ private:
     WindowEvent getEvent();
     static void subscribe(Display *display, int window);
     static GLXFBConfig createConfig(const WindowFormat &wf);
-    static XVisualInfo* createInfo(Display *display, const GLXFBConfig &fbc);
+    static XVisualInfo* createInfo(const WindowFormat &wf);
     static long getEventMask();
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
