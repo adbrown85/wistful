@@ -54,7 +54,7 @@ void Ggl::Window::open(Window *window) {
         window->activate();
         window->run();
         window->destroy();
-    } catch (exception &e) {
+    } catch (const exception &e) {
         cerr << e.what() << endl;
         exit(1);
     }
@@ -81,7 +81,7 @@ void Ggl::Window::activate() throw(exception) {
     try {
         doActivateContext();
         doActivateWindow();
-    } catch (exception &e) {
+    } catch (const exception &e) {
         destroy();
         throw e;
     }
@@ -110,7 +110,7 @@ void Ggl::Window::create() throw(exception) {
     // Try to make window
     try {
         doCreateWindow();
-    } catch (exception &e) {
+    } catch (const exception &e) {
         doDestroyConnection();
         throw e;
     }
@@ -118,7 +118,7 @@ void Ggl::Window::create() throw(exception) {
     // Try to make context
     try {
         doCreateContext();
-    } catch (exception &e) {
+    } catch (const exception &e) {
         doDestroyWindow();
         doDestroyConnection();
         throw e;
