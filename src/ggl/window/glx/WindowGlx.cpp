@@ -170,7 +170,14 @@ void WindowGlx::doClose() {
  */
 XVisualInfo* WindowGlx::createInfo(Display *display,
                                    const GLXFBConfig &fbc) {
-    return glXGetVisualFromFBConfig(display, fbc);
+    
+    XVisualInfo *xvi = glXGetVisualFromFBConfig(display, fbc);
+
+    if (xvi == NULL) {
+        throw Exception("Could not make visual!");
+    }
+    
+    return xvi;
 }
 
 /**
