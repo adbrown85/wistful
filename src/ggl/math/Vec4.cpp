@@ -47,181 +47,181 @@ Vec4::Vec4(float x, float y, float z, float w) {
     this->w = w;
 }
 
-Vec4& Vec4::operator=(const Vec4 &B) {
+Vec4& Vec4::operator=(const Vec4 &v) {
     
     // Check for self-assignment
-    if (this == &B)
+    if (this == &v)
         return *this;
     
     // Set components
-    x = B.x;
-    y = B.y;
-    z = B.z;
-    w = B.w;
+    x = v.x;
+    y = v.y;
+    z = v.z;
+    w = v.w;
     return *this;
 }
 
-Vec4& Vec4::operator+=(const Vec4 &B) {
-    x += B.x;
-    y += B.y;
-    z += B.z;
-    w += B.w;
+Vec4& Vec4::operator+=(const Vec4 &v) {
+    x += v.x;
+    y += v.y;
+    z += v.z;
+    w += v.w;
     return *this;
 }
 
-Vec4& Vec4::operator-=(const Vec4 &B) {
-    x -= B.x;
-    y -= B.y;
-    z -= B.z;
-    w -= B.w;
+Vec4& Vec4::operator-=(const Vec4 &v) {
+    x -= v.x;
+    y -= v.y;
+    z -= v.z;
+    w -= v.w;
     return *this;
 }
 
-Vec4& Vec4::operator*=(const Vec4 &B) {
-    x *= B.x;
-    y *= B.y;
-    z *= B.z;
-    w *= B.w;
+Vec4& Vec4::operator*=(const Vec4 &v) {
+    x *= v.x;
+    y *= v.y;
+    z *= v.z;
+    w *= v.w;
     return *this;
 }
 
-Vec4& Vec4::operator/=(const Vec4 &B) {
-    x /= B.x;
-    y /= B.y;
-    z /= B.z;
-    w /= B.w;
+Vec4& Vec4::operator/=(const Vec4 &v) {
+    x /= v.x;
+    y /= v.y;
+    z /= v.z;
+    w /= v.w;
     return *this;
 }
 
-Vec4& Vec4::operator+=(float b) {
-    x += b;
-    y += b;
-    z += b;
-    w += b;
+Vec4& Vec4::operator+=(float f) {
+    x += f;
+    y += f;
+    z += f;
+    w += f;
     return *this;
 }
 
-Vec4& Vec4::operator-=(float b) {
-    x -= b;
-    y -= b;
-    z -= b;
-    w -= b;
+Vec4& Vec4::operator-=(float f) {
+    x -= f;
+    y -= f;
+    z -= f;
+    w -= f;
     return *this;
 }
 
-Vec4& Vec4::operator*=(float b) {
-    x *= b;
-    y *= b;
-    z *= b;
-    w *= b;
+Vec4& Vec4::operator*=(float f) {
+    x *= f;
+    y *= f;
+    z *= f;
+    w *= f;
     return *this;
 }
 
-Vec4& Vec4::operator/=(float b) {
+Vec4& Vec4::operator/=(float f) {
     
-    float bInv=1/b;
+    float fInv=1/f;
     
-    x *= bInv;
-    y *= bInv;
-    z *= bInv;
-    w *= bInv;
+    x *= fInv;
+    y *= fInv;
+    z *= fInv;
+    w *= fInv;
     return *this;
 }
 
-bool operator==(const Vec4 &A, const Vec4 &B) {
-    return (A.x==B.x) && (A.y==B.y) && (A.z==B.z) && (A.w==B.w);
+bool operator==(const Vec4 &u, const Vec4 &v) {
+    return (u.x==v.x) && (u.y==v.y) && (u.z==v.z) && (u.w==v.w);
 }
 
-Vec4 operator+(const Vec4 &A, const Vec4 &B) {
+Vec4 operator+(const Vec4 &u, const Vec4 &v) {
     
     Vec4 C;
     
-    C.x = A.x + B.x;
-    C.y = A.y + B.y;
-    C.z = A.z + B.z;
-    C.w = A.w + B.w;
+    C.x = u.x + v.x;
+    C.y = u.y + v.y;
+    C.z = u.z + v.z;
+    C.w = u.w + v.w;
     
     return C;
 }
 
-Vec4 operator-(const Vec4 &A, const Vec4 &B) {
+Vec4 operator-(const Vec4 &u, const Vec4 &v) {
     
     Vec4 C;
     
-    C.x = A.x - B.x;
-    C.y = A.y - B.y;
-    C.z = A.z - B.z;
-    C.w = A.w - B.w;
+    C.x = u.x - v.x;
+    C.y = u.y - v.y;
+    C.z = u.z - v.z;
+    C.w = u.w - v.w;
     
     return C;
 }
 
-Vec4 operator*(const Vec4 &A, const Vec4 &B) {
+Vec4 operator*(const Vec4 &u, const Vec4 &v) {
     
     Vec4 C;
     
-    C.x = A.x * B.x;
-    C.y = A.y * B.y;
-    C.z = A.z * B.z;
-    C.w = A.w * B.w;
+    C.x = u.x * v.x;
+    C.y = u.y * v.y;
+    C.z = u.z * v.z;
+    C.w = u.w * v.w;
     
     return C;
 }
 
-Vec4 operator/(const Vec4 &A, const Vec4 &B) {
+Vec4 operator/(const Vec4 &u, const Vec4 &v) {
     
     Vec4 C;
     
-    if (B.x != 0)
-        C.x = A.x / B.x;
-    if (B.y != 0)
-        C.y = A.y / B.y;
-    if (B.z != 0)
-        C.z = A.z / B.z;
-    if (B.w != 0)
-        C.w = A.w / B.w;
+    if (v.x != 0)
+        C.x = u.x / v.x;
+    if (v.y != 0)
+        C.y = u.y / v.y;
+    if (v.z != 0)
+        C.z = u.z / v.z;
+    if (v.w != 0)
+        C.w = u.w / v.w;
     
     return C;
 }
 
-Vec4 operator+(const Vec4 &A, float b) {
-    return Vec4(A.x+b, A.y+b, A.z+b, A.w+b);
+Vec4 operator+(const Vec4 &u, float f) {
+    return Vec4(u.x+f, u.y+f, u.z+f, u.w+f);
 }
 
-Vec4 operator-(const Vec4 &A, float b) {
-    return Vec4(A.x-b, A.y-b, A.z-b, A.w-b);
+Vec4 operator-(const Vec4 &u, float f) {
+    return Vec4(u.x-f, u.y-f, u.z-f, u.w-f);
 }
 
-Vec4 operator*(const Vec4 &A, float b) {
+Vec4 operator*(const Vec4 &u, float f) {
     
     Vec4 C;
     
-    C.x = A.x * b;
-    C.y = A.y * b;
-    C.z = A.z * b;
-    C.w = A.w * b;
+    C.x = u.x * f;
+    C.y = u.y * f;
+    C.z = u.z * f;
+    C.w = u.w * f;
     
     return C;
 }
 
-Vec4 operator/(const Vec4 &A, float b) {
+Vec4 operator/(const Vec4 &u, float f) {
     
     Vec4 C;
     
-    if (b != 0) {
-        C.x = A.x / b;
-        C.y = A.y / b;
-        C.z = A.z / b;
-        C.w = A.w / b;
+    if (f != 0) {
+        C.x = u.x / f;
+        C.y = u.y / f;
+        C.z = u.z / f;
+        C.w = u.w / f;
     }
     
     return C;
 }
 
-ostream& operator<<(ostream &out, const Vec4 &A) {
+ostream& operator<<(ostream &out, const Vec4 &u) {
     out << fixed << setprecision(2);
     out << "[";
-    out << A.x << "," << A.y << "," << A.z << "," << A.w;
+    out << u.x << "," << u.y << "," << u.z << "," << u.w;
     out << "]";
     out << resetiosflags(ios_base::floatfield);
     out << setprecision(6);
@@ -259,13 +259,13 @@ float Vec4::operator[](int i) const {
 /**
  * @return vector perpendicular to the plane formed by two vectors.
  */
-Vec4 cross(const Vec4 &A, const Vec4 &B) {
+Vec4 cross(const Vec4 &u, const Vec4 &v) {
     
     Vec4 C;
     
-    C.x = (A.y * B.z) - (A.z * B.y);
-    C.y = (A.z * B.x) - (A.x * B.z);
-    C.z = (A.x * B.y) - (A.y * B.x);
+    C.x = (u.y * v.z) - (u.z * v.y);
+    C.y = (u.z * v.x) - (u.x * v.z);
+    C.z = (u.x * v.y) - (u.y * v.x);
     C.w = 1.0;
     
     return C;
@@ -274,8 +274,8 @@ Vec4 cross(const Vec4 &A, const Vec4 &B) {
 /**
  * @return projection of one vector onto another.
  */
-float dot(const Vec4 &A, const Vec4 &B) {
-    return A.x*B.x + A.y*B.y + A.z*B.z;
+float dot(const Vec4 &u, const Vec4 &v) {
+    return u.x*v.x + u.y*v.y + u.z*v.z;
 }
 
 /**
@@ -302,33 +302,33 @@ float Vec4::length() const {
 /**
  * @return component-wise maximum of the two vectors
  */
-Vec4 max(const Vec4 &A, const Vec4 &B) {
-    return Vec4(max(A.x,B.x), max(A.y,B.y), max(A.z,B.z), max(A.w,B.w));
+Vec4 max(const Vec4 &u, const Vec4 &v) {
+    return Vec4(max(u.x,v.x), max(u.y,v.y), max(u.z,v.z), max(u.w,v.w));
 }
 
 /**
  * @return component-wise minimum of the two vectors
  */
-Vec4 min(const Vec4 &A, const Vec4 &B) {
-    return Vec4(min(A.x,B.x), min(A.y,B.y), min(A.z,B.z), min(A.w,B.w));
+Vec4 min(const Vec4 &u, const Vec4 &v) {
+    return Vec4(min(u.x,v.x), min(u.y,v.y), min(u.z,v.z), min(u.w,v.w));
 }
 
 /**
  * @return Unit length version of the vector.
  */
-Vec4 normalize(Vec4 vector) {
+Vec4 normalize(Vec4 u) {
     
     float len;
     
     // Divide by length
-    len = vector.length();
+    len = u.length();
     if (len == 0.0) {
-        vector = Vec4();
+        u = Vec4();
     } else {
-        vector /= len;
-        vector.w = 1.0;
+        u /= len;
+        u.w = 1.0;
     }
-    return vector;
+    return u;
 }
 
 void Vec4::set(float x, float y, float z) {
