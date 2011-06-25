@@ -50,8 +50,9 @@ Vec4::Vec4(float x, float y, float z, float w) {
 Vec4& Vec4::operator=(const Vec4 &v) {
     
     // Check for self-assignment
-    if (this == &v)
+    if (this == &v) {
         return *this;
+    }
     
     // Set components
     x = v.x;
