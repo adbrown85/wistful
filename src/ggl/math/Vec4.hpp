@@ -10,6 +10,7 @@
 #include <cmath>
 #include <iomanip>
 #include "ggl/Exception.hpp"
+namespace Ggl {
 
 
 /**
@@ -61,5 +62,5 @@ public:
     friend Vec4 normalize(Vec4 vector);
 };
 
-
+} // namespace Ggl
 #endif

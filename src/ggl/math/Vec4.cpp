@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/math/Vec4.hpp"
+using namespace Ggl;
 using namespace std;
 
 /**
@@ -228,7 +229,7 @@ float& Vec4::operator[](int i) {
     case 2: return z;
     case 3: return w;
     default:
-        throw Ggl::Exception("[Vector] Index out of bounds.");
+        throw Exception("[Vector] Index out of bounds.");
     }
 }
 
@@ -242,7 +243,7 @@ float Vec4::operator[](int i) const {
     case 2: return z;
     case 3: return w;
     default:
-        throw Ggl::Exception("[Vector] Index out of bounds.");
+        throw Exception("[Vector] Index out of bounds.");
     }
 }
 
@@ -278,7 +279,7 @@ float Vec4::get(int i) const {
     case 2: return z;
     case 3: return w;
     default:
-        throw Ggl::Exception("[Vector] Index out of bounds.");
+        throw Exception("[Vector] Index out of bounds.");
     }
 }
 
