@@ -89,7 +89,7 @@ Vec4& Vec4::operator/=(const Vec4 &v) {
     
     // Check for division by zero
     if ((v.x == 0) || (v.y == 0) || (v.z == 0) || (v.w == 0)) {
-        throw Exception("Cannot divide by zero!");
+        throw Exception("[Vec4] Cannot divide by zero!");
     }
     
     x /= v.x;
@@ -129,7 +129,7 @@ Vec4& Vec4::operator/=(float f) {
     
     // Check for division by zero
     if (f == 0) {
-        throw Exception("Cannot divide by zero!");
+        throw Exception("[Vec4] Cannot divide by zero!");
     }
     
     fInv = 1/f;
@@ -185,7 +185,7 @@ Vec4 operator/(const Vec4 &u, const Vec4 &v) {
     Vec4 C;
     
     if ((v.x == 0) || (v.y == 0) || (v.z == 0) || (v.w == 0)) {
-        throw Exception("Cannot divide by zero!");
+        throw Exception("[Vec4] Cannot divide by zero!");
     }
     
     C.x = u.x / v.x;
@@ -253,7 +253,7 @@ float& Vec4::operator[](int i) {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Vector] Index out of bounds.");
+        throw Exception("[Vec4] Index out of bounds!");
     }
 }
 
@@ -267,7 +267,7 @@ float Vec4::operator[](int i) const {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Vector] Index out of bounds.");
+        throw Exception("[Vec4] Index out of bounds!");
     }
 }
 
@@ -303,7 +303,7 @@ float Vec4::get(int i) const {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Vector] Index out of bounds.");
+        throw Exception("[Vec4] Index out of bounds!");
     }
 }
 
