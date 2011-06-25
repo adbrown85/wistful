@@ -86,6 +86,12 @@ Vec4& Vec4::operator*=(const Vec4 &v) {
 }
 
 Vec4& Vec4::operator/=(const Vec4 &v) {
+    
+    // Check for division by zero
+    if ((v.x == 0) || (v.y == 0) || (v.z == 0) || (v.w == 0)) {
+        throw Exception("Cannot divide by zero!");
+    }
+    
     x /= v.x;
     y /= v.y;
     z /= v.z;
@@ -119,8 +125,14 @@ Vec4& Vec4::operator*=(float f) {
 
 Vec4& Vec4::operator/=(float f) {
     
-    float fInv=1/f;
+    float fInv;
     
+    // Check for division by zero
+    if (f == 0) {
+        throw Exception("Cannot divide by zero!");
+    }
+    
+    fInv = 1/f;
     x *= fInv;
     y *= fInv;
     z *= fInv;
@@ -172,14 +184,14 @@ Vec4 operator/(const Vec4 &u, const Vec4 &v) {
     
     Vec4 C;
     
-    if (v.x != 0)
-        C.x = u.x / v.x;
-    if (v.y != 0)
-        C.y = u.y / v.y;
-    if (v.z != 0)
-        C.z = u.z / v.z;
-    if (v.w != 0)
-        C.w = u.w / v.w;
+    if ((v.x == 0) || (v.y == 0) || (v.z == 0) || (v.w == 0)) {
+        throw Exception("Cannot divide by zero!");
+    }
+    
+    C.x = u.x / v.x;
+    C.y = u.y / v.y;
+    C.z = u.z / v.z;
+    C.w = u.w / v.w;
     
     return C;
 }
@@ -208,12 +220,15 @@ Vec4 operator/(const Vec4 &u, float f) {
     
     Vec4 C;
     
-    if (f != 0) {
-        C.x = u.x / f;
-        C.y = u.y / f;
-        C.z = u.z / f;
-        C.w = u.w / f;
+    // Check for division by zero
+    if (f == 0) {
+        throw Exception("[Vec4] Cannot divide by zero!");
     }
+    
+    C.x = u.x / f;
+    C.y = u.y / f;
+    C.z = u.z / f;
+    C.w = u.w / f;
     
     return C;
 }
