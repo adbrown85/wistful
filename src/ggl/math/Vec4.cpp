@@ -337,7 +337,6 @@ void Vec4::set(float x, float y, float z) {
     this->z = z;
 }
 
-
 void Vec4::set(float x, float y, float z, float w) {
     this->x = x;
     this->y = y;
