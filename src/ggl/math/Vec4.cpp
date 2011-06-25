@@ -92,10 +92,10 @@ Vec4& Vec4::operator+=(float b) {
 }
 
 Vec4& Vec4::operator-=(float b) {
-    x += b;
-    y += b;
-    z += b;
-    w += b;
+    x -= b;
+    y -= b;
+    z -= b;
+    w -= b;
     return *this;
 }
 
