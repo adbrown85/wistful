@@ -59,7 +59,7 @@ public:
     friend float dot(const Vec4& u, const Vec4 &v);
     friend Vec4 min(const Vec4 &u, const Vec4 &v);
     friend Vec4 max(const Vec4 &u, const Vec4 &v);
-    friend Vec4 normalize(Vec4 u);
+    friend Vec4 normalize(const Vec4 &u);
 };
 
 } // namespace Ggl

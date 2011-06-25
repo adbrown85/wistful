@@ -66,7 +66,7 @@ Vec4& Vec4::operator+=(const Vec4 &v) {
     x += v.x;
     y += v.y;
     z += v.z;
-    w += v.w;
+    w = 1.0;
     return *this;
 }
 
@@ -74,7 +74,7 @@ Vec4& Vec4::operator-=(const Vec4 &v) {
     x -= v.x;
     y -= v.y;
     z -= v.z;
-    w -= v.w;
+    w = 1.0;
     return *this;
 }
 
@@ -82,21 +82,21 @@ Vec4& Vec4::operator*=(const Vec4 &v) {
     x *= v.x;
     y *= v.y;
     z *= v.z;
-    w *= v.w;
+    w = 1.0;
     return *this;
 }
 
 Vec4& Vec4::operator/=(const Vec4 &v) {
     
     // Check for division by zero
-    if ((v.x == 0) || (v.y == 0) || (v.z == 0) || (v.w == 0)) {
+    if ((v.x == 0) || (v.y == 0) || (v.z == 0)) {
         throw Exception("[Vec4] Cannot divide by zero!");
     }
     
     x /= v.x;
     y /= v.y;
     z /= v.z;
-    w /= v.w;
+    w = 1.0;
     return *this;
 }
 
@@ -104,7 +104,7 @@ Vec4& Vec4::operator+=(float f) {
     x += f;
     y += f;
     z += f;
-    w += f;
+    w = 1.0;
     return *this;
 }
 
@@ -112,7 +112,7 @@ Vec4& Vec4::operator-=(float f) {
     x -= f;
     y -= f;
     z -= f;
-    w -= f;
+    w = 1.0;
     return *this;
 }
 
@@ -120,118 +120,73 @@ Vec4& Vec4::operator*=(float f) {
     x *= f;
     y *= f;
     z *= f;
-    w *= f;
+    w = 1.0;
     return *this;
 }
 
 Vec4& Vec4::operator/=(float f) {
     
-    float fInv;
+    float inv;
     
     // Check for division by zero
     if (f == 0) {
         throw Exception("[Vec4] Cannot divide by zero!");
     }
     
-    fInv = 1/f;
-    x *= fInv;
-    y *= fInv;
-    z *= fInv;
-    w *= fInv;
+    inv = 1.0 / f;
+    x *= inv;
+    y *= inv;
+    z *= inv;
+    w = 1.0;
     return *this;
 }
 
 bool operator==(const Vec4 &u, const Vec4 &v) {
-    return (u.x==v.x) && (u.y==v.y) && (u.z==v.z) && (u.w==v.w);
+    return (u.x == v.x) && (u.y == v.y) && (u.z == v.z) && (u.w == v.w);
 }
 
 Vec4 operator+(const Vec4 &u, const Vec4 &v) {
-    
-    Vec4 C;
-    
-    C.x = u.x + v.x;
-    C.y = u.y + v.y;
-    C.z = u.z + v.z;
-    C.w = u.w + v.w;
-    
-    return C;
+    return Vec4((u.x + v.x), (u.y + v.y), (u.z + v.z), 1.0);
 }
 
 Vec4 operator-(const Vec4 &u, const Vec4 &v) {
-    
-    Vec4 C;
-    
-    C.x = u.x - v.x;
-    C.y = u.y - v.y;
-    C.z = u.z - v.z;
-    C.w = u.w - v.w;
-    
-    return C;
+    return Vec4((u.x - v.x), (u.y - v.y), (u.z - v.z), 1.0);
 }
 
 Vec4 operator*(const Vec4 &u, const Vec4 &v) {
-    
-    Vec4 C;
-    
-    C.x = u.x * v.x;
-    C.y = u.y * v.y;
-    C.z = u.z * v.z;
-    C.w = u.w * v.w;
-    
-    return C;
+    return Vec4((u.x * v.x), (u.y * v.y), (u.z * v.z), 1.0);
 }
 
 Vec4 operator/(const Vec4 &u, const Vec4 &v) {
-    
-    Vec4 C;
-    
-    if ((v.x == 0) || (v.y == 0) || (v.z == 0) || (v.w == 0)) {
+    if ((v.x == 0) || (v.y == 0) || (v.z == 0)) {
         throw Exception("[Vec4] Cannot divide by zero!");
+    } else {
+        return Vec4((u.x / v.x), (u.y / v.y), (u.z / v.z), 1.0);
     }
-    
-    C.x = u.x / v.x;
-    C.y = u.y / v.y;
-    C.z = u.z / v.z;
-    C.w = u.w / v.w;
-    
-    return C;
 }
 
 Vec4 operator+(const Vec4 &u, float f) {
-    return Vec4(u.x+f, u.y+f, u.z+f, u.w+f);
+    return Vec4((u.x + f), (u.y + f), (u.z + f), 1.0);
 }
 
 Vec4 operator-(const Vec4 &u, float f) {
-    return Vec4(u.x-f, u.y-f, u.z-f, u.w-f);
+    return Vec4((u.x - f), (u.y - f), (u.z - f), 1.0);
 }
 
 Vec4 operator*(const Vec4 &u, float f) {
-    
-    Vec4 C;
-    
-    C.x = u.x * f;
-    C.y = u.y * f;
-    C.z = u.z * f;
-    C.w = u.w * f;
-    
-    return C;
+    return Vec4((u.x * f), (u.y * f), (u.z * f), 1.0);
 }
 
 Vec4 operator/(const Vec4 &u, float f) {
     
-    Vec4 C;
+    float inv;
     
-    // Check for division by zero
     if (f == 0) {
         throw Exception("[Vec4] Cannot divide by zero!");
+    } else {
+        inv = 1.0 / f;
+        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), 1.0);
     }
-    
-    C.x = u.x / f;
-    C.y = u.y / f;
-    C.z = u.z / f;
-    C.w = u.w / f;
-    
-    return C;
 }
 
 ostream& operator<<(ostream &out, const Vec4 &u) {
@@ -277,21 +232,18 @@ float Vec4::operator[](int i) const {
  */
 Vec4 cross(const Vec4 &u, const Vec4 &v) {
     
-    Vec4 C;
+    float x = (u.y * v.z) - (u.z * v.y);
+    float y = (u.z * v.x) - (u.x * v.z);
+    float z = (u.x * v.y) - (u.y * v.x);
     
-    C.x = (u.y * v.z) - (u.z * v.y);
-    C.y = (u.z * v.x) - (u.x * v.z);
-    C.z = (u.x * v.y) - (u.y * v.x);
-    C.w = 1.0;
-    
-    return C;
+    return Vec4(x, y, z, 1.0);
 }
 
 /**
  * @return projection of one vector onto another.
  */
 float dot(const Vec4 &u, const Vec4 &v) {
-    return u.x*v.x + u.y*v.y + u.z*v.z;
+    return (u.x * v.x) + (u.y * v.y) + (u.z * v.z);
 }
 
 /**
@@ -312,39 +264,37 @@ float Vec4::get(int i) const {
  * @return length of the vector.
  */
 float Vec4::length() const {
-    return sqrt(x*x + y*y + z*z);
+    return sqrt((x * x) + (y * y) + (z * z));
 }
 
 /**
  * @return component-wise maximum of the two vectors
  */
 Vec4 max(const Vec4 &u, const Vec4 &v) {
-    return Vec4(max(u.x,v.x), max(u.y,v.y), max(u.z,v.z), max(u.w,v.w));
+    return Vec4(max(u.x, v.x), max(u.y, v.y), max(u.z, v.z));
 }
 
 /**
  * @return component-wise minimum of the two vectors
  */
 Vec4 min(const Vec4 &u, const Vec4 &v) {
-    return Vec4(min(u.x,v.x), min(u.y,v.y), min(u.z,v.z), min(u.w,v.w));
+    return Vec4(min(u.x, v.x), min(u.y, v.y), min(u.z, v.z));
 }
 
 /**
  * @return Unit length version of the vector.
  */
-Vec4 normalize(Vec4 u) {
+Vec4 normalize(const Vec4 &u) {
     
-    float len;
+    float len = u.length();
+    float inv = 1.0 / len;
     
     // Divide by length
-    len = u.length();
     if (len == 0.0) {
-        u = Vec4();
+        return Vec4();
     } else {
-        u /= len;
-        u.w = 1.0;
+        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), 1.0);
     }
-    return u;
 }
 
 void Vec4::set(float x, float y, float z) {
