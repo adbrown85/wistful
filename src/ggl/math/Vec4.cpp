@@ -19,7 +19,11 @@ Vec4::Vec4() {
 }
 
 /**
- * Four-component vector.
+ * Creates a vector with explicit values and a default homogeneous coordinate.
+ * 
+ * @param x Value on X axis
+ * @param y Value on Y axis
+ * @param z Value on Z axis
  */
 Vec4::Vec4(float x, float y, float z) {
     this->x = x;
@@ -29,7 +33,12 @@ Vec4::Vec4(float x, float y, float z) {
 }
 
 /**
- * Four-component vector.
+ * Creates a vector with explicit values.
+ * 
+ * @param x Value on X axis
+ * @param y Value on Y axis
+ * @param z Value on Z axis
+ * @param w Value for homogeneous coordinate
  */
 Vec4::Vec4(float x, float y, float z, float w) {
     this->x = x;
