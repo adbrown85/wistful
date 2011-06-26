@@ -17,11 +17,15 @@ namespace Ggl {
 template <class T>
 class TestCase {
 public:
-    TestCase(const std::string &name, void (T::*method)());
+    typedef void (T::*TMethod)();
+public:
+    TestCase(const std::string &name, TMethod method);
     void run(T &fixture);
+    std::string getName() const;
+    TMethod getMethod() const;
 private:
     std::string name;
-    void (T::*method)();
+    TMethod method;
 };
 
 /**
@@ -33,7 +37,7 @@ private:
 template<class T>
 inline
 TestCase<T>::TestCase(const std::string &name,
-                      void (T::*method)()) {
+                      TMethod method) {
     this->name = name;
     this->method = method;
 }
@@ -56,6 +60,25 @@ void TestCase<T>::run(T &fixture) {
     }
     fixture.tearDown();
     std::cout << "PASSED" << std::endl;
+}
+
+/**
+ * Returns copy of the test case's name.
+ */
+template<class T>
+inline
+std::string TestCase<T>::getName() const {
+    return name;
+}
+
+/**
+ * Returns copy of the test case's method pointer.
+ */
+template<class T>
+inline
+typename TestCase<T>::TMethod
+TestCase<T>::getMethod() const {
+    return method;
 }
 
 }
