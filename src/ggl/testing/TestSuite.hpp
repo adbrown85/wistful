@@ -25,7 +25,6 @@ public:
     void addTestCase(TestCase<T> testCase);
     iterator begin();
     iterator end();
-    std::list<TestCase<T> > getTestCases();
 private:
     std::list<TestCase<T> > testCases;
 };
@@ -53,12 +52,6 @@ template <typename T>
 inline
 void TestSuite<T>::addTestCase(TestCase<T> testCase) {
     testCases.push_back(testCase);
-}
-
-template <typename T>
-inline
-std::list<TestCase<T> > TestSuite<T>::getTestCases() {
-    return testCases;
 }
 
 template <typename T>
