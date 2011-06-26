@@ -14,7 +14,16 @@ namespace Ggl {
 
 
 /**
- * @brief Four-component vector with dot and cross product capabilities.
+ * @brief Four-component vector for 3D graphics.
+ * 
+ * <p><i>Vec4</i> is a four-component vector for use with 3D graphics.
+ * It includes an extra homogeneous coordinate, which is often used in
+ * perspective transformations and allows the vector to be easily
+ * multiplied by a four-by-four matrix.  However, generally the
+ * programmer wishes to keep the homogeneous coordinate value equal to
+ * one.  For that reason, most <i>Vec4</i> operations ignore it or
+ * explicitly set it equal to one.  See the documentation for specific
+ * methods for details.
  * 
  * @ingroup math
  */
