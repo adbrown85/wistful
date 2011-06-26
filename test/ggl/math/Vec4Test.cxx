@@ -6,6 +6,8 @@
  */
 #include "ggl/common.h"
 #include "ggl/math/Vec4.hpp"
+#include "ggl/testing/TestFixture.hpp"
+#include "ggl/testing/TestRunner.hpp"
 using namespace std;
 using namespace Ggl;
 
@@ -13,9 +15,9 @@ using namespace Ggl;
 /**
  * @brief Unit test for Vec4.
  */
-class Vec4Test {
+class Vec4Test : public TestFixture {
 public:
-    Vec4Test();
+    void setUp();
 	void testAdd();
 	void testSubtract();
 	void testMultiply();
@@ -24,7 +26,7 @@ private:
 	Vec4 A, B, C;
 };
 
-Vec4Test::Vec4Test() {
+void Vec4Test::setUp() {
 	A.set(2, 2, 2);
 	B.set(2, 4, 5);
 }
@@ -61,12 +63,22 @@ void Vec4Test::testDivide() {
 	assertEquals(C.z, 0.4);
 }
 
+
 /*
  * Runs the test.
  */
 int main(int argc, char *argv[]) {
     
-    Vec4Test test;
+    Vec4Test fixture;
+    TestRunner<Vec4Test> runner;
+    
+    runner.add("testAdd", &Vec4Test::testAdd);
+    runner.add("testSubtract", &Vec4Test::testSubtract);
+    runner.add("testMultiply", &Vec4Test::testMultiply);
+    runner.add("testDivide", &Vec4Test::testDivide);
+    
+    runner.run(fixture);
+    return 0;
 }
 
 
