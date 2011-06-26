@@ -50,6 +50,9 @@ Vec4::Vec4(float x, float y, float z, float w) {
 /**
  * Copies the values of another vector to this vector.
  * 
+ * Notes:
+ *  - Homogeneous coordinate is copied
+ * 
  * @param v Vector to copy
  * @return Reference to this vector
  */
@@ -71,6 +74,9 @@ Vec4& Vec4::operator=(const Vec4 &v) {
 /**
  * Adds another vector to this vector.
  * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
+ * 
  * @param v Vector with values to add
  * @return Reference to this vector
  */
@@ -78,12 +84,14 @@ Vec4& Vec4::operator+=(const Vec4 &v) {
     x += v.x;
     y += v.y;
     z += v.z;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Subtracts another vector from this vector.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param v Vector with values to subtract
  * @return Reference to this vector
@@ -92,12 +100,14 @@ Vec4& Vec4::operator-=(const Vec4 &v) {
     x -= v.x;
     y -= v.y;
     z -= v.z;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Multiplies this vector by another vector.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param v Vector with values to multiply by
  * @return Reference to this vector
@@ -106,12 +116,14 @@ Vec4& Vec4::operator*=(const Vec4 &v) {
     x *= v.x;
     y *= v.y;
     z *= v.z;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Divides this vector by another vector.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param v Vector with values to divide by
  * @return Reference to this vector
@@ -126,12 +138,14 @@ Vec4& Vec4::operator/=(const Vec4 &v) {
     x /= v.x;
     y /= v.y;
     z /= v.z;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Adds a value to this vector.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param f Value to add
  * @return Reference to this vector
@@ -140,12 +154,14 @@ Vec4& Vec4::operator+=(float f) {
     x += f;
     y += f;
     z += f;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Subtracts a value from this vector.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param f Value to subtract
  * @return Reference to this vector
@@ -154,12 +170,14 @@ Vec4& Vec4::operator-=(float f) {
     x -= f;
     y -= f;
     z -= f;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Multiplies this vector by a value.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param f Value to multiply by
  * @return Reference to this vector
@@ -168,12 +186,14 @@ Vec4& Vec4::operator*=(float f) {
     x *= f;
     y *= f;
     z *= f;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Divides this vector by a value.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is ignored
  * 
  * @param f Value to divide by
  * @return Reference to this vector
@@ -192,12 +212,14 @@ Vec4& Vec4::operator/=(float f) {
     x *= inv;
     y *= inv;
     z *= inv;
-    w = 1.0;
     return *this;
 }
 
 /**
  * Checks if two vectors are equal.
+ * 
+ * Notes:
+ *  - Homogeneous coordinate is checked
  * 
  * @param u First vector to check
  * @param v Second vector to check
@@ -210,38 +232,50 @@ bool operator==(const Vec4 &u, const Vec4 &v) {
 /**
  * Adds a vector to another vector.
  * 
+ * Notes:
+ *  - Copies homogeneous coordinate of first vector
+ * 
  * @param u Vector to add to
  * @param v Vector to add
  * @return Copy of resulting vector
  */
 Vec4 operator+(const Vec4 &u, const Vec4 &v) {
-    return Vec4((u.x + v.x), (u.y + v.y), (u.z + v.z), 1.0);
+    return Vec4((u.x + v.x), (u.y + v.y), (u.z + v.z), u.w);
 }
 
 /**
  * Subtracts a vector from another vector.
+ * 
+ * Notes:
+ *  - Copies homogeneous coordinate of first vector
  * 
  * @param u Vector to subtract from
  * @param v Vector to subtract
  * @return Copy of resulting vector
  */
 Vec4 operator-(const Vec4 &u, const Vec4 &v) {
-    return Vec4((u.x - v.x), (u.y - v.y), (u.z - v.z), 1.0);
+    return Vec4((u.x - v.x), (u.y - v.y), (u.z - v.z), u.w);
 }
 
 /**
  * Multiplies a vector by another vector.
+ * 
+ * Notes:
+ *  - Copies homogeneous coordinate of first vector
  * 
  * @param u Vector to multiply
  * @param v Vector to multiply by
  * @return Copy of resulting vector
  */
 Vec4 operator*(const Vec4 &u, const Vec4 &v) {
-    return Vec4((u.x * v.x), (u.y * v.y), (u.z * v.z), 1.0);
+    return Vec4((u.x * v.x), (u.y * v.y), (u.z * v.z), u.w);
 }
 
 /**
  * Divides a vector by another vector.
+ * 
+ * Notes:
+ *  - Copies homogeneous coordinate of first vector
  * 
  * @param u Vector to divide
  * @param v Vector to divide by
@@ -252,45 +286,57 @@ Vec4 operator/(const Vec4 &u, const Vec4 &v) {
     if ((v.x == 0) || (v.y == 0) || (v.z == 0)) {
         throw Exception("[Vec4] Cannot divide by zero!");
     } else {
-        return Vec4((u.x / v.x), (u.y / v.y), (u.z / v.z), 1.0);
+        return Vec4((u.x / v.x), (u.y / v.y), (u.z / v.z), u.w);
     }
 }
 
 /**
  * Adds a value to a vector.
  * 
+ * Notes:
+ *  - Copies homogeneous coordinate of vector
+ * 
  * @param u Vector to add to
  * @param f Value to add
  * @return Copy of resulting vector
  */
 Vec4 operator+(const Vec4 &u, float f) {
-    return Vec4((u.x + f), (u.y + f), (u.z + f), 1.0);
+    return Vec4((u.x + f), (u.y + f), (u.z + f), u.w);
 }
 
 /**
  * Subtracts a value from a vector.
+ * 
+ * Notes:
+ *  - Copies homogeneous coordinate of vector
  * 
  * @param u Vector to subtract from
  * @param f Value to subtract
  * @return Copy of resulting vector
  */
 Vec4 operator-(const Vec4 &u, float f) {
-    return Vec4((u.x - f), (u.y - f), (u.z - f), 1.0);
+    return Vec4((u.x - f), (u.y - f), (u.z - f), u.w);
 }
 
 /**
  * Multiplies a vector by a value.
+ * 
+ * Notes:
+ *  - Copies homogeneous coordinate of vector
  * 
  * @param u Vector to multiply
  * @param f Value to multiply by
  * @return Copy of resulting vector
  */
 Vec4 operator*(const Vec4 &u, float f) {
-    return Vec4((u.x * f), (u.y * f), (u.z * f), 1.0);
+    return Vec4((u.x * f), (u.y * f), (u.z * f), u.w);
 }
 
 /**
  * Divides a vector by a value.
+ * 
+ * Notes:
+ *  - Copies homogeneous coordinate of vector
  * 
  * @param u Vector to divide
  * @param f Value to divide by
@@ -305,7 +351,7 @@ Vec4 operator/(const Vec4 &u, float f) {
         throw Exception("[Vec4] Cannot divide by zero!");
     } else {
         inv = 1.0 / f;
-        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), 1.0);
+        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), u.w);
     }
 }
 
@@ -365,6 +411,9 @@ float Vec4::operator[](int i) const {
 /**
  * Computes the cross product of two vectors.
  * 
+ * Notes:
+ *  - Uses one for the homogeneous coordinate
+ * 
  * @param u First vector
  * @param v Second vector
  * @return vector perpendicular to the plane formed by two vectors
@@ -380,6 +429,9 @@ Vec4 cross(const Vec4 &u, const Vec4 &v) {
 
 /**
  * Computes the dot product of two vectors.
+ * 
+ * Notes:
+ *  - Ignores the homogeneous coordinate
  * 
  * @param u First vector
  * @param v Second vector
@@ -410,6 +462,9 @@ float Vec4::get(int i) const {
 /**
  * Calculates the length of the vector.
  * 
+ * Notes:
+ *  - Ignores the homogeneous coordinate
+ * 
  * @return Length of the vector
  */
 float Vec4::length() const {
@@ -418,6 +473,9 @@ float Vec4::length() const {
 
 /**
  * Computes a component-wise maximum of two vectors.
+ * 
+ * Notes:
+ *  - Uses one for the homogeneous coordinate
  * 
  * @param u First vector
  * @param v Second vector
@@ -430,6 +488,9 @@ Vec4 max(const Vec4 &u, const Vec4 &v) {
 /**
  * Computes a component-wise minimum of two vectors.
  * 
+ * Notes:
+ *  - Uses one for the homogeneous coordinate
+ * 
  * @param u First vector
  * @param v Second vector
  * @return Copy of resulting vector
@@ -440,6 +501,9 @@ Vec4 min(const Vec4 &u, const Vec4 &v) {
 
 /**
  * Converts a vector to a unit-length vector.
+ * 
+ * Notes:
+ *  - Copies the homogeneous coordinate
  * 
  * @param u Vector to convert
  * @return Copy of resulting vector
@@ -453,7 +517,7 @@ Vec4 normalize(const Vec4 &u) {
     if (len == 0.0) {
         return Vec4();
     } else {
-        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), 1.0);
+        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), u.w);
     }
 }
 
