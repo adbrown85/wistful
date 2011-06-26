@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * Collection of test cases to run.
+ * @brief Collection of test cases to run.
  */
 template <typename T>
 class TestSuite {
@@ -31,7 +31,7 @@ private:
 };
 
 /**
- * Adds a test case to the test runner.
+ * Adds a test case to the suite.
  * 
  * @param name Name of the test case
  * @param method Address to the method to call
@@ -44,10 +44,9 @@ void TestSuite<T>::addTestCase(const std::string &name,
 }
 
 /**
- * Adds a test case to the test runner.
+ * Adds a test case to the suite.
  * 
- * @param name Name of the test case
- * @param method Address to the method to call
+ * @param testCase Test case to add
  */
 template <typename T>
 inline
@@ -55,6 +54,9 @@ void TestSuite<T>::addTestCase(TestCaseT testCase) {
     testCases.push_back(testCase);
 }
 
+/**
+ * Returns an iterator to the first test case in the suite.
+ */
 template <typename T>
 inline
 typename TestSuite<T>::iterator
@@ -62,6 +64,9 @@ TestSuite<T>::begin() {
     return testCases.begin();
 }
 
+/**
+ * Returns an iterator past the last test case in the suite.
+ */
 template <typename T>
 inline
 typename TestSuite<T>::iterator
