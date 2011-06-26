@@ -11,6 +11,22 @@
 #include "ggl/testing/TestCase.hpp"
 namespace Ggl {
 
+/* Macro for making a test runner */
+#define GGL_TEST_RUNNER \
+int main(int argc, char *argv[]) { \
+    GGL_TEST_FIXTURE testFixture; \
+    TestRunner<GGL_TEST_FIXTURE> testRunner;
+
+/* Macro for adding a test case */
+#define GGL_ADD_TEST(X) \
+    testRunner.add(#X, &GGL_TEST_FIXTURE::X);
+
+/* Macro for running the fixture */
+#define GGL_RUN_TESTS \
+    testRunner.run(testFixture); \
+    return 0; \
+}
+
 
 /**
  * @brief Utility for running tests.
