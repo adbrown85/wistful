@@ -50,16 +50,9 @@ TestCase<T>::TestCase(const std::string &name,
 template<class T>
 inline
 void TestCase<T>::run(T &fixture) {
-    std::cout << "RUNNING " << name << std::endl;
     fixture.setUp();
-    try {
-        (fixture.*(method))();
-    } catch (std::exception &e) {
-        std::cout << "FAILED!" << std::endl;
-        exit(1);
-    }
+    (fixture.*(method))();
     fixture.tearDown();
-    std::cout << "PASSED" << std::endl;
 }
 
 /**

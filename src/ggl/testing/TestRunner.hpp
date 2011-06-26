@@ -52,8 +52,15 @@ void TestRunner<T>::runTestSuite(TestSuite<T> &testSuite) {
     T testFixture;
     typename TestSuite<T>::iterator it;
     
-    for (it=testSuite.begin(); it!=testSuite.end(); ++it) {
-        it->run(testFixture);
+    try {
+        for (it=testSuite.begin(); it!=testSuite.end(); ++it) {
+            std::cout << "RUNNING " << it->getName() << std::endl;
+            it->run(testFixture);
+            std::cout << "PASSED" << std::endl;
+        }
+    } catch (std::exception &e) {
+        std::cout << "FAILED!" << std::endl;
+        exit(1);
     }
 }
 
