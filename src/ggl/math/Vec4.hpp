@@ -53,23 +53,23 @@ public:
     void set(float x, float y, float z);
     void set(float x, float y, float z, float w);
     void toArray(float array[4]);
-public:
-    friend bool operator==(const Vec4 &u, const Vec4 &v);
-    friend Vec4 operator+(const Vec4 &u, const Vec4 &v);
-    friend Vec4 operator-(const Vec4 &u, const Vec4 &v);
-    friend Vec4 operator*(const Vec4 &u, const Vec4 &v);
-    friend Vec4 operator/(const Vec4 &u, const Vec4 &v);
-    friend Vec4 operator+(const Vec4 &u, float f);
-    friend Vec4 operator-(const Vec4 &u, float f);
-    friend Vec4 operator*(const Vec4 &u, float f);
-    friend Vec4 operator/(const Vec4 &u, float f);
-    friend std::ostream& operator<<(std::ostream& out, const Vec4& u);
-    friend Vec4 cross(const Vec4& u, const Vec4& v);
-    friend float dot(const Vec4& u, const Vec4 &v);
-    friend Vec4 min(const Vec4 &u, const Vec4 &v);
-    friend Vec4 max(const Vec4 &u, const Vec4 &v);
-    friend Vec4 normalize(const Vec4 &u);
 };
 
 } // namespace Ggl
+
+bool operator==(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 operator+(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 operator-(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 operator*(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 operator/(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 operator+(const Ggl::Vec4 &u, float f);
+Ggl::Vec4 operator-(const Ggl::Vec4 &u, float f);
+Ggl::Vec4 operator*(const Ggl::Vec4 &u, float f);
+Ggl::Vec4 operator/(const Ggl::Vec4 &u, float f);
+std::ostream& operator<<(std::ostream& out, const Ggl::Vec4& u);
+Ggl::Vec4 cross(const Ggl::Vec4& u, const Ggl::Vec4& v);
+float dot(const Ggl::Vec4& u, const Ggl::Vec4 &v);
+Ggl::Vec4 min(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 max(const Ggl::Vec4 &u, const Ggl::Vec4 &v);
+Ggl::Vec4 normalize(const Ggl::Vec4 &u);
 #endif
