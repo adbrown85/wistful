@@ -41,9 +41,9 @@ public:
 };
 
 /**
- * Runs each test case on a fixture.
+ * Runs each test case in a suite.
  * 
- * @param testFixture
+ * @param testSuite Collection of test cases to run
  */
 template <typename T>
 inline
