@@ -50,10 +50,9 @@ inline
 void TestRunner<T>::runTestSuite(TestSuite<T> &testSuite) {
     
     T testFixture;
-    typename std::list<TestCase<T> > testCases = testSuite.getTestCases();
-    typename std::list<TestCase<T> >::iterator it;
+    typename TestSuite<T>::iterator it;
     
-    for (it=testCases.begin(); it!=testCases.end(); ++it) {
+    for (it=testSuite.begin(); it!=testSuite.end(); ++it) {
         it->run(testFixture);
     }
 }

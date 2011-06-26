@@ -17,10 +17,14 @@ namespace Ggl {
 template <typename T>
 class TestSuite {
 public:
+    typedef typename std::list<TestCase<T> >::iterator iterator;
+public:
     TestSuite() {}
     virtual ~TestSuite() {}
     void addTestCase(const std::string &name, void (T::*method)());
     void addTestCase(TestCase<T> testCase);
+    iterator begin();
+    iterator end();
     std::list<TestCase<T> > getTestCases();
 private:
     std::list<TestCase<T> > testCases;
@@ -55,6 +59,20 @@ template <typename T>
 inline
 std::list<TestCase<T> > TestSuite<T>::getTestCases() {
     return testCases;
+}
+
+template <typename T>
+inline
+typename TestSuite<T>::iterator
+TestSuite<T>::begin() {
+    return testCases.begin();
+}
+
+template <typename T>
+inline
+typename TestSuite<T>::iterator
+TestSuite<T>::end() {
+    return testCases.end();
 }
 
 } // namespace Ggl
