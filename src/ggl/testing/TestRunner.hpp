@@ -9,21 +9,22 @@
 #include "ggl/common.h"
 #include "ggl/testing/TestFixture.hpp"
 #include "ggl/testing/TestCase.hpp"
+#include "ggl/testing/TestSuite.hpp"
 namespace Ggl {
 
 /* Macro for making a test runner */
-#define GGL_TEST_RUNNER \
+#define GGL_TEST_SUITE \
 int main(int argc, char *argv[]) { \
-    GGL_TEST_FIXTURE testFixture; \
+    TestSuite<GGL_TEST_FIXTURE> testSuite; \
     TestRunner<GGL_TEST_FIXTURE> testRunner;
 
 /* Macro for adding a test case */
 #define GGL_ADD_TEST(X) \
-    testRunner.add(#X, &GGL_TEST_FIXTURE::X);
+    testSuite.addTestCase(#X, &GGL_TEST_FIXTURE::X);
 
 /* Macro for running the fixture */
 #define GGL_RUN_TESTS \
-    testRunner.run(testFixture); \
+    testRunner.runTestSuite(testSuite); \
     return 0; \
 }
 
@@ -36,37 +37,8 @@ class TestRunner {
 public:
     TestRunner() {}
     virtual ~TestRunner() {}
-    void add(const std::string &name, void (T::*method)());
-    void add(TestCase<T> testCase);
-    void run(T &testFixture);
-private:
-    std::list<TestCase<T> > testCases;
+    void runTestSuite(TestSuite<T> &testSuite);
 };
-
-/**
- * Adds a test case to the test runner.
- * 
- * @param name Name of the test case
- * @param method Address to the method to call
- */
-template <typename T>
-inline
-void TestRunner<T>::add(const std::string &name,
-                        void (T::*method)()) {
-    add(TestCase<T>(name, method));
-}
-
-/**
- * Adds a test case to the test runner.
- * 
- * @param name Name of the test case
- * @param method Address to the method to call
- */
-template <typename T>
-inline
-void TestRunner<T>::add(TestCase<T> tc) {
-    testCases.push_back(tc);
-}
 
 /**
  * Runs each test case on a fixture.
@@ -75,8 +47,10 @@ void TestRunner<T>::add(TestCase<T> tc) {
  */
 template <typename T>
 inline
-void TestRunner<T>::run(T &testFixture) {
+void TestRunner<T>::runTestSuite(TestSuite<T> &testSuite) {
     
+    T testFixture;
+    typename std::list<TestCase<T> > testCases = testSuite.getTestCases();
     typename std::list<TestCase<T> >::iterator it;
     
     for (it=testCases.begin(); it!=testCases.end(); ++it) {

@@ -64,7 +64,7 @@ void Vec4Test::testDivide() {
 }
 
 #define GGL_TEST_FIXTURE Vec4Test
-GGL_TEST_RUNNER
+GGL_TEST_SUITE
 GGL_ADD_TEST(testAdd)
 GGL_ADD_TEST(testSubtract)
 GGL_ADD_TEST(testMultiply)
