@@ -129,16 +129,15 @@ Vec4& Vec4::operator*=(const Vec4 &v) {
  * @return Reference to this vector
  */
 Vec4& Vec4::operator/=(const Vec4 &v) {
-    
-    // Check for division by zero
     if ((v.x == 0) || (v.y == 0) || (v.z == 0)) {
         throw Exception("[Vec4] Cannot divide by zero!");
+    } else {
+        x /= v.x;
+        y /= v.y;
+        z /= v.z;
+        return *this;
     }
     
-    x /= v.x;
-    y /= v.y;
-    z /= v.z;
-    return *this;
 }
 
 /**
@@ -200,19 +199,15 @@ Vec4& Vec4::operator*=(float f) {
  * @throw std::exception if would divide by zero
  */
 Vec4& Vec4::operator/=(float f) {
-    
-    float inv;
-    
-    // Check for division by zero
     if (f == 0) {
         throw Exception("[Vec4] Cannot divide by zero!");
+    } else {
+        x /= f;
+        y /= f;
+        z /= f;
+        return *this;
     }
     
-    inv = 1.0 / f;
-    x *= inv;
-    y *= inv;
-    z *= inv;
-    return *this;
 }
 
 /**
@@ -344,14 +339,10 @@ Vec4 operator*(const Vec4 &u, float f) {
  * @throw std::exception if would divide by zero
  */
 Vec4 operator/(const Vec4 &u, float f) {
-    
-    float inv;
-    
     if (f == 0) {
         throw Exception("[Vec4] Cannot divide by zero!");
     } else {
-        inv = 1.0 / f;
-        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), u.w);
+        return Vec4((u.x / f), (u.y / f), (u.z / f), u.w);
     }
 }
 
@@ -511,13 +502,12 @@ Vec4 min(const Vec4 &u, const Vec4 &v) {
 Vec4 normalize(const Vec4 &u) {
     
     float len = u.length();
-    float inv = 1.0 / len;
     
     // Divide by length
     if (len == 0.0) {
         return Vec4();
     } else {
-        return Vec4((u.x * inv), (u.y * inv), (u.z * inv), u.w);
+        return Vec4((u.x / len), (u.y / len), (u.z / len), u.w);
     }
 }
 
