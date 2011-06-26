@@ -26,10 +26,17 @@ public:
     float& operator()(int i, int j);
     float operator()(int i, int j) const;
 // Friends
+    friend Matrix inverse(const Matrix &matrix);
     friend void print(const Matrix &mat);
     friend Matrix transpose(const Matrix &matrix);
 private:
     float arr[4][4];
+    static int **chart;
+// Helpers
+    static int** createChart();
+    static float findMinor(const Matrix& matrix, int row, int column);
+    static void findCofactors(const Matrix& matrix, float cofactors[4][4]);
+    static float findDeterminant(float [3][3]);
 };
 
 } // namespace Ggl
