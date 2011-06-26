@@ -81,5 +81,5 @@ TestCase<T>::getMethod() const {
     return method;
 }
 
-}
+} // namespace Ggl
 #endif
