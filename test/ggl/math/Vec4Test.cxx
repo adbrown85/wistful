@@ -63,22 +63,10 @@ void Vec4Test::testDivide() {
 	assertEquals(C.z, 0.4);
 }
 
-
-/*
- * Runs the test.
- */
-int main(int argc, char *argv[]) {
-    
-    Vec4Test fixture;
-    TestRunner<Vec4Test> runner;
-    
-    runner.add("testAdd", &Vec4Test::testAdd);
-    runner.add("testSubtract", &Vec4Test::testSubtract);
-    runner.add("testMultiply", &Vec4Test::testMultiply);
-    runner.add("testDivide", &Vec4Test::testDivide);
-    
-    runner.run(fixture);
-    return 0;
-}
-
-
+#define GGL_TEST_FIXTURE Vec4Test
+GGL_TEST_RUNNER
+GGL_ADD_TEST(testAdd)
+GGL_ADD_TEST(testSubtract)
+GGL_ADD_TEST(testMultiply)
+GGL_ADD_TEST(testDivide)
+GGL_RUN_TESTS
