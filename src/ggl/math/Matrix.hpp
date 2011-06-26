@@ -27,6 +27,7 @@ public:
     float operator()(int i, int j) const;
 // Friends
     friend void print(const Matrix &mat);
+    friend Matrix transpose(const Matrix &matrix);
 private:
     float arr[4][4];
 };
@@ -35,4 +36,5 @@ private:
 
 Ggl::Matrix operator*(const Ggl::Matrix &A, const Ggl::Matrix &B);
 Ggl::Vec4 operator*(const Ggl::Matrix &A, const Ggl::Vec4 &B);
+
 #endif

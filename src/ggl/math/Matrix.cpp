@@ -107,6 +107,24 @@ void print(const Matrix &mat) {
     cout << resetiosflags(ios_base::floatfield) << setprecision(6);
 }
 
+/**
+ * Transposes a matrix.
+ * 
+ * @param matrix Matrix to transpose
+ * @return Copy of the transposed matrix
+ */
+Matrix transpose(const Matrix &matrix) {
+    
+    float transposed[4][4];
+    
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
+            transposed[i][j] = matrix.arr[j][i];
+        }
+    }
+    return Matrix(transposed);
+}
+
 } /* namespace Ggl */
 
 /**
