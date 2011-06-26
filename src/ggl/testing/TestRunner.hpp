@@ -64,9 +64,7 @@ void TestRunner<T>::run(T &testFixture) {
     typename std::list<TestCase<T> >::iterator it;
     
     for (it=testCases.begin(); it!=testCases.end(); ++it) {
-        testFixture.setUp();
         it->run(testFixture);
-        testFixture.tearDown();
     }
 }
 
