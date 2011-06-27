@@ -19,6 +19,7 @@ namespace Ggl {
 class Matrix {
 public:
     Matrix();
+    Matrix(float value);
     Matrix(float arr[4][4]);
     Matrix(float arr[16]);
     void toArray(float arr[4][4]);

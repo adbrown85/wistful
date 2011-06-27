@@ -36,8 +36,8 @@ void MatrixTest::setUp() {
                         {1.0, 2.0, 3.0, 4.0} };
     
 	m1 = Matrix(arr);
-	m2 = Matrix();
-	m3 = Matrix();
+	m2 = Matrix(1.0);
+	m3 = Matrix(1.0);
 }
 
 void MatrixTest::testInverse() {

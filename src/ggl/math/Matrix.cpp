@@ -13,21 +13,49 @@ namespace Ggl {
 int **Matrix::chart = createChart();
 
 /**
- * Creates the identity matrix.
+ * Creates an empty matrix.
  */
 Matrix::Matrix() {
-    
-    // Initialize
-    for (int i=0; i<4; ++i) {
-        for (int j=0; j<4; ++j) {
-            array[i][j] = 0.0;
-        }
-    }
-    
-    // Set ones on diagonal
-    for (int i=0; i<4; ++i) {
-        array[i][i] = 1.0;
-    }
+    array[0][0] = 0.0;
+    array[0][1] = 0.0;
+    array[0][2] = 0.0;
+    array[0][3] = 0.0;
+    array[1][0] = 0.0;
+    array[1][1] = 0.0;
+    array[1][2] = 0.0;
+    array[1][3] = 0.0;
+    array[2][0] = 0.0;
+    array[2][1] = 0.0;
+    array[2][2] = 0.0;
+    array[2][3] = 0.0;
+    array[3][0] = 0.0;
+    array[3][1] = 0.0;
+    array[3][2] = 0.0;
+    array[3][3] = 0.0;
+}
+
+/**
+ * Creates a matrix with a value across the diagonal.
+ * 
+ * @param value Value to copy to each element on diagonal
+ */
+Matrix::Matrix(float value) {
+    array[0][0] = value;
+    array[0][1] = 0.0;
+    array[0][2] = 0.0;
+    array[0][3] = 0.0;
+    array[1][0] = 0.0;
+    array[1][1] = value;
+    array[1][2] = 0.0;
+    array[1][3] = 0.0;
+    array[2][0] = 0.0;
+    array[2][1] = 0.0;
+    array[2][2] = value;
+    array[2][3] = 0.0;
+    array[3][0] = 0.0;
+    array[3][1] = 0.0;
+    array[3][2] = 0.0;
+    array[3][3] = value;
 }
 
 /**
