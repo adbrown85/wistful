@@ -25,6 +25,8 @@ public:
 // Operators
     float& operator()(int i, int j);
     float operator()(int i, int j) const;
+    Matrix operator*(const Matrix &mat) const;
+    Vec4 operator*(const Vec4 &vec) const;
 // Friends
     friend Matrix inverse(const Matrix &matrix);
     friend void print(const Matrix &mat);
@@ -40,8 +42,4 @@ private:
 };
 
 } // namespace Ggl
-
-Ggl::Matrix operator*(const Ggl::Matrix &A, const Ggl::Matrix &B);
-Ggl::Vec4 operator*(const Ggl::Matrix &A, const Ggl::Vec4 &B);
-
 #endif

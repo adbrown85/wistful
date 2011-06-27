@@ -84,6 +84,47 @@ float Matrix::operator()(int i, int j) const {
     return arr[i][j];
 }
 
+/**
+ * Multiplies this matrix by another matrix.
+ * 
+ * @param mat Matrix to multiply by
+ * @return Copy of resulting matrix
+ */
+Matrix Matrix::operator*(const Matrix &mat) const {
+    
+    float result[4][4];
+    
+    // Multiply rows of this matrix with columns of other matrix
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
+            result[i][j] = 0.0;
+            for (int k=0; k<4; ++k)
+                result[i][j] += arr[i][k] * mat.arr[k][j];
+        }
+    }
+    return Matrix(result);
+}
+
+/**
+ * Multiplies this matrix by a vector.
+ * 
+ * @param vec Vector to multiply by
+ * @return Copy of resulting vector
+ */
+Vec4 Matrix::operator*(const Vec4 &vec) const {
+    
+    Vec4 result;
+    
+    // Multiply rows of matrix by vector
+    for (int i=0; i<4; ++i) {
+        result[i] = 0.0;
+        for (int k=0; k<4; ++k) {
+            result[i] += arr[i][k] * vec[k];
+        }
+    }
+    return result;
+}
+
 //----------------------------------------
 // Friends
 //
@@ -289,41 +330,3 @@ float Matrix::findMinor(const Matrix &matrix,
 }
 
 } /* namespace Ggl */
-
-/**
- * Multiplies two matrices together.
- * 
- * @param A Matrix to multiply
- * @param B Matrix to multiply by
- * @return Copy of resulting matrix
- */
-Matrix operator*(const Matrix &A, const Matrix &B) {
-    
-    float arr[4][4];
-    
-    // Multiply rows of A with columns in B
-    for (int i=0; i<4; ++i) {
-        for (int j=0; j<4; ++j) {
-            arr[i][j] = 0.0;
-            for (int k=0; k<4; ++k)
-                arr[i][j] += A(i,k) * B(k,j);
-        }
-    }
-    return Matrix(arr);
-}
-
-/**
- * Multiplies a matrix with a vector.
- */
-Vec4 operator*(const Matrix &A, const Vec4 &B) {
-    
-    Vec4 C;
-    
-    // Multiply rows of A with columns in B
-    for (int i=0; i<4; ++i) {
-        C[i] = 0.0;
-        for (int k=0; k<4; ++k)
-            C[i] += A(i,k) * B[k];
-    }
-    return C;
-}
