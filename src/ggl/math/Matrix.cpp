@@ -82,9 +82,7 @@ void Matrix::toArray(float array[16]) {
     }
 }
 
-//----------------------------------------
-// Operators
-//
+/* Operators */
 
 /**
  * Multiplies this matrix by another matrix.
@@ -127,9 +125,7 @@ Vec4 Matrix::operator*(const Vec4 &vec) const {
     return result;
 }
 
-//----------------------------------------
-// Friends
-//
+/* Friends */
 
 /**
  * Computes the inverse of a matrix.
@@ -210,9 +206,7 @@ Matrix transpose(const Matrix &matrix) {
     return Matrix(transposed);
 }
 
-//----------------------------------------
-// Helpers
-//
+/* Helpers */
 
 /**
  * Creates a sign chart for use in calculating cofactors.
