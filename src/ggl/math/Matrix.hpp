@@ -37,7 +37,7 @@ private:
     static int **chart;
 // Helpers
     static int** createChart();
-    static float findMinor(const Matrix& mat, int row, int column);
+    static float findMinor(const Matrix& mat, int row, int col);
     static void findCofactors(const Matrix& mat, float cofactors[4][4]);
     static float findDeterminant(float [3][3]);
 };

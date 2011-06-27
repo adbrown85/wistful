@@ -298,11 +298,11 @@ float Matrix::findDeterminant(float mat[3][3]) {
  * 
  * @param mat Matrix to compute minor of
  * @param row Row of element
- * @param column Column of element
+ * @param col Column of element
  */
 float Matrix::findMinor(const Matrix &mat,
                         int row,
-                        int column) {
+                        int col) {
     
     float minor[3][3];
     int ii;
@@ -313,7 +313,7 @@ float Matrix::findMinor(const Matrix &mat,
         if (i != row) {
             jj = 0;
             for (int j=0; j<4; ++j) {
-                if (j != column) {
+                if (j != col) {
                     minor[ii][jj] = mat(i,j);
                     ++jj;
                 }
