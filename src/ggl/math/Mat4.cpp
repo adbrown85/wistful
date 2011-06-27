@@ -246,7 +246,7 @@ Mat4 transpose(const Mat4 &mat) {
  * Creates a sign chart for use in calculating cofactors.
  * 
  * @return Pointer to chart on heap
- * @throw Ggl::Exception if could not allocate chart
+ * @throw std::exception if could not allocate chart
  */
 int** Mat4::createChart() {
     
@@ -255,12 +255,12 @@ int** Mat4::createChart() {
     // Allocate
     chart = new int*[4];
     if (chart == NULL) {
-        throw Exception("Could not allocate chart!");
+        throw Exception("[Mat4] Could not allocate chart!");
     } else {
         for (int i=0; i<4; ++i) {
             chart[i] = new int[4];
             if (chart[i] == NULL) {
-                throw Exception("Could not allocate chart row!");
+                throw Exception("[Mat4] Could not allocate chart row!");
             }
         }
     }
