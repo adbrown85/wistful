@@ -158,8 +158,8 @@ Vec4 Mat4::operator*(const Vec4 &vec) const {
 /**
  * Computes the inverse of a matrix.
  * 
- * @param mat Matrix to invert
- * @return Copy of inverted matrix
+ * @param mat Matrix to compute inverse of
+ * @return Copy of matrix's inverse
  */
 Mat4 inverse(const Mat4 &mat) {
     
@@ -217,10 +217,10 @@ void print(const Mat4 &mat) {
 }
 
 /**
- * Transposes a matrix.
+ * Computes the transpose of a matrix.
  * 
- * @param mat Matrix to transpose
- * @return Copy of the transposed matrix
+ * @param mat Matrix to compute transpose of
+ * @return Copy of matrix's transpose
  */
 Mat4 transpose(const Mat4 &mat) {
     
