@@ -120,17 +120,17 @@ void Matrix::toArray(float arr[16]) {
  */
 Matrix Matrix::operator*(const Matrix &mat) const {
     
-    float result[4][4];
+    Matrix result;
     
     // Multiply rows of this matrix with columns of other matrix
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            result[i][j] = 0.0;
-            for (int k=0; k<4; ++k)
-                result[i][j] += array[i][k] * mat(k,j);
+            for (int k=0; k<4; ++k) {
+                result(i,j) += array[i][k] * mat(k,j);
+            }
         }
     }
-    return Matrix(result);
+    return result;
 }
 
 /**
