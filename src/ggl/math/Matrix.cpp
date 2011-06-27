@@ -130,22 +130,22 @@ Vec4 Matrix::operator*(const Vec4 &vec) const {
 /**
  * Computes the inverse of a matrix.
  * 
- * @param matrix Matrix to invert
+ * @param mat Matrix to invert
  * @return Copy of inverted matrix
  */
-Matrix inverse(const Matrix &matrix) {
+Matrix inverse(const Matrix &mat) {
     
     float arr[4][4];
     float determinant;
     float determinantReciprocal;
     
     // Find cofactors
-    Matrix::findCofactors(matrix, arr);
+    Matrix::findCofactors(mat, arr);
     
     // Find determinant using first row of cofactors
     determinant = 0;
     for (int j=0; j<4; ++j) {
-        determinant += matrix(0,j) * arr[0][j];
+        determinant += mat(0,j) * arr[0][j];
     }
     
     // Transpose the array in place
@@ -191,16 +191,16 @@ void print(const Matrix &mat) {
 /**
  * Transposes a matrix.
  * 
- * @param matrix Matrix to transpose
+ * @param mat Matrix to transpose
  * @return Copy of the transposed matrix
  */
-Matrix transpose(const Matrix &matrix) {
+Matrix transpose(const Matrix &mat) {
     
     float transposed[4][4];
     
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            transposed[i][j] = matrix(j,i);
+            transposed[i][j] = mat(j,i);
         }
     }
     return Matrix(transposed);
@@ -244,14 +244,14 @@ int** Matrix::createChart() {
 /**
  * Computes cofactors of a matrix.
  * 
- * @param matrix Matrix to find cofactors of
+ * @param mat Matrix to find cofactors of
  * @param cofactors 4x4 array to store cofactors in
  */
-void Matrix::findCofactors(const Matrix &matrix,
+void Matrix::findCofactors(const Matrix &mat,
                            float cofactors[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            cofactors[i][j] = findMinor(matrix, i, j) * chart[i][j];
+            cofactors[i][j] = findMinor(mat, i, j) * chart[i][j];
         }
     }
 }
@@ -296,11 +296,11 @@ float Matrix::findDeterminant(float mat[3][3]) {
  * Notes:
  *  - Both row and column are unchecked
  * 
- * @param matrix Matrix to compute minor of
+ * @param mat Matrix to compute minor of
  * @param row Row of element
  * @param column Column of element
  */
-float Matrix::findMinor(const Matrix &matrix,
+float Matrix::findMinor(const Matrix &mat,
                         int row,
                         int column) {
     
@@ -314,7 +314,7 @@ float Matrix::findMinor(const Matrix &matrix,
             jj = 0;
             for (int j=0; j<4; ++j) {
                 if (j != column) {
-                    minor[ii][jj] = matrix(i,j);
+                    minor[ii][jj] = mat(i,j);
                     ++jj;
                 }
             }

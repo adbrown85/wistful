@@ -29,16 +29,16 @@ public:
     Matrix operator*(const Matrix &mat) const;
     Vec4 operator*(const Vec4 &vec) const;
 // Friends
-    friend Matrix inverse(const Matrix &matrix);
+    friend Matrix inverse(const Matrix &mat);
     friend void print(const Matrix &mat);
-    friend Matrix transpose(const Matrix &matrix);
+    friend Matrix transpose(const Matrix &mat);
 private:
     float arr[4][4];
     static int **chart;
 // Helpers
     static int** createChart();
-    static float findMinor(const Matrix& matrix, int row, int column);
-    static void findCofactors(const Matrix& matrix, float cofactors[4][4]);
+    static float findMinor(const Matrix& mat, int row, int column);
+    static void findCofactors(const Matrix& mat, float cofactors[4][4]);
     static float findDeterminant(float [3][3]);
 };
 
