@@ -70,28 +70,6 @@ void Matrix::toArray(float *array) {
 //
 
 /**
- * Returns one of the elements in the matrix.
- */
-float& Matrix::operator()(int i, int j) {
-    if (i < 0 || i >= 4)
-        throw Exception("[Matrix] Index out of bounds.");
-    if (j < 0 || j >= 4)
-        throw Exception("[Matrix] Index out of bounds.");
-    return arr[i][j];
-}
-
-/**
- * Returns one of the elements in the matrix.
- */
-float Matrix::operator()(int i, int j) const {
-    if (i < 0 || i >= 4)
-        throw Exception("[Matrix] Index out of bounds.");
-    if (j < 0 || j >= 4)
-        throw Exception("[Matrix] Index out of bounds.");
-    return arr[i][j];
-}
-
-/**
  * Multiplies this matrix by another matrix.
  * 
  * @param mat Matrix to multiply by
@@ -106,7 +84,7 @@ Matrix Matrix::operator*(const Matrix &mat) const {
         for (int j=0; j<4; ++j) {
             result[i][j] = 0.0;
             for (int k=0; k<4; ++k)
-                result[i][j] += arr[i][k] * mat.arr[k][j];
+                result[i][j] += arr[i][k] * mat(k,j);
         }
     }
     return Matrix(result);
@@ -154,7 +132,7 @@ Matrix inverse(const Matrix &matrix) {
     // Find determinant using first row of cofactors
     determinant = 0;
     for (int j=0; j<4; ++j) {
-        determinant += matrix.arr[0][j] * arr[0][j];
+        determinant += matrix(0,j) * arr[0][j];
     }
     
     // Transpose the array in place
@@ -187,9 +165,9 @@ void print(const Matrix &mat) {
     for (int i=0; i<4; i++) {
         int j=0;
         cout << "  ";
-        cout << "[" << setw(7) << mat.arr[i][j];
+        cout << "[" << setw(7) << mat(i,j);
         for (j=1; j<4; j++)
-            cout << ", " << setw(7) << mat.arr[i][j];
+            cout << ", " << setw(7) << mat(i,j);
         cout << "]" << endl;
     }
     
@@ -209,7 +187,7 @@ Matrix transpose(const Matrix &matrix) {
     
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            transposed[i][j] = matrix.arr[j][i];
+            transposed[i][j] = matrix(j,i);
         }
     }
     return Matrix(transposed);
@@ -325,7 +303,7 @@ float Matrix::findMinor(const Matrix &matrix,
             jj = 0;
             for (int j=0; j<4; ++j) {
                 if (j != column) {
-                    minor[ii][jj] = matrix.arr[i][j];
+                    minor[ii][jj] = matrix(i,j);
                     ++jj;
                 }
             }

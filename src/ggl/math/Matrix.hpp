@@ -41,5 +41,27 @@ private:
     static float findDeterminant(float [3][3]);
 };
 
+/**
+ * Returns a reference to an element in the matrix.
+ * 
+ * @param i Row of element
+ * @param j Column of element
+ */
+inline
+float& Matrix::operator()(int i, int j) {
+    return arr[i][j];
+}
+
+/**
+ * Returns a copy of an element in the matrix.
+ * 
+ * @param i Row of element
+ * @param j Column of element
+ */
+inline
+float Matrix::operator()(int i, int j) const {
+    return arr[i][j];
+}
+
 } // namespace Ggl
 #endif
