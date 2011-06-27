@@ -20,7 +20,7 @@ class Matrix {
 public:
     Matrix();
     Matrix(float array[4][4]);
-    void set(float array[16]);
+    Matrix(float array[16]);
     void toArray(float array[16]);
 // Operators
     float& operator()(int i, int j);

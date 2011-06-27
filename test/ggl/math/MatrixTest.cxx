@@ -69,7 +69,7 @@ void MatrixTest::testSetArray() {
 	                  9.0, 10.0, 11.0, 12.0,
 	                 13.0, 14.0, 15.0, 16.0};
 	
-	m2.set(arr);
+	m2 = Matrix(arr);
 	
 	for (int i=0; i<4; ++i) {
 		for (int j=0; j<4; ++j) {

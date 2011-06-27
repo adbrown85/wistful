@@ -31,9 +31,9 @@ Matrix::Matrix() {
 }
 
 /**
- * Creates a matrix from an array.
+ * Creates a matrix from a two-dimensional array.
  * 
- * @param array Array with values for matrix
+ * @param array Two-dimensional array
  */
 Matrix::Matrix(float array[4][4]) {
     for (int i=0; i<4; ++i) {
@@ -44,9 +44,11 @@ Matrix::Matrix(float array[4][4]) {
 }
 
 /**
- * Sets the matrix from values in a column-major array.
+ * Creates a matrix from a one-dimensional array.
+ * 
+ * @param array One-dimensional array in column-major order
  */
-void Matrix::set(float array[16]) {
+Matrix::Matrix(float array[16]) {
     for (int j=0; j<4; j++) {
         for (int i=0; i<4; i++) {
             arr[i][j] = array[j*4+i];
