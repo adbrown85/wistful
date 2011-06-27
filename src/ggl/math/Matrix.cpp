@@ -18,13 +18,16 @@ int **Matrix::chart = createChart();
 Matrix::Matrix() {
     
     // Initialize
-    for (int i=0; i<4; ++i)
-        for (int j=0; j<4; ++j)
+    for (int i=0; i<4; ++i) {
+        for (int j=0; j<4; ++j) {
             arr[i][j] = 0.0;
+        }
+    }
     
     // Set ones on diagonal
-    for (int i=0; i<4; ++i)
+    for (int i=0; i<4; ++i) {
         arr[i][i] = 1.0;
+    }
 }
 
 /**
@@ -44,18 +47,22 @@ Matrix::Matrix(float array[4][4]) {
  * Sets the matrix from values in a column-major array.
  */
 void Matrix::set(float array[16]) {
-    for (int j=0; j<4; j++)
-        for (int i=0; i<4; i++)
+    for (int j=0; j<4; j++) {
+        for (int i=0; i<4; i++) {
             arr[i][j] = array[j*4+i];
+        }
+    }
 }
 
 /**
  * Puts the matrix into a single-subscript array (column-major order).
  */
 void Matrix::toArray(float *array) {
-    for (int j=0; j<4; ++j)
-        for (int i=0; i<4; ++i)
-            array[j*4+i] = (*this)(i,j);
+    for (int j=0; j<4; ++j) {
+        for (int i=0; i<4; ++i) {
+            array[j*4+i] = arr[i][j];
+        }
+    }
 }
 
 //----------------------------------------
