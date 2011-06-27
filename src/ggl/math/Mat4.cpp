@@ -4,7 +4,7 @@
  * Author
  *    Andrew Brown <adb1413@rit.edu>
  */
-#include "Mat4.hpp"
+#include "ggl/math/Mat4.hpp"
 using namespace std;
 using namespace Ggl;
 namespace Ggl {
