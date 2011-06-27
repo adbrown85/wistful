@@ -19,10 +19,10 @@ namespace Ggl {
 class Matrix {
 public:
     Matrix();
-    Matrix(float array[4][4]);
-    Matrix(float array[16]);
-    void toArray(float array[4][4]);
-    void toArray(float array[16]);
+    Matrix(float arr[4][4]);
+    Matrix(float arr[16]);
+    void toArray(float arr[4][4]);
+    void toArray(float arr[16]);
 // Operators
     float& operator()(int i, int j);
     float operator()(int i, int j) const;
@@ -33,7 +33,7 @@ public:
     friend void print(const Matrix &mat);
     friend Matrix transpose(const Matrix &mat);
 private:
-    float arr[4][4];
+    float array[4][4];
     static int **chart;
 // Helpers
     static int** createChart();
@@ -50,7 +50,7 @@ private:
  */
 inline
 float& Matrix::operator()(int i, int j) {
-    return arr[i][j];
+    return array[i][j];
 }
 
 /**
@@ -61,7 +61,7 @@ float& Matrix::operator()(int i, int j) {
  */
 inline
 float Matrix::operator()(int i, int j) const {
-    return arr[i][j];
+    return array[i][j];
 }
 
 } // namespace Ggl

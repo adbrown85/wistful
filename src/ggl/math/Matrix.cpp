@@ -20,25 +20,25 @@ Matrix::Matrix() {
     // Initialize
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            arr[i][j] = 0.0;
+            array[i][j] = 0.0;
         }
     }
     
     // Set ones on diagonal
     for (int i=0; i<4; ++i) {
-        arr[i][i] = 1.0;
+        array[i][i] = 1.0;
     }
 }
 
 /**
  * Creates a matrix from a two-dimensional array.
  * 
- * @param array Two-dimensional array
+ * @param arr Two-dimensional array
  */
-Matrix::Matrix(float array[4][4]) {
+Matrix::Matrix(float arr[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            this->arr[i][j] = array[i][j];
+            this->array[i][j] = arr[i][j];
         }
     }
 }
@@ -46,12 +46,12 @@ Matrix::Matrix(float array[4][4]) {
 /**
  * Creates a matrix from a one-dimensional array.
  * 
- * @param array One-dimensional array in column-major order
+ * @param arr One-dimensional array in column-major order
  */
-Matrix::Matrix(float array[16]) {
+Matrix::Matrix(float arr[16]) {
     for (int j=0; j<4; j++) {
         for (int i=0; i<4; i++) {
-            arr[i][j] = array[j*4+i];
+            this->array[i][j] = arr[j*4+i];
         }
     }
 }
@@ -59,12 +59,12 @@ Matrix::Matrix(float array[16]) {
 /**
  * Copies the matrix into a two-dimensional array.
  * 
- * @param array Array to store matrix values in
+ * @param arr Array to store matrix values in
  */
-void Matrix::toArray(float array[4][4]) {
+void Matrix::toArray(float arr[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
-            array[i][j] = arr[i][j];
+            arr[i][j] = this->array[i][j];
         }
     }
 }
@@ -72,12 +72,12 @@ void Matrix::toArray(float array[4][4]) {
 /**
  * Copies the matrix into a one-dimensional array in column-major order.
  * 
- * @param array Array to store matrix values in
+ * @param arr Array to store matrix values in
  */
-void Matrix::toArray(float array[16]) {
+void Matrix::toArray(float arr[16]) {
     for (int j=0; j<4; ++j) {
         for (int i=0; i<4; ++i) {
-            array[j*4+i] = arr[i][j];
+            arr[j*4+i] = this->array[i][j];
         }
     }
 }
@@ -99,7 +99,7 @@ Matrix Matrix::operator*(const Matrix &mat) const {
         for (int j=0; j<4; ++j) {
             result[i][j] = 0.0;
             for (int k=0; k<4; ++k)
-                result[i][j] += arr[i][k] * mat(k,j);
+                result[i][j] += array[i][k] * mat(k,j);
         }
     }
     return Matrix(result);
@@ -119,7 +119,7 @@ Vec4 Matrix::operator*(const Vec4 &vec) const {
     for (int i=0; i<4; ++i) {
         result[i] = 0.0;
         for (int k=0; k<4; ++k) {
-            result[i] += arr[i][k] * vec[k];
+            result[i] += array[i][k] * vec[k];
         }
     }
     return result;
