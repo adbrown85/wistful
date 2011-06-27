@@ -41,6 +41,8 @@ private:
     static float findMinor(const Mat4& mat, int row, int col);
     static void findCofactors(const Mat4& mat, float cofactors[4][4]);
     static float findDeterminant(float [3][3]);
+// Constants
+    static const float EPSILON = 0.00000000000000000001;
 };
 
 /**

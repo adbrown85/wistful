@@ -160,6 +160,7 @@ Vec4 Mat4::operator*(const Vec4 &vec) const {
  * 
  * @param mat Matrix to compute inverse of
  * @return Copy of matrix's inverse
+ * @throw std::exception if matrix cannot be inverted
  */
 Mat4 inverse(const Mat4 &mat) {
     
@@ -174,6 +175,11 @@ Mat4 inverse(const Mat4 &mat) {
     determinant = 0;
     for (int j=0; j<4; ++j) {
         determinant += mat(0,j) * arr[0][j];
+    }
+    
+    // Check if determinant is zero
+    if (fabs(determinant) < Mat4::EPSILON) {
+        throw Exception("[Mat4] Matrix cannot be inverted!");
     }
     
     // Transpose the array in place
