@@ -1,5 +1,5 @@
 /*
- * Matrix.cxx
+ * Mat4Test.cxx
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
@@ -8,15 +8,15 @@
 #include "ggl/common.h"
 #include "ggl/testing/TestFixture.hpp"
 #include "ggl/testing/TestRunner.hpp"
-#include "ggl/math/Matrix.hpp"
+#include "ggl/math/Mat4.hpp"
 using namespace std;
 using namespace Ggl;
 
 
 /**
- * @brief Unit test for Matrix.
+ * @brief Unit test for Mat4.
  */
-class MatrixTest : public TestFixture {
+class Mat4Test : public TestFixture {
 public:
 	void setUp();
 	void testInverse();
@@ -25,22 +25,22 @@ public:
 	void testTranspose();
 	void testMultiplyVector();
 private:
-	Matrix m1, m2, m3;
+	Mat4 m1, m2, m3;
 };
 
-void MatrixTest::setUp() {
+void Mat4Test::setUp() {
     
     float arr[4][4] = { {4.0, 4.0, 8.0, 7.0},
                         {3.0, 2.0, 4.0, 6.0},
                         {1.0, 6.0, 4.0, 5.0},
                         {1.0, 2.0, 3.0, 4.0} };
     
-	m1 = Matrix(arr);
-	m2 = Matrix(1.0);
-	m3 = Matrix(1.0);
+	m1 = Mat4(arr);
+	m2 = Mat4(1.0);
+	m3 = Mat4(1.0);
 }
 
-void MatrixTest::testInverse() {
+void Mat4Test::testInverse() {
 	
 	m2 = inverse(m1);
 	m3 = m1 * m2;
@@ -62,14 +62,14 @@ void MatrixTest::testInverse() {
 	}
 }
 
-void MatrixTest::testSetArray() {
+void Mat4Test::testSetArray() {
 	
 	float arr[16] = { 1.0,  2.0,  3.0,  4.0,
 	                  5.0,  6.0,  7.0,  8.0,
 	                  9.0, 10.0, 11.0, 12.0,
 	                 13.0, 14.0, 15.0, 16.0};
 	
-	m2 = Matrix(arr);
+	m2 = Mat4(arr);
 	
 	for (int i=0; i<4; ++i) {
 		for (int j=0; j<4; ++j) {
@@ -78,14 +78,14 @@ void MatrixTest::testSetArray() {
 	}
 }
 
-void MatrixTest::testTranspose() {
+void Mat4Test::testTranspose() {
     
     float arr[4][4] = { {4.0, 3.0, 1.0, 1.0},
                         {4.0, 2.0, 6.0, 2.0},
                         {8.0, 4.0, 4.0, 3.0},
                         {7.0, 6.0, 5.0, 4.0}};
     
-    m2 = Matrix(arr);
+    m2 = Mat4(arr);
 	m3 = transpose(m1);
 	
 	for (int i=0; i<4; ++i) {
@@ -95,7 +95,7 @@ void MatrixTest::testTranspose() {
 	}
 }
 
-void MatrixTest::testMultiplyVector() {
+void Mat4Test::testMultiplyVector() {
 	
 	Vec4 u(8.0, 3.0, 1.0, 7.0);
 	Vec4 v = m1 * u;
@@ -106,7 +106,7 @@ void MatrixTest::testMultiplyVector() {
 	assertEquals( 45, v.w);
 }
 
-#define GGL_TEST_FIXTURE MatrixTest
+#define GGL_TEST_FIXTURE Mat4Test
 GGL_TEST_SUITE
 GGL_ADD_TEST(testInverse)
 GGL_ADD_TEST(testSetArray)

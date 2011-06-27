@@ -1,11 +1,11 @@
 /*
- * Matrix.hpp
+ * Mat4.hpp
  * 
  * Author
  *    Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGL_MATRIX_HPP
-#define GGL_MATRIX_HPP
+#ifndef GGL_MAT4_HPP
+#define GGL_MAT4_HPP
 #include <cmath>
 #include <iomanip>
 #include "ggl/common.h"
@@ -16,30 +16,30 @@ namespace Ggl {
 /**
  * @brief Four-by-four matrix for 3D graphics.
  */
-class Matrix {
+class Mat4 {
 public:
-    Matrix();
-    Matrix(float value);
-    Matrix(float arr[4][4]);
-    Matrix(float arr[16]);
+    Mat4();
+    Mat4(float value);
+    Mat4(float arr[4][4]);
+    Mat4(float arr[16]);
     void toArray(float arr[4][4]);
     void toArray(float arr[16]);
 // Operators
     float& operator()(int i, int j);
     float operator()(int i, int j) const;
-    Matrix operator*(const Matrix &mat) const;
+    Mat4 operator*(const Mat4 &mat) const;
     Vec4 operator*(const Vec4 &vec) const;
 // Friends
-    friend Matrix inverse(const Matrix &mat);
-    friend void print(const Matrix &mat);
-    friend Matrix transpose(const Matrix &mat);
+    friend Mat4 inverse(const Mat4 &mat);
+    friend void print(const Mat4 &mat);
+    friend Mat4 transpose(const Mat4 &mat);
 private:
     float array[4][4];
     static int **chart;
 // Helpers
     static int** createChart();
-    static float findMinor(const Matrix& mat, int row, int col);
-    static void findCofactors(const Matrix& mat, float cofactors[4][4]);
+    static float findMinor(const Mat4& mat, int row, int col);
+    static void findCofactors(const Mat4& mat, float cofactors[4][4]);
     static float findDeterminant(float [3][3]);
 };
 
@@ -50,7 +50,7 @@ private:
  * @param j Column of element
  */
 inline
-float& Matrix::operator()(int i, int j) {
+float& Mat4::operator()(int i, int j) {
     return array[i][j];
 }
 
@@ -61,7 +61,7 @@ float& Matrix::operator()(int i, int j) {
  * @param j Column of element
  */
 inline
-float Matrix::operator()(int i, int j) const {
+float Mat4::operator()(int i, int j) const {
     return array[i][j];
 }
 

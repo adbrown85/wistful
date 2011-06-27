@@ -1,21 +1,21 @@
 /*
- * Matrix.hpp
+ * Mat4.hpp
  * 
  * Author
  *    Andrew Brown <adb1413@rit.edu>
  */
-#include "Matrix.hpp"
+#include "Mat4.hpp"
 using namespace std;
 using namespace Ggl;
 namespace Ggl {
 
 /* Static fields */
-int **Matrix::chart = createChart();
+int **Mat4::chart = createChart();
 
 /**
  * Creates an empty matrix.
  */
-Matrix::Matrix() {
+Mat4::Mat4() {
     array[0][0] = 0.0;
     array[0][1] = 0.0;
     array[0][2] = 0.0;
@@ -39,7 +39,7 @@ Matrix::Matrix() {
  * 
  * @param value Value to copy to each element on diagonal
  */
-Matrix::Matrix(float value) {
+Mat4::Mat4(float value) {
     array[0][0] = value;
     array[0][1] = 0.0;
     array[0][2] = 0.0;
@@ -63,7 +63,7 @@ Matrix::Matrix(float value) {
  * 
  * @param arr Two-dimensional array
  */
-Matrix::Matrix(float arr[4][4]) {
+Mat4::Mat4(float arr[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             this->array[i][j] = arr[i][j];
@@ -76,7 +76,7 @@ Matrix::Matrix(float arr[4][4]) {
  * 
  * @param arr One-dimensional array in column-major order
  */
-Matrix::Matrix(float arr[16]) {
+Mat4::Mat4(float arr[16]) {
     for (int j=0; j<4; j++) {
         for (int i=0; i<4; i++) {
             this->array[i][j] = arr[j*4+i];
@@ -89,7 +89,7 @@ Matrix::Matrix(float arr[16]) {
  * 
  * @param arr Array to store matrix values in
  */
-void Matrix::toArray(float arr[4][4]) {
+void Mat4::toArray(float arr[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             arr[i][j] = this->array[i][j];
@@ -102,7 +102,7 @@ void Matrix::toArray(float arr[4][4]) {
  * 
  * @param arr Array to store matrix values in
  */
-void Matrix::toArray(float arr[16]) {
+void Mat4::toArray(float arr[16]) {
     for (int j=0; j<4; ++j) {
         for (int i=0; i<4; ++i) {
             arr[j*4+i] = this->array[i][j];
@@ -118,9 +118,9 @@ void Matrix::toArray(float arr[16]) {
  * @param mat Matrix to multiply by
  * @return Copy of resulting matrix
  */
-Matrix Matrix::operator*(const Matrix &mat) const {
+Mat4 Mat4::operator*(const Mat4 &mat) const {
     
-    Matrix result;
+    Mat4 result;
     
     // Multiply rows of this matrix with columns of other matrix
     for (int i=0; i<4; ++i) {
@@ -139,7 +139,7 @@ Matrix Matrix::operator*(const Matrix &mat) const {
  * @param vec Vector to multiply by
  * @return Copy of resulting vector
  */
-Vec4 Matrix::operator*(const Vec4 &vec) const {
+Vec4 Mat4::operator*(const Vec4 &vec) const {
     
     Vec4 result;
     
@@ -161,14 +161,14 @@ Vec4 Matrix::operator*(const Vec4 &vec) const {
  * @param mat Matrix to invert
  * @return Copy of inverted matrix
  */
-Matrix inverse(const Matrix &mat) {
+Mat4 inverse(const Mat4 &mat) {
     
     float arr[4][4];
     float determinant;
     float determinantReciprocal;
     
     // Find cofactors
-    Matrix::findCofactors(mat, arr);
+    Mat4::findCofactors(mat, arr);
     
     // Find determinant using first row of cofactors
     determinant = 0;
@@ -191,7 +191,7 @@ Matrix inverse(const Matrix &mat) {
         }
     }
     
-    return Matrix(arr);
+    return Mat4(arr);
 }
 
 /**
@@ -199,7 +199,7 @@ Matrix inverse(const Matrix &mat) {
  * 
  * @param mat Matrix to print
  */
-void print(const Matrix &mat) {
+void print(const Mat4 &mat) {
     
     // Print all entries
     cout << fixed << setprecision(3) << right;
@@ -222,7 +222,7 @@ void print(const Matrix &mat) {
  * @param mat Matrix to transpose
  * @return Copy of the transposed matrix
  */
-Matrix transpose(const Matrix &mat) {
+Mat4 transpose(const Mat4 &mat) {
     
     float transposed[4][4];
     
@@ -231,7 +231,7 @@ Matrix transpose(const Matrix &mat) {
             transposed[i][j] = mat(j,i);
         }
     }
-    return Matrix(transposed);
+    return Mat4(transposed);
 }
 
 /* Helpers */
@@ -242,7 +242,7 @@ Matrix transpose(const Matrix &mat) {
  * @return Pointer to chart on heap
  * @throw Ggl::Exception if could not allocate chart
  */
-int** Matrix::createChart() {
+int** Mat4::createChart() {
     
     int **chart;
     
@@ -275,8 +275,8 @@ int** Matrix::createChart() {
  * @param mat Matrix to find cofactors of
  * @param cofactors 4x4 array to store cofactors in
  */
-void Matrix::findCofactors(const Matrix &mat,
-                           float cofactors[4][4]) {
+void Mat4::findCofactors(const Mat4 &mat,
+                         float cofactors[4][4]) {
     for (int i=0; i<4; ++i) {
         for (int j=0; j<4; ++j) {
             cofactors[i][j] = findMinor(mat, i, j) * chart[i][j];
@@ -306,7 +306,7 @@ void Matrix::findCofactors(const Matrix &mat,
  * @param mat Matrix stored in a 3x3 array
  * @return Determinant of matrix
  */
-float Matrix::findDeterminant(float mat[3][3]) {
+float Mat4::findDeterminant(float mat[3][3]) {
     
     float aei = mat[0][0] * mat[1][1] * mat[2][2];
     float afh = mat[0][0] * mat[1][2] * mat[2][1];
@@ -328,9 +328,9 @@ float Matrix::findDeterminant(float mat[3][3]) {
  * @param row Row of element
  * @param col Column of element
  */
-float Matrix::findMinor(const Matrix &mat,
-                        int row,
-                        int col) {
+float Mat4::findMinor(const Mat4 &mat,
+                      int row,
+                      int col) {
     
     float minor[3][3];
     int ii;
