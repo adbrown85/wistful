@@ -7,6 +7,7 @@
 #include "ggl/math/Math.hpp"
 using namespace std;
 using namespace Ggl;
+namespace Ggl {
 
 /**
  * Converts degrees to radians.
@@ -17,3 +18,5 @@ using namespace Ggl;
 double toRadians(double degrees) {
     return degrees * (PI / 180);
 }
+
+} /* namespace Ggl */
