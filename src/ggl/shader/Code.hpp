@@ -26,9 +26,9 @@ class Code {
 public:
     typedef std::vector<CodeLine>::iterator iterator;
 public:
-    void add(const CodeLine &line);
-    void add(const std::string &filename, int number, const std::string &text);
-    void clear();
+    void addLine(const CodeLine &line);
+    void addLine(const std::string &f, int n, const std::string &t);
+    void clearLines();
 // Accessors
     iterator begin();
     iterator end();

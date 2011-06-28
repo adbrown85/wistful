@@ -11,14 +11,16 @@ using namespace Ggl;
 /**
  * Adds a line to the source code.
  */
-void Code::add(const CodeLine &line) {
+void Code::addLine(const CodeLine &line) {
     lines.push_back(line);
 }
 
 /**
  * Adds a line to the source code.
  */
-void Code::add(const string &filename, int number, const string &text) {
+void Code::addLine(const string &filename,
+                   int number,
+                   const string &text) {
     
     CodeLine line;
     
@@ -48,7 +50,7 @@ Code::iterator Code::end() {
 /**
  * Clears all the stored lines.
  */
-void Code::clear() {
+void Code::clearLines() {
     lines.clear();
 }
 
