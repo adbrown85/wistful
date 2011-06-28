@@ -7,6 +7,7 @@
 #include "Quaternion.hpp"
 using namespace std;
 using namespace Ggl;
+namespace Ggl {
 
 Quaternion::Quaternion() {
     s = 1.0;
@@ -35,10 +36,6 @@ Quaternion Quaternion::operator*(const Quaternion& B) {
     C.s = s * B.s - dot(v,B.v);
     C.v = (B.v * s) + (v * B.s) + cross(v,B.v);
     return C;
-}
-
-void Quaternion::print() {
-    cout << "  " << toString() << endl;
 }
 
 void Quaternion::rotate(float angle, const Vec4 &axis) {
@@ -114,3 +111,9 @@ string Quaternion::toString() const {
             << " z='" << v.z << "'";
     return stream.str();
 }
+
+void print(const Quaternion &q) {
+    cout << "  " << q.toString() << endl;
+}
+
+} /* namespace Ggl */
