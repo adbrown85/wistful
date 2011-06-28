@@ -34,33 +34,33 @@ void Vec4Test::setUp() {
 void Vec4Test::testAdd() {
 	
 	C = A + B;
-	assertEquals(C.x, 4);
-	assertEquals(C.y, 6);
-	assertEquals(C.z, 7);
+	assertEquals(4, C.x);
+	assertEquals(6, C.y);
+	assertEquals(7, C.z);
 }
 
 void Vec4Test::testSubtract() {
 	
 	C = A - B;
-	assertEquals(C.x, 0);
-	assertEquals(C.y, -2);
-	assertEquals(C.z, -3);
+	assertEquals( 0, C.x);
+	assertEquals(-2, C.y);
+	assertEquals(-3, C.z);
 }
 
 void Vec4Test::testMultiply() {
 	
 	C = A * B;
-	assertEquals(C.x, 4);
-	assertEquals(C.y, 8);
-	assertEquals(C.z, 10);
+	assertEquals( 4, C.x);
+	assertEquals( 8, C.y);
+	assertEquals(10, C.z);
 }
 
 void Vec4Test::testDivide() {
 	
 	C = A / B;
-	assertEquals(C.x, 1.0);
-	assertEquals(C.y, 0.5);
-	assertEquals(C.z, 0.4);
+	assertEquals(1.0, C.x);
+	assertEquals(0.5, C.y);
+	assertEquals(0.4, C.z);
 }
 
 #define GGL_TEST_FIXTURE Vec4Test
