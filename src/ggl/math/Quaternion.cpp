@@ -28,22 +28,13 @@ void Quaternion::normalize() {
     v /= mag;
 }
 
-Quaternion Quaternion::operator*(const Quaternion& B) {
-    
-    Quaternion C;
-    
-    // Calculate scalar and vector
-    C.s = s * B.s - dot(v,B.v);
-    C.v = (B.v * s) + (v * B.s) + cross(v,B.v);
-    return C;
-}
-
 void Quaternion::rotate(float angle, const Vec4 &axis) {
     
-    Quaternion B(angle, axis);
+    Quaternion q(angle, axis);
+    float dp = dot(q.v, v);
     
-    // Combine with current rotation
-    *this = B * (*this);
+    v = (v * q.s) + (q.v * s) + cross(q.v, v);
+    s = (q.s * s) - dp;
 }
 
 void Quaternion::set(float angle, const Vec4 &axis) {

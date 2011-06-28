@@ -23,7 +23,6 @@ class Quaternion {
 public:
     Quaternion();
     Quaternion(float angle, const Vec4 &axis);
-    Quaternion operator*(const Quaternion &B);
     void set(float angle, const Vec4 &axis);
     void rotate(float angle, const Vec4 &axis);
     Mat4 toMat4() const;

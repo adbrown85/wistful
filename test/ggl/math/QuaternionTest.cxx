@@ -16,7 +16,7 @@ using namespace Ggl;
 class QuaternionTest : public TestFixture {
 public:
 	void testToMat4();
-	void testMultiply();
+	void testRotate();
 private:
 	Mat4 mat;
 	Quaternion quaA, quaB, quaC;
@@ -29,13 +29,14 @@ void QuaternionTest::testToMat4() {
 	print(mat);
 }
 
-void QuaternionTest::testMultiply() {
-	quaA.set(45, Vec4(0,1,0));
-	quaB.set(30, Vec4(0,1,0));
-	quaC = quaA * quaB;
-	mat = quaC.toMat4();
+void QuaternionTest::testRotate() {
+	
+	quaA.set(30, Vec4(0,1,0));
+	quaA.rotate(45, Vec4(0,1,0));
+	mat = quaA.toMat4();
 	print(mat);
 }
+
 
 /*
  * Runs the test.
@@ -43,6 +44,6 @@ void QuaternionTest::testMultiply() {
 #define GGL_TEST_FIXTURE QuaternionTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testToMat4)
-GGL_ADD_TEST(testMultiply)
+GGL_ADD_TEST(testRotate)
 GGL_RUN_TESTS
 
