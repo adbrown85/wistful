@@ -94,6 +94,7 @@ Mat4 Quaternion::toMat4() const {
     C(2,0) = xz2 - sy2;
     C(2,1) = yz2 + sx2;
     C(2,2) = 1.0 - xx2 - yy2;
+    C(3,3) = 1.0;
     
     // Finish
     return C;
