@@ -28,12 +28,12 @@ public:
 public:
     void add(const CodeLine &line);
     void add(const std::string &filename, int number, const std::string &text);
-    iterator begin();
-    iterator end();
     void clear();
 // Accessors
-    size_t size() const;
+    iterator begin();
+    iterator end();
     CodeLine getLine(int number) const;
+    size_t size() const;
 private:
     std::vector<CodeLine> lines;
 };
