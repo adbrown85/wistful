@@ -48,20 +48,11 @@ void Quaternion::rotate(float angle, const Vec4 &axis) {
 
 void Quaternion::set(float angle, const Vec4 &axis) {
     
-    float cosAngleHalved;
-    float sinAngleHalved;
-    float angleHalved;
-    float angleHalvedInRadians;
+    float halfAngleInRadians = toRadians(0.5 * angle);
     
-    // Initialize
-    angleHalved = angle * 0.5;
-    angleHalvedInRadians = toRadians(angleHalved);
-    cosAngleHalved = cos(angleHalvedInRadians);
-    sinAngleHalved = sin(angleHalvedInRadians);
-    
-    // Set
-    s = cosAngleHalved;
-    v = axis * sinAngleHalved;
+    // Calculate
+    s = cos(halfAngleInRadians);
+    v = axis * sin(halfAngleInRadians);
     
     // Normalize
     normalize();
