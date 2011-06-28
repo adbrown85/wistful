@@ -8,7 +8,9 @@
 #define GGL_TESTFIXTURE_HPP
 #include <cassert>
 #include <cmath>
+#include <sstream>
 #include "ggl/common.h"
+#include "ggl/Exception.hpp"
 namespace Ggl {
 
 
@@ -26,6 +28,8 @@ protected:
     static void assertEquals(float x, float y, float epsilon);
 private:
     static const float DEFAULT_EPSILON = 0.001;
+// Helpers
+    static std::string createMessage(float x, float y);
 };
 
 } // namespace Ggl

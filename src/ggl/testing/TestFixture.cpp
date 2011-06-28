@@ -58,5 +58,22 @@ void TestFixture::assertEquals(float x, float y) {
  * @param epsilon Margin of error
  */
 void TestFixture::assertEquals(float x, float y, float epsilon) {
-    assert(fabs(x - y) < epsilon);
+    if (fabs(x - y) > epsilon) {
+        throw Exception(createMessage(x, y));
+    }
+}
+
+/**
+ * Makes a message for an exception.
+ * 
+ * @param x Expected value
+ * @param y Actual value
+ * @return Message listing both values
+ */
+string TestFixture::createMessage(float x, float y) {
+    
+    stringstream ss;
+    
+    ss << "Expected [" << x << "] but was [" << y << "]!";
+    return ss.str();
 }
