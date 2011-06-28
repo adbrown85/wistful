@@ -23,11 +23,11 @@ class Quaternion {
 public:
     Quaternion();
     Quaternion(float angle, const Vec4 &axis);
-    Mat4 getMatrix() const;
     Quaternion operator*(const Quaternion &B);
     void print();
     void set(float angle, const Vec4 &axis);
     void rotate(float angle, const Vec4 &axis);
+    Mat4 toMat4() const;
     std::string toString() const;
 protected:
     void normalize();

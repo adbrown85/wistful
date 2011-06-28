@@ -17,38 +17,6 @@ Quaternion::Quaternion(float angle, const Vec4 &axis) {
     set(angle, axis);
 }
 
-/**
- * Returns a matrix representing the rotation.
- */
-Mat4 Quaternion::getMatrix() const {
-    
-    float xx2, yy2, zz2, xy2, xz2, yz2, sx2, sy2, sz2;
-    Mat4 C;
-    
-    // Calculate matrix
-    xx2 = v.x * v.x * 2;
-    yy2 = v.y * v.y * 2;
-    zz2 = v.z * v.z * 2;
-    xy2 = v.x * v.y * 2;
-    xz2 = v.x * v.z * 2;
-    yz2 = v.y * v.z * 2;
-    sx2 = s * v.x * 2;
-    sy2 = s * v.y * 2;
-    sz2 = s * v.z * 2;
-    C(0,0) = 1.0 - yy2 - zz2;
-    C(0,1) = xy2 - sz2;
-    C(0,2) = xz2 + sy2;
-    C(1,0) = xy2 + sz2;
-    C(1,1) = 1.0 - xx2 - zz2;
-    C(1,2) = yz2 - sx2;
-    C(2,0) = xz2 - sy2;
-    C(2,1) = yz2 + sx2;
-    C(2,2) = 1.0 - xx2 - yy2;
-    
-    // Finish
-    return C;
-}
-
 void Quaternion::normalize() {
     
     float mag;
@@ -100,6 +68,38 @@ void Quaternion::set(float angle, const Vec4 &axis) {
     
     // Normalize
     normalize();
+}
+
+/**
+ * Returns a matrix representing the rotation.
+ */
+Mat4 Quaternion::toMat4() const {
+    
+    float xx2, yy2, zz2, xy2, xz2, yz2, sx2, sy2, sz2;
+    Mat4 C;
+    
+    // Calculate matrix
+    xx2 = v.x * v.x * 2;
+    yy2 = v.y * v.y * 2;
+    zz2 = v.z * v.z * 2;
+    xy2 = v.x * v.y * 2;
+    xz2 = v.x * v.z * 2;
+    yz2 = v.y * v.z * 2;
+    sx2 = s * v.x * 2;
+    sy2 = s * v.y * 2;
+    sz2 = s * v.z * 2;
+    C(0,0) = 1.0 - yy2 - zz2;
+    C(0,1) = xy2 - sz2;
+    C(0,2) = xz2 + sy2;
+    C(1,0) = xy2 + sz2;
+    C(1,1) = 1.0 - xx2 - zz2;
+    C(1,2) = yz2 - sx2;
+    C(2,0) = xz2 - sy2;
+    C(2,1) = yz2 + sx2;
+    C(2,2) = 1.0 - xx2 - yy2;
+    
+    // Finish
+    return C;
 }
 
 string Quaternion::toString() const {
