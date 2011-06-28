@@ -19,24 +19,22 @@ public:
 	void testRotate();
 private:
 	Mat4 mat;
-	Quaternion quaA, quaB, quaC;
+	Quaternion q;
 };
 
 void QuaternionTest::testToMat4() {
-	quaA.set(45, Vec4(0,1,0));
-	print(quaA);
-	mat = quaA.toMat4();
+	q = Quaternion(45, Vec4(0,1,0));
+	print(q);
+	mat = q.toMat4();
 	print(mat);
 }
 
 void QuaternionTest::testRotate() {
-	
-	quaA.set(30, Vec4(0,1,0));
-	quaA.rotate(45, Vec4(0,1,0));
-	mat = quaA.toMat4();
+	q = Quaternion(30, Vec4(0,1,0));
+	q.rotate(45, Vec4(0,1,0));
+	mat = q.toMat4();
 	print(mat);
 }
-
 
 /*
  * Runs the test.
