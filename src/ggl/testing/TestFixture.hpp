@@ -25,7 +25,7 @@ protected:
     static void assertEquals(float x, float y);
     static void assertEquals(float x, float y, float epsilon);
 private:
-    static const float DEFAULT_EPSILON = 0.0001;
+    static const float DEFAULT_EPSILON = 0.001;
 };
 
 } // namespace Ggl
