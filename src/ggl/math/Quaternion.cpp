@@ -15,15 +15,18 @@ Quaternion::Quaternion() {
 }
 
 Quaternion::Quaternion(float angle, const Vec4 &axis) {
-    set(angle, axis);
-}
-
-void Quaternion::normalize() {
     
-    float mag = sqrt(s*s + v.x*v.x + v.y*v.y + v.z*v.z);
+    float halfAngleInRadians = toRadians(0.5 * angle);
+    float magnitude;
     
-    s /= mag;
-    v /= mag;
+    // Calculate
+    s = cos(halfAngleInRadians);
+    v = axis * sin(halfAngleInRadians);
+    
+    // Normalize
+    magnitude = sqrt(s*s + v.x*v.x + v.y*v.y + v.z*v.z);
+    s /= magnitude;
+    v /= magnitude;
 }
 
 void Quaternion::rotate(float angle, const Vec4 &axis) {
@@ -33,18 +36,6 @@ void Quaternion::rotate(float angle, const Vec4 &axis) {
     
     v = (v * q.s) + (q.v * s) + cross(q.v, v);
     s = (q.s * s) - dp;
-}
-
-void Quaternion::set(float angle, const Vec4 &axis) {
-    
-    float halfAngleInRadians = toRadians(0.5 * angle);
-    
-    // Calculate
-    s = cos(halfAngleInRadians);
-    v = axis * sin(halfAngleInRadians);
-    
-    // Normalize
-    normalize();
 }
 
 /**
