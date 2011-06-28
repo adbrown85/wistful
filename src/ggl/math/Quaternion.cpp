@@ -106,7 +106,7 @@ string Quaternion::toString() const {
  * @param q Quaternion to print
  */
 void print(const Quaternion &q) {
-    cout << "  " << q.toString() << endl;
+    cout << q.toString() << endl;
 }
 
 } /* namespace Ggl */
