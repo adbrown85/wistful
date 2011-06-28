@@ -6,9 +6,9 @@
  */
 #ifndef GGL_TESTFIXTURE_HPP
 #define GGL_TESTFIXTURE_HPP
-#include "ggl/common.h"
 #include <cassert>
 #include <cmath>
+#include "ggl/common.h"
 namespace Ggl {
 
 
