@@ -72,19 +72,18 @@ void Quaternion::set(float angle, const Vec4 &axis) {
  */
 Mat4 Quaternion::toMat4() const {
     
-    float xx2, yy2, zz2, xy2, xz2, yz2, sx2, sy2, sz2;
+    float xx2 = v.x * v.x * 2;
+    float yy2 = v.y * v.y * 2;
+    float zz2 = v.z * v.z * 2;
+    float xy2 = v.x * v.y * 2;
+    float xz2 = v.x * v.z * 2;
+    float yz2 = v.y * v.z * 2;
+    float sx2 = s * v.x * 2;
+    float sy2 = s * v.y * 2;
+    float sz2 = s * v.z * 2;
     Mat4 C;
     
     // Calculate matrix
-    xx2 = v.x * v.x * 2;
-    yy2 = v.y * v.y * 2;
-    zz2 = v.z * v.z * 2;
-    xy2 = v.x * v.y * 2;
-    xz2 = v.x * v.z * 2;
-    yz2 = v.y * v.z * 2;
-    sx2 = s * v.x * 2;
-    sy2 = s * v.y * 2;
-    sz2 = s * v.z * 2;
     C(0,0) = 1.0 - yy2 - zz2;
     C(0,1) = xy2 - sz2;
     C(0,2) = xz2 + sy2;
@@ -96,7 +95,6 @@ Mat4 Quaternion::toMat4() const {
     C(2,2) = 1.0 - xx2 - yy2;
     C(3,3) = 1.0;
     
-    // Finish
     return C;
 }
 
