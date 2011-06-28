@@ -104,10 +104,10 @@ string Quaternion::toString() const {
     
     // Make string
     stream << "Quaternion"
-            << " s='" << s << "'"
-            << " x='" << v.x << "'"
-            << " y='" << v.y << "'"
-            << " z='" << v.z << "'";
+           << " s='" << s << "'"
+           << " x='" << v.x << "'"
+           << " y='" << v.y << "'"
+           << " z='" << v.z << "'";
     return stream.str();
 }
 
