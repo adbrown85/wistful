@@ -9,11 +9,20 @@ using namespace std;
 using namespace Ggl;
 namespace Ggl {
 
+/**
+ * Creates a quaternion representing no rotation.
+ */
 Quaternion::Quaternion() {
     s = 1.0;
     v.set(0.0, 0.0, 0.0);
 }
 
+/**
+ * Creates a quaternion representing an angle/axis rotation.
+ * 
+ * @param angle Degrees around axis
+ * @param axis Axis of rotation
+ */
 Quaternion::Quaternion(float angle, const Vec4 &axis) {
     
     float halfAngleInRadians = toRadians(0.5 * angle);
@@ -29,6 +38,12 @@ Quaternion::Quaternion(float angle, const Vec4 &axis) {
     v /= magnitude;
 }
 
+/**
+ * Rotates the quaternion by an angle/axis rotation.
+ * 
+ * @param angle Degrees around axis
+ * @param axis Axis of rotation
+ */
 void Quaternion::rotate(float angle, const Vec4 &axis) {
     
     Quaternion q(angle, axis);
@@ -39,7 +54,7 @@ void Quaternion::rotate(float angle, const Vec4 &axis) {
 }
 
 /**
- * Returns a matrix representing the rotation.
+ * Returns a matrix corresponding to the quaternion's rotation.
  */
 Mat4 Quaternion::toMat4() const {
     
@@ -69,6 +84,9 @@ Mat4 Quaternion::toMat4() const {
     return C;
 }
 
+/**
+ * Returns a string representation of the quaternion.
+ */
 string Quaternion::toString() const {
     
     stringstream stream;
@@ -82,6 +100,11 @@ string Quaternion::toString() const {
     return stream.str();
 }
 
+/**
+ * Prints a quaternion to standard out.
+ * 
+ * @param q Quaternion to print
+ */
 void print(const Quaternion &q) {
     cout << "  " << q.toString() << endl;
 }
