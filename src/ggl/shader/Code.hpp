@@ -38,20 +38,5 @@ private:
     std::vector<CodeLine> lines;
 };
 
-/** @return Iterator to the beginning of the code lines. */
-inline Code::iterator Code::begin() {return lines.begin();}
-
-/** @return Iterator to the end of the code lines. */
-inline Code::iterator Code::end() {return lines.end();}
-
-/** Clears all the lines stored. */
-inline void Code::clear() {lines.clear();}
-
-/** @return Number of lines stored. */
-inline size_t Code::size() const {return lines.size();}
-
-/** @return Line of code at index equal to @e number. */
-inline CodeLine Code::getLine(int number) const {return lines[number];}
-
 } /* namespace Ggl */
 #endif
