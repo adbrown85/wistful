@@ -59,8 +59,8 @@ void TestRunner<T>::runTestSuite(TestSuite<T> &testSuite) {
             std::cout << "PASSED" << std::endl;
         }
     } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-        std::cout << "FAILED!" << std::endl;
+        std::cerr << e.what() << std::endl;
+        std::cerr << "FAILED!" << std::endl;
         exit(1);
     }
 }
