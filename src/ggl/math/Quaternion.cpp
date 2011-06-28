@@ -20,10 +20,8 @@ Quaternion::Quaternion(float angle, const Vec4 &axis) {
 
 void Quaternion::normalize() {
     
-    float mag;
+    float mag = sqrt(s*s + v.x*v.x + v.y*v.y + v.z*v.z);
     
-    // Divide by magnitude
-    mag = sqrt(s*s + v.x*v.x + v.y*v.y + v.z*v.z);
     s /= mag;
     v /= mag;
 }
