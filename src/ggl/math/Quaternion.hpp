@@ -28,11 +28,11 @@ public:
     void rotate(float angle, const Vec4 &axis);
     Mat4 toMat4() const;
     std::string toString() const;
-protected:
-    void normalize();
 private:
     float s;
     Vec4 v;
+// Helpers
+    void normalize();
 };
 
 void print(const Quaternion &q);
