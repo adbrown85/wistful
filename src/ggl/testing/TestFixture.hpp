@@ -23,8 +23,9 @@ public:
     virtual void tearDown();
 protected:
     static void assertEquals(float x, float y);
+    static void assertEquals(float x, float y, float epsilon);
 private:
-    static const float EPSILON = 0.0001;
+    static const float DEFAULT_EPSILON = 0.0001;
 };
 
 } // namespace Ggl
