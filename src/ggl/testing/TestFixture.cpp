@@ -64,6 +64,20 @@ void TestFixture::assertEquals(float x, float y, float epsilon) {
 }
 
 /**
+ * Checks to see if two strings are equal.
+ * 
+ * @param s1 First string
+ * @param s2 Second string
+ * @throw std::exception if strings are not equal
+ */
+void TestFixture::assertEquals(const std::string &s1,
+                               const std::string &s2) {
+    if (s1 != s2) {
+        throw Exception(createMessage(s1, s2));
+    }
+}
+
+/**
  * Makes a message for an exception.
  * 
  * @param x Expected value
@@ -75,5 +89,21 @@ string TestFixture::createMessage(float x, float y) {
     stringstream ss;
     
     ss << "Expected [" << x << "] but was [" << y << "]!";
+    return ss.str();
+}
+
+/**
+ * Makes a message for an exception.
+ * 
+ * @param s1 Expected value
+ * @param s2 Actual value
+ * @return Message listing both values
+ */
+string TestFixture::createMessage(const std::string &s1,
+                                  const std::string &s2) {
+    
+    stringstream ss;
+    
+    ss << "Expected [" << s1 << "] but was [" << s2 << "]!";
     return ss.str();
 }
