@@ -25,6 +25,8 @@ public:
     virtual bool isAbsolute() const;
     virtual bool isDirectory() const;
     virtual std::string toString() const;
+/* Utilities */
+    static Path locate(const Path &folder, const Path &file);
 private:
     stringlist_t parts;
     std::string root;

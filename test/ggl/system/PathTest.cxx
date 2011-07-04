@@ -24,8 +24,11 @@ public:
 	void testIsAbsoluteWithWindowsRoot();
 	void testIsDirectoryWithDirectory();
 	void testIsDirectoryWithFile();
+	void testLocateWithRelative();
+	void testLocateWithAbsolute();
 private:
 	static Path toPath(const string &str);
+	static Path locate(const string &folder, const string &file);
 };
 
 void PathTest::testToStringWithFile() {
@@ -60,8 +63,46 @@ void PathTest::testIsDirectoryWithFile() {
     assert(!toPath("input/scene.xml").isDirectory());
 }
 
+void PathTest::testLocateWithRelative() {
+    
+    Path p1 = locate("input/", "glsl/file.frag");
+    assertEquals("input//glsl/file.frag", p1.toString());
+    cout << p1.toString() << endl;
+    
+    Path p2 = locate("input/", "../glsl/file.frag");
+    assertEquals("glsl/file.frag", p2.toString());
+    cout << p2.toString() << endl;
+    
+    Path p3 = locate("input/", "../glsl/../glsl/file.frag");
+    assertEquals("glsl/file.frag", p3.toString());
+    cout << p3.toString() << endl;
+    
+    Path p4 = locate("../../input/", "file.frag");
+    assertEquals("../../input//file.frag", p4.toString());
+    cout << p4.toString() << endl;
+}
+
+void PathTest::testLocateWithAbsolute() {
+    
+    Path p1 = locate("input/", "/home/user/gander/glsl/file.frag");
+    assertEquals("/home/user/gander/glsl/file.frag", p1.toString());
+    cout << p1.toString() << endl;
+    
+    Path p2 = locate("/home/user/gander/input/", "glsl/file.frag");
+    assertEquals("/home/user/gander/input//glsl/file.frag", p2.toString());
+    cout << p2.toString() << endl;
+    
+    Path p3 = locate("/home/user/gander/input/", "../glsl/file.frag");
+    assertEquals("/home/user/gander/glsl/file.frag", p3.toString());
+    cout << p3.toString() << endl;
+}
+
 Path PathTest::toPath(const string &str) {
     return Path::fromString(str);
+}
+
+Path PathTest::locate(const string &folder, const string &file) {
+    return Path::locate(toPath(folder), toPath(file));
 }
 
 #define GGL_TEST_FIXTURE PathTest
@@ -74,4 +115,6 @@ GGL_ADD_TEST(testIsAbsoluteWithUnixRoot)
 GGL_ADD_TEST(testIsAbsoluteWithWindowsRoot)
 GGL_ADD_TEST(testIsDirectoryWithDirectory)
 GGL_ADD_TEST(testIsDirectoryWithFile)
+GGL_ADD_TEST(testLocateWithRelative)
+GGL_ADD_TEST(testLocateWithAbsolute)
 GGL_RUN_TESTS

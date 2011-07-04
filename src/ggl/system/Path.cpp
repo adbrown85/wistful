@@ -81,6 +81,50 @@ string Path::toString() const {
     return ss.str();
 }
 
+/* Utilities */
+
+/**
+ * Combines two paths together.
+ * 
+ * @param folder Path to a directory
+ * @param file Path to a file
+ * @return Path to the file relative to the directory
+ * @throw std::exception if first path is not a directory
+ * @throw std::exception if second path is not a file
+ */
+Path Path::locate(const Path &folder, const Path &file) {
+    
+    string root;
+    list<string> parts;
+    list<string>::const_iterator it;
+    
+    // Validate
+    if (!folder.isDirectory()) {
+        throw Exception("[Path] First path is not a directory!");
+    } else if (file.isDirectory()) {
+        throw Exception("[Path] Second path is not a file!");
+    } else if (file.isAbsolute()) {
+        return file;
+    }
+    
+    // First copy directory path's data
+    root = folder.root;
+    parts = folder.parts;
+    
+    // Merge relative path's parts into copy
+    it = file.parts.begin();
+    while (it != file.parts.end()) {
+        if (((*it) != "..")) {
+            parts.push_back((*it));
+        } else if (!parts.empty()) {
+            parts.pop_back();
+        }
+        ++it;
+    }
+    
+    return Path(root, parts);
+}
+
 /* Helpers */
 
 /**
