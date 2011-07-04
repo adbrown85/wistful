@@ -28,12 +28,6 @@ class Preprocessor {
 public:
     void parse(const std::string &filename);
     Code getCode() const;
-protected:
-    bool isInclude(const std::string &line);
-    void load(const std::string &filename);
-    void onInclude(const std::string &line);
-    void onLine(const std::string &f, int n, std::string &t, bool& ic);
-    std::string stripComments(const std::string &line, bool &inComment);
 private:
     std::set<std::string> includes;
     std::string filename;
@@ -41,6 +35,11 @@ private:
 // Helpers
     static std::string after(const std::string &str, char c);
     static std::string trim(const std::string &str, const std::string &c);
+    bool isInclude(const std::string &line);
+    void load(const std::string &filename);
+    void onInclude(const std::string &line);
+    void onLine(const std::string &f, int n, std::string &t, bool& ic);
+    std::string stripComments(const std::string &line, bool &inComment);
 };
 
 } /* namespace Ggl */
