@@ -9,18 +9,30 @@ using namespace std;
 using namespace Ggl;
 
 /**
- * Creates a path.
+ * Creates a path from a string.
  * 
- * @param filename Name of a file
+ * @param filename Name of file
+ * @return Path instance
  * @throw std::exception if filename is empty
  */
-Path::Path(const string &filename) {
+Path Path::fromString(const string &filename) {
     if (filename.empty()) {
         throw Exception("[Path] Filename is empty!");
     } else {
-        this->root = createRoot(filename);
-        this->parts = createParts(filename);
+        return Path(createRoot(filename), createParts(filename));
     }
+}
+
+/**
+ * Creates a path.
+ * 
+ * @param root Root of path
+ * @param parts Parts of path
+ */
+Path::Path(const string &root,
+           const list<string> &parts) {
+    this->root = root;
+    this->parts = parts;
 }
 
 /**

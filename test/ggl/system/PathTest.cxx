@@ -24,38 +24,44 @@ public:
 	void testIsAbsoluteWithWindowsRoot();
 	void testIsDirectoryWithDirectory();
 	void testIsDirectoryWithFile();
+private:
+	static Path toPath(const string &str);
 };
 
 void PathTest::testToStringWithFile() {
-    assertEquals("input/scene.xml", Path("input/scene.xml").toString());
+    assertEquals("input/scene.xml", toPath("input/scene.xml").toString());
 }
 
 void PathTest::testToStringWithDirectory() {
-    assertEquals("input/", Path("input/").toString());
+    assertEquals("input/", toPath("input/").toString());
 }
 
 void PathTest::testToStringWithUnixRoot() {
-    assertEquals("/", Path("/").toString());
+    assertEquals("/", toPath("/").toString());
 }
 
 void PathTest::testToStringWithWindowsRoot() {
-    assertEquals("C:/", Path("C:\\").toString());
+    assertEquals("C:/", toPath("C:\\").toString());
 }
 
 void PathTest::testIsAbsoluteWithUnixRoot() {
-    assert(Path("/").isAbsolute());
+    assert(toPath("/").isAbsolute());
 }
 
 void PathTest::testIsAbsoluteWithWindowsRoot() {
-    assert(Path("C:\\").isAbsolute());
+    assert(toPath("C:\\").isAbsolute());
 }
 
 void PathTest::testIsDirectoryWithDirectory() {
-    assert(Path("input/scenes/").isDirectory());
+    assert(toPath("input/scenes/").isDirectory());
 }
 
 void PathTest::testIsDirectoryWithFile() {
-    assert(!Path("input/scene.xml").isDirectory());
+    assert(!toPath("input/scene.xml").isDirectory());
+}
+
+Path PathTest::toPath(const string &str) {
+    return Path::fromString(str);
 }
 
 #define GGL_TEST_FIXTURE PathTest

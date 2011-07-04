@@ -19,7 +19,7 @@ namespace Ggl {
  */
 class Path {
 public:
-    Path(const std::string &filename);
+    static Path fromString(const std::string &str);
     virtual ~Path();
     virtual bool isAbsolute() const;
     virtual bool isDirectory() const;
@@ -35,6 +35,8 @@ private:
     static bool isSeparator(char c);
     static bool isWindowsRoot(const std::string &str);
     static std::list<std::string> tokenize(const std::string &filename);
+/* Constructors */
+    Path(const std::string &root, const std::list<std::string> &parts);
 };
 
 } /* namespace Ggl */
