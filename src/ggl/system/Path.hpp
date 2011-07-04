@@ -18,6 +18,7 @@ namespace Ggl {
  * @brief Location of a file.
  */
 class Path {
+    typedef std::list<std::string> stringlist_t;
 public:
     static Path fromString(const std::string &str);
     virtual ~Path();
@@ -25,18 +26,18 @@ public:
     virtual bool isDirectory() const;
     virtual std::string toString() const;
 private:
-    std::list<std::string> parts;
+    stringlist_t parts;
     std::string root;
 /* Helpers */
-    static std::list<std::string> createParts(const std::string &filename);
+    static stringlist_t createParts(const std::string &filename);
     static std::string createRoot(const std::string &filename);
     static bool hasUnixRoot(const std::string &str);
     static bool hasWindowsRoot(const std::string &str);
     static bool isSeparator(char c);
     static bool isWindowsRoot(const std::string &str);
-    static std::list<std::string> tokenize(const std::string &filename);
+    static stringlist_t tokenize(const std::string &filename);
 /* Constructors */
-    Path(const std::string &root, const std::list<std::string> &parts);
+    Path(const std::string &root, const stringlist_t &parts);
 };
 
 } /* namespace Ggl */
