@@ -97,6 +97,27 @@ string Path::toString() const {
 /* Utilities */
 
 /**
+ * Finds directory section of a path.
+ * 
+ * @param path Path to find directory section of
+ * @return Directory section of path
+ */
+Path Path::dirname(const Path &path) {
+    
+    if (path.isDirectory()) {
+        return path;
+    }
+    
+    string root = path.root;
+    list<string> parts = path.parts;
+    bool directory = true;
+    
+    parts.pop_back();
+    
+    return Path(root, parts, directory);
+}
+
+/**
  * Combines two paths together.
  * 
  * @param folder Path to a directory

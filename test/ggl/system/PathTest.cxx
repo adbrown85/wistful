@@ -26,9 +26,11 @@ public:
 	void testIsDirectoryWithFile();
 	void testLocateWithRelative();
 	void testLocateWithAbsolute();
+	void testDirname();
 private:
 	static Path toPath(const string &str);
 	static Path locate(const string &folder, const string &file);
+	static Path dirname(const string &path);
 };
 
 void PathTest::testToStringWithFile() {
@@ -97,12 +99,31 @@ void PathTest::testLocateWithAbsolute() {
     cout << p3.toString() << endl;
 }
 
+void PathTest::testDirname() {
+    
+    Path p1 = dirname("input/");
+    assertEquals("input/", p1.toString());
+    
+    Path p2 = dirname("/");
+    assertEquals("/", p2.toString());
+    
+    Path p3 = dirname("input/scene.xml");
+    assertEquals("input/", p3.toString());
+    
+    Path p4 = dirname("scene.xml");
+    assertEquals("", p4.toString());
+}
+
 Path PathTest::toPath(const string &str) {
     return Path::fromString(str);
 }
 
 Path PathTest::locate(const string &folder, const string &file) {
     return Path::locate(toPath(folder), toPath(file));
+}
+
+Path PathTest::dirname(const string &filename) {
+    return Path::dirname(toPath(filename));
 }
 
 #define GGL_TEST_FIXTURE PathTest
@@ -117,4 +138,5 @@ GGL_ADD_TEST(testIsDirectoryWithDirectory)
 GGL_ADD_TEST(testIsDirectoryWithFile)
 GGL_ADD_TEST(testLocateWithRelative)
 GGL_ADD_TEST(testLocateWithAbsolute)
+GGL_ADD_TEST(testDirname)
 GGL_RUN_TESTS
