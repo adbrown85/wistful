@@ -66,7 +66,7 @@ void PathTest::testIsDirectoryWithFile() {
 void PathTest::testLocateWithRelative() {
     
     Path p1 = locate("input/", "glsl/file.frag");
-    assertEquals("input//glsl/file.frag", p1.toString());
+    assertEquals("input/glsl/file.frag", p1.toString());
     cout << p1.toString() << endl;
     
     Path p2 = locate("input/", "../glsl/file.frag");
@@ -78,7 +78,7 @@ void PathTest::testLocateWithRelative() {
     cout << p3.toString() << endl;
     
     Path p4 = locate("../../input/", "file.frag");
-    assertEquals("../../input//file.frag", p4.toString());
+    assertEquals("../../input/file.frag", p4.toString());
     cout << p4.toString() << endl;
 }
 
@@ -89,7 +89,7 @@ void PathTest::testLocateWithAbsolute() {
     cout << p1.toString() << endl;
     
     Path p2 = locate("/home/user/gander/input/", "glsl/file.frag");
-    assertEquals("/home/user/gander/input//glsl/file.frag", p2.toString());
+    assertEquals("/home/user/gander/input/glsl/file.frag", p2.toString());
     cout << p2.toString() << endl;
     
     Path p3 = locate("/home/user/gander/input/", "../glsl/file.frag");

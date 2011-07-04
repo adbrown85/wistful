@@ -28,18 +28,20 @@ public:
 /* Utilities */
     static Path locate(const Path &folder, const Path &file);
 private:
-    stringlist_t parts;
     std::string root;
+    stringlist_t parts;
+    bool directory;
 /* Helpers */
     static stringlist_t createParts(const std::string &filename);
     static std::string createRoot(const std::string &filename);
+    static bool endsWithSeparator(const std::string &str);
     static bool hasUnixRoot(const std::string &str);
     static bool hasWindowsRoot(const std::string &str);
     static bool isSeparator(char c);
     static bool isWindowsRoot(const std::string &str);
     static stringlist_t tokenize(const std::string &filename);
 /* Constructors */
-    Path(const std::string &root, const stringlist_t &parts);
+    Path(const std::string&, const stringlist_t&, bool);
 };
 
 } /* namespace Ggl */

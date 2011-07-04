@@ -16,11 +16,16 @@ using namespace Ggl;
  * @throw std::exception if filename is empty
  */
 Path Path::fromString(const string &filename) {
+    
     if (filename.empty()) {
         throw Exception("[Path] Filename is empty!");
-    } else {
-        return Path(createRoot(filename), createParts(filename));
     }
+    
+    string root = createRoot(filename);
+    list<string> parts = createParts(filename);
+    bool directory = endsWithSeparator(filename);
+    
+    return Path(root, parts, directory);
 }
 
 /**
@@ -28,11 +33,14 @@ Path Path::fromString(const string &filename) {
  * 
  * @param root Root of path
  * @param parts Parts of path
+ * @param directory <tt>true</tt> if path is a directory
  */
 Path::Path(const string &root,
-           const list<string> &parts) {
+           const list<string> &parts,
+           bool directory) {
     this->root = root;
     this->parts = parts;
+    this->directory = directory;
 }
 
 /**
@@ -53,7 +61,7 @@ bool Path::isAbsolute() const {
  * Returns <tt>true</tt> if path is a directory.
  */
 bool Path::isDirectory() const {
-    return parts.empty() || Text::endsWith(parts.back(), '/');
+    return directory;
 }
 
 /**
@@ -76,6 +84,11 @@ string Path::toString() const {
             ss << "/" << (*it);
             ++it;
         }
+    }
+    
+    // Directory
+    if (directory && !parts.empty()) {
+        ss << "/";
     }
     
     return ss.str();
@@ -122,7 +135,7 @@ Path Path::locate(const Path &folder, const Path &file) {
         ++it;
     }
     
-    return Path(root, parts);
+    return Path(root, parts, false);
 }
 
 /* Helpers */
@@ -149,11 +162,6 @@ list<string> Path::createParts(const string &filename) {
         tokens.erase(it);
     }
     
-    // Check for directory
-    if (Text::endsWith(filename, '/')) {
-        tokens.back() += '/';
-    }
-    
     return tokens;
 }
 
@@ -171,6 +179,16 @@ string Path::createRoot(const string &filename) {
     } else {
         return "";
     }
+}
+
+/**
+ * Checks if a string ends with a path separator.
+ * 
+ * @param str String to check
+ * @return <tt>true</tt> if last character is a slash
+ */
+bool Path::endsWithSeparator(const string &str) {
+    return Text::endsWith(str, '/') || Text::endsWith(str, '\\');
 }
 
 /**
