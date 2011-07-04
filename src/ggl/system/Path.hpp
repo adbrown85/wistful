@@ -26,6 +26,7 @@ public:
     virtual bool isDirectory() const;
     virtual std::string toString() const;
 /* Utilities */
+    static Path basename(const Path &path);
     static Path dirname(const Path &path);
     static Path locate(const Path &folder, const Path &file);
 private:

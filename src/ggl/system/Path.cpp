@@ -96,6 +96,22 @@ string Path::toString() const {
 
 /* Utilities */
 
+Path Path::basename(const Path &path) {
+    
+    string last;
+    list<string> parts;
+    
+    if (path.isDirectory()) {
+        return Path("", parts, false);
+    }
+    
+    last = path.parts.back();
+    parts.push_back(last);
+    
+    return Path("", parts, false);
+    
+}
+
 /**
  * Finds directory section of a path.
  * 
