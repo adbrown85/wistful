@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "Text.hpp"
+#include "ggl/system/Text.hpp"
 using namespace std;
 using namespace Ggl;
 
