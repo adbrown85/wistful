@@ -15,20 +15,20 @@ namespace Ggl {
  */
 class VertexAttribute {
 public:
-	VertexAttribute();
-	VertexAttribute(const std::string &name, GLuint components);
-	virtual ~VertexAttribute();
+    VertexAttribute();
+    VertexAttribute(const std::string &name, GLuint components);
+    virtual ~VertexAttribute();
 // Getters and setters
-	GLuint getCount() const;
-	void setCount(GLuint count);
-	GLint getLocation() const;
-	void setLocation(GLint location);
-	std::string getName() const;
-	void setName(std::string name);
+    GLuint getCount() const;
+    void setCount(GLuint count);
+    GLint getLocation() const;
+    void setLocation(GLint location);
+    std::string getName() const;
+    void setName(std::string name);
 private:
-	std::string name;
-	GLint location;
-	GLuint count;
+    std::string name;
+    GLint location;
+    GLuint count;
 };
 
 /**

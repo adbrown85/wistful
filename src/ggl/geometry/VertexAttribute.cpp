@@ -12,9 +12,9 @@ using namespace Ggl;
  * Creates a vertex attribute.
  */
 VertexAttribute::VertexAttribute() {
-	this->name = "";
-	this->count = 4;
-	this->location = -1;
+    this->name = "";
+    this->count = 4;
+    this->location = -1;
 }
 
 /**
@@ -24,14 +24,14 @@ VertexAttribute::VertexAttribute() {
  * @param count Number of components in attribute
  */
 VertexAttribute::VertexAttribute(const string &name, GLuint count) {
-	this->name = name;
-	this->count = count;
-	this->location = -1;
+    this->name = name;
+    this->count = count;
+    this->location = -1;
 }
 
 /**
  * Destroys the vertex attribute.
  */
 VertexAttribute::~VertexAttribute() {
-	;
+    ;
 }

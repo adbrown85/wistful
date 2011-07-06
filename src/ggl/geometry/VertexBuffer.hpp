@@ -16,13 +16,13 @@ namespace Ggl {
 /* Parameters to create a vertex buffer. */ 
 class VertexBufferPrototype {
 public:
-	virtual bool isComplete() const = 0;
-	virtual std::map<std::string,GLuint> getOffsets() const = 0;
-	virtual GLuint getCapacity() const = 0;
-	virtual bool isInterleaved() const = 0;
-	virtual GLenum getUsage() const = 0;
-	virtual GLsizei getSizeInBytes() const = 0;
-	virtual GLuint getStrideInBytes() const = 0;
+    virtual bool isComplete() const = 0;
+    virtual std::map<std::string,GLuint> getOffsets() const = 0;
+    virtual GLuint getCapacity() const = 0;
+    virtual bool isInterleaved() const = 0;
+    virtual GLenum getUsage() const = 0;
+    virtual GLsizei getSizeInBytes() const = 0;
+    virtual GLuint getStrideInBytes() const = 0;
 };
 
 
@@ -42,40 +42,40 @@ public:
  */
 class VertexBuffer : public BufferObject {
 public:
-	static VertexBuffer* newInstance(const VertexBufferPrototype &vbp);
-	virtual ~VertexBuffer();
-	void put(float x, float y);
-	void put(float x, float y, float z);
-	void put(float x, float y, float z, float w);
-	void flush();
-	void reset();
-	void rewind();
-	void seek(const std::string &name);
+    static VertexBuffer* newInstance(const VertexBufferPrototype &vbp);
+    virtual ~VertexBuffer();
+    void put(float x, float y);
+    void put(float x, float y, float z);
+    void put(float x, float y, float z, float w);
+    void flush();
+    void reset();
+    void rewind();
+    void seek(const std::string &name);
 // Getters and setters
-	bool isInterleaved() const;
-	GLuint getCapacity() const;
-	GLsizei getFootprint() const;
-	GLuint getOffset(const std::string &name) const;
-	GLuint size() const;
-	GLuint getStride() const;
+    bool isInterleaved() const;
+    GLuint getCapacity() const;
+    GLsizei getFootprint() const;
+    GLuint getOffset(const std::string &name) const;
+    GLuint size() const;
+    GLuint getStride() const;
 private:
-	bool interleaved;                  // Whether attributes are mixed together
-	bool skip;                         // Whether to jump to next vertex
-	GLubyte *data;                     // Start of attribute memory
-	GLubyte *current;                  // Memory location to put next attribute
-	GLubyte *end;                      // End of attribute memory
-	GLubyte *extent;                   // Farthest attributes have been put
-	GLuint capacity;                   // Number of vertices VBO can store
-	GLuint stride;                     // Number of bytes between vertices
-	GLsizei footprint;                 // Size in bytes of total VBO
-	GLenum usage;                      // Hint for how VBO is read and updated
-	std::map<std::string,GLuint> offsets;
+    bool interleaved;                  // Whether attributes are mixed together
+    bool skip;                         // Whether to jump to next vertex
+    GLubyte *data;                     // Start of attribute memory
+    GLubyte *current;                  // Memory location to put next attribute
+    GLubyte *end;                      // End of attribute memory
+    GLubyte *extent;                   // Farthest attributes have been put
+    GLuint capacity;                   // Number of vertices VBO can store
+    GLuint stride;                     // Number of bytes between vertices
+    GLsizei footprint;                 // Size in bytes of total VBO
+    GLenum usage;                      // Hint for how VBO is read and updated
+    std::map<std::string,GLuint> offsets;
 // Constants
-	static const int SIZEOF_VEC2 = sizeof(float) * 2;
-	static const int SIZEOF_VEC3 = sizeof(float) * 3;
-	static const int SIZEOF_VEC4 = sizeof(float) * 4;
+    static const int SIZEOF_VEC2 = sizeof(float) * 2;
+    static const int SIZEOF_VEC3 = sizeof(float) * 3;
+    static const int SIZEOF_VEC4 = sizeof(float) * 4;
 // Constructors
-	VertexBuffer(const VertexBufferPrototype &vbd);
+    VertexBuffer(const VertexBufferPrototype &vbd);
 };
 
 /** Returns number of vertices the VBO can hold. */

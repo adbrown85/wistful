@@ -16,21 +16,21 @@ namespace Ggl {
  */
 class BufferObject {
 public:
-	BufferObject(GLenum type);
-	virtual ~BufferObject();
-	virtual void bind();
-	virtual void unbind();
+    BufferObject(GLenum type);
+    virtual ~BufferObject();
+    virtual void bind();
+    virtual void unbind();
 // Getters and setters
-	virtual GLuint getHandle() const;
-	virtual GLenum getType() const;
+    virtual GLuint getHandle() const;
+    virtual GLenum getType() const;
 protected:
-	virtual void allocate(GLenum usage, GLsizei size);
-	virtual void update(GLsizei size, GLvoid *data, int offset=0);
+    virtual void allocate(GLenum usage, GLsizei size);
+    virtual void update(GLsizei size, GLvoid *data, int offset=0);
 private:
-	GLuint handle;
-	GLenum type;
+    GLuint handle;
+    GLenum type;
 // Helpers
-	static GLuint createHandle();
+    static GLuint createHandle();
 };
 
 } /* namespace Ggl */

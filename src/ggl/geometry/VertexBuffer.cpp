@@ -15,11 +15,11 @@ using namespace Ggl;
  * @throw std::exception if prototype is not complete 
  */
 VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
-	if (!vbp.isComplete()) {
-		throw Exception("[VertexBufferObject] Prototype is not complete!");
-	} else {
-	    return new VertexBuffer(vbp);
-	}
+    if (!vbp.isComplete()) {
+        throw Exception("[VertexBufferObject] Prototype is not complete!");
+    } else {
+        return new VertexBuffer(vbp);
+    }
 }
 
 /**
@@ -28,42 +28,42 @@ VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
  * @param vbp Prototype for a vertex buffer
  * @throw std::exception if prototype is not complete
  */
-VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) : 
-		BufferObject(GL_ARRAY_BUFFER) {
-	
-	offsets = vbp.getOffsets();
-	capacity = vbp.getCapacity();
-	interleaved = vbp.isInterleaved();
-	usage = vbp.getUsage();
-	footprint = vbp.getSizeInBytes();
-	stride = vbp.getStrideInBytes();
-	
-	data = new GLubyte[footprint];
-	current = data;
-	end = data + footprint;
-	extent = current;
-	skip = false;
-	
-	bind();
-	BufferObject::allocate(vbp.getUsage(), footprint);
-	unbind();
+VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) :
+        BufferObject(GL_ARRAY_BUFFER) {
+    
+    offsets = vbp.getOffsets();
+    capacity = vbp.getCapacity();
+    interleaved = vbp.isInterleaved();
+    usage = vbp.getUsage();
+    footprint = vbp.getSizeInBytes();
+    stride = vbp.getStrideInBytes();
+    
+    data = new GLubyte[footprint];
+    current = data;
+    end = data + footprint;
+    extent = current;
+    skip = false;
+    
+    bind();
+    BufferObject::allocate(vbp.getUsage(), footprint);
+    unbind();
 }
 
 /**
  * Destroys the data held by the VBO.
  */
 VertexBuffer::~VertexBuffer() {
-	if (data != NULL) {
-		delete[] data;
-	}
+    if (data != NULL) {
+        delete[] data;
+    }
 }
 
 /**
  * Sends the data to the video card.
  */
 void VertexBuffer::flush() {
-	BufferObject::update(footprint, data, 0);
-	skip = false;
+    BufferObject::update(footprint, data, 0);
+    skip = false;
 }
 
 /**
@@ -74,15 +74,15 @@ void VertexBuffer::flush() {
  * @throw std::exception if attribute would exceed buffer
  */
 void VertexBuffer::put(float x, float y) {
-	
-	if ((current + SIZEOF_VEC2) > end) {
-		throw Exception("[VertexBuffer] Put would exceed buffer!");
-	}
-	
-	((GLfloat*) current)[0] = x;
-	((GLfloat*) current)[1] = y;
-	current += skip ? stride : SIZEOF_VEC2;
-	if (current > extent) extent = current;
+    
+    if ((current + SIZEOF_VEC2) > end) {
+        throw Exception("[VertexBuffer] Put would exceed buffer!");
+    }
+    
+    ((GLfloat*) current)[0] = x;
+    ((GLfloat*) current)[1] = y;
+    current += skip ? stride : SIZEOF_VEC2;
+    if (current > extent) extent = current;
 }
 
 /**
@@ -94,16 +94,16 @@ void VertexBuffer::put(float x, float y) {
  * @throw std::exception if attribute would exceed buffer
  */
 void VertexBuffer::put(float x, float y, float z) {
-
-	if ((current + SIZEOF_VEC3) > end) {
-		throw Exception("[VertexBuffer] Put would exceed buffer!");
-	}
-	
-	((GLfloat*)current)[0] = x;
-	((GLfloat*)current)[1] = y;
-	((GLfloat*)current)[2] = z;
-	current += skip ? stride : SIZEOF_VEC3;
-	if (current > extent) extent = current;
+    
+    if ((current + SIZEOF_VEC3) > end) {
+        throw Exception("[VertexBuffer] Put would exceed buffer!");
+    }
+    
+    ((GLfloat*)current)[0] = x;
+    ((GLfloat*)current)[1] = y;
+    ((GLfloat*)current)[2] = z;
+    current += skip ? stride : SIZEOF_VEC3;
+    if (current > extent) extent = current;
 }
 
 /**
@@ -116,34 +116,34 @@ void VertexBuffer::put(float x, float y, float z) {
  * @throw std::exception if attribute would exceed buffer
  */
 void VertexBuffer::put(float x, float y, float z, float w) {
-	
-	if ((current + SIZEOF_VEC4) > end) {
-		throw Exception("[VertexBuffer] Put would exceed buffer!");
-	}
-	
-	((GLfloat*)current)[0] = x;
-	((GLfloat*)current)[1] = y;
-	((GLfloat*)current)[2] = z;
-	((GLfloat*)current)[3] = w;
-	current += skip ? stride : SIZEOF_VEC4;
-	if (current > extent) extent = current;
+    
+    if ((current + SIZEOF_VEC4) > end) {
+        throw Exception("[VertexBuffer] Put would exceed buffer!");
+    }
+    
+    ((GLfloat*)current)[0] = x;
+    ((GLfloat*)current)[1] = y;
+    ((GLfloat*)current)[2] = z;
+    ((GLfloat*)current)[3] = w;
+    current += skip ? stride : SIZEOF_VEC4;
+    if (current > extent) extent = current;
 }
 
 /**
  * Returns position to beginning and marks data as unused.
  */
 void VertexBuffer::reset() {
-	current = data;
-	skip = false;
-	extent = current;
+    current = data;
+    skip = false;
+    extent = current;
 }
 
 /**
  * Returns the current position to the beginning of the buffer.
  */
 void VertexBuffer::rewind() {
-	current = data;
-	skip = false;
+    current = data;
+    skip = false;
 }
 
 /**
@@ -159,19 +159,19 @@ void VertexBuffer::rewind() {
  * @throw std::exception if attribute is not stored
  */
 void VertexBuffer::seek(const string &name) {
-	
-	map<string,GLuint>::iterator it;
-	
-	// Find offset and add it to data
-	it = offsets.find(name);
-	if (it != offsets.end()) {
-		current = data + it->second;
-	} else {
-		throw Exception("[VertexBufferObject] Attribute not stored!");
-	}
-	
-	// Enable skipping
-	skip = true;
+    
+    map<string,GLuint>::iterator it;
+    
+    // Find offset and add it to data
+    it = offsets.find(name);
+    if (it != offsets.end()) {
+        current = data + it->second;
+    } else {
+        throw Exception("[VertexBufferObject] Attribute not stored!");
+    }
+    
+    // Enable skipping
+    skip = true;
 }
 
 // GETTERS AND SETTERS
@@ -183,20 +183,20 @@ void VertexBuffer::seek(const string &name) {
  * @throw std::exception if attribute is not in the VBO 
  */
 GLuint VertexBuffer::getOffset(const string &name) const {
-	
-	map<string,GLuint>::const_iterator it;
-	
-	it = offsets.find(name);
-	if (it != offsets.end()) {
-		return it->second;
-	} else {
-		throw Exception("[VertexBufferObject] Attribute is not stored!");
-	}
+    
+    map<string,GLuint>::const_iterator it;
+    
+    it = offsets.find(name);
+    if (it != offsets.end()) {
+        return it->second;
+    } else {
+        throw Exception("[VertexBufferObject] Attribute is not stored!");
+    }
 }
 
 /**
  * Returns number of vertices stored in the VBO.
  */
 GLuint VertexBuffer::size() const {
-	return (extent - current) / stride;
+    return (extent - current) / stride;
 }
