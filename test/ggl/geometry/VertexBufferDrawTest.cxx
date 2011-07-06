@@ -121,7 +121,7 @@ void VertexBufferTestWindowListener::onKey(Window *window,
 
 class VertexBufferDrawTest : public TestFixture {
 public:
-	void testDraw();
+    void testDraw();
 };
 
 void VertexBufferDrawTest::testDraw() {

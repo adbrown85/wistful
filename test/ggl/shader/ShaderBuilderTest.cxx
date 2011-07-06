@@ -83,14 +83,14 @@ void ShaderBuilderTestWindowListener::onKey(Window *window,
  */
 class ShaderBuilderTest : public TestFixture {
 public:
-	void testBuild();
+    void testBuild();
 };
 
 /**
  * Ensures a shader can be built properly from a file.
  */
 void ShaderBuilderTest::testBuild() {
-	
+    
     WindowFactory factory;
     Window *window = factory.createWindow();
     WindowListener *listener = new ShaderBuilderTestWindowListener();

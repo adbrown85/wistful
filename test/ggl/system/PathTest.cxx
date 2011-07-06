@@ -20,19 +20,19 @@ public:
     void testToStringWithDirectory();
     void testToStringWithUnixRoot();
     void testToStringWithWindowsRoot();
-	void testIsAbsoluteWithUnixRoot();
-	void testIsAbsoluteWithWindowsRoot();
-	void testIsDirectoryWithDirectory();
-	void testIsDirectoryWithFile();
-	void testLocateWithRelative();
-	void testLocateWithAbsolute();
-	void testDirname();
-	void testBasename();
+    void testIsAbsoluteWithUnixRoot();
+    void testIsAbsoluteWithWindowsRoot();
+    void testIsDirectoryWithDirectory();
+    void testIsDirectoryWithFile();
+    void testLocateWithRelative();
+    void testLocateWithAbsolute();
+    void testDirname();
+    void testBasename();
 private:
-	static Path toPath(const string &str);
-	static Path locate(const string &folder, const string &file);
-	static Path dirname(const string &path);
-	static Path basename(const string &path);
+    static Path toPath(const string &str);
+    static Path locate(const string &folder, const string &file);
+    static Path dirname(const string &path);
+    static Path basename(const string &path);
 };
 
 void PathTest::testToStringWithFile() {

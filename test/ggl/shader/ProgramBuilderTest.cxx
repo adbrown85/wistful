@@ -58,7 +58,7 @@ void ProgramBuilderTestWindowListener::onKey(Window *window,
  */
 class ProgramBuilderTest : public TestFixture {
 public:
-	void testBuild();
+    void testBuild();
 };
 
 /**
