@@ -17,16 +17,16 @@ namespace Ggl {
  */
 class ShaderBuilder {
 public:
-	static int build(const std::string &filename);
-	static int build(GLenum type, const std::string &filename);
+    static int build(const std::string &filename);
+    static int build(GLenum type, const std::string &filename);
 protected:
-	static void compile(int handle);
-	static int create(GLenum type);
-	static std::string findExtension(const std::string &filename);
-	static std::string findLog(GLuint handle);
-	static GLenum findType(const std::string &filename);
-	static void load(int handle, Code &code);
-	static Code read(const std::string &filename);
+    static void compile(int handle);
+    static int create(GLenum type);
+    static std::string findExtension(const std::string &filename);
+    static std::string findLog(GLuint handle);
+    static GLenum findType(const std::string &filename);
+    static void load(int handle, Code &code);
+    static Code read(const std::string &filename);
 };
 
 } /* namespace Ggl */

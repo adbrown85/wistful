@@ -15,7 +15,7 @@ using namespace Ggl;
  * @throw std::exception if file extension not recognized
  */
 int ShaderBuilder::build(const string &filename) {
-	return build(findType(filename), filename);
+    return build(findType(filename), filename);
 }
 
 /**
@@ -27,13 +27,13 @@ int ShaderBuilder::build(const string &filename) {
  * @throw std::exception if file cannot be opened
  */
 int ShaderBuilder::build(GLenum type, const string &filename) {
-	
-	int handle = create(type);
-	Code code = read(filename);
-	
-	load(handle, code);
-	compile(handle);
-	return handle;
+    
+    int handle = create(type);
+    Code code = read(filename);
+    
+    load(handle, code);
+    compile(handle);
+    return handle;
 }
 
 //----------------------------------------
@@ -66,13 +66,13 @@ void ShaderBuilder::compile(int handle) {
  * @throw std::exception if type is not supported
  */
 int ShaderBuilder::create(GLenum type) {
-	switch (type) {
-	case GL_FRAGMENT_SHADER:
-	case GL_VERTEX_SHADER:
-		return glCreateShader(type);
-	default:
-		throw Exception("[Shader] Type not supported!");
-	}
+    switch (type) {
+    case GL_FRAGMENT_SHADER:
+    case GL_VERTEX_SHADER:
+        return glCreateShader(type);
+    default:
+        throw Exception("[Shader] Type not supported!");
+    }
 }
 
 /**

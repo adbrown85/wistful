@@ -15,10 +15,10 @@ namespace Ggl {
  */
 class ProgramBuilder {
 public:
-	static GLuint build(GLuint vertexShader, GLuint fragmentShader);
-	static GLuint build(std::list<GLuint> &shaders);
+    static GLuint build(GLuint vertexShader, GLuint fragmentShader);
+    static GLuint build(std::list<GLuint> &shaders);
 protected:
-	static void report(GLuint handle);
+    static void report(GLuint handle);
 };
 
 } /* namespace Ggl */
