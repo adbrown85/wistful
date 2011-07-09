@@ -22,6 +22,8 @@ public:
     GLuint getHandle() const;
 private:
     GLuint handle;
+// Helpers
+    static bool isTexture(GLuint handle);
 };
 
 } /* namespace Ggl */
