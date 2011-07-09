@@ -11,6 +11,7 @@
 #include <list>
 #include <map>
 #ifdef __APPLE__
+#define GL3_PROTOTYPES
 #include <OpenGL/gl3.h>
 #else
 #include <GL/gl.h>
