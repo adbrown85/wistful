@@ -73,7 +73,7 @@ void ShaderBuilderTestWindowListener::onDestroy(const WindowEvent &e) {
 
 void ShaderBuilderTestWindowListener::onKey(const WindowEvent &e) {
     if (e.getTrigger() == GGL_KEY_ESCAPE) {
-//        window->close();
+        e.getWindow()->close();
     }
 }
 

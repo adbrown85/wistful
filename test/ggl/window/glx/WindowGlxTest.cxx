@@ -32,7 +32,7 @@ public:
         switch (e.getTrigger()) {
         case GGL_KEY_ESCAPE:
             cerr << "GGL_KEY_ESCAPE" << endl;
-//            window->close();
+            e.getWindow()->close();
             break;
         case GGL_KEY_A:
             cerr << "GGL_KEY_A" << endl;

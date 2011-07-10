@@ -113,7 +113,7 @@ void VertexBufferTestWindowListener::onDestroy(const WindowEvent &e) {
 
 void VertexBufferTestWindowListener::onKey(const WindowEvent &event) {
     if (event.getTrigger() == GGL_KEY_ESCAPE) {
-//        event.getWindow()->close();
+        event.getWindow()->close();
     }
 }
 

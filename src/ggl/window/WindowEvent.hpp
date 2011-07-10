@@ -18,13 +18,13 @@ class Window;
  */
 class WindowEvent {
 public:
-    WindowEvent(const Window*);
-    WindowEvent(const Window*, GLuint);
+    WindowEvent(Window*);
+    WindowEvent(Window*, GLuint);
     virtual ~WindowEvent();
-    virtual const Window* getWindow() const;
+    virtual Window* getWindow() const;
     virtual GLuint getTrigger() const;
 private:
-    const Window *window;
+    Window *window;
     GLuint trigger;
 };
 

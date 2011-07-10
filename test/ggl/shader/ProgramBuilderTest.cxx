@@ -47,7 +47,7 @@ void ProgramBuilderTestWindowListener::onDestroy(const WindowEvent &e) {
 
 void ProgramBuilderTestWindowListener::onKey(const WindowEvent &e) {
     if (e.getTrigger() == GGL_KEY_ESCAPE) {
-//        window->close();
+        e.getWindow()->close();
     }
 }
 

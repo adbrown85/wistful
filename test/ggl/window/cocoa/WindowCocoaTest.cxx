@@ -43,7 +43,7 @@ public:
             cerr << "Up" << endl;
         } else if (trigger == GGL_KEY_ESCAPE) {
             cerr << "Escape" << endl;
-//            window->close();
+            e.getWindow()->close();
         }
     }
 };
