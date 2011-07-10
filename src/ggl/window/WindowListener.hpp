@@ -11,10 +11,6 @@
 namespace Ggl {
 
 
-/* Forward declaration of window. */
-class Window;
-
-
 /**
  * @brief Object that listens to GGL events.
  */
@@ -22,10 +18,10 @@ class WindowListener {
 public:
     WindowListener();
     virtual ~WindowListener();
-    virtual void onInit(Window *window) = 0;
-    virtual void onDisplay(Window *window) = 0;
-    virtual void onDestroy(Window *window) = 0;
-    virtual void onKey(Window *window, const WindowEvent &event) = 0;
+    virtual void onInit(const WindowEvent &e) = 0;
+    virtual void onDisplay(const WindowEvent &e) = 0;
+    virtual void onDestroy(const WindowEvent &e) = 0;
+    virtual void onKey(const WindowEvent &e) = 0;
 };
 
 }

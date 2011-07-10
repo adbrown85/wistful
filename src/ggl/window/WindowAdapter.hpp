@@ -19,10 +19,10 @@ class WindowAdapter : public WindowListener {
 public:
     WindowAdapter();
     virtual ~WindowAdapter();
-    virtual void onInit(Window *window);
-    virtual void onDisplay(Window *window);
-    virtual void onKey(Window *window, const WindowEvent &we);
-    virtual void onDestroy(Window *window);
+    virtual void onInit(const WindowEvent &e);
+    virtual void onDisplay(const WindowEvent &e);
+    virtual void onKey(const WindowEvent &e);
+    virtual void onDestroy(const WindowEvent &e);
 };
 
 } /* namespace Ggl */
