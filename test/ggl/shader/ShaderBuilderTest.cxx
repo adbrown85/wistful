@@ -4,26 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/common.h"
-#include "ggl/shader/ShaderBuilder.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
-#include "ggl/window/Window.hpp"
-#include "ggl/window/WindowFactory.hpp"
+#include "ggl/shader/ShaderBuilderTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-
-/**
- * 
- */
-class ShaderBuilderTestListener : public WindowListener {
-public:
-    virtual void onWindowOpen(const WindowEvent &e);
-    virtual void onWindowPaint(const WindowEvent &e);
-    virtual void onWindowKey(const WindowEvent &e);
-    virtual void onWindowClose(const WindowEvent &e);
-};
 
 void ShaderBuilderTestListener::onWindowOpen(const WindowEvent &e) {
     
@@ -77,15 +60,6 @@ void ShaderBuilderTestListener::onWindowClose(const WindowEvent &e) {
     cout << "PASSED" << endl;
 }
 
-
-/**
- * Unit test for ShaderBuilder.
- */
-class ShaderBuilderTest : public TestFixture {
-public:
-    void testBuild();
-};
-
 /**
  * Ensures a shader can be built properly from a file.
  */
@@ -100,7 +74,6 @@ void ShaderBuilderTest::testBuild() {
 }
 
 /* Run the test. */
-#define GGL_TEST_FIXTURE ShaderBuilderTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testBuild)
 GGL_RUN_TESTS

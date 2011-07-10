@@ -4,23 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/common.h"
-#include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/shader/ShaderBuilder.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
-#include "ggl/window/Window.hpp"
-#include "ggl/window/WindowFactory.hpp"
+#include "ggl/shader/ProgramBuilderTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-
-class ProgramBuilderTestListener : public WindowListener {
-    virtual void onWindowOpen(const WindowEvent &e);
-    virtual void onWindowPaint(const WindowEvent &e);
-    virtual void onWindowKey(const WindowEvent &e);
-    virtual void onWindowClose(const WindowEvent &e);
-};
 
 void ProgramBuilderTestListener::onWindowOpen(const WindowEvent &e) {
     
@@ -51,18 +37,6 @@ void ProgramBuilderTestListener::onWindowClose(const WindowEvent &e) {
     cout << "PASSED" << endl;
 }
 
-
-/**
- * @brief Unit test for ProgramBuilder.
- */
-class ProgramBuilderTest : public TestFixture {
-public:
-    void testBuild();
-};
-
-/**
- * Ensures a program can be linked.
- */
 void ProgramBuilderTest::testBuild() {
 	
     WindowFactory factory;
@@ -72,8 +46,6 @@ void ProgramBuilderTest::testBuild() {
     Ggl::Window::open(window);
 }
 
-/* Run the test. */
-#define GGL_TEST_FIXTURE ProgramBuilderTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testBuild)
 GGL_RUN_TESTS

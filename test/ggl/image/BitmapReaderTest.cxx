@@ -4,25 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/common.h"
-#include "ggl/image/BitmapReader.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
+#include "ggl/image/BitmapReaderTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-
-/**
- * @brief Unit test for BitmapReader.
- */
-class BitmapReaderTest : public TestFixture {
-public:
-    BitmapReaderTest();
-    void testGetters();
-    void testToImage();
-private:
-    BitmapReader reader;
-};
 
 /** Read the image into memory. */
 BitmapReaderTest::BitmapReaderTest() {
@@ -64,7 +48,6 @@ void BitmapReaderTest::testToImage() {
 }
 
 /* Run the test. */
-#define GGL_TEST_FIXTURE BitmapReaderTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testGetters)
 GGL_ADD_TEST(testToImage)

@@ -4,27 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/system/Text.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
+#include "ggl/system/TextTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-/**
- * Test for Text.
- */
-class TextTest : public TestFixture {
-public:
-    void testCount();
-    void testFirstWord();
-    void testFirstWordCharacter();
-    void testFirstNotWordCharacter();
-    void testReplacements();
-    void testTrim();
-    void testStripLeadingSpaces();
-    void testStripTrailingSpaces();
-    void testSplit();
-};
 
 void TextTest::testCount() {
     
@@ -120,7 +102,6 @@ void TextTest::testStripTrailingSpaces() {
     assert(result == "// This is a comment");
 }
 
-#define GGL_TEST_FIXTURE TextTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testCount)
 GGL_ADD_TEST(testFirstWordCharacter)

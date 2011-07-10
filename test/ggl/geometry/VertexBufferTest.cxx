@@ -4,36 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/common.h"
-#include "ggl/geometry/VertexBuffer.hpp"
-#include "ggl/geometry/VertexBufferBuilder.hpp"
-#include "ggl/shader/ShaderBuilder.hpp"
-#include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/system/ErrorChecker.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
-#include "ggl/window/Window.hpp"
-#include "ggl/window/WindowFactory.hpp"
+#include "ggl/geometry/VertexBufferTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-
-/**
- * 
- */
-class VertexBufferTestListener : public WindowListener {
-public:
-    VertexBufferTestListener();
-    virtual void onWindowOpen(const WindowEvent&);
-    virtual void onWindowPaint(const WindowEvent&);
-    virtual void onWindowKey(const WindowEvent &event);
-    virtual void onWindowClose(const WindowEvent&);
-private:
-    VertexBuffer *vbo;
-    GLuint program;
-    GLint pointLoc;
-    GLuint vao;
-};
 
 VertexBufferTestListener::VertexBufferTestListener() {
     vbo = NULL;
@@ -116,12 +89,6 @@ void VertexBufferTestListener::onWindowClose(const WindowEvent &e) {
         delete vbo;
     }
 }
-
-
-class VertexBufferTest : public TestFixture {
-public:
-    void test();
-};
 
 void VertexBufferTest::test() {
     

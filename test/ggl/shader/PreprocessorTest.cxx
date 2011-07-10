@@ -4,20 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/common.h"
-#include "ggl/shader/Preprocessor.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
+#include "ggl/shader/PreprocessorTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-/**
- * Unit test for Preprocessor.
- */
-class PreprocessorTest : public TestFixture {
-public:
-    void testParse();
-};
 
 /**
  * Ensures a file can be parsed correctly.
@@ -52,7 +41,6 @@ void PreprocessorTest::testParse() {
 /**
  * Runs the tests.
  */
-#define GGL_TEST_FIXTURE PreprocessorTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testParse)
 GGL_RUN_TESTS

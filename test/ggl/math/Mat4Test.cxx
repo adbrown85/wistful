@@ -4,29 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include <ctime>
-#include "ggl/common.h"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
-#include "ggl/math/Mat4.hpp"
+#include "ggl/math/Mat4Test.hxx"
 using namespace std;
 using namespace Ggl;
-
-
-/**
- * @brief Unit test for Mat4.
- */
-class Mat4Test : public TestFixture {
-public:
-    void setUp();
-    void testInverse();
-    void testMultiplyTime();
-    void testSetArray();
-    void testTranspose();
-    void testMultiplyVector();
-private:
-	Mat4 m1, m2, m3;
-};
 
 void Mat4Test::setUp() {
     
@@ -106,7 +86,6 @@ void Mat4Test::testMultiplyVector() {
     assertEquals( 45, v.w);
 }
 
-#define GGL_TEST_FIXTURE Mat4Test
 GGL_TEST_SUITE
 GGL_ADD_TEST(testInverse)
 GGL_ADD_TEST(testSetArray)

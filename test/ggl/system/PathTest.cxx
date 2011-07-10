@@ -4,36 +4,9 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/system/Path.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestSuite.hpp"
-#include "ggl/testing/TestRunner.hpp"
+#include "ggl/system/PathTest.hxx"
 using namespace std;
 using namespace Ggl;
-
-/**
- * @brief Unit test for Path.
- */
-class PathTest : public TestFixture {
-public:
-    void testToStringWithFile();
-    void testToStringWithDirectory();
-    void testToStringWithUnixRoot();
-    void testToStringWithWindowsRoot();
-    void testIsAbsoluteWithUnixRoot();
-    void testIsAbsoluteWithWindowsRoot();
-    void testIsDirectoryWithDirectory();
-    void testIsDirectoryWithFile();
-    void testLocateWithRelative();
-    void testLocateWithAbsolute();
-    void testDirname();
-    void testBasename();
-private:
-    static Path toPath(const string &str);
-    static Path locate(const string &folder, const string &file);
-    static Path dirname(const string &path);
-    static Path basename(const string &path);
-};
 
 void PathTest::testToStringWithFile() {
     assertEquals("input/scene.xml", toPath("input/scene.xml").toString());
@@ -147,7 +120,6 @@ Path PathTest::basename(const string &filename) {
     return Path::basename(toPath(filename));
 }
 
-#define GGL_TEST_FIXTURE PathTest
 GGL_TEST_SUITE
 GGL_ADD_TEST(testToStringWithFile)
 GGL_ADD_TEST(testToStringWithDirectory)
