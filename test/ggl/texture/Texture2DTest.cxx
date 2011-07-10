@@ -137,15 +137,15 @@ Texture* Texture2DTestListener::createTexture() {
     Texture2D *texture = Texture2D::newInstance();
     Image *image = createImage();
     size_t len = image->getSize();
-    size_t width = image->getWidth();
-    size_t height = image->getHeight();
+    GLsizei width = image->getWidth();
+    GLsizei height = image->getHeight();
     
     assert(len == 196610);
     assert(width == 256);
     assert(height == 256);
     
     texture->bind();
-    texture->allocate(GL_RGB, Dimension(width, height, 1));
+    texture->allocate(GL_RGB, width, height);
     texture->load(*image);
     
     delete image;

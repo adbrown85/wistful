@@ -21,6 +21,7 @@ public:
     static Texture2D* newInstance();
     virtual ~Texture2D();
     virtual void allocate(GLenum format, Dimension dimension);
+    virtual void allocate(GLenum format, GLsizei width, GLsizei height);
     virtual void load(const Image &image);
     virtual void load(GLenum format, GLenum type, const GLubyte *data);
 // Getters

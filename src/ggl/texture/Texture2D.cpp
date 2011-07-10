@@ -36,13 +36,26 @@ Texture2D::~Texture2D() {
  * 
  * @param format Internal format of texture, e.g. GL_RGB
  * @param dimension Width and height of texture
- * @throw std::exception if width is less than one
- * @throw std::exception if height is less than one
+ * @throw std::exception if dimension is invalid
  */
 void Texture2D::allocate(GLenum format, Dimension dimension) {
     
-    GLuint width = dimension.getWidth();
-    GLuint height = dimension.getHeight();
+    GLsizei width = dimension.getWidth();
+    GLsizei height = dimension.getHeight();
+    
+    allocate(format, width, height);
+}
+
+/**
+ * Reserves memory for the texture.
+ * 
+ * @param format Internal format of texture, e.g. GL_RGB
+ * @param width Size of texture on X axis
+ * @param height Size of texture on Y axis
+ * @throw std::exception if width is less than one
+ * @throw std::exception if height is less than one
+ */
+void Texture2D::allocate(GLenum format, GLsizei width, GLsizei height) {
     
     // Validate
     if (!isValidFormat(format)) {
