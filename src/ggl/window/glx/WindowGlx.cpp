@@ -131,21 +131,27 @@ void WindowGlx::doFlush() {
  * Starts the run loop.
  */
 void WindowGlx::doRun() {
+    
+    XEvent event;
+    
+    XSelectInput(display, window, DEFAULT_EVENT_MASK);
+    
     while (!closed) {
-        WindowEvent event = getEvent();
-        switch (event.getType()) {
-        case WINDOW_MAP_EVENT:
+        XNextEvent(display, &event);
+        switch (event.type) {
+        case ClientMessage:
+            fireDestroyEvent();
+            break;
+        case MapNotify:
             fireInitEvent();
             break;
-        case WINDOW_EXPOSE_EVENT:
-            fireDisplayEvent();
+        case Expose:
+            if (event.xexpose.count == 0) {
+                fireDisplayEvent();
+            }
             break;
-        case WINDOW_DESTROY_EVENT:
-            fireDestroyEvent();
-            close();
-            break;
-        case WINDOW_KEY_EVENT:
-            fireKeyEvent(event.getTrigger());
+        case KeyPress:
+            fireKeyEvent(XLookupKeysym(&(event.xkey), 0));
             break;
         default:
             continue;
@@ -183,34 +189,6 @@ GLXFBConfig WindowGlx::createConfig(const WindowFormat &wf) {
     ConfigFactoryGlx cf;
     
     return cf.create(wf);
-}
-
-/**
- * Returns next event from window.
- */
-WindowEvent WindowGlx::getEvent() {
-    
-    XEvent xEvent;
-    
-    XSelectInput(display, window, DEFAULT_EVENT_MASK);
-    
-    while (true) {
-        XNextEvent(display, &xEvent);
-        switch (xEvent.type) {
-        case ClientMessage:
-            return WindowEvent(WINDOW_DESTROY_EVENT);
-        case MapNotify:
-            return WindowEvent(WINDOW_MAP_EVENT);
-        case Expose:
-            if (xEvent.xexpose.count == 0) {
-                return WindowEvent(WINDOW_EXPOSE_EVENT);
-            }
-        case KeyPress:
-            return toGglEvent(xEvent.xkey);
-        default:
-            return WindowEvent(WINDOW_OTHER_EVENT);
-        }
-    }
 }
 
 /**
@@ -282,21 +260,6 @@ PFNGLXCCAA WindowGlx::getGlXCCAA() {
     GLubyte *name = (GLubyte*) "glXCreateContextAttribsARB";
     
     return (PFNGLXCCAA) glXGetProcAddressARB(name);
-}
-
-/**
- * Converts an X11 key event to a GGL event.
- * 
- * @param xke X11 Key event
- * @return Equivalent GGL event
- */
-WindowEvent WindowGlx::toGglEvent(XKeyEvent &xke) {
-    
-    WindowEvent ge(WINDOW_KEY_EVENT);
-    KeySym ks = XLookupKeysym(&xke, 0);
-    
-    ge.setTrigger(ks);
-    return ge;
 }
 
 /**

@@ -42,7 +42,6 @@ private:
     GLXContext context;
     GLXFBConfig config;
 // Helpers
-    WindowEvent getEvent();
     static void subscribe(Display *display, int window);
     static GLXFBConfig createConfig(const WindowFormat &wf);
     static XVisualInfo* createInfo(Display *display, const GLXFBConfig &fbc);
@@ -50,7 +49,6 @@ private:
     static long getWindowMask();
     static Colormap getColormap(Display *display, XVisualInfo *vi);
     static XSetWindowAttributes getWindowAttributes(Colormap cm);
-    static WindowEvent toGglEvent(XKeyEvent &xke);
     static int x11ErrorHandler(Display *display, XErrorEvent *event);
 // Function pointers
     static PFNGLXCCAA getGlXCCAA();
