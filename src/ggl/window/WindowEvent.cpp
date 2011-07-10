@@ -8,6 +8,11 @@
 using namespace Ggl;
 using namespace std;
 
+WindowEvent::WindowEvent(const Ggl::Window *window) {
+    this->window = window;
+    this->trigger = 0;
+}
+
 WindowEvent::WindowEvent(const Ggl::Window *window, GLuint trigger) {
     this->window = window;
     this->trigger = trigger;
