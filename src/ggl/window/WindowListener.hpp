@@ -11,10 +11,6 @@
 namespace Ggl {
 
 
-/* Forward declaration of window. */
-class Window;
-
-
 /**
  * @brief Object that listens to GGL events.
  */
