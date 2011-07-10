@@ -19,9 +19,10 @@ public:
     static Texture2D* newInstance(GLenum, GLsizei, GLsizei);
     virtual ~Texture2D();
 // Getters
+    GLsizei getDepth() const;
     GLuint getFormat() const;
-    GLsizei getWidth() const;
     GLsizei getHeight() const;
+    GLsizei getWidth() const;
 private:
     GLenum format;
     GLsizei width;

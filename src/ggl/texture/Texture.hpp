@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief OpenGL texture.
+ * @brief Base class for an OpenGL texture.
  */
 class Texture {
 public:
@@ -20,8 +20,12 @@ public:
     virtual ~Texture();
     virtual void bind() const;
 // Getters
+    virtual GLsizei getDepth() const = 0;
+    virtual GLenum getFormat() const = 0;
     virtual GLuint getHandle() const;
+    virtual GLsizei getHeight() const = 0;
     virtual GLenum getTarget() const;
+    virtual GLsizei getWidth() const = 0;
 private:
     GLuint handle;
     GLenum target;

@@ -101,6 +101,10 @@ bool Texture2D::isValidFormat(GLenum value) {
 // Getters
 //
 
+GLsizei Texture2D::getDepth() const {
+    return 1;
+}
+
 GLenum Texture2D::getFormat() const {
     return format;
 }
