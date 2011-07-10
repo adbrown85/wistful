@@ -23,8 +23,6 @@ void Texture2DTestListener::onWindowOpen(const WindowEvent &e) {
     program = createProgram();
     vao = createVAO(vbo, program);
     texture = createTexture();
-    
-    ErrorChecker::checkErrors("End of onWindowOpen");
 }
 
 void Texture2DTestListener::onWindowPaint(const WindowEvent &e) {
@@ -68,12 +66,8 @@ GLuint Texture2DTestListener::createVAO(VertexBuffer *vbo,
     glBindVertexArray(vao);
     vbo->bind();
     
-    cerr << "Stride: " << vbo->getStride() << endl;
-    
     loc = glGetAttribLocation(program, "MCVertex");
-    cerr << "MCVertex: " << endl;
-    cerr << "  loc = " << loc << endl;
-    cerr << "  off = " << vbo->getOffset("MCVertex") << endl;
+    assert(loc != -1);
     glEnableVertexAttribArray(loc);
     glVertexAttribPointer(
             loc,
@@ -84,9 +78,7 @@ GLuint Texture2DTestListener::createVAO(VertexBuffer *vbo,
             (GLvoid*) vbo->getOffset("MCVertex"));
     
     loc = glGetAttribLocation(program, "TexCoord0");
-    cerr << "TexCoord0: " << endl;
-    cerr << "  loc = " << loc << endl;
-    cerr << "  off = " << vbo->getOffset("TexCoord0") << endl;
+    assert(loc != -1);
     glEnableVertexAttribArray(loc);
     glVertexAttribPointer(
             loc,
@@ -124,6 +116,10 @@ VertexBuffer* Texture2DTestListener::createVBO() {
     vb->put(+0.5, +0.5);
     vb->put( 1.0,  1.0);
     vb->flush();
+    
+    assert(vb->getStride() == 16);
+    assert(vb->getOffset("MCVertex") == 0);
+    assert(vb->getOffset("TexCoord0") == 8);
     
     return vb;
 }
