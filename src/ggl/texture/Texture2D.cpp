@@ -76,7 +76,40 @@ void Texture2D::allocate(GLenum format, Dimension dimension) {
 }
 
 /**
- * Copies data into a texture.
+ * Copies data from an image into the texture.
+ * 
+ * @param image Image to copy
+ * @throw std::exception if width does not match texture
+ * @throw std::exception if height does not match texture
+ */
+void Texture2D::load(const Image &image) {
+    
+    const GLenum format = image.getFormat();
+    const GLuint width = image.getWidth();
+    const GLuint height = image.getHeight();
+    const GLuint len = image.getSize();
+    GLubyte *pixels;
+    
+    if (width != getWidth()) {
+        throw Exception("[Texture2D] Width does not match!");
+    } else if (height != getHeight()) {
+        throw Exception("[Texture2D] Height does not match!");
+    }
+    
+    pixels = new GLubyte[len];
+    try {
+        image.getPixels(pixels, len);
+        load(format, GL_UNSIGNED_BYTE, pixels);
+    } catch (exception &e) {
+        delete[] pixels;
+        throw Exception(e.what());
+    }
+    
+    delete[] pixels;
+}
+
+/**
+ * Copies data into the texture.
  * 
  * @param format Format of data, e.g. GL_RGB
  * @param type Primitive type of data, e.g. GL_UNSIGNED_BYTE
