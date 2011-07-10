@@ -10,26 +10,21 @@
 namespace Ggl {
 
 
-enum WindowEventType {
-    WINDOW_DESTROY_EVENT,
-    WINDOW_MAP_EVENT,
-    WINDOW_EXPOSE_EVENT,
-    WINDOW_RESHAPE_EVENT,
-    WINDOW_KEY_EVENT,
-    WINDOW_MOUSE_EVENT,
-    WINDOW_OTHER_EVENT
-};
+/* Forward declaration */
+class Window;
 
-
+/**
+ * Event fired from a window.
+ */
 class WindowEvent {
 public:
-    WindowEvent(WindowEventType type);
+    WindowEvent(const Window*);
+    WindowEvent(const Window*, GLuint);
     virtual ~WindowEvent();
-    virtual WindowEventType getType() const;
+    virtual const Window* getWindow() const;
     virtual GLuint getTrigger() const;
-    virtual void setTrigger(GLuint trigger);
 private:
-    WindowEventType type;
+    const Window *window;
     GLuint trigger;
 };
 

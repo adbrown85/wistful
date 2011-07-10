@@ -153,9 +153,7 @@ void Ggl::Window::destroy() {
 void Ggl::Window::fireKeyEvent(int key) {
     
     list<WindowListener*>::iterator it;
-    WindowEvent event(WINDOW_KEY_EVENT);
-    
-    event.setTrigger(key);
+    WindowEvent event(this, key);
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onKey(this, event);
