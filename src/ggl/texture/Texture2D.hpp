@@ -20,6 +20,7 @@ public:
     static Texture2D* newInstance();
     virtual ~Texture2D();
     virtual void allocate(GLenum format, Dimension dimension);
+    virtual void load(GLenum format, GLenum type, const GLubyte *data);
 // Getters
     GLsizei getDepth() const;
     GLuint getFormat() const;

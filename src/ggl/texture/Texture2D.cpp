@@ -71,6 +71,26 @@ void Texture2D::allocate(GLenum format, Dimension dimension) {
     this->height = height;
 }
 
+/**
+ * Copies data into a texture.
+ * 
+ * @param format Format of data, e.g. GL_RGB
+ * @param type Primitive type of data, e.g. GL_UNSIGNED_BYTE
+ * @param data Pointer to data to load
+ */
+void Texture2D::load(GLenum format, GLenum type, const GLubyte *data) {
+    glTexSubImage2D(
+            GL_TEXTURE_2D,     // target
+            0,                 // level
+            0,                 // x offset
+            0,                 // y offset
+            width,             // width
+            height,            // height
+            format,            // format
+            type,              // type
+            data);             // data
+}
+
 //----------------------------------------
 // Getters
 //

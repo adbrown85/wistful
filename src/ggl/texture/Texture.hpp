@@ -21,6 +21,7 @@ public:
     virtual ~Texture();
     virtual void bind() const;
     virtual void allocate(GLenum format, Dimension dimension) = 0;
+    virtual void load(GLenum format, GLenum type, const GLubyte *data) = 0;
 // Getters
     virtual GLsizei getDepth() const = 0;
     virtual GLenum getFormat() const = 0;
