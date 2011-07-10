@@ -32,7 +32,7 @@ VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
 
 # Tools
 CXX          := @CXX@
-INCLUDES     := -I$(srcdir)/
+INCLUDES     := -I$(srcdir)/ -I$(testdir)/
 DEFS         := @DEFS@
 CPPFLAGS     := @CPPFLAGS@
 CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES)
