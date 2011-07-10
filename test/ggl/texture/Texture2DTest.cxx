@@ -128,17 +128,8 @@ GLuint Texture2DTestListener::createProgram() {
     
     GLuint vs = loadShader("Texture2DTest.vert");
     GLuint fs = loadShader("Texture2DTest.frag");
-    GLuint program = ProgramBuilder::build(vs, fs);
-    GLint loc = glGetUniformLocation(program, "Texture");
     
-    if (loc == -1) {
-        cerr << "No Texture uniform!" << endl;
-    } else {
-        glUseProgram(program);
-        glUniform1i(loc, 0);
-    }
-    
-    return program;
+    return ProgramBuilder::build(vs, fs);
 }
 
 Texture* Texture2DTestListener::createTexture() {
