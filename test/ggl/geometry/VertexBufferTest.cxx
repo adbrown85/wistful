@@ -1,5 +1,5 @@
 /*
- * VertexBufferObjectDrawTest.cxx
+ * VertexBufferTest.cxx
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
@@ -118,12 +118,12 @@ void VertexBufferTestListener::onWindowClose(const WindowEvent &e) {
 }
 
 
-class VertexBufferDrawTest : public TestFixture {
+class VertexBufferTest : public TestFixture {
 public:
-    void testDraw();
+    void test();
 };
 
-void VertexBufferDrawTest::testDraw() {
+void VertexBufferTest::test() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
@@ -133,7 +133,7 @@ void VertexBufferDrawTest::testDraw() {
     Ggl::Window::open(window);
 }
 
-#define GGL_TEST_FIXTURE VertexBufferDrawTest
+#define GGL_TEST_FIXTURE VertexBufferTest
 GGL_TEST_SUITE
-GGL_ADD_TEST(testDraw)
+GGL_ADD_TEST(test)
 GGL_RUN_TESTS
