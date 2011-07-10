@@ -7,6 +7,7 @@
 #ifndef GGL_TEXTURE2D_HPP
 #define GGL_TEXTURE2D_HPP
 #include "ggl/common.h"
+#include "ggl/system/Dimension.hpp"
 #include "ggl/texture/Texture.hpp"
 namespace Ggl {
 
@@ -16,8 +17,9 @@ namespace Ggl {
  */
 class Texture2D : public Texture {
 public:
-    static Texture2D* newInstance(GLenum, GLsizei, GLsizei);
+    static Texture2D* newInstance();
     virtual ~Texture2D();
+    virtual void allocate(GLenum format, Dimension dimension);
 // Getters
     GLsizei getDepth() const;
     GLuint getFormat() const;
@@ -28,10 +30,9 @@ private:
     GLsizei width;
     GLsizei height;
 // Helpers
-    void allocate();
     static bool isValidFormat(GLenum);
 // Constructors
-    Texture2D(GLenum, GLsizei, GLsizei);
+    Texture2D();
 };
 
 } /* namespace Ggl */

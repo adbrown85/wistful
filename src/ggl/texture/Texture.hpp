@@ -8,6 +8,7 @@
 #define GGL_TEXTURE_HPP
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
+#include "ggl/system/Dimension.hpp"
 namespace Ggl {
 
 
@@ -19,6 +20,7 @@ public:
     Texture(GLenum target);
     virtual ~Texture();
     virtual void bind() const;
+    virtual void allocate(GLenum format, Dimension dimension) = 0;
 // Getters
     virtual GLsizei getDepth() const = 0;
     virtual GLenum getFormat() const = 0;
