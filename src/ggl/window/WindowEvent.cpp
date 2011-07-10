@@ -8,7 +8,7 @@
 using namespace Ggl;
 using namespace std;
 
-WindowEvent::WindowEvent(const Window *window, GLuint trigger) {
+WindowEvent::WindowEvent(const Ggl::Window *window, GLuint trigger) {
     this->window = window;
     this->trigger = trigger;
 }
@@ -21,6 +21,6 @@ GLuint WindowEvent::getTrigger() const {
     return trigger;
 }
 
-const Window* WindowEvent::getWindow() const {
+const Ggl::Window* WindowEvent::getWindow() const {
     return window;
 }

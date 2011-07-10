@@ -16,13 +16,13 @@ using namespace Ggl;
 
 
 class ProgramBuilderTestWindowListener : public WindowListener {
-    virtual void onInit(Window *window);
-    virtual void onDisplay(Window *window);
-    virtual void onDestroy(Window *window);
-    virtual void onKey(Window *window, const WindowEvent &event);
+    virtual void onInit(Ggl::Window *window);
+    virtual void onDisplay(Ggl::Window *window);
+    virtual void onDestroy(Ggl::Window *window);
+    virtual void onKey(Ggl::Window *window, const WindowEvent &event);
 };
 
-void ProgramBuilderTestWindowListener::onInit(Window *window) {
+void ProgramBuilderTestWindowListener::onInit(Ggl::Window *window) {
     
     list<GLuint> shaders;
     GLuint program, shader;
@@ -36,16 +36,16 @@ void ProgramBuilderTestWindowListener::onInit(Window *window) {
     assert(program > 0);
 }
 
-void ProgramBuilderTestWindowListener::onDisplay(Window *window) {
+void ProgramBuilderTestWindowListener::onDisplay(Ggl::Window *window) {
     glClearColor(0, 1, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void ProgramBuilderTestWindowListener::onDestroy(Window *window) {
+void ProgramBuilderTestWindowListener::onDestroy(Ggl::Window *window) {
     cout << "PASSED" << endl;
 }
 
-void ProgramBuilderTestWindowListener::onKey(Window *window,
+void ProgramBuilderTestWindowListener::onKey(Ggl::Window *window,
                                              const WindowEvent &event) {
     if (event.getTrigger() == GGL_KEY_ESCAPE) {
         window->close();
@@ -67,10 +67,10 @@ public:
 void ProgramBuilderTest::testBuild() {
 	
     WindowFactory factory;
-    Window *window = factory.createWindow();
+    Ggl::Window *window = factory.createWindow();
     
     window->addWindowListener(new ProgramBuilderTestWindowListener());
-    Window::open(window);
+    Ggl::Window::open(window);
 }
 
 /* Run the test. */
