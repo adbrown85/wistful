@@ -22,18 +22,18 @@ WindowAdapter::~WindowAdapter() {
     ;
 }
 
-void WindowAdapter::onDestroy(Window *window) {
+void WindowAdapter::onDestroy(const WindowEvent &e) {
     ;
 }
 
-void WindowAdapter::onDisplay(Window *window) {
+void WindowAdapter::onDisplay(const WindowEvent &e) {
     ;
 }
 
-void WindowAdapter::onInit(Window *window) {
+void WindowAdapter::onInit(const WindowEvent &e) {
     ;
 }
 
-void WindowAdapter::onKey(Window *window, const WindowEvent &we) {
+void WindowAdapter::onKey(const WindowEvent &e) {
     ;
 }

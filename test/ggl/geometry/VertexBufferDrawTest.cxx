@@ -24,10 +24,10 @@ using namespace Ggl;
 class VertexBufferTestWindowListener : public WindowListener {
 public:
     VertexBufferTestWindowListener();
-    virtual void onInit(Ggl::Window *window);
-    virtual void onDisplay(Ggl::Window *window);
-    virtual void onDestroy(Ggl::Window *window);
-    virtual void onKey(Ggl::Window *window, const WindowEvent &event);
+    virtual void onInit(const WindowEvent&);
+    virtual void onDisplay(const WindowEvent&);
+    virtual void onDestroy(const WindowEvent&);
+    virtual void onKey(const WindowEvent &event);
 private:
     VertexBuffer *vbo;
     GLuint program;
@@ -41,7 +41,7 @@ VertexBufferTestWindowListener::VertexBufferTestWindowListener() {
     pointLoc = -1;
 }
 
-void VertexBufferTestWindowListener::onInit(Ggl::Window *window) {
+void VertexBufferTestWindowListener::onInit(const WindowEvent &e) {
     
     GLuint vertShader, fragShader;
     VertexBufferBuilder builder;
@@ -90,7 +90,7 @@ void VertexBufferTestWindowListener::onInit(Ggl::Window *window) {
     glBindFragDataLocation(program, 0, "FragColor");
 }
 
-void VertexBufferTestWindowListener::onDisplay(Ggl::Window *window) {
+void VertexBufferTestWindowListener::onDisplay(const WindowEvent &e) {
     
     glClearColor(0, 1, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -105,16 +105,15 @@ void VertexBufferTestWindowListener::onDisplay(Ggl::Window *window) {
     glBindVertexArray(0);
 }
 
-void VertexBufferTestWindowListener::onDestroy(Ggl::Window *window) {
+void VertexBufferTestWindowListener::onDestroy(const WindowEvent &e) {
     if (vbo != NULL) {
         delete vbo;
     }
 }
 
-void VertexBufferTestWindowListener::onKey(Ggl::Window *window,
-                                           const WindowEvent &event) {
+void VertexBufferTestWindowListener::onKey(const WindowEvent &event) {
     if (event.getTrigger() == GGL_KEY_ESCAPE) {
-        window->close();
+//        event.getWindow()->close();
     }
 }
 
