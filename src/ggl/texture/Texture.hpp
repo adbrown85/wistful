@@ -16,14 +16,20 @@ namespace Ggl {
  */
 class Texture {
 public:
-    Texture(GLuint handle);
+    Texture(GLenum target);
     virtual ~Texture();
+    virtual void bind() const;
 // Getters
-    GLuint getHandle() const;
+    virtual GLuint getHandle() const;
+    virtual GLenum getTarget() const;
 private:
     GLuint handle;
+    GLenum target;
 // Helpers
-    static bool isTexture(GLuint handle);
+    static GLuint createHandle();
+    static bool isValidTarget(GLenum target);
+// Constructors
+    Texture(const Texture&);
 };
 
 } /* namespace Ggl */

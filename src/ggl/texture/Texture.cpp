@@ -9,34 +9,60 @@ using namespace std;
 using namespace Ggl;
 
 /**
- * Creates a texture.
+ * Constructs a new texture.
  * 
- * @param handle OpenGL identifier for a texture
- * @throw std::exception if handle is zero
- * @throw std::exception if handle is not a texture
+ * @param target Kind of texture, e.g. GL_TEXTURE_2D
+ * @throw std::exception if target invalid
  */
-Texture::Texture(GLuint handle) {
-    if (handle == 0) {
-        throw Exception("[Texture] Handle is zero!");
-    } else if (!isTexture(handle)) {
-        throw Exception("[Texture] Handle is not a texture!");
+Texture::Texture(GLenum target) {
+    if (!isValidTarget(target)) {
+        throw Exception("[Texture] Target is invalid!");
     } else {
-        this->handle = handle;
+        this->target = target;
+        this->handle = createHandle();
     }
+}
+
+/**
+ * Copies another texture.
+ * 
+ * @param texture Texture to copy
+ * @throw Exception if called
+ */
+Texture::Texture(const Texture &texture) {
+    throw Exception("[Texture] Cannot copy texture!");
 }
 
 /**
  * Destroys the texture.
  */
 Texture::~Texture() {
-    ;
+    glDeleteTextures(1, &handle);
 }
 
 /**
- * Returns the OpenGL identifier.
+ * Binds the texture to the current texture unit.
+ */
+void Texture::bind() const {
+    glBindTexture(target, handle);
+}
+
+//----------------------------------------
+// Getters
+//
+
+/**
+ * Returns internal OpenGL identifier for texture.
  */
 GLuint Texture::getHandle() const {
     return handle;
+}
+
+/**
+ * Returns kind of texture.
+ */
+GLenum Texture::getTarget() const {
+    return target;
 }
 
 //----------------------------------------
@@ -44,11 +70,29 @@ GLuint Texture::getHandle() const {
 //
 
 /**
- * Determines if a handle is a texture.
- * 
- * @param handle Identifier for an OpenGL object
- * @return <tt>true</tt> if the handle is a texture
+ * Returns the handle to a new OpenGL texture object.
  */
-bool Texture::isTexture(GLuint handle) {
-    return glIsTexture(handle);
+GLuint Texture::createHandle() {
+    
+    GLuint handle;
+    
+    glGenTextures(1, &handle);
+    return handle;
+}
+
+/**
+ * Checks if a value is a valid texture target.
+ * 
+ * @param value Value to check
+ * @return <tt>true</tt> if value is valid
+ */
+bool Texture::isValidTarget(GLenum value) {
+    switch (value) {
+    case GL_TEXTURE_1D:
+    case GL_TEXTURE_2D:
+    case GL_TEXTURE_3D:
+        return true;
+    default:
+        return false;
+    }
 }
