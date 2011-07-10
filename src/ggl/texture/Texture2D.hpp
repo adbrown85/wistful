@@ -29,8 +29,6 @@ private:
     GLenum format;
     GLsizei width;
     GLsizei height;
-// Helpers
-    static bool isValidFormat(GLenum);
 // Constructors
     Texture2D();
 };

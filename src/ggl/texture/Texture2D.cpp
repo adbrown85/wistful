@@ -72,26 +72,6 @@ void Texture2D::allocate(GLenum format, Dimension dimension) {
 }
 
 //----------------------------------------
-// Helpers
-//
-
-/**
- * Checks if a value if a valid texture format.
- * 
- * @param value Value to check
- * @return <tt>true</tt> if value is a valid texture format
- */
-bool Texture2D::isValidFormat(GLenum value) {
-    switch (value) {
-    case GL_RGB:
-    case GL_RGBA:
-        return true;
-    default:
-        return false;
-    }
-}
-
-//----------------------------------------
 // Getters
 //
 

@@ -28,12 +28,14 @@ public:
     virtual GLsizei getHeight() const = 0;
     virtual GLenum getTarget() const;
     virtual GLsizei getWidth() const = 0;
+protected:
+    static bool isValidFormat(GLenum format);
+    static bool isValidTarget(GLenum target);
 private:
     GLuint handle;
     GLenum target;
 // Helpers
     static GLuint createHandle();
-    static bool isValidTarget(GLenum target);
 // Constructors
     Texture(const Texture&);
 };

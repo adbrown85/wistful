@@ -81,6 +81,22 @@ GLuint Texture::createHandle() {
 }
 
 /**
+ * Checks if a value is a valid texture format.
+ * 
+ * @param value Value to check
+ * @return <tt>true</tt> if value is a valid texture format
+ */
+bool Texture::isValidFormat(GLenum value) {
+    switch (value) {
+    case GL_RGB:
+    case GL_RGBA:
+        return true;
+    default:
+        return false;
+    }
+}
+
+/**
  * Checks if a value is a valid texture target.
  * 
  * @param value Value to check
