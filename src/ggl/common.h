@@ -7,6 +7,7 @@
 #ifndef GGL_COMMON_H
 #define GGL_COMMON_H
 #include <cstdlib>
+#include <cstring>
 #include <iostream>
 #include <list>
 #include <map>
