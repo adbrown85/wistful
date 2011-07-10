@@ -13,6 +13,8 @@
 #include "ggl/texture/Texture2D.hpp"
 #include "ggl/geometry/VertexBuffer.hpp"
 #include "ggl/geometry/VertexBufferBuilder.hpp"
+#include "ggl/shader/ProgramBuilder.hpp"
+#include "ggl/shader/ShaderBuilder.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowAdapter.hpp"
 #include "ggl/window/WindowFactory.hpp"
@@ -35,6 +37,15 @@ class Texture2DTestListener : public WindowAdapter {
 public:
     void onWindowOpen(const WindowEvent &e);
     void onWindowPaint(const WindowEvent &e);
+private:
+    VertexBuffer *vbo;
+    GLuint program;
+    GLuint vao;
+// Helpers
+    static GLuint createVAO(VertexBuffer *vb, GLuint program);
+    static VertexBuffer* createVBO();
+    static GLuint createProgram();
+    static GLuint loadShader(const std::string &filename);
 };
 
 } /* namespace Ggl */
