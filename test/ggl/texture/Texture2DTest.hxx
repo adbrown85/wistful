@@ -13,8 +13,11 @@
 #include "ggl/texture/Texture2D.hpp"
 #include "ggl/geometry/VertexBuffer.hpp"
 #include "ggl/geometry/VertexBufferBuilder.hpp"
+#include "ggl/image/Image.hpp"
+#include "ggl/image/BitmapReader.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"
 #include "ggl/shader/ShaderBuilder.hpp"
+#include "ggl/system/ErrorChecker.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowAdapter.hpp"
 #include "ggl/window/WindowFactory.hpp"
@@ -39,12 +42,15 @@ public:
     void onWindowPaint(const WindowEvent &e);
 private:
     VertexBuffer *vbo;
+    Texture *texture;
     GLuint program;
     GLuint vao;
 // Helpers
     static GLuint createVAO(VertexBuffer *vb, GLuint program);
     static VertexBuffer* createVBO();
+    static Image* createImage();
     static GLuint createProgram();
+    static Texture* createTexture();
     static GLuint loadShader(const std::string &filename);
 };
 
