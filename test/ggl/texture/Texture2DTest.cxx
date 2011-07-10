@@ -143,26 +143,21 @@ GLuint Texture2DTestListener::createProgram() {
 
 Texture* Texture2DTestListener::createTexture() {
     
-    Texture *texture = Texture2D::newInstance();
+    Texture2D *texture = Texture2D::newInstance();
     Image *image = createImage();
     size_t len = image->getSize();
-    GLubyte *pixels = new GLubyte[len];
     size_t width = image->getWidth();
     size_t height = image->getHeight();
     
-    assert(pixels != NULL);
     assert(len == 196610);
     assert(width == 256);
     assert(height == 256);
     
-    image->getPixels(pixels, len);
-    
     texture->bind();
     texture->allocate(GL_RGB, Dimension(width, height, 1));
-    texture->load(image->getFormat(), GL_UNSIGNED_BYTE, pixels);
+    texture->load(*image);
     
     delete image;
-    delete pixels;
     return texture;
 }
 
