@@ -65,6 +65,10 @@ void Texture2D::allocate(GLenum format, Dimension dimension) {
             GL_UNSIGNED_BYTE,  // data type
             NULL);             // data
     
+    // Set filtering
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
     // Store
     this->format = format;
     this->width = width;
