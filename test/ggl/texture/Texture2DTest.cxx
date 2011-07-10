@@ -11,11 +11,11 @@ using namespace Ggl;
 void Texture2DTest::test() {
     
     WindowFactory wf;
-    Window *window = wf.createWindow();
+    Ggl::Window *window = wf.createWindow();
     Texture2DTestListener listener;
     
     window->addWindowListener(&listener);
-    Window::open(window);
+    Ggl::Window::open(window);
 }
 
 void Texture2DTestListener::onWindowOpen(const WindowEvent &e) {
