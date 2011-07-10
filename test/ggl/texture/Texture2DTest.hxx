@@ -40,6 +40,7 @@ class Texture2DTestListener : public WindowAdapter {
 public:
     void onWindowOpen(const WindowEvent &e);
     void onWindowPaint(const WindowEvent &e);
+    void onWindowClose(const WindowEvent &e);
 private:
     VertexBuffer *vbo;
     Texture *texture;

@@ -42,6 +42,10 @@ void Texture2DTestListener::onWindowPaint(const WindowEvent &e) {
             6);           // count
 }
 
+void Texture2DTestListener::onWindowClose(const WindowEvent &e) {
+    delete texture;
+}
+
 //----------------------------------------
 // Helpers
 //
