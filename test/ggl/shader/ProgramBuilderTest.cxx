@@ -15,14 +15,14 @@ using namespace std;
 using namespace Ggl;
 
 
-class ProgramBuilderTestWindowListener : public WindowListener {
-    virtual void onInit(const WindowEvent &e);
-    virtual void onDisplay(const WindowEvent &e);
-    virtual void onDestroy(const WindowEvent &e);
-    virtual void onKey(const WindowEvent &e);
+class ProgramBuilderTestListener : public WindowListener {
+    virtual void onWindowOpen(const WindowEvent &e);
+    virtual void onWindowPaint(const WindowEvent &e);
+    virtual void onWindowKey(const WindowEvent &e);
+    virtual void onWindowClose(const WindowEvent &e);
 };
 
-void ProgramBuilderTestWindowListener::onInit(const WindowEvent &e) {
+void ProgramBuilderTestListener::onWindowOpen(const WindowEvent &e) {
     
     list<GLuint> shaders;
     GLuint program, shader;
@@ -36,19 +36,19 @@ void ProgramBuilderTestWindowListener::onInit(const WindowEvent &e) {
     assert(program > 0);
 }
 
-void ProgramBuilderTestWindowListener::onDisplay(const WindowEvent &e) {
+void ProgramBuilderTestListener::onWindowPaint(const WindowEvent &e) {
     glClearColor(0, 1, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void ProgramBuilderTestWindowListener::onDestroy(const WindowEvent &e) {
-    cout << "PASSED" << endl;
-}
-
-void ProgramBuilderTestWindowListener::onKey(const WindowEvent &e) {
+void ProgramBuilderTestListener::onWindowKey(const WindowEvent &e) {
     if (e.getTrigger() == GGL_KEY_ESCAPE) {
         e.getWindow()->close();
     }
+}
+
+void ProgramBuilderTestListener::onWindowClose(const WindowEvent &e) {
+    cout << "PASSED" << endl;
 }
 
 
@@ -68,7 +68,7 @@ void ProgramBuilderTest::testBuild() {
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
     
-    window->addWindowListener(new ProgramBuilderTestWindowListener());
+    window->addWindowListener(new ProgramBuilderTestListener());
     Ggl::Window::open(window);
 }
 

@@ -21,13 +21,13 @@ using namespace Ggl;
 /**
  * 
  */
-class VertexBufferTestWindowListener : public WindowListener {
+class VertexBufferTestListener : public WindowListener {
 public:
-    VertexBufferTestWindowListener();
-    virtual void onInit(const WindowEvent&);
-    virtual void onDisplay(const WindowEvent&);
-    virtual void onDestroy(const WindowEvent&);
-    virtual void onKey(const WindowEvent &event);
+    VertexBufferTestListener();
+    virtual void onWindowOpen(const WindowEvent&);
+    virtual void onWindowPaint(const WindowEvent&);
+    virtual void onWindowKey(const WindowEvent &event);
+    virtual void onWindowClose(const WindowEvent&);
 private:
     VertexBuffer *vbo;
     GLuint program;
@@ -35,13 +35,13 @@ private:
     GLuint vao;
 };
 
-VertexBufferTestWindowListener::VertexBufferTestWindowListener() {
+VertexBufferTestListener::VertexBufferTestListener() {
     vbo = NULL;
     program = 0;
     pointLoc = -1;
 }
 
-void VertexBufferTestWindowListener::onInit(const WindowEvent &e) {
+void VertexBufferTestListener::onWindowOpen(const WindowEvent &e) {
     
     GLuint vertShader, fragShader;
     VertexBufferBuilder builder;
@@ -90,7 +90,7 @@ void VertexBufferTestWindowListener::onInit(const WindowEvent &e) {
     glBindFragDataLocation(program, 0, "FragColor");
 }
 
-void VertexBufferTestWindowListener::onDisplay(const WindowEvent &e) {
+void VertexBufferTestListener::onWindowPaint(const WindowEvent &e) {
     
     glClearColor(0, 1, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -105,15 +105,15 @@ void VertexBufferTestWindowListener::onDisplay(const WindowEvent &e) {
     glBindVertexArray(0);
 }
 
-void VertexBufferTestWindowListener::onDestroy(const WindowEvent &e) {
-    if (vbo != NULL) {
-        delete vbo;
+void VertexBufferTestListener::onWindowKey(const WindowEvent &event) {
+    if (event.getTrigger() == GGL_KEY_ESCAPE) {
+        event.getWindow()->close();
     }
 }
 
-void VertexBufferTestWindowListener::onKey(const WindowEvent &event) {
-    if (event.getTrigger() == GGL_KEY_ESCAPE) {
-        event.getWindow()->close();
+void VertexBufferTestListener::onWindowClose(const WindowEvent &e) {
+    if (vbo != NULL) {
+        delete vbo;
     }
 }
 
@@ -127,8 +127,9 @@ void VertexBufferDrawTest::testDraw() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
+    VertexBufferTestListener listener;
     
-    window->addWindowListener(new VertexBufferTestWindowListener());
+    window->addWindowListener(&listener);
     Ggl::Window::open(window);
 }
 
