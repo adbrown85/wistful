@@ -28,52 +28,21 @@ int ShaderLoader::load(const string &filename) {
  */
 int ShaderLoader::load(GLenum type, const string &filename) {
     
-    int handle = create(type);
+    ShaderBuilder sb;
     Code code = read(filename);
+    Code::iterator it = code.begin();
     
-    load(handle, code);
-    compile(handle);
-    return handle;
+    while (it != code.end()) {
+        sb.addLine(it->text);
+        ++it;
+    }
+    
+    return sb.toShader(type);
 }
 
 //----------------------------------------
 // Helpers
 //
-
-/**
- * Compiles a shader.
- * 
- * @param handle Handle to OpenGL shader 
- * @throw std::exception if shader does not compile
- */
-void ShaderLoader::compile(int handle) {
-    
-    GLint compiled;
-    
-    glCompileShader(handle);
-    glGetShaderiv(handle, GL_COMPILE_STATUS, &compiled);
-    if (!compiled) {
-        cerr << findLog(handle);
-        throw Exception(findLog(handle));
-    }
-}
-
-/**
- * Requests a handle to a new GLSL shader of the correct type.
- * 
- * @param type Type of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
- * @return Handle to new OpenGL shader
- * @throw std::exception if type is not supported
- */
-int ShaderLoader::create(GLenum type) {
-    switch (type) {
-    case GL_FRAGMENT_SHADER:
-    case GL_VERTEX_SHADER:
-        return glCreateShader(type);
-    default:
-        throw Exception("[Shader] Type not supported!");
-    }
-}
 
 /**
  * Determines the extension of a file.
@@ -87,33 +56,6 @@ string ShaderLoader::findExtension(const std::string &filename) {
     string extension = filename.substr(pos + 1);
     
     return Text::toLower(extension);
-}
-
-/**
- * Retrieves the log of a shader.
- * 
- * @param handle Handle to shader
- * @return String containing log
- */
-string ShaderLoader::findLog(GLuint handle) {
-    
-    GLchar *arr;
-    GLsizei count;
-    GLsizei returned;
-    string str;
-    
-    // Allocate
-    glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &count);
-    arr = new GLchar[count + 1];
-    
-    // Retrieve
-    glGetShaderInfoLog(handle, count, &returned, arr);
-    arr[returned] = '\0';
-    str = arr;
-    
-    // Finish
-    delete[] arr;
-    return str;
 }
 
 /**
@@ -134,30 +76,6 @@ GLenum ShaderLoader::findType(const std::string &filename) {
     } else {
         throw Exception("[ShaderLoader] Extension not recognized!");
     }
-}
-
-/**
- * Loads a file into the shader's source array and passes it to OpenGL.
- * 
- * @param handle Handle of OpenGL shader
- * @param code Code loaded from file
- */
-void ShaderLoader::load(int handle, Code &code) {
-    
-    int len = code.size();
-    const char **source = new const char*[len];
-    Code::iterator it = code.begin();
-    int i = 0;
-    
-    // Copy to source array
-    while (it != code.end()) {
-        source[i] = it->text.c_str();
-        ++i;
-        ++it;
-    }
-    
-    // Pass to OpenGL
-    glShaderSource(handle, len, source, NULL);
 }
 
 /**
