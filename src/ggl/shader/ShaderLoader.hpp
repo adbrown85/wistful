@@ -18,8 +18,8 @@ namespace Ggl {
  */
 class ShaderLoader {
 public:
-    static int load(const std::string &filename);
-    static int load(GLenum type, const std::string &filename);
+    static GLuint load(const std::string &filename);
+    static GLuint load(GLenum type, const std::string &filename);
 protected:
     static std::string findExtension(const std::string &filename);
     static GLenum findType(const std::string &filename);

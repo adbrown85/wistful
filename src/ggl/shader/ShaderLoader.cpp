@@ -14,7 +14,7 @@ using namespace Ggl;
  * @param filename Name of a file
  * @throw std::exception if file extension not recognized
  */
-int ShaderLoader::load(const string &filename) {
+GLuint ShaderLoader::load(const string &filename) {
     return load(findType(filename), filename);
 }
 
@@ -26,7 +26,7 @@ int ShaderLoader::load(const string &filename) {
  * @throw std::exception if type not recognized
  * @throw std::exception if file cannot be opened
  */
-int ShaderLoader::load(GLenum type, const string &filename) {
+GLuint ShaderLoader::load(GLenum type, const string &filename) {
     
     ShaderBuilder sb;
     Code code = read(filename);
