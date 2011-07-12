@@ -49,15 +49,16 @@ void ProgramBuilder::addShader(GLuint shader) {
 GLuint ProgramBuilder::toProgram() {
     
     GLint linked;
-    GLuint handle;
+    GLuint handle = glCreateProgram();
     list<GLuint>::iterator it;
     
-    handle = glCreateProgram();
+    // Attach all the shaders
     for (it=shaders.begin(); it!=shaders.end(); ++it) {
         glAttachShader(handle, (*it));
     }
     shaders.clear();
     
+    // Link the program together
     glLinkProgram(handle);
     glGetProgramiv(handle, GL_LINK_STATUS, &linked);
     if (!linked) {
