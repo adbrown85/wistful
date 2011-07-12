@@ -10,15 +10,13 @@ using namespace Ggl;
 
 void ProgramBuilderTestListener::onWindowOpen(const WindowEvent &e) {
     
-    list<GLuint> shaders;
-    GLuint program, shader;
+    GLuint program;
+    ProgramBuilder pb;
     
-    shader = ShaderBuilder::build("test/ggl/shader/ProgramBuilderTest.frag");
-    shaders.push_back(shader);
-    shader = ShaderBuilder::build("test/ggl/shader/ProgramBuilderTest.vert");
-    shaders.push_back(shader);
+    pb.addShader("test/ggl/shader/ProgramBuilderTest.frag");
+    pb.addShader("test/ggl/shader/ProgramBuilderTest.vert");
     
-    program = ProgramBuilder::build(shaders);
+    program = pb.toProgram();
     assert(program > 0);
 }
 

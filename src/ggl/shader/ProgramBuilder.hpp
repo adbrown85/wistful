@@ -7,6 +7,7 @@
 #ifndef GGL_PROGRAMBUILDER_HPP
 #define GGL_PROGRAMBUILDER_HPP
 #include "ggl/common.h"
+#include "ggl/shader/ShaderBuilder.hpp"
 namespace Ggl {
 
 
@@ -15,10 +16,15 @@ namespace Ggl {
  */
 class ProgramBuilder {
 public:
-    static GLuint build(GLuint vertexShader, GLuint fragmentShader);
-    static GLuint build(std::list<GLuint> &shaders);
+    ProgramBuilder();
+    virtual ~ProgramBuilder();
+    virtual void addShader(const std::string &filename);
+    virtual void addShader(GLuint shader);
+    virtual GLuint toProgram();
 protected:
     static void report(GLuint handle);
+private:
+    std::list<GLuint> shaders;
 };
 
 } /* namespace Ggl */

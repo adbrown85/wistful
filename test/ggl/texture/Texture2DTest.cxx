@@ -126,10 +126,12 @@ VertexBuffer* Texture2DTestListener::createVBO() {
 
 GLuint Texture2DTestListener::createProgram() {
     
-    GLuint vs = loadShader("Texture2DTest.vert");
-    GLuint fs = loadShader("Texture2DTest.frag");
+    ProgramBuilder pb;
     
-    return ProgramBuilder::build(vs, fs);
+    pb.addShader("test/ggl/texture/Texture2DTest.vert");
+    pb.addShader("test/ggl/texture/Texture2DTest.frag");
+    
+    return pb.toProgram();
 }
 
 Texture* Texture2DTestListener::createTexture() {
@@ -150,14 +152,6 @@ Texture* Texture2DTestListener::createTexture() {
     
     delete image;
     return texture;
-}
-
-GLuint Texture2DTestListener::loadShader(const string &filename) {
-    
-    ostringstream ss;
-    
-    ss << "test/ggl/texture" << '/' << filename;
-    return ShaderBuilder::build(ss.str());
 }
 
 //----------------------------------------

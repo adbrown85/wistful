@@ -9,7 +9,6 @@
 #include "ggl/common.h"
 #include "ggl/geometry/VertexBuffer.hpp"
 #include "ggl/geometry/VertexBufferBuilder.hpp"
-#include "ggl/shader/ShaderBuilder.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"
 #include "ggl/system/ErrorChecker.hpp"
 #include "ggl/testing/TestFixture.hpp"
@@ -43,6 +42,8 @@ private:
     GLuint program;
     GLint pointLoc;
     GLuint vao;
+// Helpers
+    static GLuint createProgram();
 };
 
 }

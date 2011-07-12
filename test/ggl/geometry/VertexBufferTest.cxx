@@ -8,6 +8,16 @@
 using namespace std;
 using namespace Ggl;
 
+void VertexBufferTest::test() {
+    
+    WindowFactory factory;
+    Ggl::Window *window = factory.createWindow();
+    VertexBufferTestListener listener;
+    
+    window->addWindowListener(&listener);
+    Ggl::Window::open(window);
+}
+
 VertexBufferTestListener::VertexBufferTestListener() {
     vbo = NULL;
     program = 0;
@@ -16,7 +26,6 @@ VertexBufferTestListener::VertexBufferTestListener() {
 
 void VertexBufferTestListener::onWindowOpen(const WindowEvent &e) {
     
-    GLuint vertShader, fragShader;
     VertexBufferBuilder builder;
     
     builder.addAttribute("MCVertex", 3);
@@ -35,9 +44,7 @@ void VertexBufferTestListener::onWindowOpen(const WindowEvent &e) {
     vbo->flush();
     vbo->unbind();
     
-    vertShader = ShaderBuilder::build("test/ggl/geometry/VertexBufferTest.vert");
-    fragShader = ShaderBuilder::build("test/ggl/geometry/VertexBufferTest.frag");
-    program = ProgramBuilder::build(vertShader, fragShader);
+    program = createProgram();
     
     pointLoc = glGetAttribLocation(program, "MCVertex");
     if (pointLoc < 0) {
@@ -90,14 +97,17 @@ void VertexBufferTestListener::onWindowClose(const WindowEvent &e) {
     }
 }
 
-void VertexBufferTest::test() {
+//----------------------------------------
+// Helpers
+//
+
+GLuint VertexBufferTestListener::createProgram() {
     
-    WindowFactory factory;
-    Ggl::Window *window = factory.createWindow();
-    VertexBufferTestListener listener;
+    ProgramBuilder pb;
     
-    window->addWindowListener(&listener);
-    Ggl::Window::open(window);
+    pb.addShader("test/ggl/geometry/VertexBufferTest.vert");
+    pb.addShader("test/ggl/geometry/VertexBufferTest.frag");
+    return pb.toProgram();
 }
 
 #define GGL_TEST_FIXTURE VertexBufferTest

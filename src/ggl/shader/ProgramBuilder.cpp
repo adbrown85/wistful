@@ -9,27 +9,44 @@ using namespace std;
 using namespace Ggl;
 
 /**
- * Builds a program from a vertex and fragment shader.
- * 
- * @param vertShader Vertex shader
- * @param fragShader Fragment shader
- * @return OpenGL handle to shader program
+ * Constructs a program builder.
  */
-GLuint ProgramBuilder::build(GLuint vertShader, GLuint fragShader) {
-    
-    list<GLuint> shaders;
-    
-    shaders.push_back(vertShader);
-    shaders.push_back(fragShader);
-    return build(shaders);
+ProgramBuilder::ProgramBuilder() {
+    ;
 }
 
 /**
- * Builds a program from several shaders.
- * 
- * @param shaders List of shaders to build program from
+ * Destroys a program builder.
  */
-GLuint ProgramBuilder::build(list<GLuint> &shaders) {
+ProgramBuilder::~ProgramBuilder() {
+    ;
+}
+
+/**
+ * Adds a shader to the program being built.
+ * 
+ * @param filename Path to a shader file to load
+ * @throw std::exception if file extension not recognized
+ */
+void ProgramBuilder::addShader(const string &filename) {
+    addShader(ShaderBuilder::build(filename));
+}
+
+/**
+ * Adds a shader to the program being built.
+ * 
+ * @param shader Existing shader to add
+ */
+void ProgramBuilder::addShader(GLuint shader) {
+    shaders.push_back(shader);
+}
+
+/**
+ * Finishes building a shader program.
+ * 
+ * @return Handle to the new shader program
+ */
+GLuint ProgramBuilder::toProgram() {
     
     GLint linked;
     GLuint handle;
@@ -39,6 +56,7 @@ GLuint ProgramBuilder::build(list<GLuint> &shaders) {
     for (it=shaders.begin(); it!=shaders.end(); ++it) {
         glAttachShader(handle, (*it));
     }
+    shaders.clear();
     
     glLinkProgram(handle);
     glGetProgramiv(handle, GL_LINK_STATUS, &linked);

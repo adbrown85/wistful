@@ -52,7 +52,6 @@ private:
     static Image* createImage();
     static GLuint createProgram();
     static Texture* createTexture();
-    static GLuint loadShader(const std::string &filename);
 };
 
 } /* namespace Ggl */
