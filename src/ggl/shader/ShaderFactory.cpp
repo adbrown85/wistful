@@ -8,8 +8,19 @@
 using namespace std;
 using namespace Ggl;
 
-/* Static fields */
-map<string,GLuint> ShaderFactory::shaders;
+/**
+ * Creates a shader factory.
+ */
+ShaderFactory::ShaderFactory() {
+    ;
+}
+
+/**
+ * Destroys a shader factory.
+ */
+ShaderFactory::~ShaderFactory() {
+    ;
+}
 
 /**
  * Creates a shader.

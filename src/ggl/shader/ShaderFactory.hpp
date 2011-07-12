@@ -16,10 +16,12 @@ namespace Ggl {
  */
 class ShaderFactory {
 public:
-    static GLuint create(const std::string &filename);
-    static GLuint create(GLenum type, const std::string &filename);
+    ShaderFactory();
+    virtual ~ShaderFactory();
+    GLuint create(const std::string &filename);
+    GLuint create(GLenum type, const std::string &filename);
 private:
-    static std::map<std::string,GLuint> shaders;
+    std::map<std::string,GLuint> shaders;
 };
 
 } /* namespace Ggl */
