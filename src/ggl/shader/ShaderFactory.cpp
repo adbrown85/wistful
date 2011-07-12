@@ -16,10 +16,16 @@ ShaderFactory::ShaderFactory() {
 }
 
 /**
- * Destroys a shader factory.
+ * Destroys a shader factory and all the shaders it created.
  */
 ShaderFactory::~ShaderFactory() {
-    ;
+    
+    map<string,GLuint>::iterator it = shaders.begin();
+    
+    while (it != shaders.end()) {
+        glDeleteShader(it->second);
+        ++it;
+    }
 }
 
 /**
