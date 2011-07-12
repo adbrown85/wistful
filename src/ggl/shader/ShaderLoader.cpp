@@ -1,10 +1,10 @@
 /*
- * ShaderBuilder.cpp
+ * ShaderLoader.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/shader/ShaderBuilder.hpp"
+#include "ggl/shader/ShaderLoader.hpp"
 using namespace std;
 using namespace Ggl;
 
@@ -14,8 +14,8 @@ using namespace Ggl;
  * @param filename Name of a file
  * @throw std::exception if file extension not recognized
  */
-int ShaderBuilder::build(const string &filename) {
-    return build(findType(filename), filename);
+int ShaderLoader::load(const string &filename) {
+    return load(findType(filename), filename);
 }
 
 /**
@@ -26,7 +26,7 @@ int ShaderBuilder::build(const string &filename) {
  * @throw std::exception if type not recognized
  * @throw std::exception if file cannot be opened
  */
-int ShaderBuilder::build(GLenum type, const string &filename) {
+int ShaderLoader::load(GLenum type, const string &filename) {
     
     int handle = create(type);
     Code code = read(filename);
@@ -46,7 +46,7 @@ int ShaderBuilder::build(GLenum type, const string &filename) {
  * @param handle Handle to OpenGL shader 
  * @throw std::exception if shader does not compile
  */
-void ShaderBuilder::compile(int handle) {
+void ShaderLoader::compile(int handle) {
     
     GLint compiled;
     
@@ -65,7 +65,7 @@ void ShaderBuilder::compile(int handle) {
  * @return Handle to new OpenGL shader
  * @throw std::exception if type is not supported
  */
-int ShaderBuilder::create(GLenum type) {
+int ShaderLoader::create(GLenum type) {
     switch (type) {
     case GL_FRAGMENT_SHADER:
     case GL_VERTEX_SHADER:
@@ -81,7 +81,7 @@ int ShaderBuilder::create(GLenum type) {
  * @param filename Name of file
  * @return Text after period converted to lowercase
  */
-string ShaderBuilder::findExtension(const std::string &filename) {
+string ShaderLoader::findExtension(const std::string &filename) {
     
     size_t pos = filename.rfind('.');
     string extension = filename.substr(pos + 1);
@@ -95,7 +95,7 @@ string ShaderBuilder::findExtension(const std::string &filename) {
  * @param handle Handle to shader
  * @return String containing log
  */
-string ShaderBuilder::findLog(GLuint handle) {
+string ShaderLoader::findLog(GLuint handle) {
     
     GLchar *arr;
     GLsizei count;
@@ -123,7 +123,7 @@ string ShaderBuilder::findLog(GLuint handle) {
  * @return Type of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
  * @throw std::exception if file extension not recognized
  */
-GLenum ShaderBuilder::findType(const std::string &filename) {
+GLenum ShaderLoader::findType(const std::string &filename) {
     
     string extension = findExtension(filename);
     
@@ -132,7 +132,7 @@ GLenum ShaderBuilder::findType(const std::string &filename) {
     } else if (extension == "vert") {
         return GL_VERTEX_SHADER;
     } else {
-        throw Exception("[ShaderBuilder] Extension not recognized!");
+        throw Exception("[ShaderLoader] Extension not recognized!");
     }
 }
 
@@ -142,7 +142,7 @@ GLenum ShaderBuilder::findType(const std::string &filename) {
  * @param handle Handle of OpenGL shader
  * @param code Code loaded from file
  */
-void ShaderBuilder::load(int handle, Code &code) {
+void ShaderLoader::load(int handle, Code &code) {
     
     int len = code.size();
     const char **source = new const char*[len];
@@ -166,7 +166,7 @@ void ShaderBuilder::load(int handle, Code &code) {
  * @param filename File to read
  * @return Code from file
  */
-Code ShaderBuilder::read(const string &filename) {
+Code ShaderLoader::read(const string &filename) {
     
     Preprocessor preprocessor;
     

@@ -1,14 +1,14 @@
 /*
- * ShaderBuilderTest.cxx
+ * ShaderLoaderTest.cxx
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/shader/ShaderBuilderTest.hxx"
+#include "ggl/shader/ShaderLoaderTest.hxx"
 using namespace std;
 using namespace Ggl;
 
-void ShaderBuilderTestListener::onWindowOpen(const WindowEvent &e) {
+void ShaderLoaderTestListener::onWindowOpen(const WindowEvent &e) {
     
     int handle;
     GLint result;
@@ -19,7 +19,7 @@ void ShaderBuilderTestListener::onWindowOpen(const WindowEvent &e) {
     vector<string> lines;
     
     // Compile
-    handle = ShaderBuilder::build("test/ggl/shader/ShaderBuilderTest.vert");
+    handle = ShaderLoader::load("test/ggl/shader/ShaderLoaderTest.vert");
     assert(handle > 0);
     glGetShaderiv(handle, GL_SHADER_TYPE, &result);
     assert(result == GL_VERTEX_SHADER);
@@ -45,29 +45,29 @@ void ShaderBuilderTestListener::onWindowOpen(const WindowEvent &e) {
     assert(lines[5] == "}");
 }
 
-void ShaderBuilderTestListener::onWindowPaint(const WindowEvent &e) {
+void ShaderLoaderTestListener::onWindowPaint(const WindowEvent &e) {
     glClearColor(0, 1, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void ShaderBuilderTestListener::onWindowKey(const WindowEvent &e) {
+void ShaderLoaderTestListener::onWindowKey(const WindowEvent &e) {
     if (e.getTrigger() == GGL_KEY_ESCAPE) {
         e.getWindow()->close();
     }
 }
 
-void ShaderBuilderTestListener::onWindowClose(const WindowEvent &e) {
+void ShaderLoaderTestListener::onWindowClose(const WindowEvent &e) {
     cout << "PASSED" << endl;
 }
 
 /**
- * Ensures a shader can be built properly from a file.
+ * Ensures a shader can be loaded properly from a file.
  */
-void ShaderBuilderTest::testBuild() {
+void ShaderLoaderTest::testLoad() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
-    ShaderBuilderTestListener listener;
+    ShaderLoaderTestListener listener;
     
     window->addWindowListener(&listener);
     Ggl::Window::open(window);
@@ -75,5 +75,5 @@ void ShaderBuilderTest::testBuild() {
 
 /* Run the test. */
 GGL_TEST_SUITE
-GGL_ADD_TEST(testBuild)
+GGL_ADD_TEST(testLoad)
 GGL_RUN_TESTS

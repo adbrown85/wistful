@@ -9,7 +9,6 @@
 #define GGL_TEST_FIXTURE ProgramBuilderTest
 #include "ggl/common.h"
 #include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/shader/ShaderBuilder.hpp"
 #include "ggl/testing/TestFixture.hpp"
 #include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"

@@ -16,7 +16,6 @@
 #include "ggl/image/Image.hpp"
 #include "ggl/image/BitmapReader.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/shader/ShaderBuilder.hpp"
 #include "ggl/system/ErrorChecker.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowAdapter.hpp"

@@ -29,7 +29,7 @@ ProgramBuilder::~ProgramBuilder() {
  * @throw std::exception if file extension not recognized
  */
 void ProgramBuilder::addShader(const string &filename) {
-    addShader(ShaderBuilder::build(filename));
+    addShader(ShaderLoader::load(filename));
 }
 
 /**

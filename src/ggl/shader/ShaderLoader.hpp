@@ -1,11 +1,11 @@
 /*
- * ShaderBuilder.hpp
+ * ShaderLoader.hpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGL_SHADERBUILDER_HPP
-#define GGL_SHADERBUILDER_HPP
+#ifndef GGL_SHADERLOADER_HPP
+#define GGL_SHADERLOADER_HPP
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
 #include "ggl/shader/Preprocessor.hpp"
@@ -15,10 +15,10 @@ namespace Ggl {
 /**
  * @brief Utility for creating, loading, and compiling shaders.
  */
-class ShaderBuilder {
+class ShaderLoader {
 public:
-    static int build(const std::string &filename);
-    static int build(GLenum type, const std::string &filename);
+    static int load(const std::string &filename);
+    static int load(GLenum type, const std::string &filename);
 protected:
     static void compile(int handle);
     static int create(GLenum type);

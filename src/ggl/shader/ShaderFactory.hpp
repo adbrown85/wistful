@@ -7,7 +7,7 @@
 #ifndef GGL_SHADERFACTORY_HPP
 #define GGL_SHADERFACTORY_HPP
 #include "ggl/common.h"
-#include "ggl/shader/ShaderBuilder.hpp"
+#include "ggl/shader/ShaderLoader.hpp"
 namespace Ggl {
 
 

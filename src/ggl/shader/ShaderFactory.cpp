@@ -28,8 +28,8 @@ GLuint ShaderFactory::create(const string &filename) {
         return it->second;
     }
     
-    // Build it
-    handle = ShaderBuilder::build(filename);
+    // Load it
+    handle = ShaderLoader::load(filename);
     shaders[filename] = handle;
     return handle;
 }
@@ -53,7 +53,7 @@ GLuint ShaderFactory::create(GLenum type, const string &filename) {
     }
     
     // Build it
-    handle = ShaderBuilder::build(type, filename);
+    handle = ShaderLoader::load(type, filename);
     shaders[filename] = handle;
     return handle;
 }
