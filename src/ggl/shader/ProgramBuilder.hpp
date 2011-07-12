@@ -20,11 +20,13 @@ public:
     virtual ~ProgramBuilder();
     virtual void addShader(const std::string &filename);
     virtual void addShader(GLuint shader);
+    virtual void bindAttribute(GLuint index, const std::string &name);
     virtual GLuint toProgram();
 protected:
     static void report(GLuint handle);
 private:
     std::list<GLuint> shaders;
+    std::map<GLuint,std::string> locations;
 };
 
 } /* namespace Ggl */

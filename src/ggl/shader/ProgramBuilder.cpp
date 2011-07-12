@@ -42,6 +42,17 @@ void ProgramBuilder::addShader(GLuint shader) {
 }
 
 /**
+ * Binds an attribute to an index.
+ * 
+ * @param index Index to bind to
+ * @param name Name of vertex attribute to bind
+ */
+void ProgramBuilder::bindAttribute(GLuint index,
+                                   const string &name) {
+    locations[index] = name;
+}
+
+/**
  * Finishes building a shader program.
  * 
  * @return Handle to the new shader program
@@ -51,12 +62,17 @@ GLuint ProgramBuilder::toProgram() {
     GLint linked;
     GLuint handle = glCreateProgram();
     list<GLuint>::iterator it;
+    map<GLuint,string>::iterator mi;
     
     // Attach all the shaders
     for (it=shaders.begin(); it!=shaders.end(); ++it) {
         glAttachShader(handle, (*it));
     }
-    shaders.clear();
+    
+    // Bind locations
+    for (mi=locations.begin(); mi!=locations.end(); ++mi) {
+        glBindAttribLocation(handle, mi->first, mi->second.c_str());
+    }
     
     // Link the program together
     glLinkProgram(handle);
@@ -64,6 +80,10 @@ GLuint ProgramBuilder::toProgram() {
     if (!linked) {
         report(handle);
     }
+    
+    // Clear for next run
+    shaders.clear();
+    locations.clear();
     
     return handle;
 }
