@@ -9,6 +9,8 @@
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
 #include "ggl/math/Mat4.hpp"
+#include "ggl/transform/ProjectionListener.hpp"
+#include "ggl/transform/Viewport.hpp"
 namespace Ggl {
 
 
