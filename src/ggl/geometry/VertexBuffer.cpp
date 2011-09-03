@@ -33,6 +33,7 @@ VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) :
     
     offsets = vbp.getOffsets();
     sizes = vbp.getSizes();
+    types = vbp.getTypes();
     capacity = vbp.getCapacity();
     interleaved = vbp.isInterleaved();
     usage = vbp.getUsage();
@@ -209,6 +210,25 @@ GLuint VertexBuffer::getSize(const string &name) const {
     
     it = sizes.find(name);
     if (it != sizes.end()) {
+        return it->second;
+    } else {
+        throw Exception("[VertexBuffer] Attribute is not stored!");
+    }
+}
+
+/**
+ * Determines the primitive type of an attribute.
+ * 
+ * @param name Name of an attribute
+ * @return Primitive type of the attribute, e.g. GL_FLOAT
+ * @throw std::exception if attribute is not in the VBO
+ */
+GLenum VertexBuffer::getType(const string &name) const {
+    
+    map<string,GLenum>::const_iterator it;
+    
+    it = types.find(name);
+    if (it != types.end()) {
         return it->second;
     } else {
         throw Exception("[VertexBuffer] Attribute is not stored!");

@@ -22,6 +22,7 @@ public:
     virtual bool isInterleaved() const = 0;
     virtual GLenum getUsage() const = 0;
     virtual std::map<std::string,GLuint> getSizes() const = 0;
+    virtual std::map<std::string,GLenum> getTypes() const = 0;
     virtual GLsizei getSizeInBytes() const = 0;
     virtual GLuint getStrideInBytes() const = 0;
 };
@@ -60,6 +61,7 @@ public:
     GLuint size() const;
     GLuint getSize(const std::string &name) const;
     GLuint getStride() const;
+    GLenum getType(const std::string &name) const;
 private:
     bool interleaved;                  // Whether attributes are mixed together
     bool skip;                         // Whether to jump to next vertex
@@ -73,6 +75,7 @@ private:
     GLenum usage;                      // Hint for how VBO is read and updated
     std::map<std::string,GLuint> sizes;
     std::map<std::string,GLuint> offsets;
+    std::map<std::string,GLenum> types;
 // Constants
     static const int SIZEOF_VEC2 = sizeof(float) * 2;
     static const int SIZEOF_VEC3 = sizeof(float) * 3;

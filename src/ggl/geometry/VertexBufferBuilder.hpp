@@ -34,6 +34,7 @@ public:
     virtual std::map<std::string,GLuint> getSizes() const;
     virtual GLuint getStrideInBytes() const;
     virtual std::map<std::string,GLuint> getOffsets() const;
+    virtual std::map<std::string,GLenum> getTypes() const;
 private:
     bool interleaved;
     GLenum usage;

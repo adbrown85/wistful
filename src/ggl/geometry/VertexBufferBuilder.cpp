@@ -155,3 +155,17 @@ GLuint VertexBufferBuilder::getStrideInBytes() const {
     }
     return strideInBytes;
 }
+
+/**
+ * Returns a mapping of the attributes and their primitive types.
+ */
+map<string,GLenum> VertexBufferBuilder::getTypes() const {
+    
+    map<string,GLenum> types;
+    list<VertexAttribute>::const_iterator it;
+    
+    for (it=attributes.begin(); it!=attributes.end(); ++it) {
+        types[it->getName()] = GL_FLOAT;
+    }
+    return types;
+}
