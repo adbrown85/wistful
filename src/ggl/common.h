@@ -11,6 +11,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <vector>
 #ifdef __APPLE__
 #define GL3_PROTOTYPES
 #include <OpenGL/gl3.h>
