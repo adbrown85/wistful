@@ -31,6 +31,7 @@ public:
     virtual bool isInterleaved() const;
     virtual GLenum getUsage() const;
     virtual GLsizei getSizeInBytes() const;
+    virtual std::map<std::string,GLuint> getSizes() const;
     virtual GLuint getStrideInBytes() const;
     virtual std::map<std::string,GLuint> getOffsets() const;
 private:

@@ -21,6 +21,7 @@ public:
     virtual GLuint getCapacity() const = 0;
     virtual bool isInterleaved() const = 0;
     virtual GLenum getUsage() const = 0;
+    virtual std::map<std::string,GLuint> getSizes() const = 0;
     virtual GLsizei getSizeInBytes() const = 0;
     virtual GLuint getStrideInBytes() const = 0;
 };
@@ -57,6 +58,7 @@ public:
     GLsizei getFootprint() const;
     GLuint getOffset(const std::string &name) const;
     GLuint size() const;
+    GLuint getSize(const std::string &name) const;
     GLuint getStride() const;
 private:
     bool interleaved;                  // Whether attributes are mixed together
@@ -69,6 +71,7 @@ private:
     GLuint stride;                     // Number of bytes between vertices
     GLsizei footprint;                 // Size in bytes of total VBO
     GLenum usage;                      // Hint for how VBO is read and updated
+    std::map<std::string,GLuint> sizes;
     std::map<std::string,GLuint> offsets;
 // Constants
     static const int SIZEOF_VEC2 = sizeof(float) * 2;

@@ -115,6 +115,20 @@ map<string,GLuint> VertexBufferBuilder::getOffsets() const {
 }
 
 /**
+ * Returns a mapping of the attributes and their number of components.
+ */
+map<string,GLuint> VertexBufferBuilder::getSizes() const {
+    
+    map<string,GLuint> sizes;
+    list<VertexAttribute>::const_iterator it;
+    
+    for (it=attributes.begin(); it!=attributes.end(); ++it) {
+        sizes[it->getName()] = it->getCount();
+    }
+    return sizes;
+}
+
+/**
  * Returns total number of bytes in the VertexBufferObject.
  */
 GLsizei VertexBufferBuilder::getSizeInBytes() const {

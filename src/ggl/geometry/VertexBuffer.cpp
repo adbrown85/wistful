@@ -32,6 +32,7 @@ VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) :
         BufferObject(GL_ARRAY_BUFFER) {
     
     offsets = vbp.getOffsets();
+    sizes = vbp.getSizes();
     capacity = vbp.getCapacity();
     interleaved = vbp.isInterleaved();
     usage = vbp.getUsage();
@@ -189,6 +190,25 @@ GLuint VertexBuffer::getOffset(const string &name) const {
     
     it = offsets.find(name);
     if (it != offsets.end()) {
+        return it->second;
+    } else {
+        throw Exception("[VertexBuffer] Attribute is not stored!");
+    }
+}
+
+/**
+ * Returns number of components of an attribute in the VBO.
+ * 
+ * @param name Name of an attribute
+ * @return Size of the attribute in components
+ * @throw std::exception if attribute is not in the VBO
+ */
+GLuint VertexBuffer::getSize(const string &name) const {
+    
+    map<string,GLuint>::const_iterator it;
+    
+    it = sizes.find(name);
+    if (it != sizes.end()) {
         return it->second;
     } else {
         throw Exception("[VertexBuffer] Attribute is not stored!");
