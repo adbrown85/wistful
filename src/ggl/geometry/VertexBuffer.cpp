@@ -16,7 +16,7 @@ using namespace Ggl;
  */
 VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
     if (!vbp.isComplete()) {
-        throw Exception("[VertexBufferObject] Prototype is not complete!");
+        throw Exception("[VertexBuffer] Prototype is not complete!");
     } else {
         return new VertexBuffer(vbp);
     }
