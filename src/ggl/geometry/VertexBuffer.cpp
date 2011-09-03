@@ -12,13 +12,23 @@ using namespace Ggl;
  * Creates a new VBO.
  * 
  * @param vbp Prototype for a vertex buffer
+ * @return Pointer to new instance, which should be deleted when done with
  * @throw std::exception if prototype is not complete
+ * @throw std::exception if could not allocate instance
  */
 VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
+    
+    VertexBuffer* instance = NULL;
+    
     if (!vbp.isComplete()) {
         throw Exception("[VertexBuffer] Prototype is not complete!");
     } else {
-        return new VertexBuffer(vbp);
+        instance = new VertexBuffer(vbp);
+        if (instance == NULL) {
+            throw Exception("[VertexBuffer] Could not allocate instance!");
+        } else {
+            return instance;
+        }
     }
 }
 
