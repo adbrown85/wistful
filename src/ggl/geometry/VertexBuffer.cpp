@@ -12,7 +12,7 @@ using namespace Ggl;
  * Creates a new VBO.
  * 
  * @param vbp Prototype for a vertex buffer
- * @throw std::exception if prototype is not complete 
+ * @throw std::exception if prototype is not complete
  */
 VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
     if (!vbp.isComplete()) {
