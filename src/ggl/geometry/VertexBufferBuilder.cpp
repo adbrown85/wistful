@@ -16,10 +16,15 @@ VertexBufferBuilder::VertexBufferBuilder() {
 }
 
 /**
- * Adds a vertex attribute to the buffer.
+ * Adds space for a vertex attribute to the buffer.
+ * 
+ * @param name Name of the vertex attribute
+ * @param type Type of the vertex attribute, e.g. GL_FLOAT_VEC3
+ * @throw std::exception if name is invalid
+ * @throw std::exception if type is invalid
  */
-void VertexBufferBuilder::addAttribute(const string &name, int size) {
-    attributes.push_back(Attribute(name, size));
+void VertexBufferBuilder::addAttribute(const string &name, GLenum type) {
+    attributes.push_back(Attribute(name, type));
 }
 
 /**
@@ -114,15 +119,13 @@ map<string,GLuint> VertexBufferBuilder::getOffsets() const {
     map<string,GLuint> offsets;
     list<Attribute>::const_iterator it;
     GLuint offset = 0;
-    GLsizei attributeSizeInBytes;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
         offsets[it->getName()] = offset;
-        attributeSizeInBytes = sizeof(GLfloat) * it->getSize();
         if (isInterleaved()) {
-            offset += attributeSizeInBytes;
+            offset += it->getSizeInBytes();
         } else {
-            offset += attributeSizeInBytes * getCapacity();
+            offset += it->getSizeInBytes() * getCapacity();
         }
     }
     return offsets;
@@ -137,7 +140,7 @@ map<string,GLuint> VertexBufferBuilder::getSizes() const {
     list<Attribute>::const_iterator it;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        sizes[it->getName()] = it->getSize();
+        sizes[it->getName()] = it->getSizeInComponents();
     }
     return sizes;
 }
@@ -151,7 +154,7 @@ GLsizei VertexBufferBuilder::getSizeInBytes() const {
     GLsizei sizeInBytes = 0;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        sizeInBytes += sizeof(float) * it->getSize();
+        sizeInBytes += it->getSizeInBytes();
     }
     return sizeInBytes * getCapacity();
 }
@@ -165,7 +168,7 @@ GLuint VertexBufferBuilder::getStrideInBytes() const {
     GLuint strideInBytes = 0;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        strideInBytes += sizeof(float) * it->getSize();
+        strideInBytes += it->getSizeInBytes();
     }
     return strideInBytes;
 }
@@ -190,18 +193,18 @@ map<string,GLenum> VertexBufferBuilder::getTypes() const {
  * Constructs a vertex attribute.
  * 
  * @param name Name of the vertex attribute
- * @param size Number of components in the vertex attribute
+ * @param type Type of the vertex attribute, e.g. GL_FLOAT_VEC3
  * @throw std::exception if name is invalid
- * @throw std::exception if size is invalid
+ * @throw std::exception if type is invalid
  */
-VertexBufferBuilder::Attribute::Attribute(const string &name, GLuint size) {
+VertexBufferBuilder::Attribute::Attribute(const string &name, GLenum type) {
     if (!isValidName(name)) {
         throw Exception("[VertexBufferBuilder] Attribute name is invalid!");
-    } else if (!isValidSize(size)){
-        throw Exception("[VertexBufferBuilder] Attribute size is invalid!");
+    } else if (!isValidType(type)){
+        throw Exception("[VertexBufferBuilder] Attribute type is invalid!");
     } else {
         this->name = name;
-        this->size = size;
+        this->type = type;
     }
 }
 
@@ -220,10 +223,36 @@ string VertexBufferBuilder::Attribute::getName() const {
 }
 
 /**
- * Returns size of the vertex attribute.
+ * Returns the size of the attribute in bytes.
  */
-GLuint VertexBufferBuilder::Attribute::getSize() const {
-    return size;
+GLuint VertexBufferBuilder::Attribute::getSizeInBytes() const {
+    switch (type) {
+    case GL_FLOAT_VEC2: return SIZEOF_FLOAT_VEC2;
+    case GL_FLOAT_VEC3: return SIZEOF_FLOAT_VEC3;
+    case GL_FLOAT_VEC4: return SIZEOF_FLOAT_VEC4;
+    default:
+        throw Exception("Unexpected attribute type!");
+    }
+}
+
+/**
+ * Returns the number of components in the attribute.
+ */
+GLuint VertexBufferBuilder::Attribute::getSizeInComponents() const {
+    switch (type) {
+    case GL_FLOAT_VEC2: return 2;
+    case GL_FLOAT_VEC3: return 3;
+    case GL_FLOAT_VEC4: return 4;
+    default:
+        throw Exception("Unexpected attribute type!");
+    }
+}
+
+/**
+ * Returns type of the vertex attribute, e.g. GL_FLOAT_VEC3.
+ */
+GLuint VertexBufferBuilder::Attribute::getType() const {
+    return type;
 }
 
 /**
@@ -237,12 +266,19 @@ bool VertexBufferBuilder::Attribute::isValidName(const string &name) {
 }
 
 /**
- * Checks if a size is legal for an attribute.
+ * Checks if a type is legal for an attribute.
  * 
- * @param size Size to check
- * @return True if size is legal
+ * @param type Type to check
+ * @return True if type is legal
  */
-bool VertexBufferBuilder::Attribute::isValidSize(GLuint size) {
-    return size <= 4;
+bool VertexBufferBuilder::Attribute::isValidType(GLenum type) {
+    switch (type) {
+    case GL_FLOAT_VEC2:
+    case GL_FLOAT_VEC3:
+    case GL_FLOAT_VEC4:
+        return true;
+    default:
+        return false;
+    }
 }
 

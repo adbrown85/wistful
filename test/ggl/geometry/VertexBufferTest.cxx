@@ -28,8 +28,8 @@ void VertexBufferTestListener::onWindowOpen(const WindowEvent &e) {
     
     VertexBufferBuilder builder;
     
-    builder.addAttribute("MCVertex", 3);
-    builder.addAttribute("TexCoord0", 3);
+    builder.addAttribute("MCVertex", GL_FLOAT_VEC3);
+    builder.addAttribute("TexCoord0", GL_FLOAT_VEC3);
     builder.setUsage(GL_STATIC_DRAW);
     builder.setCapacity(3);
     

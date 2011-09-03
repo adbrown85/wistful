@@ -88,7 +88,6 @@ Mesh* MeshBuilder::toMesh() {
     VertexBufferBuilder vbb;
     VertexBuffer *vbo;
     map<string,AttributeBin*>::iterator it;
-    string name;
     size_t size;
     
     // Validate
@@ -98,9 +97,7 @@ Mesh* MeshBuilder::toMesh() {
     
     // Add the attributes
     for (it=bins.begin(); it!=bins.end(); ++it) {
-        name = it->first;
-        size = findSizeInComponents(it->second->getType());
-        vbb.addAttribute(name, size);
+        vbb.addAttribute(it->first, it->second->getType());
     }
     
     // Determine size
@@ -183,23 +180,6 @@ MeshBuilder::AttributeBin* MeshBuilder::findBin(const string &name,
     }
     
     return bin;
-}
-
-/**
- * Determines the number of components in an attribute type.
- * 
- * @param type Type of attribute, e.g. GL_FLOAT_VEC3
- * @return Number of components in the attribute type
- * @throw std::exception if type is unexpected
- */
-GLuint MeshBuilder::findSizeInComponents(GLenum type) {
-    switch (type) {
-    case GL_FLOAT_VEC2: return 2;
-    case GL_FLOAT_VEC3: return 3;
-    case GL_FLOAT_VEC4: return 4;
-    default:
-        throw Exception("[MeshBuilder] Unexpected attribute type!");
-    }
 }
 
 /**

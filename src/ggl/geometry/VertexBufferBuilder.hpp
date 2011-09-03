@@ -19,7 +19,7 @@ class VertexBufferBuilder : public VertexBufferPrototype {
 public:
     VertexBufferBuilder();
     virtual ~VertexBufferBuilder() {}
-    virtual void addAttribute(const std::string &name, int size);
+    virtual void addAttribute(const std::string &name, GLenum type);
     virtual void reset();
     virtual void setCapacity(GLuint capacity);
     virtual void setInterleaved(bool interleaved);
@@ -52,17 +52,23 @@ private:
  */
 class VertexBufferBuilder::Attribute {
 public:
-    Attribute(const std::string &name, GLuint size);
+    Attribute(const std::string &name, GLenum type);
     virtual ~Attribute();
 // Getters and setters
     virtual std::string getName() const;
-    virtual GLuint getSize() const;
+    virtual GLuint getSizeInBytes() const;
+    virtual GLuint getSizeInComponents() const;
+    virtual GLenum getType() const;
 private:
     std::string name;
-    GLuint size;
+    GLenum type;
+// Constants
+    static const GLuint SIZEOF_FLOAT_VEC2 = sizeof(GLfloat) * 2;
+    static const GLuint SIZEOF_FLOAT_VEC3 = sizeof(GLfloat) * 3;
+    static const GLuint SIZEOF_FLOAT_VEC4 = sizeof(GLfloat) * 4;
 // Helpers
     static bool isValidName(const std::string &name);
-    static bool isValidSize(GLuint size);
+    static bool isValidType(GLenum type);
 };
 
 } /* namespace Ggl */
