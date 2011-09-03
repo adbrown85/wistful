@@ -9,7 +9,6 @@
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
 #include "ggl/geometry/BufferObject.hpp"
-#include "ggl/geometry/VertexAttribute.hpp"
 namespace Ggl {
 
 

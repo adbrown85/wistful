@@ -19,7 +19,7 @@ VertexBufferBuilder::VertexBufferBuilder() {
  * Adds a vertex attribute to the buffer.
  */
 void VertexBufferBuilder::addAttribute(const string &name, int size) {
-    attributes.push_back(VertexAttribute(name, size));
+    attributes.push_back(Attribute(name, size));
 }
 
 /**
@@ -101,7 +101,7 @@ GLenum VertexBufferBuilder::getUsage() const {
 list<string> VertexBufferBuilder::getNames() const {
     
     list<string> names;
-    list<VertexAttribute>::const_iterator it;
+    list<Attribute>::const_iterator it;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
         names.push_back(it->getName());
@@ -112,13 +112,13 @@ list<string> VertexBufferBuilder::getNames() const {
 map<string,GLuint> VertexBufferBuilder::getOffsets() const {
     
     map<string,GLuint> offsets;
-    list<VertexAttribute>::const_iterator it;
+    list<Attribute>::const_iterator it;
     GLuint offset = 0;
     GLsizei attributeSizeInBytes;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
         offsets[it->getName()] = offset;
-        attributeSizeInBytes = sizeof(GLfloat) * it->getCount();
+        attributeSizeInBytes = sizeof(GLfloat) * it->getSize();
         if (isInterleaved()) {
             offset += attributeSizeInBytes;
         } else {
@@ -134,10 +134,10 @@ map<string,GLuint> VertexBufferBuilder::getOffsets() const {
 map<string,GLuint> VertexBufferBuilder::getSizes() const {
     
     map<string,GLuint> sizes;
-    list<VertexAttribute>::const_iterator it;
+    list<Attribute>::const_iterator it;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        sizes[it->getName()] = it->getCount();
+        sizes[it->getName()] = it->getSize();
     }
     return sizes;
 }
@@ -147,11 +147,11 @@ map<string,GLuint> VertexBufferBuilder::getSizes() const {
  */
 GLsizei VertexBufferBuilder::getSizeInBytes() const {
     
-    list<VertexAttribute>::const_iterator it;
+    list<Attribute>::const_iterator it;
     GLsizei sizeInBytes = 0;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        sizeInBytes += sizeof(float) * it->getCount();
+        sizeInBytes += sizeof(float) * it->getSize();
     }
     return sizeInBytes * getCapacity();
 }
@@ -161,11 +161,11 @@ GLsizei VertexBufferBuilder::getSizeInBytes() const {
  */
 GLuint VertexBufferBuilder::getStrideInBytes() const {
     
-    list<VertexAttribute>::const_iterator it;
+    list<Attribute>::const_iterator it;
     GLuint strideInBytes = 0;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        strideInBytes += sizeof(float) * it->getCount();
+        strideInBytes += sizeof(float) * it->getSize();
     }
     return strideInBytes;
 }
@@ -176,10 +176,73 @@ GLuint VertexBufferBuilder::getStrideInBytes() const {
 map<string,GLenum> VertexBufferBuilder::getTypes() const {
     
     map<string,GLenum> types;
-    list<VertexAttribute>::const_iterator it;
+    list<Attribute>::const_iterator it;
     
     for (it=attributes.begin(); it!=attributes.end(); ++it) {
         types[it->getName()] = GL_FLOAT;
     }
     return types;
 }
+
+// NESTED CLASSES
+
+/**
+ * Constructs a vertex attribute.
+ * 
+ * @param name Name of the vertex attribute
+ * @param size Number of components in the vertex attribute
+ * @throw std::exception if name is invalid
+ * @throw std::exception if size is invalid
+ */
+VertexBufferBuilder::Attribute::Attribute(const string &name, GLuint size) {
+    if (!isValidName(name)) {
+        throw Exception("[VertexBufferBuilder] Attribute name is invalid!");
+    } else if (!isValidSize(size)){
+        throw Exception("[VertexBufferBuilder] Attribute size is invalid!");
+    } else {
+        this->name = name;
+        this->size = size;
+    }
+}
+
+/**
+ * Destroys the vertex attribute.
+ */
+VertexBufferBuilder::Attribute::~Attribute() {
+    ;
+}
+
+/**
+ * Returns name of the vertex attribute.
+ */
+string VertexBufferBuilder::Attribute::getName() const {
+    return name;
+}
+
+/**
+ * Returns size of the vertex attribute.
+ */
+GLuint VertexBufferBuilder::Attribute::getSize() const {
+    return size;
+}
+
+/**
+ * Checks if a name is legal for an attribute.
+ * 
+ * @param name Name to check
+ * @return True if name is legal
+ */
+bool VertexBufferBuilder::Attribute::isValidName(const string &name) {
+    return (!name.empty()) || (name.find(' ') != -1);
+}
+
+/**
+ * Checks if a size is legal for an attribute.
+ * 
+ * @param size Size to check
+ * @return True if size is legal
+ */
+bool VertexBufferBuilder::Attribute::isValidSize(GLuint size) {
+    return size <= 4;
+}
+

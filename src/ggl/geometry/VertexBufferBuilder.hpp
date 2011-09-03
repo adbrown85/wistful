@@ -37,10 +37,32 @@ public:
     virtual std::map<std::string,GLuint> getOffsets() const;
     virtual std::map<std::string,GLenum> getTypes() const;
 private:
+// Nested classes
+    class Attribute;
+// Instance variables
     bool interleaved;
     GLenum usage;
     GLuint capacity; //FIXME: Should be GLsizei
-    std::list<VertexAttribute> attributes;
+    std::list<Attribute> attributes;
+};
+
+
+/**
+ * Vertex attribute added to the builder.
+ */
+class VertexBufferBuilder::Attribute {
+public:
+    Attribute(const std::string &name, GLuint size);
+    virtual ~Attribute();
+// Getters and setters
+    virtual std::string getName() const;
+    virtual GLuint getSize() const;
+private:
+    std::string name;
+    GLuint size;
+// Helpers
+    static bool isValidName(const std::string &name);
+    static bool isValidSize(GLuint size);
 };
 
 } /* namespace Ggl */
