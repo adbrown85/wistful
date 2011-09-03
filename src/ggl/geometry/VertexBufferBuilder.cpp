@@ -95,6 +95,20 @@ GLenum VertexBufferBuilder::getUsage() const {
     return usage;
 }
 
+/**
+ * Returns the names of all attributes that have been added.
+ */
+list<string> VertexBufferBuilder::getNames() const {
+    
+    list<string> names;
+    list<VertexAttribute>::const_iterator it;
+    
+    for (it=attributes.begin(); it!=attributes.end(); ++it) {
+        names.push_back(it->getName());
+    }
+    return names;
+}
+
 map<string,GLuint> VertexBufferBuilder::getOffsets() const {
     
     map<string,GLuint> offsets;

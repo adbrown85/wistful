@@ -29,6 +29,7 @@ public:
     virtual GLuint getCapacity() const;
     virtual bool isComplete() const;
     virtual bool isInterleaved() const;
+    virtual std::list<std::string> getNames() const;
     virtual GLenum getUsage() const;
     virtual GLsizei getSizeInBytes() const;
     virtual std::map<std::string,GLuint> getSizes() const;

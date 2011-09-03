@@ -31,6 +31,7 @@ VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
 VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) :
         BufferObject(GL_ARRAY_BUFFER) {
     
+    names = vbp.getNames();
     offsets = vbp.getOffsets();
     sizes = vbp.getSizes();
     types = vbp.getTypes();
@@ -177,6 +178,13 @@ void VertexBuffer::seek(const string &name) {
 }
 
 // GETTERS AND SETTERS
+
+/**
+ * Returns the names of all attributes in the VBO.
+ */
+list<string> VertexBuffer::getNames() const {
+    return names;
+}
 
 /**
  * Determines the position of an attribute in the VBO.

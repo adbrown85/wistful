@@ -20,6 +20,7 @@ public:
     virtual std::map<std::string,GLuint> getOffsets() const = 0;
     virtual GLuint getCapacity() const = 0;
     virtual bool isInterleaved() const = 0;
+    virtual std::list<std::string> getNames() const = 0;
     virtual GLenum getUsage() const = 0;
     virtual std::map<std::string,GLuint> getSizes() const = 0;
     virtual std::map<std::string,GLenum> getTypes() const = 0;
@@ -57,6 +58,7 @@ public:
     bool isInterleaved() const;
     GLuint getCapacity() const;
     GLsizei getFootprint() const;
+    std::list<std::string> getNames() const;
     GLuint getOffset(const std::string &name) const;
     GLuint size() const;
     GLuint getSize(const std::string &name) const;
@@ -73,6 +75,7 @@ private:
     GLuint stride;                     // Number of bytes between vertices
     GLsizei footprint;                 // Size in bytes of total VBO
     GLenum usage;                      // Hint for how VBO is read and updated
+    std::list<std::string> names;
     std::map<std::string,GLuint> sizes;
     std::map<std::string,GLuint> offsets;
     std::map<std::string,GLenum> types;
