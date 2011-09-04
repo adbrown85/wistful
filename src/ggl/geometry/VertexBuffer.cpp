@@ -175,7 +175,7 @@ void VertexBuffer::seek(const string &name) {
     if (it != offsets.end()) {
         current = data + it->second;
     } else {
-        throw Exception("[VertexBufferObject] Attribute not stored!");
+        throw Exception("[VertexBuffer] Attribute not stored!");
     }
     
     // Enable skipping
@@ -315,7 +315,7 @@ void VertexBuffer::Builder::setCapacity(GLuint capacity) {
     if (capacity > 0) {
         this->capacity = capacity;
     } else {
-        throw Exception("[VertexBufferObjectBuilder] Capacity > 0!");
+        throw Exception("[VertexBuffer] Capacity > 0!");
     }
 }
 
@@ -337,7 +337,7 @@ void VertexBuffer::Builder::setUsage(GLenum usage) {
         this->usage = usage;
         break;
     default:
-        throw Exception("[VertexBufferObjectBuilder] Unexpected usage type!");
+        throw Exception("[VertexBuffer] Unexpected usage type!");
     }
 }
 
@@ -457,9 +457,9 @@ VertexBuffer* VertexBuffer::Builder::toVertexBuffer() {
  */
 VertexBuffer::Builder::Attribute::Attribute(const string &name, GLenum type) {
     if (!isValidName(name)) {
-        throw Exception("[VertexBufferBuilder] Attribute name is invalid!");
+        throw Exception("[VertexBuffer] Attribute name is invalid!");
     } else if (!isValidType(type)){
-        throw Exception("[VertexBufferBuilder] Attribute type is invalid!");
+        throw Exception("[VertexBuffer] Attribute type is invalid!");
     } else {
         this->name = name;
         this->type = type;
@@ -489,7 +489,7 @@ GLuint VertexBuffer::Builder::Attribute::getSizeInBytes() const {
     case GL_FLOAT_VEC3: return SIZEOF_FLOAT_VEC3;
     case GL_FLOAT_VEC4: return SIZEOF_FLOAT_VEC4;
     default:
-        throw Exception("Unexpected attribute type!");
+        throw Exception("[VertexBuffer] Unexpected attribute type!");
     }
 }
 
@@ -502,7 +502,7 @@ GLuint VertexBuffer::Builder::Attribute::getSizeInComponents() const {
     case GL_FLOAT_VEC3: return 3;
     case GL_FLOAT_VEC4: return 4;
     default:
-        throw Exception("Unexpected attribute type!");
+        throw Exception("[VertexBuffer] Unexpected attribute type!");
     }
 }
 
