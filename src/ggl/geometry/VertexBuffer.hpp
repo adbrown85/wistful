@@ -12,22 +12,6 @@
 namespace Ggl {
 
 
-/* Parameters to create a vertex buffer. */ 
-class VertexBufferPrototype {
-public:
-    virtual bool isComplete() const = 0;
-    virtual std::map<std::string,GLuint> getOffsets() const = 0;
-    virtual GLuint getCapacity() const = 0;
-    virtual bool isInterleaved() const = 0;
-    virtual std::list<std::string> getNames() const = 0;
-    virtual GLenum getUsage() const = 0;
-    virtual std::map<std::string,GLuint> getSizes() const = 0;
-    virtual std::map<std::string,GLenum> getTypes() const = 0;
-    virtual GLsizei getSizeInBytes() const = 0;
-    virtual GLuint getStrideInBytes() const = 0;
-};
-
-
 /**
  * @brief OpenGL buffer object for vertex attributes.
  * 
@@ -44,7 +28,6 @@ public:
  */
 class VertexBuffer : public BufferObject {
 public:
-    static VertexBuffer* newInstance(const VertexBufferPrototype &vbp);
     virtual ~VertexBuffer();
     void put(float x, float y);
     void put(float x, float y, float z);
@@ -64,6 +47,9 @@ public:
     GLuint getStride() const;
     GLenum getType(const std::string &name) const;
 private:
+// Nested classes
+    class Prototype;
+// Instance variables
     bool interleaved;                  // Whether attributes are mixed together
     bool skip;                         // Whether to jump to next vertex
     GLubyte *data;                     // Start of attribute memory
@@ -83,7 +69,10 @@ private:
     static const int SIZEOF_VEC3 = sizeof(float) * 3;
     static const int SIZEOF_VEC4 = sizeof(float) * 4;
 // Constructors
-    VertexBuffer(const VertexBufferPrototype &vbd);
+    static VertexBuffer* newInstance(const Prototype &prototype);
+    VertexBuffer(const Prototype &prototype);
+// Friends
+    friend class VertexBufferBuilder;
 };
 
 /** Returns number of vertices the VBO can hold. */
@@ -97,6 +86,25 @@ inline GLuint VertexBuffer::getStride() const {return stride;}
 
 /** Returns true if this VBO keeps all attributes of a vertex together. */
 inline bool VertexBuffer::isInterleaved() const {return interleaved;}
+
+/**
+ * Parameters to make a vertex buffer.
+ */
+class VertexBuffer::Prototype {
+public:
+    virtual ~Prototype() {};
+    virtual GLuint getCapacity() const = 0;
+    virtual bool isInterleaved() const = 0;
+    virtual std::map<std::string,GLuint> getOffsets() const = 0;
+    virtual std::list<std::string> getNames() const = 0;
+    virtual std::map<std::string,GLuint> getSizes() const = 0;
+    virtual GLsizei getSizeInBytes() const = 0;
+    virtual GLuint getStrideInBytes() const = 0;
+    virtual std::map<std::string,GLenum> getTypes() const = 0;
+    virtual GLenum getUsage() const = 0;
+protected:
+    Prototype() {}
+};
 
 } /* namespace Ggl */
 #endif

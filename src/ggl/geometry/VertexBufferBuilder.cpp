@@ -12,7 +12,11 @@ using namespace Ggl;
  * Creates a new builder.
  */
 VertexBufferBuilder::VertexBufferBuilder() {
-    reset();
+    this->delegate = Delegate::newInstance();
+}
+
+VertexBufferBuilder::~VertexBufferBuilder() {
+    delete delegate;
 }
 
 /**
@@ -24,23 +28,77 @@ VertexBufferBuilder::VertexBufferBuilder() {
  * @throw std::exception if type is invalid
  */
 void VertexBufferBuilder::addAttribute(const string &name, GLenum type) {
-    attributes.push_back(Attribute(name, type));
-}
-
-/**
- * Removes all state that was accumulated.
- */
-void VertexBufferBuilder::reset() {
-    interleaved = true;
-    usage = GL_STATIC_DRAW;
-    capacity = 0;
-    attributes.clear();
+    delegate->add(name, type);
 }
 
 /**
  * Changes how many vertices the VBO will hold.
  */
 void VertexBufferBuilder::setCapacity(GLuint capacity) {
+    delegate->setCapacity(capacity);
+}
+
+/**
+ * Changes whether vertex attributes will be interleaved.
+ */
+void VertexBufferBuilder::setInterleaved(bool interleaved) {
+    delegate->setInterleaved(interleaved);
+}
+
+/**
+ * Changes the hint on how the VBO will be accessed and modified.
+ */
+void VertexBufferBuilder::setUsage(GLenum usage) {
+    delegate->setUsage(usage);
+}
+
+/**
+ * Returns VertexBufferObject that was built.
+ */
+VertexBuffer* VertexBufferBuilder::toVertexBuffer() {
+    return VertexBuffer::newInstance(*delegate);
+}
+
+// NESTED CLASSES
+
+VertexBufferBuilder::Delegate* VertexBufferBuilder::Delegate::newInstance() {
+    
+    Delegate *instance = new Delegate();
+    
+    if (instance == NULL) {
+        throw Exception("[VertexBufferBuilder] Could not allocate!");
+    } else {
+        return instance;
+    }
+}
+
+VertexBufferBuilder::Delegate::Delegate() {
+    this->interleaved = true;
+    this->usage = GL_STATIC_DRAW;
+    this->capacity = 0;
+    this->attributes.clear();
+}
+
+VertexBufferBuilder::Delegate::~Delegate() {
+    ;
+}
+
+/**
+ * Adds space for a vertex attribute to the buffer.
+ * 
+ * @param name Name of the vertex attribute
+ * @param type Type of the vertex attribute, e.g. GL_FLOAT_VEC3
+ * @throw std::exception if name is invalid
+ * @throw std::exception if type is invalid
+ */
+void VertexBufferBuilder::Delegate::add(const string &name, GLenum type) {
+    attributes.push_back(Attribute(name, type));
+}
+
+/**
+ * Changes how many vertices the VBO will hold.
+ */
+void VertexBufferBuilder::Delegate::setCapacity(GLuint capacity) {
     if (capacity > 0) {
         this->capacity = capacity;
     } else {
@@ -51,14 +109,14 @@ void VertexBufferBuilder::setCapacity(GLuint capacity) {
 /**
  * Changes whether vertex attributes will be interleaved.
  */
-void VertexBufferBuilder::setInterleaved(bool interleaved) {
+void VertexBufferBuilder::Delegate::setInterleaved(bool interleaved) {
     this->interleaved = interleaved;
 }
 
 /**
  * Changes the hint on how the VBO will be accessed and modified.
  */
-void VertexBufferBuilder::setUsage(GLenum usage) {
+void VertexBufferBuilder::Delegate::setUsage(GLenum usage) {
     switch (usage) {
     case GL_DYNAMIC_DRAW:
     case GL_STATIC_DRAW:
@@ -70,40 +128,22 @@ void VertexBufferBuilder::setUsage(GLenum usage) {
     }
 }
 
-/**
- * Returns VertexBufferObject that was built.
- */
-VertexBuffer* VertexBufferBuilder::toVertexBuffer() {
-    return VertexBuffer::newInstance((*this));
-}
-
-// HELPERS
-
-/**
- * Returns True if all required parts have been specified.
- */
-bool VertexBufferBuilder::isComplete() const {
-    return (capacity > 0) && (!attributes.empty());
-}
-
-// GETTERS AND SETTERS
-
-bool VertexBufferBuilder::isInterleaved() const {
+bool VertexBufferBuilder::Delegate::isInterleaved() const {
     return interleaved;
 }
 
-GLuint VertexBufferBuilder::getCapacity() const {
+GLuint VertexBufferBuilder::Delegate::getCapacity() const {
     return capacity;
 }
 
-GLenum VertexBufferBuilder::getUsage() const {
+GLenum VertexBufferBuilder::Delegate::getUsage() const {
     return usage;
 }
 
 /**
  * Returns the names of all attributes that have been added.
  */
-list<string> VertexBufferBuilder::getNames() const {
+list<string> VertexBufferBuilder::Delegate::getNames() const {
     
     list<string> names;
     list<Attribute>::const_iterator it;
@@ -114,7 +154,7 @@ list<string> VertexBufferBuilder::getNames() const {
     return names;
 }
 
-map<string,GLuint> VertexBufferBuilder::getOffsets() const {
+map<string,GLuint> VertexBufferBuilder::Delegate::getOffsets() const {
     
     map<string,GLuint> offsets;
     list<Attribute>::const_iterator it;
@@ -134,7 +174,7 @@ map<string,GLuint> VertexBufferBuilder::getOffsets() const {
 /**
  * Returns a mapping of the attributes and their number of components.
  */
-map<string,GLuint> VertexBufferBuilder::getSizes() const {
+map<string,GLuint> VertexBufferBuilder::Delegate::getSizes() const {
     
     map<string,GLuint> sizes;
     list<Attribute>::const_iterator it;
@@ -148,7 +188,7 @@ map<string,GLuint> VertexBufferBuilder::getSizes() const {
 /**
  * Returns total number of bytes in the VertexBufferObject.
  */
-GLsizei VertexBufferBuilder::getSizeInBytes() const {
+GLsizei VertexBufferBuilder::Delegate::getSizeInBytes() const {
     
     list<Attribute>::const_iterator it;
     GLsizei sizeInBytes = 0;
@@ -162,7 +202,7 @@ GLsizei VertexBufferBuilder::getSizeInBytes() const {
 /**
  * Returns number of bytes between consecutive vertices.
  */
-GLuint VertexBufferBuilder::getStrideInBytes() const {
+GLuint VertexBufferBuilder::Delegate::getStrideInBytes() const {
     
     list<Attribute>::const_iterator it;
     GLuint strideInBytes = 0;
@@ -176,7 +216,7 @@ GLuint VertexBufferBuilder::getStrideInBytes() const {
 /**
  * Returns a mapping of the attributes and their primitive types.
  */
-map<string,GLenum> VertexBufferBuilder::getTypes() const {
+map<string,GLenum> VertexBufferBuilder::Delegate::getTypes() const {
     
     map<string,GLenum> types;
     list<Attribute>::const_iterator it;
@@ -186,8 +226,6 @@ map<string,GLenum> VertexBufferBuilder::getTypes() const {
     }
     return types;
 }
-
-// NESTED CLASSES
 
 /**
  * Constructs a vertex attribute.

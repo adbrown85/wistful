@@ -16,19 +16,15 @@ using namespace Ggl;
  * @throw std::exception if prototype is not complete
  * @throw std::exception if could not allocate instance
  */
-VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
+VertexBuffer* VertexBuffer::newInstance(const Prototype &prototype) {
     
     VertexBuffer* instance = NULL;
     
-    if (!vbp.isComplete()) {
-        throw Exception("[VertexBuffer] Prototype is not complete!");
+    instance = new VertexBuffer(prototype);
+    if (instance == NULL) {
+        throw Exception("[VertexBuffer] Could not allocate instance!");
     } else {
-        instance = new VertexBuffer(vbp);
-        if (instance == NULL) {
-            throw Exception("[VertexBuffer] Could not allocate instance!");
-        } else {
-            return instance;
-        }
+        return instance;
     }
 }
 
@@ -38,18 +34,18 @@ VertexBuffer* VertexBuffer::newInstance(const VertexBufferPrototype &vbp) {
  * @param vbp Prototype for a vertex buffer
  * @throw std::exception if prototype is not complete
  */
-VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) :
+VertexBuffer::VertexBuffer(const Prototype &prototype) :
         BufferObject(GL_ARRAY_BUFFER) {
     
-    names = vbp.getNames();
-    offsets = vbp.getOffsets();
-    sizes = vbp.getSizes();
-    types = vbp.getTypes();
-    capacity = vbp.getCapacity();
-    interleaved = vbp.isInterleaved();
-    usage = vbp.getUsage();
-    footprint = vbp.getSizeInBytes();
-    stride = vbp.getStrideInBytes();
+    names = prototype.getNames();
+    offsets = prototype.getOffsets();
+    sizes = prototype.getSizes();
+    types = prototype.getTypes();
+    capacity = prototype.getCapacity();
+    interleaved = prototype.isInterleaved();
+    usage = prototype.getUsage();
+    footprint = prototype.getSizeInBytes();
+    stride = prototype.getStrideInBytes();
     
     data = new GLubyte[footprint];
     current = data;
@@ -58,7 +54,7 @@ VertexBuffer::VertexBuffer(const VertexBufferPrototype &vbp) :
     skip = false;
     
     bind();
-    BufferObject::allocate(vbp.getUsage(), footprint);
+    BufferObject::allocate(prototype.getUsage(), footprint);
     unbind();
 }
 
