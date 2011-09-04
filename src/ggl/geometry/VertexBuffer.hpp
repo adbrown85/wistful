@@ -73,18 +73,6 @@ private:
     VertexBuffer(const Builder &builder);
 };
 
-/** Returns number of vertices the VBO can hold. */
-inline GLuint VertexBuffer::getCapacity() const {return capacity;}
-
-/** Returns size in bytes of the VBO. */
-inline GLsizei VertexBuffer::getFootprint() const {return footprint;}
-
-/** Returns number of bytes between vertices. */
-inline GLuint VertexBuffer::getStride() const {return stride;}
-
-/** Returns true if this VBO keeps all attributes of a vertex together. */
-inline bool VertexBuffer::isInterleaved() const {return interleaved;}
-
 
 /**
  * Utility for making a vertex buffer.

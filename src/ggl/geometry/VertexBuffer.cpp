@@ -185,6 +185,34 @@ void VertexBuffer::seek(const string &name) {
 // GETTERS AND SETTERS
 
 /**
+ * Returns number of vertices the VBO can hold.
+ */
+GLuint VertexBuffer::getCapacity() const {
+    return capacity;
+}
+
+/**
+ * Returns size in bytes of the VBO.
+ */
+GLsizei VertexBuffer::getFootprint() const {
+    return footprint;
+}
+
+/**
+ * Returns number of bytes between vertices.
+ */
+GLuint VertexBuffer::getStride() const {
+    return stride;
+}
+
+/**
+ * Returns true if this VBO keeps all attributes of a vertex together.
+ */
+bool VertexBuffer::isInterleaved() const {
+    return interleaved;
+}
+
+/**
  * Returns the names of all attributes in the VBO.
  */
 list<string> VertexBuffer::getNames() const {
