@@ -85,7 +85,7 @@ void MeshBuilder::add(const string &name, float x, float y, float z, float w) {
  */
 Mesh* MeshBuilder::toMesh() {
     
-    VertexBufferBuilder vbb;
+    VertexBuffer::Builder vbb;
     VertexBuffer *vbo;
     map<string,AttributeBin*>::iterator it;
     size_t size;

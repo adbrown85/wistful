@@ -15,7 +15,7 @@ namespace Ggl {
 /**
  * @brief OpenGL buffer object for vertex attributes.
  * 
- * To create a VertexBufferObject, use VertexBufferObjectBuilder.  Then 
+ * To create a VertexBuffer, use VertexBufferObject::Builder.  Then
  * use the variations of put() to fill the buffer.  Finally, call flush()
  * to send the data to the card.
  * 
@@ -46,9 +46,9 @@ public:
     GLuint getSize(const std::string &name) const;
     GLuint getStride() const;
     GLenum getType(const std::string &name) const;
-private:
 // Nested classes
-    class Prototype;
+    class Builder;
+private:
 // Instance variables
     bool interleaved;                  // Whether attributes are mixed together
     bool skip;                         // Whether to jump to next vertex
@@ -69,10 +69,8 @@ private:
     static const int SIZEOF_VEC3 = sizeof(float) * 3;
     static const int SIZEOF_VEC4 = sizeof(float) * 4;
 // Constructors
-    static VertexBuffer* newInstance(const Prototype &prototype);
-    VertexBuffer(const Prototype &prototype);
-// Friends
-    friend class VertexBufferBuilder;
+    static VertexBuffer* newInstance(const Builder &builder);
+    VertexBuffer(const Builder &builder);
 };
 
 /** Returns number of vertices the VBO can hold. */
@@ -87,23 +85,64 @@ inline GLuint VertexBuffer::getStride() const {return stride;}
 /** Returns true if this VBO keeps all attributes of a vertex together. */
 inline bool VertexBuffer::isInterleaved() const {return interleaved;}
 
+
 /**
- * Parameters to make a vertex buffer.
+ * Utility for making a vertex buffer.
  */
-class VertexBuffer::Prototype {
+class VertexBuffer::Builder {
 public:
-    virtual ~Prototype() {};
-    virtual GLuint getCapacity() const = 0;
-    virtual bool isInterleaved() const = 0;
-    virtual std::map<std::string,GLuint> getOffsets() const = 0;
-    virtual std::list<std::string> getNames() const = 0;
-    virtual std::map<std::string,GLuint> getSizes() const = 0;
-    virtual GLsizei getSizeInBytes() const = 0;
-    virtual GLuint getStrideInBytes() const = 0;
-    virtual std::map<std::string,GLenum> getTypes() const = 0;
-    virtual GLenum getUsage() const = 0;
-protected:
-    Prototype() {}
+    Builder();
+    virtual ~Builder();
+    virtual void addAttribute(const std::string &name, GLenum type);
+    virtual void setCapacity(GLuint capacity);
+    virtual void setInterleaved(bool interleaved);
+    virtual void setUsage(GLenum usage);
+    virtual VertexBuffer* toVertexBuffer();
+private:
+// Nested classes
+    class Attribute;
+// Instance variables
+    bool interleaved;
+    GLenum usage;
+    GLuint capacity; //FIXME: Should be GLsizei
+    std::list<Attribute> attributes;
+// Getters
+    virtual GLuint getCapacity() const;
+    virtual bool isInterleaved() const;
+    virtual std::map<std::string,GLuint> getOffsets() const;
+    virtual std::list<std::string> getNames() const;
+    virtual std::map<std::string,GLuint> getSizes() const;
+    virtual GLsizei getSizeInBytes() const;
+    virtual GLuint getStrideInBytes() const;
+    virtual std::map<std::string,GLenum> getTypes() const;
+    virtual GLenum getUsage() const;
+// Friends
+    friend class VertexBuffer;
+};
+
+
+/**
+ * Vertex attribute added to the builder.
+ */
+class VertexBuffer::Builder::Attribute {
+public:
+    Attribute(const std::string &name, GLenum type);
+    virtual ~Attribute();
+// Getters and setters
+    virtual std::string getName() const;
+    virtual GLuint getSizeInBytes() const;
+    virtual GLuint getSizeInComponents() const;
+    virtual GLenum getType() const;
+private:
+    std::string name;
+    GLenum type;
+// Constants
+    static const GLuint SIZEOF_FLOAT_VEC2 = sizeof(GLfloat) * 2;
+    static const GLuint SIZEOF_FLOAT_VEC3 = sizeof(GLfloat) * 3;
+    static const GLuint SIZEOF_FLOAT_VEC4 = sizeof(GLfloat) * 4;
+// Helpers
+    static bool isValidName(const std::string &name);
+    static bool isValidType(GLenum type);
 };
 
 } /* namespace Ggl */

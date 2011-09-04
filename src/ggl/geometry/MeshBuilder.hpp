@@ -9,7 +9,6 @@
 #include "ggl/common.h"
 #include "ggl/geometry/Mesh.hpp"
 #include "ggl/geometry/VertexBuffer.hpp"
-#include "ggl/geometry/VertexBufferBuilder.hpp"
 namespace Ggl {
 
 

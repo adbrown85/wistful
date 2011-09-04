@@ -12,7 +12,6 @@
 #include "ggl/testing/TestRunner.hpp"
 #include "ggl/texture/Texture2D.hpp"
 #include "ggl/geometry/VertexBuffer.hpp"
-#include "ggl/geometry/VertexBufferBuilder.hpp"
 #include "ggl/image/Image.hpp"
 #include "ggl/image/BitmapReader.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"

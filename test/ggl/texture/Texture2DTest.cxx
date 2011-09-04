@@ -93,7 +93,7 @@ GLuint Texture2DTestListener::createVAO(VertexBuffer *vbo,
 
 VertexBuffer* Texture2DTestListener::createVBO() {
     
-    VertexBufferBuilder vbb;
+    VertexBuffer::Builder vbb;
     VertexBuffer *vb;
     
     vbb.addAttribute("MCVertex", 2);
