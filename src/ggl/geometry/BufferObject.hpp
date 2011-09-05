@@ -31,6 +31,9 @@ private:
     GLenum type;
 // Helpers
     static GLuint createHandle();
+// Constructors
+    BufferObject(const BufferObject&);
+    BufferObject& operator=(const BufferObject&);
 };
 
 } /* namespace Ggl */

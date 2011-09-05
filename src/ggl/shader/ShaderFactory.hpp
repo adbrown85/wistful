@@ -22,6 +22,9 @@ public:
     GLuint create(GLenum type, const std::string &filename);
 private:
     std::map<std::string,GLuint> shaders;
+// Constructors
+    ShaderFactory(const ShaderFactory&);
+    ShaderFactory& operator=(const ShaderFactory&);
 };
 
 } /* namespace Ggl */

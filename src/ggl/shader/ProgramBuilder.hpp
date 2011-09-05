@@ -27,6 +27,9 @@ protected:
 private:
     std::list<GLuint> shaders;
     std::map<GLuint,std::string> locations;
+// Constructors
+    ProgramBuilder(const ProgramBuilder&);
+    ProgramBuilder& operator=(const ProgramBuilder&);
 };
 
 } /* namespace Ggl */

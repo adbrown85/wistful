@@ -71,6 +71,8 @@ private:
 // Constructors
     static VertexBuffer* newInstance(const Builder &builder);
     VertexBuffer(const Builder &builder);
+    VertexBuffer(const VertexBuffer&);
+    VertexBuffer& operator=(const VertexBuffer&);
 };
 
 

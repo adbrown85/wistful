@@ -74,6 +74,9 @@ private:
     NSMenu* createEmptyMenu();
     static GLuint* toArray(const WindowFormat &wf);
     static std::list<GLuint> toList(const WindowFormat &wf);
+// Constructors
+    WindowCocoa(const WindowCocoa&);
+    WindowCocoa& operator=(const WindowCocoa&);
 };
 
 } // namespace Ggl

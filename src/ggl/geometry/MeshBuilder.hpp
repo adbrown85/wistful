@@ -119,6 +119,9 @@ public:
 private:
     VertexBuffer *vbo;                 // Buffer storing data
     GLenum mode;                       // Type of geometry, e.g. GL_TRIANGLES
+// Constructors
+    BasicMesh(const BasicMesh&);
+    BasicMesh& operator=(const BasicMesh&);
 };
 
 } /* namespace Ggl */

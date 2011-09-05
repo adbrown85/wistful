@@ -35,6 +35,8 @@ private:
     GLsizei height;
 // Constructors
     Texture2D();
+    Texture2D(const Texture2D&);
+    Texture2D& operator=(const Texture2D&);
 };
 
 } /* namespace Ggl */

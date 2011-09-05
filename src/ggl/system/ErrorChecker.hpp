@@ -23,6 +23,8 @@ private:
 	static std::string toString(GLenum error);
 // Constructors
     ErrorChecker();
+    ErrorChecker(const ErrorChecker&);
+    ErrorChecker& operator=(const ErrorChecker&);
 };
 
 } /* namespace Ggl */

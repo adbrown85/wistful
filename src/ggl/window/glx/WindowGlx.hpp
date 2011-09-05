@@ -55,6 +55,9 @@ private:
     static PFNGLXCCAA glXCreateContextAttribsARB;
 // Constants
     static long DEFAULT_EVENT_MASK;
+// Constructors
+    WindowGlx(const WindowGlx&);
+    WindowGlx& operator=(const WindowGlx&);
 };
 
 }

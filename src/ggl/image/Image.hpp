@@ -34,6 +34,9 @@ private:
     GLubyte *pixels;
 // Helpers
     static GLubyte* copyArray(const GLubyte *arr, size_t len);
+// Constructors
+    Image(const Image&);
+    Image& operator=(const Image&);
 };
 
 } /* namespace Ggl */

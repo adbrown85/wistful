@@ -35,6 +35,8 @@ public:
 private:
 // Constructors
     Text();
+    Text(const Text&);
+    Text& operator=(const Text&);
 };
 
 } /* namespace Ggl */

@@ -27,6 +27,8 @@ protected:
 private:
 // Constructors
     ShaderLoader();
+    ShaderLoader(const ShaderLoader&);
+    ShaderLoader& operator=(const ShaderLoader&);
 };
 
 } /* namespace Ggl */

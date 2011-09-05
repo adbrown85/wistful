@@ -46,6 +46,10 @@ public:
     virtual GLuint getSize(const std::string &name) const = 0;
     virtual GLuint getStride() const = 0;
     virtual GLenum getType(const std::string &name) const = 0;
+private:
+// Constructors
+    Mesh(const Mesh&);
+    Mesh& operator=(const Mesh&);
 };
 
 } /* namespace Ggl */

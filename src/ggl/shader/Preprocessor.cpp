@@ -8,6 +8,12 @@
 using namespace std;
 using namespace Ggl;
 
+/**
+ * Constructs an empty preprocessor.
+ */
+Preprocessor::Preprocessor() {
+    ;
+}
 
 /**
  * Returns <tt>true</tt> if the line is an include pragma.

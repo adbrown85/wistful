@@ -67,6 +67,9 @@ private:
     bool isValidInfoHeader();
     bool isCompressed();
     bool is24Bit();
+// Constructors
+    BitmapReader(const BitmapReader&);
+    BitmapReader& operator=(const BitmapReader&);
 };
 
 } /* namespace Ggl */

@@ -26,6 +26,7 @@ namespace Ggl {
  */
 class Preprocessor {
 public:
+    Preprocessor();
     void parse(const std::string &filename);
     Code getCode() const;
 private:
@@ -40,6 +41,9 @@ private:
     void onInclude(const std::string &line);
     void onLine(const std::string &f, int n, std::string &t, bool& ic);
     std::string stripComments(const std::string &line, bool &inComment);
+// Constructors
+    Preprocessor(const Preprocessor&);
+    Preprocessor& operator=(const Preprocessor&);
 };
 
 } /* namespace Ggl */

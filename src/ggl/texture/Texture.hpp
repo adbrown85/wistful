@@ -39,6 +39,7 @@ private:
     static GLuint createHandle();
 // Constructors
     Texture(const Texture&);
+    Texture& operator=(const Texture&);
 };
 
 } /* namespace Ggl */

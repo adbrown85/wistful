@@ -30,6 +30,9 @@ private:
     static GLuint create(GLenum type);
     static std::string getLog(GLuint handle);
     static void load(GLuint handle, const std::vector<std::string> &lines);
+// Constructors
+    ShaderBuilder(const ShaderBuilder&);
+    ShaderBuilder& operator=(const ShaderBuilder&);
 };
 
 } /* namespace Ggl */
