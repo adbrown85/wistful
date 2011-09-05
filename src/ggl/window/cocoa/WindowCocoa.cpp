@@ -118,19 +118,39 @@ void WindowCocoa::doClose() {
 }
 
 void WindowCocoa::onApplicationTerminate() {
-    fireDestroyEvent();
+    try {
+        fireDestroyEvent();
+    } catch (exception &e) {
+        cerr << e.what() << endl;
+        exit(1);
+    }
 }
 
 void WindowCocoa::onOpenGLViewInit() {
-    fireInitEvent();
+    try {
+        fireInitEvent();
+    } catch (exception &e) {
+        cerr << e.what() << endl;
+        exit(1);
+    }
 }
 
 void WindowCocoa::onOpenGLViewDisplay() {
-    fireDisplayEvent();
+    try {
+        fireDisplayEvent();
+    } catch (exception &e) {
+        cerr << e.what() << endl;
+        exit(1);
+    }
 }
 
 void WindowCocoa::onOpenGLViewKey(int key) {
-    fireKeyEvent(key);
+    try {
+        fireKeyEvent(key);
+    } catch (exception &e) {
+        cerr << e.what() << endl;
+        exit(1);
+    }
 }
 
 void WindowCocoa::onOpenGLViewDestroy() {
