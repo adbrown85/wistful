@@ -38,8 +38,9 @@ public:
     Mesh();
     virtual ~Mesh();
     virtual void bind() = 0;
-    virtual void unbind() = 0;
     virtual void draw() = 0;
+    virtual void unbind() = 0;
+// Getters and setters
     virtual std::list<std::string> getNames() const = 0;
     virtual GLuint getOffset(const std::string &name) const = 0;
     virtual GLuint getSize(const std::string &name) const = 0;
