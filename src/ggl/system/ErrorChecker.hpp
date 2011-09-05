@@ -16,11 +16,11 @@ namespace Ggl {
  */
 class ErrorChecker {
 public:
-	static void checkErrors(const std::string &location);
-	static void clearErrors();
+    static void checkErrors(const std::string &location);
+    static void clearErrors();
 private:
-	static void report(GLenum error, const std::string &location);
-	static std::string toString(GLenum error);
+    static void report(GLenum error, const std::string &location);
+    static std::string toString(GLenum error);
 // Constructors
     ErrorChecker();
     ErrorChecker(const ErrorChecker&);
