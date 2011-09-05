@@ -19,7 +19,7 @@ public:
     ShaderFactory();
     virtual ~ShaderFactory();
     GLuint create(const std::string &filename);
-    GLuint create(GLenum type, const std::string &filename);
+    GLuint create(const std::string &filename, GLenum type);
 private:
     std::map<std::string,GLuint> shaders;
 // Constructors

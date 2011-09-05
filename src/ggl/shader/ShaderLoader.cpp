@@ -9,24 +9,24 @@ using namespace std;
 using namespace Ggl;
 
 /**
- * Builds a shader from a file.
+ * Builds a shader from a file, guessing the type.
  * 
- * @param filename Name of a file
+ * @param filename Path to a file
  * @throw std::exception if file extension not recognized
  */
 GLuint ShaderLoader::load(const string &filename) {
-    return load(findType(filename), filename);
+    return load(filename, findType(filename));
 }
 
 /**
- * Builds a shader from a type and file.
+ * Builds a shader from a file using a type.
  * 
+ * @param filename Path to a file
  * @param type Type of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
- * @param filename Name of file
  * @throw std::exception if type not recognized
  * @throw std::exception if file cannot be opened
  */
-GLuint ShaderLoader::load(GLenum type, const string &filename) {
+GLuint ShaderLoader::load(const string &filename, GLenum type) {
     
     ShaderBuilder sb;
     Code code = read(filename);

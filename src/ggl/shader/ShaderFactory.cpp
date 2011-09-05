@@ -29,9 +29,9 @@ ShaderFactory::~ShaderFactory() {
 }
 
 /**
- * Creates a shader.
+ * Creates a shader from a file, guessing its type.
  * 
- * @param filename Name of a file
+ * @param filename Path to a file
  * @return OpenGL handle to a shader
  */
 GLuint ShaderFactory::create(const string &filename) {
@@ -52,13 +52,13 @@ GLuint ShaderFactory::create(const string &filename) {
 }
 
 /**
- * Creates a shader.
+ * Creates a shader from a file using a type.
  * 
+ * @param filename Path to a file
  * @param type Type of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
- * @param filename Name of a file
  * @return OpenGL handle to a shader
  */
-GLuint ShaderFactory::create(GLenum type, const string &filename) {
+GLuint ShaderFactory::create(const string &filename, GLenum type) {
     
     map<string,GLuint>::iterator it;
     GLuint handle;
@@ -70,7 +70,7 @@ GLuint ShaderFactory::create(GLenum type, const string &filename) {
     }
     
     // Build it
-    handle = ShaderLoader::load(type, filename);
+    handle = ShaderLoader::load(filename, type);
     shaders[filename] = handle;
     return handle;
 }
