@@ -47,6 +47,17 @@ void Mesh::unbind() {
 /* GETTERS AND SETTERS */
 
 /**
+ * Checks if an attribute is stored in the mesh.
+ * 
+ * @param name Name of the attribute
+ * @return <tt>true</tt> if attribute is in mesh
+ */
+bool Mesh::hasAttribute(const string &name) const {
+    // Dummy implementation used just for documentation
+    return false;
+}
+
+/**
  * Returns the names of all attributes in the mesh.
  */
 list<string> Mesh::getAttributeNames() const {

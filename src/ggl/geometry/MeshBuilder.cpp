@@ -340,6 +340,25 @@ void MeshBuilder::BasicMesh::unbind() {
 }
 
 /**
+ * Checks if an attribute is stored in the mesh.
+ * 
+ * @param name Name of the attribute
+ * @return <tt>true</tt> if attribute is in mesh
+ */
+bool MeshBuilder::BasicMesh::hasAttribute(const string &name) const {
+    
+    list<string> names = getAttributeNames();
+    list<string>::const_iterator it;
+    
+    for (it=names.begin(); it!=names.end(); ++it) {
+        if ((*it) == name) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
  * Returns the names of all attributes in the mesh.
  */
 list<string> MeshBuilder::BasicMesh::getAttributeNames() const {

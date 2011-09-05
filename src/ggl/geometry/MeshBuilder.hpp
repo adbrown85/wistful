@@ -111,6 +111,7 @@ public:
     virtual void draw();
     virtual void unbind();
 // Accessors and mutators
+    virtual bool hasAttribute(const std::string &name) const;
     virtual std::list<std::string> getAttributeNames() const;
     virtual GLuint getAttributeOffset(const std::string &name) const;
     virtual GLuint getAttributeSize(const std::string &name) const;
