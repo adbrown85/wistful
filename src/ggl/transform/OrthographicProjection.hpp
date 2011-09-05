@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * Projection that keeps items at their true size.
+ * @brief Projection that keeps items at their true size.
  */
 class OrthographicProjection : public Projection {
 public:

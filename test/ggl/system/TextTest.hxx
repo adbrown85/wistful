@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * Unit test for Text.
+ * @brief Unit test for Text.
  */
 class TextTest : public TestFixture {
 public:

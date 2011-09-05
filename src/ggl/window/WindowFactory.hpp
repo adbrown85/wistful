@@ -17,7 +17,7 @@ namespace Ggl {
 
 
 /**
- * Abstract base class for a utility to create windows.
+ * @brief Abstract base class for a utility to create windows.
  */
 class WindowFactory {
 public:

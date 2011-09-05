@@ -14,7 +14,7 @@ namespace Ggl {
 class Viewport;
 
 /**
- * Observer of viewport events.
+ * @brief Observer of viewport events.
  */
 class ViewportListener {
 public:

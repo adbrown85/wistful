@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * Utility for checking for OpenGL errors.
+ * @brief Utility for checking for OpenGL errors.
  */
 class ErrorChecker {
 public:

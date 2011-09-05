@@ -15,7 +15,7 @@ namespace Ggl {
 
 
 /**
- * Unit test for Preprocessor.
+ * @brief Unit test for Preprocessor.
  */
 class PreprocessorTest : public TestFixture {
 public:

@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * Utility for creating shaders.
+ * @brief Utility for creating shaders.
  */
 class ShaderBuilder {
 public:

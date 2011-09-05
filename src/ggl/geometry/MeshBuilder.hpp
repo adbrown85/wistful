@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * Utility for creating a mesh.
+ * @brief Utility for creating a mesh.
  */
 class MeshBuilder {
 public:

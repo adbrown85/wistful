@@ -15,7 +15,7 @@ namespace Ggl {
 
 
 /**
- * Delegate for calculating a projection matrix.
+ * @brief Delegate for calculating a projection matrix.
  */
 class Projection : public ViewportListener {
 public:

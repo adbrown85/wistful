@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * Area of a window being rendered to.
+ * @brief Area of a window being rendered to.
  */
 class Viewport {
 public:

@@ -13,7 +13,7 @@ namespace Ggl {
 class Projection;
 
 /**
- * Observer of projection events.
+ * @brief Observer of projection events.
  */
 class ProjectionListener {
 public:

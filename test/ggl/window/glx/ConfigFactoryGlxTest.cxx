@@ -8,7 +8,9 @@
 using namespace std;
 namespace Ggl {
 
-/** Test for GglConfigFactoryGlx. */
+/**
+ * @brief Test for GglConfigFactoryGlx.
+ */
 class ConfigFactoryGlxTest {
 public:
     void testCreate();
