@@ -37,15 +37,15 @@ public:
     void rewind();
     void seek(const std::string &name);
 // Getters and setters
+    std::list<std::string> getAttributeNames() const;
+    GLuint getAttributeOffset(const std::string &name) const;
+    GLuint getAttributeSize(const std::string &name) const;
+    GLenum getAttributeType(const std::string &name) const;
     bool isInterleaved() const;
     GLuint getCapacity() const;
     GLsizei getFootprint() const;
-    std::list<std::string> getNames() const;
-    GLuint getOffset(const std::string &name) const;
     GLuint size() const;
-    GLuint getSize(const std::string &name) const;
     GLuint getStride() const;
-    GLenum getType(const std::string &name) const;
 // Nested classes
     class Builder;
 private:

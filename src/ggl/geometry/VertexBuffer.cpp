@@ -165,6 +165,70 @@ void VertexBuffer::seek(const string &name) {
 // GETTERS AND SETTERS
 
 /**
+ * Returns the names of all attributes in the VBO.
+ */
+list<string> VertexBuffer::getAttributeNames() const {
+    return names;
+}
+
+/**
+ * Determines the position of an attribute in the VBO.
+ * 
+ * @param name Name of an attribute
+ * @return Position of the attribute in the VBO
+ * @throw std::exception if attribute is not in the VBO 
+ */
+GLuint VertexBuffer::getAttributeOffset(const string &name) const {
+    
+    map<string,GLuint>::const_iterator it;
+    
+    it = offsets.find(name);
+    if (it != offsets.end()) {
+        return it->second;
+    } else {
+        throw Exception("[VertexBuffer] Attribute is not stored!");
+    }
+}
+
+/**
+ * Returns number of components of an attribute in the VBO.
+ * 
+ * @param name Name of an attribute
+ * @return Size of the attribute in components
+ * @throw std::exception if attribute is not in the VBO
+ */
+GLuint VertexBuffer::getAttributeSize(const string &name) const {
+    
+    map<string,GLuint>::const_iterator it;
+    
+    it = sizes.find(name);
+    if (it != sizes.end()) {
+        return it->second;
+    } else {
+        throw Exception("[VertexBuffer] Attribute is not stored!");
+    }
+}
+
+/**
+ * Determines the primitive type of an attribute.
+ * 
+ * @param name Name of an attribute
+ * @return Primitive type of the attribute, e.g. GL_FLOAT
+ * @throw std::exception if attribute is not in the VBO
+ */
+GLenum VertexBuffer::getAttributeType(const string &name) const {
+    
+    map<string,GLenum>::const_iterator it;
+    
+    it = types.find(name);
+    if (it != types.end()) {
+        return it->second;
+    } else {
+        throw Exception("[VertexBuffer] Attribute is not stored!");
+    }
+}
+
+/**
  * Returns number of vertices the VBO can hold.
  */
 GLuint VertexBuffer::getCapacity() const {
@@ -190,70 +254,6 @@ GLuint VertexBuffer::getStride() const {
  */
 bool VertexBuffer::isInterleaved() const {
     return interleaved;
-}
-
-/**
- * Returns the names of all attributes in the VBO.
- */
-list<string> VertexBuffer::getNames() const {
-    return names;
-}
-
-/**
- * Determines the position of an attribute in the VBO.
- * 
- * @param name Name of an attribute
- * @return Position of the attribute in the VBO
- * @throw std::exception if attribute is not in the VBO 
- */
-GLuint VertexBuffer::getOffset(const string &name) const {
-    
-    map<string,GLuint>::const_iterator it;
-    
-    it = offsets.find(name);
-    if (it != offsets.end()) {
-        return it->second;
-    } else {
-        throw Exception("[VertexBuffer] Attribute is not stored!");
-    }
-}
-
-/**
- * Returns number of components of an attribute in the VBO.
- * 
- * @param name Name of an attribute
- * @return Size of the attribute in components
- * @throw std::exception if attribute is not in the VBO
- */
-GLuint VertexBuffer::getSize(const string &name) const {
-    
-    map<string,GLuint>::const_iterator it;
-    
-    it = sizes.find(name);
-    if (it != sizes.end()) {
-        return it->second;
-    } else {
-        throw Exception("[VertexBuffer] Attribute is not stored!");
-    }
-}
-
-/**
- * Determines the primitive type of an attribute.
- * 
- * @param name Name of an attribute
- * @return Primitive type of the attribute, e.g. GL_FLOAT
- * @throw std::exception if attribute is not in the VBO
- */
-GLenum VertexBuffer::getType(const string &name) const {
-    
-    map<string,GLenum>::const_iterator it;
-    
-    it = types.find(name);
-    if (it != types.end()) {
-        return it->second;
-    } else {
-        throw Exception("[VertexBuffer] Attribute is not stored!");
-    }
 }
 
 /**

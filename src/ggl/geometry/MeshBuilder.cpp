@@ -343,7 +343,7 @@ void MeshBuilder::BasicMesh::unbind() {
  * Returns the names of all attributes in the mesh.
  */
 list<string> MeshBuilder::BasicMesh::getAttributeNames() const {
-    return vbo->getNames();
+    return vbo->getAttributeNames();
 }
 
 /**
@@ -354,7 +354,7 @@ list<string> MeshBuilder::BasicMesh::getAttributeNames() const {
  * @throw std::exception if attribute is not in the mesh
  */
 GLuint MeshBuilder::BasicMesh::getAttributeOffset(const string &name) const {
-    return vbo->getOffset(name);
+    return vbo->getAttributeOffset(name);
 }
 
 /**
@@ -365,7 +365,7 @@ GLuint MeshBuilder::BasicMesh::getAttributeOffset(const string &name) const {
  * @throw std::exception if attribute is not in the mesh
  */
 GLuint MeshBuilder::BasicMesh::getAttributeSize(const string &name) const {
-    return vbo->getSize(name);
+    return vbo->getAttributeSize(name);
 }
 
 /**
@@ -376,7 +376,7 @@ GLuint MeshBuilder::BasicMesh::getAttributeSize(const string &name) const {
  * @throw std::exception if attribute is not in the mesh
  */
 GLenum MeshBuilder::BasicMesh::getAttributeType(const string &name) const {
-    return vbo->getType(name);
+    return vbo->getAttributeType(name);
 }
 
 /**

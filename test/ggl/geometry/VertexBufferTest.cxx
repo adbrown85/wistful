@@ -62,7 +62,7 @@ void VertexBufferTestListener::onWindowOpen(const WindowEvent &e) {
             GL_FLOAT,         // type
             GL_FALSE,         // normalized
             vbo->getStride(),            // stride
-            (GLvoid*) vbo->getOffset("MCVertex")); // offset
+            (GLvoid*) vbo->getAttributeOffset("MCVertex")); // offset
     glEnableVertexAttribArray(pointLoc);
     vbo->unbind();
     glBindVertexArray(0);

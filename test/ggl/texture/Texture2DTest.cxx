@@ -75,7 +75,7 @@ GLuint Texture2DTestListener::createVAO(VertexBuffer *vbo,
             GL_FLOAT,
             GL_FALSE,
             vbo->getStride(),
-            (GLvoid*) vbo->getOffset("MCVertex"));
+            (GLvoid*) vbo->getAttributeOffset("MCVertex"));
     
     loc = glGetAttribLocation(program, "TexCoord0");
     assert(loc != -1);
@@ -86,7 +86,7 @@ GLuint Texture2DTestListener::createVAO(VertexBuffer *vbo,
             GL_FLOAT,
             GL_FALSE,
             vbo->getStride(),
-            (GLvoid*) vbo->getOffset("TexCoord0"));
+            (GLvoid*) vbo->getAttributeOffset("TexCoord0"));
     
     return vao;
 }
@@ -118,8 +118,8 @@ VertexBuffer* Texture2DTestListener::createVBO() {
     vb->flush();
     
     assert(vb->getStride() == 16);
-    assert(vb->getOffset("MCVertex") == 0);
-    assert(vb->getOffset("TexCoord0") == 8);
+    assert(vb->getAttributeOffset("MCVertex") == 0);
+    assert(vb->getAttributeOffset("TexCoord0") == 8);
     
     return vb;
 }
