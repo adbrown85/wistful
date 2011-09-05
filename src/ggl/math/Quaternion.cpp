@@ -20,33 +20,36 @@ Quaternion::Quaternion() {
 /**
  * Creates a quaternion representing an angle/axis rotation.
  * 
- * @param angle Degrees around axis
  * @param axis Axis of rotation
+ * @param angle Degrees around axis
  */
-Quaternion::Quaternion(float angle, const Vec4 &axis) {
+Quaternion Quaternion::fromAxisAngle(const Vec4 &axis, float angle) {
     
+    Quaternion q;
     float halfAngleInRadians = toRadians(0.5 * angle);
     float magnitude;
     
     // Calculate
-    s = cos(halfAngleInRadians);
-    v = axis * sin(halfAngleInRadians);
+    q.s = cos(halfAngleInRadians);
+    q.v = axis * sin(halfAngleInRadians);
     
     // Normalize
-    magnitude = sqrt(s*s + v.x*v.x + v.y*v.y + v.z*v.z);
-    s /= magnitude;
-    v /= magnitude;
+    magnitude = sqrt(q.s*q.s + q.v.x*q.v.x + q.v.y*q.v.y + q.v.z*q.v.z);
+    q.s /= magnitude;
+    q.v /= magnitude;
+    
+    return q;
 }
 
 /**
  * Rotates the quaternion by an angle/axis rotation.
  * 
- * @param angle Degrees around axis
  * @param axis Axis of rotation
+ * @param angle Degrees around axis
  */
-void Quaternion::rotate(float angle, const Vec4 &axis) {
+void Quaternion::rotate(const Vec4 &axis, float angle) {
     
-    Quaternion q(angle, axis);
+    Quaternion q = fromAxisAngle(axis, angle);
     float dp = dot(q.v, v);
     
     v = (v * q.s) + (q.v * s) + cross(q.v, v);

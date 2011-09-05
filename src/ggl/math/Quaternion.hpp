@@ -22,8 +22,9 @@ namespace Ggl {
 class Quaternion {
 public:
     Quaternion();
-    Quaternion(float angle, const Vec4 &axis);
-    void rotate(float angle, const Vec4 &axis);
+    void rotate(const Vec4 &axis, float angle);
+// Converters
+    static Quaternion fromAxisAngle(const Vec4 &axis, float angle);
     Mat4 toMat4() const;
     std::string toString() const;
 private:

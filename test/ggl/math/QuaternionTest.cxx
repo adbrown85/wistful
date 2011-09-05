@@ -10,7 +10,7 @@ using namespace Ggl;
 
 void QuaternionTest::testToMat4() {
     
-    q = Quaternion(45, Vec4(0,1,0));
+    q = Quaternion::fromAxisAngle(Vec4(0,1,0), 45);
     mat = q.toMat4();
     
     assertEquals( 0.707, mat(0,0));
@@ -33,8 +33,8 @@ void QuaternionTest::testToMat4() {
 
 void QuaternionTest::testRotate() {
     
-    q = Quaternion(30, Vec4(0,1,0));
-    q.rotate(45, Vec4(0,1,0));
+    q = Quaternion::fromAxisAngle(Vec4(0,1,0), 30);
+    q.rotate(Vec4(0,1,0), 45);
     mat = q.toMat4();
     
     assertEquals( 0.259, mat(0,0));
