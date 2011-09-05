@@ -107,10 +107,6 @@ GLuint MeshBuilderTest::WindowObserver::createVAO(Mesh *mesh, GLuint program) {
     
     GLuint handle;
     GLint location;
-    string name = "MCVertex";
-    GLuint size = mesh->getSize(name);
-    GLenum type = mesh->getType(name);
-    GLuint offset = mesh->getOffset(name);
     
     // Generate
     glGenVertexArrays(1, &handle);
