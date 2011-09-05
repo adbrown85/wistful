@@ -13,30 +13,6 @@
 namespace Ggl {
 
 
-/* File header of a bitmap image. */
-struct BitmapFileHeader {
-    char bfType[2];
-    GLuint bfSize;
-    GLushort bfReserved1;
-    GLushort bfReserved2;
-    GLuint bfOffBits;
-};
-
-/* Information header of a bitmap image. */
-struct BitmapInfoHeader {
-    GLuint biSize;
-    GLuint biWidth;
-    GLuint biHeight;
-    GLushort biPlanes;
-    GLushort biBitCount;
-    GLuint biCompression;
-    GLuint biSizeImage;
-    GLuint biXPelsPerMeter;
-    GLuint biYPelsPerMeter;
-    GLuint biClrUsed;
-    GLuint biClrImportant;
-};
-
 /**
  * @brief Utility for reading a bitmap image into memory.
  */
@@ -53,9 +29,13 @@ public:
     virtual GLuint getWidth();
     virtual GLuint getHeight();
 private:
+// Nested classes
+    struct BitmapFileHeader;
+    struct BitmapInfoHeader;
+// Instance variables
     std::ifstream file;
-    BitmapFileHeader fileHeader;
-    BitmapInfoHeader infoHeader;
+    BitmapFileHeader *fileHeader;
+    BitmapInfoHeader *infoHeader;
     GLubyte *pixels;
 // Helpers
     void open(const std::string &filename);
@@ -70,6 +50,30 @@ private:
 // Constructors
     BitmapReader(const BitmapReader&);
     BitmapReader& operator=(const BitmapReader&);
+};
+
+/* File header of a bitmap image. */
+struct BitmapReader::BitmapFileHeader {
+    char bfType[2];
+    GLuint bfSize;
+    GLushort bfReserved1;
+    GLushort bfReserved2;
+    GLuint bfOffBits;
+};
+
+/* Information header of a bitmap image. */
+struct BitmapReader::BitmapInfoHeader {
+    GLuint biSize;
+    GLuint biWidth;
+    GLuint biHeight;
+    GLushort biPlanes;
+    GLushort biBitCount;
+    GLuint biCompression;
+    GLuint biSizeImage;
+    GLuint biXPelsPerMeter;
+    GLuint biYPelsPerMeter;
+    GLuint biClrUsed;
+    GLuint biClrImportant;
 };
 
 } /* namespace Ggl */

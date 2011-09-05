@@ -13,6 +13,8 @@ using namespace Ggl;
  */
 BitmapReader::BitmapReader() {
     pixels = NULL;
+    infoHeader = new BitmapInfoHeader();
+    fileHeader = new BitmapFileHeader();
 }
 
 /**
@@ -22,6 +24,8 @@ BitmapReader::~BitmapReader() {
     if (pixels != NULL) {
         delete[] pixels;
     }
+    delete infoHeader;
+    delete fileHeader;
 }
 
 /**
@@ -88,11 +92,11 @@ void BitmapReader::close() {
  */
 void BitmapReader::readFileHeader() {
     
-    file.read((char*) &fileHeader.bfType, 2);
-    file.read((char*) &fileHeader.bfSize, 4);
-    file.read((char*) &fileHeader.bfReserved1, 2);
-    file.read((char*) &fileHeader.bfReserved2, 2);
-    file.read((char*) &fileHeader.bfOffBits, 4);
+    file.read((char*) &fileHeader->bfType, 2);
+    file.read((char*) &fileHeader->bfSize, 4);
+    file.read((char*) &fileHeader->bfReserved1, 2);
+    file.read((char*) &fileHeader->bfReserved2, 2);
+    file.read((char*) &fileHeader->bfOffBits, 4);
     
     if (!isValidFileHeader()) {
         throw Exception("[BitmapReader] Not a valid bitmap file header!");
@@ -108,17 +112,17 @@ void BitmapReader::readFileHeader() {
  */
 void BitmapReader::readInfoHeader() {
     
-    file.read((char*) &infoHeader.biSize, 4);
-    file.read((char*) &infoHeader.biWidth, 4);
-    file.read((char*) &infoHeader.biHeight, 4);
-    file.read((char*) &infoHeader.biPlanes, 2);
-    file.read((char*) &infoHeader.biBitCount, 2);
-    file.read((char*) &infoHeader.biCompression, 4);
-    file.read((char*) &infoHeader.biSizeImage, 4);
-    file.read((char*) &infoHeader.biXPelsPerMeter, 4);
-    file.read((char*) &infoHeader.biYPelsPerMeter, 4);
-    file.read((char*) &infoHeader.biClrUsed, 4);
-    file.read((char*) &infoHeader.biClrImportant, 4);
+    file.read((char*) &infoHeader->biSize, 4);
+    file.read((char*) &infoHeader->biWidth, 4);
+    file.read((char*) &infoHeader->biHeight, 4);
+    file.read((char*) &infoHeader->biPlanes, 2);
+    file.read((char*) &infoHeader->biBitCount, 2);
+    file.read((char*) &infoHeader->biCompression, 4);
+    file.read((char*) &infoHeader->biSizeImage, 4);
+    file.read((char*) &infoHeader->biXPelsPerMeter, 4);
+    file.read((char*) &infoHeader->biYPelsPerMeter, 4);
+    file.read((char*) &infoHeader->biClrUsed, 4);
+    file.read((char*) &infoHeader->biClrImportant, 4);
     
     if (!isValidInfoHeader()) {
         throw Exception("[BitmapReader] Not a valid bitmap info header!");
@@ -166,17 +170,17 @@ GLenum BitmapReader::getFormat() {
 
 /** Returns total number of bytes required to hold the image. */
 GLuint BitmapReader::getSize() {
-    return infoHeader.biSizeImage;
+    return infoHeader->biSizeImage;
 }
 
 /** Returns number of pixels in the X direction. */
 GLuint BitmapReader::getWidth() {
-    return infoHeader.biWidth;
+    return infoHeader->biWidth;
 }
 
 /** Returns number of pixels in the Y direction. */
 GLuint BitmapReader::getHeight() {
-    return infoHeader.biHeight;
+    return infoHeader->biHeight;
 }
 
 //--------------------------------------------------------
@@ -187,35 +191,35 @@ GLuint BitmapReader::getHeight() {
  * Returns true if any info header fields indicate the data is compressed.
  */
 bool BitmapReader::isCompressed() {
-    return infoHeader.biCompression != 0;
+    return infoHeader->biCompression != 0;
 }
 
 /**
  * Returns true if info header fields indicate the data is 24-bit.
  */
 bool BitmapReader::is24Bit() {
-    return infoHeader.biBitCount == 24
-            && infoHeader.biClrUsed == 0
-            && infoHeader.biClrImportant == 0;
+    return infoHeader->biBitCount == 24
+            && infoHeader->biClrUsed == 0
+            && infoHeader->biClrImportant == 0;
 }
 
 /**
  * Returns true if the file header is valid.
  */
 bool BitmapReader::isValidFileHeader() {
-    return fileHeader.bfType[0] == 'B' 
-            && fileHeader.bfType[1] == 'M'
-            && fileHeader.bfReserved1 == 0
-            && fileHeader.bfReserved2 == 0;
+    return fileHeader->bfType[0] == 'B'
+            && fileHeader->bfType[1] == 'M'
+            && fileHeader->bfReserved1 == 0
+            && fileHeader->bfReserved2 == 0;
 }
 
 /**
  * Returns true if the info header is valid.
  */
 bool BitmapReader::isValidInfoHeader() {
-    return infoHeader.biSize == 40
-            && infoHeader.biWidth > 0
-            && infoHeader.biHeight > 0
-            && infoHeader.biPlanes == 1;
+    return infoHeader->biSize == 40
+            && infoHeader->biWidth > 0
+            && infoHeader->biHeight > 0
+            && infoHeader->biPlanes == 1;
 }
 
