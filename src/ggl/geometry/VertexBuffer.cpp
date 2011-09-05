@@ -441,10 +441,19 @@ map<string,GLenum> VertexBuffer::Builder::getTypes() const {
 }
 
 /**
- * Returns VertexBufferObject that was built.
+ * Returns Vertex Buffer Object that was built.
+ * 
+ * @throw std::exception if no attributes were added
+ * @throw std::exception if capacity has not been set
  */
 VertexBuffer* VertexBuffer::Builder::toVertexBuffer() {
-    return VertexBuffer::newInstance(*this);
+    if (attributes.empty()) {
+        throw Exception("[VertexBuffer] No attributes were added!");
+    } else if (capacity == 0) {
+        throw Exception("[VertexBuffer] Capacity was not set!");
+    } else {
+        return VertexBuffer::newInstance(*this);
+    }
 }
 
 /**
