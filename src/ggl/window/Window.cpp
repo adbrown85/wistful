@@ -112,7 +112,7 @@ void Ggl::Window::create() throw(exception) {
         doCreateWindow();
     } catch (const exception &e) {
         doDestroyConnection();
-        throw Exception(e.what());
+        throw;
     }
     
     // Try to make context
@@ -121,7 +121,7 @@ void Ggl::Window::create() throw(exception) {
     } catch (const exception &e) {
         doDestroyWindow();
         doDestroyConnection();
-        throw Exception(e.what());
+        throw;
     }
     
     // Successfully created
