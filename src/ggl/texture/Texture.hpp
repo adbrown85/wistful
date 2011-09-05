@@ -17,7 +17,6 @@ namespace Ggl {
  */
 class Texture {
 public:
-    explicit Texture(GLenum target);
     virtual ~Texture();
     virtual void bind() const;
     virtual void allocate(GLenum format, Dimension dimension) = 0;
@@ -30,6 +29,9 @@ public:
     virtual GLenum getTarget() const;
     virtual GLsizei getWidth() const = 0;
 protected:
+// Constructors
+    explicit Texture(GLenum target);
+// Helpers
     static bool isValidFormat(GLenum format);
     static bool isValidTarget(GLenum target);
 private:
