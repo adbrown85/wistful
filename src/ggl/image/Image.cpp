@@ -36,9 +36,7 @@ Image::Image(GLuint alignment,
  * Destroys the image.
  */
 Image::~Image() {
-    if (pixels != NULL) {
-        delete[] pixels;
-    }
+    delete[] pixels;
 }
 
 // HELPERS

@@ -9,29 +9,9 @@ using namespace std;
 using namespace Ggl;
 
 /**
- * Creates a new VBO.
+ * Constructs a vertex buffer object.
  * 
- * @param vbp Prototype for a vertex buffer
- * @return Pointer to new instance, which should be deleted when done with
- * @throw std::exception if prototype is not complete
- * @throw std::exception if could not allocate instance
- */
-VertexBuffer* VertexBuffer::newInstance(const Builder &builder) {
-    
-    VertexBuffer* instance = new VertexBuffer(builder);
-    
-    if (instance == NULL) {
-        throw Exception("[VertexBuffer] Could not allocate instance!");
-    } else {
-        return instance;
-    }
-}
-
-/**
- * Creates a new VBO.
- * 
- * @param vbp Prototype for a vertex buffer
- * @throw std::exception if prototype is not complete
+ * @param builder Builder of vertex buffer object
  */
 VertexBuffer::VertexBuffer(const Builder &builder) :
         BufferObject(GL_ARRAY_BUFFER) {
@@ -452,7 +432,7 @@ VertexBuffer* VertexBuffer::Builder::toVertexBuffer() {
     } else if (capacity == 0) {
         throw Exception("[VertexBuffer] Capacity was not set!");
     } else {
-        return VertexBuffer::newInstance(*this);
+        return new VertexBuffer(*this);
     }
 }
 

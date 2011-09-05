@@ -69,7 +69,6 @@ private:
     static const int SIZEOF_VEC3 = sizeof(float) * 3;
     static const int SIZEOF_VEC4 = sizeof(float) * 4;
 // Constructors
-    static VertexBuffer* newInstance(const Builder &builder);
     VertexBuffer(const Builder &builder);
     VertexBuffer(const VertexBuffer&);
     VertexBuffer& operator=(const VertexBuffer&);
