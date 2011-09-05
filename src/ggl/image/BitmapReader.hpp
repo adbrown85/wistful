@@ -40,13 +40,13 @@ private:
 // Helpers
     void open(const std::string &filename);
     void close();
-    void readFileHeader();
-    void readInfoHeader();
-    void readPixels();
     bool isValidFileHeader();
     bool isValidInfoHeader();
     bool isCompressed();
     bool is24Bit();
+    void readFileHeader();
+    void readInfoHeader();
+    void readPixels();
 // Constructors
     BitmapReader(const BitmapReader&);
     BitmapReader& operator=(const BitmapReader&);
