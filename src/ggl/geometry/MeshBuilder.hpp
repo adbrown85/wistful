@@ -111,11 +111,11 @@ public:
     virtual void draw();
     virtual void unbind();
 // Accessors and mutators
-    virtual std::list<std::string> getNames() const;
-    virtual GLuint getOffset(const std::string &name) const;
-    virtual GLuint getSize(const std::string &name) const;
+    virtual std::list<std::string> getAttributeNames() const;
+    virtual GLuint getAttributeOffset(const std::string &name) const;
+    virtual GLuint getAttributeSize(const std::string &name) const;
+    virtual GLenum getAttributeType(const std::string &name) const;
     virtual GLuint getStride() const;
-    virtual GLenum getType(const std::string &name) const;
 private:
     VertexBuffer *vbo;                 // Buffer storing data
     GLenum mode;                       // Type of geometry, e.g. GL_TRIANGLES

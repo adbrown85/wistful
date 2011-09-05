@@ -342,7 +342,7 @@ void MeshBuilder::BasicMesh::unbind() {
 /**
  * Returns the names of all attributes in the mesh.
  */
-list<string> MeshBuilder::BasicMesh::getNames() const {
+list<string> MeshBuilder::BasicMesh::getAttributeNames() const {
     return vbo->getNames();
 }
 
@@ -353,7 +353,7 @@ list<string> MeshBuilder::BasicMesh::getNames() const {
  * @return Position of the attribute in the mesh
  * @throw std::exception if attribute is not in the mesh
  */
-GLuint MeshBuilder::BasicMesh::getOffset(const string &name) const {
+GLuint MeshBuilder::BasicMesh::getAttributeOffset(const string &name) const {
     return vbo->getOffset(name);
 }
 
@@ -364,15 +364,8 @@ GLuint MeshBuilder::BasicMesh::getOffset(const string &name) const {
  * @return Number of components of the attribute in the mesh
  * @throw std::exception if attribute is not in the mesh
  */
-GLuint MeshBuilder::BasicMesh::getSize(const string &name) const {
+GLuint MeshBuilder::BasicMesh::getAttributeSize(const string &name) const {
     return vbo->getSize(name);
-}
-
-/**
- * Returns the size in bytes of a single vertex in the mesh.
- */
-GLuint MeshBuilder::BasicMesh::getStride() const {
-    return vbo->getStride();
 }
 
 /**
@@ -382,6 +375,13 @@ GLuint MeshBuilder::BasicMesh::getStride() const {
  * @return Primitive type of the attribute, e.g. GL_FLOAT
  * @throw std::exception if attribute is not in the mesh
  */
-GLenum MeshBuilder::BasicMesh::getType(const std::string &name) const {
+GLenum MeshBuilder::BasicMesh::getAttributeType(const string &name) const {
     return vbo->getType(name);
+}
+
+/**
+ * Returns the size in bytes of a single vertex in the mesh.
+ */
+GLuint MeshBuilder::BasicMesh::getStride() const {
+    return vbo->getStride();
 }

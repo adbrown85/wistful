@@ -41,11 +41,11 @@ public:
     virtual void draw() = 0;
     virtual void unbind() = 0;
 // Getters and setters
-    virtual std::list<std::string> getNames() const = 0;
-    virtual GLuint getOffset(const std::string &name) const = 0;
-    virtual GLuint getSize(const std::string &name) const = 0;
+    virtual std::list<std::string> getAttributeNames() const = 0;
+    virtual GLuint getAttributeOffset(const std::string &name) const = 0;
+    virtual GLuint getAttributeSize(const std::string &name) const = 0;
+    virtual GLenum getAttributeType(const std::string &name) const = 0;
     virtual GLuint getStride() const = 0;
-    virtual GLenum getType(const std::string &name) const = 0;
 private:
 // Constructors
     Mesh(const Mesh&);

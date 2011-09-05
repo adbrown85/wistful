@@ -49,7 +49,7 @@ void Mesh::unbind() {
 /**
  * Returns the names of all attributes in the mesh.
  */
-list<string> Mesh::getNames() const {
+list<string> Mesh::getAttributeNames() const {
     // Dummy implementation used just for documentation
     list<string> names;
     return names;
@@ -67,7 +67,7 @@ list<string> Mesh::getNames() const {
  * @return Position of the attribute in the mesh
  * @throw std::exception if attribute is not in the mesh
  */
-GLuint Mesh::getOffset(const std::string &name) const {
+GLuint Mesh::getAttributeOffset(const std::string &name) const {
     // Dummy implementation used just for documentation
     return -1;
 }
@@ -84,24 +84,7 @@ GLuint Mesh::getOffset(const std::string &name) const {
  * @return Number of components of the attribute in the mesh
  * @throw std::exception if attribute is not in the mesh
  */
-GLuint Mesh::getSize(const string &name) const {
-    // Dummy implementation used just for documentation
-    return -1;
-}
-
-/**
- * Returns the number of bytes needed to move from one vertex to the next.
- * 
- * The stride of a vertex is how many bytes OpenGL needs to skip over to get
- * from a value for a vertex attribute of one vertex to the value of the
- * same vertex attribute of the next vertex.  If the underlying Vertex Buffer
- * Object is interleaved, the value will be the size of one vertex in bytes.
- * If the underlying Vertex Buffer Object is not interleaved, the value will
- * be <tt>0</tt>, meaning that the vertex attribute values are tightly
- * packed.  The resulting value can be used directly in a call to
- * <i>glVertexAttribPointer</i>.
- */
-GLuint Mesh::getStride() const {
+GLuint Mesh::getAttributeSize(const string &name) const {
     // Dummy implementation used just for documentation
     return -1;
 }
@@ -120,7 +103,24 @@ GLuint Mesh::getStride() const {
  * @return Primitive type of the attribute, e.g. GL_FLOAT
  * @throw std::exception if attribute is not in the mesh
  */
-GLenum Mesh::getType(const std::string &name) const {
+GLenum Mesh::getAttributeType(const std::string &name) const {
+    // Dummy implementation used just for documentation
+    return -1;
+}
+
+/**
+ * Returns the number of bytes needed to move from one vertex to the next.
+ * 
+ * The stride of a vertex is how many bytes OpenGL needs to skip over to get
+ * from a value for a vertex attribute of one vertex to the value of the
+ * same vertex attribute of the next vertex.  If the underlying Vertex Buffer
+ * Object is interleaved, the value will be the size of one vertex in bytes.
+ * If the underlying Vertex Buffer Object is not interleaved, the value will
+ * be <tt>0</tt>, meaning that the vertex attribute values are tightly
+ * packed.  The resulting value can be used directly in a call to
+ * <i>glVertexAttribPointer</i>.
+ */
+GLuint Mesh::getStride() const {
     // Dummy implementation used just for documentation
     return -1;
 }

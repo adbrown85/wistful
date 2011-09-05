@@ -120,22 +120,22 @@ GLuint MeshBuilderTest::WindowObserver::createVAO(Mesh *mesh, GLuint program) {
     glEnableVertexAttribArray(location);
     glVertexAttribPointer(
             location,
-            mesh->getSize("MCVertex"),
-            mesh->getType("MCVertex"),
+            mesh->getAttributeSize("MCVertex"),
+            mesh->getAttributeType("MCVertex"),
             false,
             mesh->getStride(),
-            (GLvoid*) mesh->getOffset("MCVertex"));
+            (GLvoid*) mesh->getAttributeOffset("MCVertex"));
     
     // Set up TexCoord0 attribute
     location = glGetAttribLocation(program, "TexCoord0");
     glEnableVertexAttribArray(location);
     glVertexAttribPointer(
             location,
-            mesh->getSize("TexCoord0"),
-            mesh->getType("TexCoord0"),
+            mesh->getAttributeSize("TexCoord0"),
+            mesh->getAttributeType("TexCoord0"),
             false,
             mesh->getStride(),
-            (GLvoid*) mesh->getOffset("TexCoord0"));
+            (GLvoid*) mesh->getAttributeOffset("TexCoord0"));
     
     // Unbind
     mesh->unbind();
