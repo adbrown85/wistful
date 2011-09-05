@@ -21,6 +21,8 @@ public:
 private:
 	static void report(GLenum error, const std::string &location);
 	static std::string toString(GLenum error);
+// Constructors
+    ErrorChecker();
 };
 
 } /* namespace Ggl */

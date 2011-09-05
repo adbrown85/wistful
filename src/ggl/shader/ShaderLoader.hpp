@@ -24,6 +24,9 @@ protected:
     static std::string findExtension(const std::string &filename);
     static GLenum findType(const std::string &filename);
     static Code read(const std::string &filename);
+private:
+// Constructors
+    ShaderLoader();
 };
 
 } /* namespace Ggl */
