@@ -16,7 +16,7 @@ namespace Ggl {
  */
 class BufferObject {
 public:
-    BufferObject(GLenum type);
+    explicit BufferObject(GLenum type);
     virtual ~BufferObject();
     virtual void bind();
     virtual void unbind();

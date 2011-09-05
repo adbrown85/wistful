@@ -18,7 +18,7 @@ class Window;
  */
 class WindowEvent {
 public:
-    WindowEvent(Window*);
+    explicit WindowEvent(Window*);
     WindowEvent(Window*, GLuint);
     virtual ~WindowEvent();
     virtual Window* getWindow() const;

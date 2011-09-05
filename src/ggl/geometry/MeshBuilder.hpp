@@ -17,7 +17,7 @@ namespace Ggl {
  */
 class MeshBuilder {
 public:
-    MeshBuilder(GLenum type);
+    explicit MeshBuilder(GLenum type);
     virtual ~MeshBuilder();
     virtual void add(const std::string&, float, float);
     virtual void add(const std::string&, float, float, float);

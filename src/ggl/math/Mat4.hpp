@@ -19,9 +19,9 @@ namespace Ggl {
 class Mat4 {
 public:
     Mat4();
-    Mat4(float value);
-    Mat4(float arr[4][4]);
-    Mat4(float arr[16]);
+    explicit Mat4(float value);
+    explicit Mat4(float arr[4][4]);
+    explicit Mat4(float arr[16]);
     void toArray(float arr[4][4]);
     void toArray(float arr[16]);
 // Operators
