@@ -96,8 +96,8 @@ VertexBuffer* Texture2DTestListener::createVBO() {
     VertexBuffer::Builder vbb;
     VertexBuffer *vb;
     
-    vbb.addAttribute("MCVertex", 2);
-    vbb.addAttribute("TexCoord0", 2);
+    vbb.addAttribute("MCVertex", GL_FLOAT_VEC2);
+    vbb.addAttribute("TexCoord0", GL_FLOAT_VEC2);
     vbb.setCapacity(6);
     vbb.setUsage(GL_STATIC_DRAW);
     vb = vbb.toVertexBuffer();
