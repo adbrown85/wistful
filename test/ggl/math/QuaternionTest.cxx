@@ -8,9 +8,12 @@
 using namespace std;
 using namespace Ggl;
 
+const float QuaternionTest::ANGLE_30 = toRadians(30);
+const float QuaternionTest::ANGLE_45 = toRadians(45);
+
 void QuaternionTest::testToMat4() {
     
-    q = Quaternion::fromAxisAngle(Vec4(0,1,0), 45);
+    q = Quaternion::fromAxisAngle(Vec4(0,1,0), ANGLE_45);
     mat = q.toMat4();
     
     assertEquals( 0.707, mat(0,0));
@@ -33,8 +36,8 @@ void QuaternionTest::testToMat4() {
 
 void QuaternionTest::testRotate() {
     
-    q = Quaternion::fromAxisAngle(Vec4(0,1,0), 30);
-    q.rotate(Vec4(0,1,0), 45);
+    q = Quaternion::fromAxisAngle(Vec4(0,1,0), ANGLE_30);
+    q.rotate(Vec4(0,1,0), ANGLE_45);
     mat = q.toMat4();
     
     assertEquals( 0.259, mat(0,0));

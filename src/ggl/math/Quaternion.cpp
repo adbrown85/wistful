@@ -21,17 +21,17 @@ Quaternion::Quaternion() {
  * Creates a quaternion representing an angle/axis rotation.
  * 
  * @param axis Axis of rotation
- * @param angle Degrees around axis
+ * @param angle Angle around axis in radians
  */
 Quaternion Quaternion::fromAxisAngle(const Vec4 &axis, float angle) {
     
     Quaternion q;
-    float halfAngleInRadians = toRadians(0.5 * angle);
+    float halfAngle = 0.5 * angle;
     float magnitude;
     
     // Calculate
-    q.s = cos(halfAngleInRadians);
-    q.v = axis * sin(halfAngleInRadians);
+    q.s = cos(halfAngle);
+    q.v = axis * sin(halfAngle);
     
     // Normalize
     magnitude = sqrt(q.s*q.s + q.v.x*q.v.x + q.v.y*q.v.y + q.v.z*q.v.z);
@@ -45,7 +45,7 @@ Quaternion Quaternion::fromAxisAngle(const Vec4 &axis, float angle) {
  * Rotates the quaternion by an angle/axis rotation.
  * 
  * @param axis Axis of rotation
- * @param angle Degrees around axis
+ * @param angle Angle around axis in radians
  */
 void Quaternion::rotate(const Vec4 &axis, float angle) {
     

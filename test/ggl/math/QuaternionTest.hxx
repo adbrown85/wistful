@@ -21,8 +21,11 @@ public:
     void testToMat4();
     void testRotate();
 private:
-    Mat4 mat;
     Quaternion q;
+    Mat4 mat;
+// Constants
+    static const float ANGLE_45;
+    static const float ANGLE_30;
 };
 
 } /* namespace Ggl */
