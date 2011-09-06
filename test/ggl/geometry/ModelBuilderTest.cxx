@@ -58,8 +58,8 @@ GLuint ModelBuilderTest::WindowObserver::createProgram() {
     
     ProgramBuilder pb;
     
-    pb.addShader("test/ggl/geometry/basic.vert");
-    pb.addShader("test/ggl/geometry/basic.frag");
+    pb.addShader("test/ggl/geometry/coordinates.vert");
+    pb.addShader("test/ggl/geometry/coordinates.frag");
     return pb.toProgram();
 }
 
@@ -67,9 +67,22 @@ Mesh* ModelBuilderTest::WindowObserver::createMesh() {
     
     MeshBuilder mb(GL_TRIANGLES);
     
+    // First triangle
     mb.add("MCVertex", +0.5f, +0.5f, 0.0f);
+    mb.add("TexCoord0", 1.0f, 1.0f, 0.0f);
     mb.add("MCVertex", -0.5f, +0.5f, 0.0f);
+    mb.add("TexCoord0", 0.0f, 1.0f, 0.0f);
     mb.add("MCVertex", -0.5f, -0.5f, 0.0f);
+    mb.add("TexCoord0", 0.0f, 0.0f, 0.0f);
+    
+    // Second triangle
+    mb.add("MCVertex", -0.5f, -0.5f, 0.0f);
+    mb.add("TexCoord0", 0.0f, 0.0f, 0.0f);
+    mb.add("MCVertex", +0.5f, -0.5f, 0.0f);
+    mb.add("TexCoord0", 1.0f, 0.0f, 0.0f);
+    mb.add("MCVertex", +0.5f, +0.5f, 0.0f);
+    mb.add("TexCoord0", 1.0f, 1.0f, 0.0f);
+    
     return mb.toMesh();
 }
 
