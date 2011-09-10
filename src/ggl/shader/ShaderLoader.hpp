@@ -17,7 +17,7 @@ namespace Ggl {
 
 
 /**
- * Utility for creating, loading, and compiling shaders.
+ * Utility for creating shaders from files.
  *
  * @ingroup shader
  */

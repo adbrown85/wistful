@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * Projection that causes items farther back to appear smaller.
+ * %Projection that causes items farther back to appear smaller.
  * 
  * @ingroup transform
  */

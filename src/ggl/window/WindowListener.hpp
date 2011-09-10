@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * Object that listens to GGL events.
+ * Object that listens for window events.
  *
  * @ingroup window
  */
