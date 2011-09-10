@@ -11,7 +11,7 @@ namespace Ggl {
 
 
 /**
- * @brief Exception thrown from within GGL.
+ * Basic implementation of exception.
  */
 class Exception : public std::exception {
 public:
