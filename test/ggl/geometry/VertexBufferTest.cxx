@@ -26,7 +26,7 @@ VertexBufferTestListener::VertexBufferTestListener() {
 
 void VertexBufferTestListener::onWindowOpen(const WindowEvent &e) {
     
-    VertexBuffer::Builder builder;
+    VertexBufferBuilder builder;
     
     builder.addAttribute("MCVertex", GL_FLOAT_VEC3);
     builder.addAttribute("TexCoord0", GL_FLOAT_VEC3);
