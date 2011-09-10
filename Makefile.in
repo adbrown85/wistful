@@ -48,7 +48,7 @@ objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
 fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
-library      := lib$(tarname)-$(major).la
+library      := lib$(tarname).la
 pkgcfgfile   := $(tarname).pc
 
 # Interface
