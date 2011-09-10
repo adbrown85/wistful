@@ -69,6 +69,7 @@ private:
     static const int SIZEOF_VEC3 = sizeof(float) * 3;
     static const int SIZEOF_VEC4 = sizeof(float) * 4;
 // Nested classes
+    class Attribute;
     class Prototype;
 // Constructors
     VertexBuffer(const Prototype &prototype);
@@ -76,6 +77,13 @@ private:
     VertexBuffer& operator=(const VertexBuffer&);
 // Friends
     friend class VertexBufferBuilder;
+// Helpers
+    static std::list<std::string> findNames(const Prototype&);
+    static std::map<std::string,GLuint> findOffsets(const Prototype&);
+    static std::map<std::string,GLuint> findSizes(const Prototype&);
+    static GLsizei findSizeInBytes(const Prototype&);
+    static GLuint findStrideInBytes(const Prototype&);
+    static std::map<std::string,GLenum> findTypes(const Prototype&);
 };
 
 
@@ -85,13 +93,8 @@ private:
 struct VertexBuffer::Prototype {
     GLuint capacity;
     bool interleaved;
-    std::list<std::string> names;
-    std::map<std::string,GLuint> offsets;
-    std::map<std::string,GLuint> sizes; 
-    GLuint sizeInBytes;
-    GLuint strideInBytes;
-    std::map<std::string,GLenum> types;
     GLenum usage;
+    std::list<Attribute> attributes;
 };
 
 
@@ -110,31 +113,14 @@ public:
     virtual void setUsage(GLenum usage);
     virtual VertexBuffer* toVertexBuffer();
 private:
-// Nested classes
-    class Attribute;
-// Instance variables
-    bool interleaved;
-    GLenum usage;
-    GLuint capacity; //FIXME: Should be GLsizei
-    std::list<Attribute> attributes;
-// Helpers
-    VertexBuffer::Prototype createPrototype() const;
-    GLuint getCapacity() const;
-    bool isInterleaved() const;
-    std::map<std::string,GLuint> getOffsets() const;
-    std::list<std::string> getNames() const;
-    std::map<std::string,GLuint> getSizes() const;
-    GLsizei getSizeInBytes() const;
-    GLuint getStrideInBytes() const;
-    std::map<std::string,GLenum> getTypes() const;
-    GLenum getUsage() const;
+    VertexBuffer::Prototype prototype;
 };
 
 
 /**
  * Vertex attribute added to the builder.
  */
-class VertexBufferBuilder::Attribute {
+class VertexBuffer::Attribute {
 public:
     Attribute(const std::string &name, GLenum type);
     virtual ~Attribute();

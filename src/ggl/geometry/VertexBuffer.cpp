@@ -16,15 +16,15 @@ using namespace Ggl;
 VertexBuffer::VertexBuffer(const Prototype &prototype) :
         BufferObject(GL_ARRAY_BUFFER) {
     
-    names = prototype.names;
-    offsets = prototype.offsets;
-    sizes = prototype.sizes;
-    types = prototype.types;
+    names = findNames(prototype);
+    offsets = findOffsets(prototype);
+    sizes = findSizes(prototype);
+    types = findTypes(prototype);
     capacity = prototype.capacity;
     interleaved = prototype.interleaved;
     usage = prototype.usage;
-    footprint = prototype.sizeInBytes;
-    stride = prototype.strideInBytes;
+    footprint = findSizeInBytes(prototype);
+    stride = findStrideInBytes(prototype);
     
     data = new GLubyte[footprint];
     current = data;
@@ -263,13 +263,123 @@ GLuint VertexBuffer::size() const {
     return (extent - current) / stride;
 }
 
+// HELPERS
+
+/**
+ * Determines the names of the attributes in a list.
+ *
+ * @param p Prototype with list of attributes
+ * @return List of attribute names
+ */
+list<string> VertexBuffer::findNames(const Prototype &p) {
+    
+    list<string> names;
+    list<Attribute>::const_iterator it;
+    
+    for (it=p.attributes.begin(); it!=p.attributes.end(); ++it) {
+        names.push_back(it->getName());
+    }
+    return names;
+}
+
+/**
+ * Computes the offsets of attributes.
+ *
+ * @param p Prototype with list of attributes to compute offsets of
+ * @return Mapping of attribute names to their offsets
+ */
+map<string,GLuint> VertexBuffer::findOffsets(const Prototype &p) {
+    
+    map<string,GLuint> offsets;
+    list<Attribute>::const_iterator it;
+    GLuint offset = 0;
+    
+    for (it=p.attributes.begin(); it!=p.attributes.end(); ++it) {
+        offsets[it->getName()] = offset;
+        if (p.interleaved) {
+            offset += it->getSizeInBytes();
+        } else {
+            offset += it->getSizeInBytes() * p.capacity;
+        }
+    }
+    return offsets;
+}
+
+/**
+ * Computes the sizes of attributes.
+ *
+ * @param p Prototype with list of attributes to computes sizes of
+ * @return Mapping of the attributes and their number of components.
+ */
+map<string,GLuint> VertexBuffer::findSizes(const Prototype &p) {
+    
+    map<string,GLuint> sizes;
+    list<Attribute>::const_iterator it;
+    
+    for (it=p.attributes.begin(); it!=p.attributes.end(); ++it) {
+        sizes[it->getName()] = it->getSizeInComponents();
+    }
+    return sizes;
+}
+
+/**
+ * Computes the total number of bytes needed by multiple attributes.
+ *
+ * @param p Prototype with list of attributes to compute sizes for
+ * @return Total number of bytes in the vertex buffer
+ */
+GLsizei VertexBuffer::findSizeInBytes(const Prototype &p) {
+    
+    list<Attribute>::const_iterator it;
+    GLsizei sizeInBytes = 0;
+    
+    for (it=p.attributes.begin(); it!=p.attributes.end(); ++it) {
+        sizeInBytes += it->getSizeInBytes();
+    }
+    return sizeInBytes * p.capacity;
+}
+
+/**
+ * Computes the stride of the vertex buffer.
+ *
+ * @param p Prototype with list of attributes to compute stride with
+ * @return Number of bytes between consecutive vertices
+ */
+GLuint VertexBuffer::findStrideInBytes(const Prototype &p) {
+    
+    list<Attribute>::const_iterator it;
+    GLuint strideInBytes = 0;
+    
+    for (it=p.attributes.begin(); it!=p.attributes.end(); ++it) {
+        strideInBytes += it->getSizeInBytes();
+    }
+    return strideInBytes;
+}
+
+/**
+ * Returns a mapping of the attributes and their primitive types.
+ *
+ * @param p Prototype with list of attributes to determine primitive types of
+ * @return Mapping of attribute names with their types
+ */
+map<string,GLenum> VertexBuffer::findTypes(const Prototype &p) {
+    
+    map<string,GLenum> types;
+    list<Attribute>::const_iterator it;
+    
+    for (it=p.attributes.begin(); it!=p.attributes.end(); ++it) {
+        types[it->getName()] = GL_FLOAT;
+    }
+    return types;
+}
+
 // NESTED CLASSES
 
 VertexBufferBuilder::VertexBufferBuilder() {
-    this->interleaved = true;
-    this->usage = GL_STATIC_DRAW;
-    this->capacity = 0;
-    this->attributes.clear();
+    this->prototype.interleaved = true;
+    this->prototype.usage = GL_STATIC_DRAW;
+    this->prototype.capacity = 0;
+    this->prototype.attributes.clear();
 }
 
 VertexBufferBuilder::~VertexBufferBuilder() {
@@ -285,7 +395,7 @@ VertexBufferBuilder::~VertexBufferBuilder() {
  * @throw std::exception if type is invalid
  */
 void VertexBufferBuilder::addAttribute(const string &name, GLenum type) {
-    attributes.push_back(Attribute(name, type));
+    prototype.attributes.push_back(VertexBuffer::Attribute(name, type));
 }
 
 /**
@@ -293,7 +403,7 @@ void VertexBufferBuilder::addAttribute(const string &name, GLenum type) {
  */
 void VertexBufferBuilder::setCapacity(GLuint capacity) {
     if (capacity > 0) {
-        this->capacity = capacity;
+        prototype.capacity = capacity;
     } else {
         throw Exception("[VertexBuffer] Capacity > 0!");
     }
@@ -303,7 +413,7 @@ void VertexBufferBuilder::setCapacity(GLuint capacity) {
  * Changes whether vertex attributes will be interleaved.
  */
 void VertexBufferBuilder::setInterleaved(bool interleaved) {
-    this->interleaved = interleaved;
+    prototype.interleaved = interleaved;
 }
 
 /**
@@ -314,126 +424,11 @@ void VertexBufferBuilder::setUsage(GLenum usage) {
     case GL_DYNAMIC_DRAW:
     case GL_STATIC_DRAW:
     case GL_STREAM_DRAW:
-        this->usage = usage;
+        prototype.usage = usage;
         break;
     default:
         throw Exception("[VertexBuffer] Unexpected usage type!");
     }
-}
-
-bool VertexBufferBuilder::isInterleaved() const {
-    return interleaved;
-}
-
-GLuint VertexBufferBuilder::getCapacity() const {
-    return capacity;
-}
-
-GLenum VertexBufferBuilder::getUsage() const {
-    return usage;
-}
-
-/**
- * Returns the names of all attributes that have been added.
- */
-list<string> VertexBufferBuilder::getNames() const {
-    
-    list<string> names;
-    list<Attribute>::const_iterator it;
-    
-    for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        names.push_back(it->getName());
-    }
-    return names;
-}
-
-map<string,GLuint> VertexBufferBuilder::getOffsets() const {
-    
-    map<string,GLuint> offsets;
-    list<Attribute>::const_iterator it;
-    GLuint offset = 0;
-    
-    for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        offsets[it->getName()] = offset;
-        if (isInterleaved()) {
-            offset += it->getSizeInBytes();
-        } else {
-            offset += it->getSizeInBytes() * getCapacity();
-        }
-    }
-    return offsets;
-}
-
-/**
- * Returns a mapping of the attributes and their number of components.
- */
-map<string,GLuint> VertexBufferBuilder::getSizes() const {
-    
-    map<string,GLuint> sizes;
-    list<Attribute>::const_iterator it;
-    
-    for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        sizes[it->getName()] = it->getSizeInComponents();
-    }
-    return sizes;
-}
-
-/**
- * Returns total number of bytes in the VertexBufferObject.
- */
-GLsizei VertexBufferBuilder::getSizeInBytes() const {
-    
-    list<Attribute>::const_iterator it;
-    GLsizei sizeInBytes = 0;
-    
-    for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        sizeInBytes += it->getSizeInBytes();
-    }
-    return sizeInBytes * getCapacity();
-}
-
-/**
- * Returns number of bytes between consecutive vertices.
- */
-GLuint VertexBufferBuilder::getStrideInBytes() const {
-    
-    list<Attribute>::const_iterator it;
-    GLuint strideInBytes = 0;
-    
-    for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        strideInBytes += it->getSizeInBytes();
-    }
-    return strideInBytes;
-}
-
-/**
- * Returns a mapping of the attributes and their primitive types.
- */
-map<string,GLenum> VertexBufferBuilder::getTypes() const {
-    
-    map<string,GLenum> types;
-    list<Attribute>::const_iterator it;
-    
-    for (it=attributes.begin(); it!=attributes.end(); ++it) {
-        types[it->getName()] = GL_FLOAT;
-    }
-    return types;
-}
-
-VertexBuffer::Prototype VertexBufferBuilder::createPrototype() const {
-
-    VertexBuffer::Prototype prototype;
-
-    prototype.capacity = getCapacity();
-    prototype.interleaved = isInterleaved();
-    prototype.names = getNames();
-    prototype.offsets = getOffsets();
-    prototype.sizes = getSizes();
-    prototype.sizeInBytes = getSizeInBytes();
-    prototype.strideInBytes = getStrideInBytes();
-    prototype.types = getTypes();
-    prototype.usage = getUsage();
-    return prototype;
 }
 
 /**
@@ -443,12 +438,12 @@ VertexBuffer::Prototype VertexBufferBuilder::createPrototype() const {
  * @throw std::exception if capacity has not been set
  */
 VertexBuffer* VertexBufferBuilder::toVertexBuffer() {
-    if (attributes.empty()) {
+    if (prototype.attributes.empty()) {
         throw Exception("[VertexBuffer] No attributes were added!");
-    } else if (capacity == 0) {
+    } else if (prototype.capacity == 0) {
         throw Exception("[VertexBuffer] Capacity was not set!");
     } else {
-        return new VertexBuffer(createPrototype());
+        return new VertexBuffer(prototype);
     }
 }
 
@@ -460,7 +455,7 @@ VertexBuffer* VertexBufferBuilder::toVertexBuffer() {
  * @throw std::exception if name is invalid
  * @throw std::exception if type is invalid
  */
-VertexBufferBuilder::Attribute::Attribute(const string &name, GLenum type) {
+VertexBuffer::Attribute::Attribute(const string &name, GLenum type) {
     if (!isValidName(name)) {
         throw Exception("[VertexBuffer] Attribute name is invalid!");
     } else if (!isValidType(type)){
@@ -474,21 +469,21 @@ VertexBufferBuilder::Attribute::Attribute(const string &name, GLenum type) {
 /**
  * Destroys the vertex attribute.
  */
-VertexBufferBuilder::Attribute::~Attribute() {
+VertexBuffer::Attribute::~Attribute() {
     ;
 }
 
 /**
  * Returns name of the vertex attribute.
  */
-string VertexBufferBuilder::Attribute::getName() const {
+string VertexBuffer::Attribute::getName() const {
     return name;
 }
 
 /**
  * Returns the size of the attribute in bytes.
  */
-GLuint VertexBufferBuilder::Attribute::getSizeInBytes() const {
+GLuint VertexBuffer::Attribute::getSizeInBytes() const {
     switch (type) {
     case GL_FLOAT_VEC2: return SIZEOF_FLOAT_VEC2;
     case GL_FLOAT_VEC3: return SIZEOF_FLOAT_VEC3;
@@ -501,7 +496,7 @@ GLuint VertexBufferBuilder::Attribute::getSizeInBytes() const {
 /**
  * Returns the number of components in the attribute.
  */
-GLuint VertexBufferBuilder::Attribute::getSizeInComponents() const {
+GLuint VertexBuffer::Attribute::getSizeInComponents() const {
     switch (type) {
     case GL_FLOAT_VEC2: return 2;
     case GL_FLOAT_VEC3: return 3;
@@ -514,7 +509,7 @@ GLuint VertexBufferBuilder::Attribute::getSizeInComponents() const {
 /**
  * Returns type of the vertex attribute, e.g. GL_FLOAT_VEC3.
  */
-GLuint VertexBufferBuilder::Attribute::getType() const {
+GLuint VertexBuffer::Attribute::getType() const {
     return type;
 }
 
@@ -524,7 +519,7 @@ GLuint VertexBufferBuilder::Attribute::getType() const {
  * @param name Name to check
  * @return True if name is legal
  */
-bool VertexBufferBuilder::Attribute::isValidName(const string &name) {
+bool VertexBuffer::Attribute::isValidName(const string &name) {
     return (!name.empty()) || (name.find(' ') != -1);
 }
 
@@ -534,7 +529,7 @@ bool VertexBufferBuilder::Attribute::isValidName(const string &name) {
  * @param type Type to check
  * @return True if type is legal
  */
-bool VertexBufferBuilder::Attribute::isValidType(GLenum type) {
+bool VertexBuffer::Attribute::isValidType(GLenum type) {
     switch (type) {
     case GL_FLOAT_VEC2:
     case GL_FLOAT_VEC3:
