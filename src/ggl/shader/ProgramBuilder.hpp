@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for building shader programs.
+ * 
+ * @ingroup shader
  */
 class ProgramBuilder {
 public:

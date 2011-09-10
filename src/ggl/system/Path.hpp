@@ -16,6 +16,8 @@ namespace Ggl {
 
 /**
  * @brief Location of a file.
+ *
+ * @ingroup system
  */
 class Path {
     typedef std::list<std::string> stringlist_t;

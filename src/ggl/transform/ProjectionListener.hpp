@@ -14,6 +14,8 @@ class Projection;
 
 /**
  * @brief Observer of projection events.
+ * 
+ * @ingroup transform
  */
 class ProjectionListener {
 public:

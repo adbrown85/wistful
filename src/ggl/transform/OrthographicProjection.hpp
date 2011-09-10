@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Projection that keeps items at their true size.
+ * 
+ * @ingroup transform
  */
 class OrthographicProjection : public Projection {
 public:

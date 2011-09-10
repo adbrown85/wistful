@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for reading a bitmap image into memory.
+ * 
+ * @ingroup image
  */
 class BitmapReader {
 public:

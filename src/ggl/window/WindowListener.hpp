@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Object that listens to GGL events.
+ *
+ * @ingroup window
  */
 class WindowListener {
 public:

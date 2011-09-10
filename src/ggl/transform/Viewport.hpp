@@ -14,6 +14,8 @@ namespace Ggl {
 
 /**
  * @brief Area of a window being rendered to.
+ * 
+ * @ingroup transform
  */
 class Viewport {
 public:

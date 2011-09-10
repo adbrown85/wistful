@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for building a model.
+ * 
+ * @ingroup geometry
  */
 class ModelBuilder {
 public:

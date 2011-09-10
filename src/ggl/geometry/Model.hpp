@@ -12,6 +12,8 @@ namespace Ggl {
 
 /**
  * @brief Polygonal geometry that can be rendered.
+ * 
+ * @ingroup geometry
  */
 class Model {
 public:

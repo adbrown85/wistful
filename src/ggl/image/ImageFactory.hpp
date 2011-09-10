@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Creates an image of the appropriate type.
+ * 
+ * @ingroup image
  */
 class ImageFactory {
 public:

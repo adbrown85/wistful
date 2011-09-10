@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Two-dimensional texture.
+ *
+ * @ingroup texture
  */
 class Texture2D : public Texture {
 public:

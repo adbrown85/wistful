@@ -24,7 +24,9 @@ namespace Ggl {
  * Remember to call flush() when you are done.
  * 
  * Lastly, if you would like to update just one attribute, call 
- * setStriding() before making any calls to put.  
+ * setStriding() before making any calls to put.
+ * 
+ * @ingroup geometry
  */
 class VertexBuffer : public BufferObject {
 public:

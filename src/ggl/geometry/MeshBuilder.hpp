@@ -14,6 +14,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for creating a mesh.
+ * 
+ * @ingroup geometry
  */
 class MeshBuilder {
 public:

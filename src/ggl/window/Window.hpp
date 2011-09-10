@@ -44,6 +44,8 @@ namespace Ggl {
  * input from the user.  At the very least, a derived class should accept the
  * event generated when the user closes the window.  Second, it should
  * implement <i>doFlush()</i>, which typically swaps the buffers.
+ *
+ * @ingroup window
  */
 class Window {
 public:

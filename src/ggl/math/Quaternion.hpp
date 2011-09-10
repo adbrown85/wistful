@@ -18,6 +18,8 @@ namespace Ggl {
 
 /**
  * @brief Encapsulation of an axis/angle rotation.
+ *
+ * @ingroup math
  */
 class Quaternion {
 public:

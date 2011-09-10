@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for working with strings.
+ *
+ * @ingroup system
  */
 class Text {
     typedef std::map<std::string,std::string> stringmap_t;

@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for creating, loading, and compiling shaders.
+ *
+ * @ingroup shader
  */
 class ShaderLoader {
 public:

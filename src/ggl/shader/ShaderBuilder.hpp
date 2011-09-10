@@ -14,6 +14,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for creating shaders.
+ *
+ * @ingroup shader
  */
 class ShaderBuilder {
 public:

@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Four-by-four matrix for 3D graphics.
+ * 
+ * @ingroup math
  */
 class Mat4 {
 public:

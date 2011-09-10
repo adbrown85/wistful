@@ -15,6 +15,8 @@ namespace Ggl {
 
 /**
  * @brief Projection that causes items farther back to appear smaller.
+ * 
+ * @ingroup transform
  */
 class PerspectiveProjection : public Projection {
 public:

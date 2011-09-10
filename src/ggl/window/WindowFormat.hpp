@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Container for settings describing a window configuration.
+ *
+ * @ingroup window
  */
 class WindowFormat {
 public:

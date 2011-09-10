@@ -18,6 +18,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for creating windows.
+ *
+ * @ingroup window
  */
 class WindowFactory {
 public:

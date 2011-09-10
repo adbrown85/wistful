@@ -12,6 +12,8 @@ namespace Ggl {
 
 /**
  * @brief Value for a vertex.
+ * 
+ * @ingroup geometry
  */
 class VertexAttribute {
 public:

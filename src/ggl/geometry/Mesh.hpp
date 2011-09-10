@@ -32,6 +32,8 @@ namespace Ggl {
  * Lastly, activate the program with <i>glUseProgram</i> and draw the mesh.
  * Although not required, using a Vertex Array Object to store the state of
  * enabled vertex attributes may make drawing the mesh easier and faster.
+ * 
+ * @ingroup geometry
  */
 class Mesh {
 public:

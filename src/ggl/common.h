@@ -26,4 +26,16 @@
 #include "ggl/config.h"
 //#endif
 
+/**
+ * @defgroup geometry
+ * @defgroup image
+ * @defgroup math
+ * @defgroup shader
+ * @defgroup system
+ * @defgroup testing
+ * @defgroup texture
+ * @defgroup transform
+ * @defgroup window
+ */
+
 #endif

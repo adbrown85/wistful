@@ -16,6 +16,8 @@ namespace Ggl {
 
 /**
  * @brief Utility for testing a class.
+ *
+ * @ingroup testing
  */
 class TestFixture {
 public:

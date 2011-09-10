@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief OpenGL buffer object.
+ * 
+ * @ingroup geometry
  */
 class BufferObject {
 public:

@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Part of a test that can be called.
+ *
+ * @ingroup testing
  */
 template <class T>
 class TestCase {

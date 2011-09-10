@@ -15,6 +15,8 @@ class Viewport;
 
 /**
  * @brief Observer of viewport events.
+ * 
+ * @ingroup transform
  */
 class ViewportListener {
 public:

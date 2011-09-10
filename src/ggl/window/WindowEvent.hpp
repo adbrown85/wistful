@@ -15,6 +15,8 @@ class Window;
 
 /**
  * @brief Event fired from a window.
+ *
+ * @ingroup window
  */
 class WindowEvent {
 public:

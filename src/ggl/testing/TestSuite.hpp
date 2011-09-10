@@ -13,6 +13,8 @@ namespace Ggl {
 
 /**
  * @brief Collection of test cases to run.
+ *
+ * @ingroup testing
  */
 template <typename T>
 class TestSuite {

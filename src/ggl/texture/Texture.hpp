@@ -14,6 +14,8 @@ namespace Ggl {
 
 /**
  * @brief Base class for an OpenGL texture.
+ *
+ * @ingroup texture
  */
 class Texture {
 public:

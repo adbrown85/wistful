@@ -14,6 +14,8 @@ namespace Ggl {
 
 /**
  * @brief Skeletal implementation of WindowListener.
+ *
+ * @ingroup window
  */
 class WindowAdapter : public WindowListener {
 public:
