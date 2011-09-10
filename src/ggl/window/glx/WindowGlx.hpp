@@ -9,8 +9,8 @@
 #include "ggl/common.h"
 #include "ggl/Exception.hpp"
 #include "ggl/window/Window.hpp"
-#include "ggl/window/glx/ConfigFactoryGlx.hpp"
 #include "ggl/window/glx/VisualFactoryGlx.hpp"
+#include "ggl/window/WindowFormat.hpp"
 namespace Ggl {
 
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;
@@ -42,6 +42,8 @@ private:
     int window;
     GLXContext context;
     GLXFBConfig config;
+// Nested classes
+    class ConfigFactoryGlx;
 // Helpers
     static void subscribe(Display *display, int window);
     static GLXFBConfig createConfig(const WindowFormat &wf);
@@ -59,6 +61,23 @@ private:
 // Constructors
     WindowGlx(const WindowGlx&);
     WindowGlx& operator=(const WindowGlx&);
+};
+
+
+/**
+ * Utility for creating OpenGL configurations.
+ */
+class WindowGlx::ConfigFactoryGlx {
+public:
+    ConfigFactoryGlx();
+    virtual ~ConfigFactoryGlx();
+    virtual GLXFBConfig create(const WindowFormat &wf);
+    virtual GLXFBConfig create(const std::map<int,int> &requirements);
+private:
+    Display *display;
+// Helpers
+    static Display* createDisplay();
+    static const int* toArray(const std::map<int,int> &m);
 };
 
 }
