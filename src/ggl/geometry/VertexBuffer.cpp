@@ -387,7 +387,7 @@ VertexBufferBuilder::~VertexBufferBuilder() {
 }
 
 /**
- * Adds space for a vertex attribute to the buffer.
+ * Adds space for a vertex attribute to the VBO.
  * 
  * @param name Name of the vertex attribute
  * @param type Type of the vertex attribute, e.g. GL_FLOAT_VEC3
@@ -400,17 +400,22 @@ void VertexBufferBuilder::addAttribute(const string &name, GLenum type) {
 
 /**
  * Changes how many vertices the VBO will hold.
+ *
+ * @param capacity How many vertices the vbo will hold
+ * @throw std::exception if capacity is zero
  */
 void VertexBufferBuilder::setCapacity(GLuint capacity) {
-    if (capacity > 0) {
-        prototype.capacity = capacity;
+    if (capacity == 0) {
+        throw Exception("[VertexBufferBuilder] Capacity is zero!");
     } else {
-        throw Exception("[VertexBuffer] Capacity > 0!");
+        prototype.capacity = capacity;
     }
 }
 
 /**
  * Changes whether vertex attributes will be interleaved.
+ *
+ * @param interleaved <tt>true</tt> if attributes should be interleaved
  */
 void VertexBufferBuilder::setInterleaved(bool interleaved) {
     prototype.interleaved = interleaved;
@@ -418,6 +423,9 @@ void VertexBufferBuilder::setInterleaved(bool interleaved) {
 
 /**
  * Changes the hint on how the VBO will be accessed and modified.
+ *
+ * @param usage Hint for how VBO will be used, e.g. GL_STATIC_DRAW
+ * @throw std::exception if usage is unexpected
  */
 void VertexBufferBuilder::setUsage(GLenum usage) {
     switch (usage) {
