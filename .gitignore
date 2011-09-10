@@ -14,6 +14,7 @@ config.status
 configure
 configure.scan
 doc/
+ggl.pc
 install-sh
 Makefile
 libggl.so.*

@@ -29,6 +29,7 @@ testmods     := ${filter-out ${addprefix $(testdir)/,$(exclusions)}, \
                     ${filter %/,${wildcard $(testdir)/*/*/}} \
                     ${filter %/,${wildcard $(testdir)/*/*/*/}}}
 VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
+pkgcfgdir    := $(libdir)/pkgconfig
 
 # Tools
 CXX          := @CXX@
@@ -48,6 +49,7 @@ fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
 library      := lib$(tarname)-$(major).la
+pkgcfgfile   := $(tarname).pc
 
 # Interface
 .PHONY: all clean distclean maintainer-clean
@@ -60,6 +62,7 @@ distclean: clean
 	$(RM) config.status
 	$(RM) Makefile
 	$(RM) src/ggl/config.h
+	$(RM) $(pkgcfgfile)
 maintainer-clean: distclean
 	$(RM) aclocal.m4
 	$(RM) -r autom4te.cache
@@ -130,6 +133,9 @@ install:
                 done \
             fi \
         done
+	@echo "  INSTALL $(pkgcfgfile)"
+	@$(INSTALL) -d $(pkgcfgdir)
+	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
 uninstall:
 	@echo "  UNINSTALL $(library)"
 	@$(RM) $(libdir)/$(library)
@@ -137,6 +143,8 @@ uninstall:
 	@ldconfig $(libdir)
 	@echo "  UNINSTALL *.hpp *.h"
 	@$(RM) -r $(includedir)/$(tarname)
+	@echo "  UNINSTALL $(pkgcfgfile)"
+	@$(RM) $(pkgcfgdir)/$(pkgcfgfile)
 
 # Dependencies
 .PHONY: depends

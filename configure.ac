@@ -68,7 +68,7 @@ else
 fi
 
 # Finish
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([ggl.pc Makefile])
 AC_OUTPUT
 
 # Report
