@@ -13,6 +13,7 @@ config.log
 config.status
 configure
 configure.scan
+doc/
 install-sh
 Makefile
 libggl.so.*
