@@ -137,9 +137,7 @@ install:
 	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
 uninstall:
 	@echo "  UNINSTALL $(library)"
-	@$(RM) $(libdir)/$(library)
-	@$(RM) $(libdir)/$(linkername)
-	@ldconfig $(libdir)
+	@libtool --mode=uninstall $(RM) $(library)
 	@echo "  UNINSTALL *.hpp *.h"
 	@$(RM) -r $(includedir)/$(tarname)
 	@echo "  UNINSTALL $(pkgcfgfile)"
