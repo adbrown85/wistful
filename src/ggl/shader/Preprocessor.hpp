@@ -16,7 +16,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for preprocessing C-like code.
+ * Utility for preprocessing C-like code.
  * 
  * Basically, %Preprocessor simply looks through C-like code and
  * performs a few simple operations.  First, if it finds an @e include

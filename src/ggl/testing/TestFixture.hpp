@@ -15,7 +15,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for testing a class.
+ * Utility for testing a class.
  *
  * @ingroup testing
  */

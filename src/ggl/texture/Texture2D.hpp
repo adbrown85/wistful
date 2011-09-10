@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Two-dimensional texture.
+ * Two-dimensional texture.
  *
  * @ingroup texture
  */

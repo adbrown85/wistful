@@ -11,7 +11,7 @@ namespace Ggl {
 
 
 /**
- * @brief Polygonal geometry that can be rendered.
+ * Polygonal geometry that can be rendered.
  * 
  * @ingroup geometry
  */

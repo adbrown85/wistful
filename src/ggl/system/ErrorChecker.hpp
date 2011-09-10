@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for checking for OpenGL errors.
+ * Utility for checking for OpenGL errors.
  *
  * @ingroup system
  */

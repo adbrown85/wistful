@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Base class for an OpenGL texture.
+ * Base class for an OpenGL texture.
  *
  * @ingroup texture
  */

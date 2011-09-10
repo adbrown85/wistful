@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for reading a bitmap image into memory.
+ * Utility for reading a bitmap image into memory.
  * 
  * @ingroup image
  */

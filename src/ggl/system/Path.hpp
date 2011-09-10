@@ -15,7 +15,7 @@ namespace Ggl {
 
 
 /**
- * @brief Location of a file.
+ * Location of a file.
  *
  * @ingroup system
  */

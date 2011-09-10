@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Projection that keeps items at their true size.
+ * Projection that keeps items at their true size.
  * 
  * @ingroup transform
  */

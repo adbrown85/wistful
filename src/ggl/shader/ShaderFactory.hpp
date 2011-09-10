@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for creating shaders.
+ * Utility for creating shaders.
  *
  * @ingroup shader
  */

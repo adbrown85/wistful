@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Container for settings describing a window configuration.
+ * Container for settings describing a window configuration.
  *
  * @ingroup window
  */

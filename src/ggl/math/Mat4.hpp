@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Four-by-four matrix for 3D graphics.
+ * Four-by-four matrix for 3D graphics.
  * 
  * @ingroup math
  */

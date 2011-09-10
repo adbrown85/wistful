@@ -11,7 +11,7 @@ namespace Ggl {
 
 
 /**
- * @brief Width, height, and depth of an item.
+ * Width, height, and depth of an item.
  *
  * @ingroup system
  */

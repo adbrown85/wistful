@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief OpenGL buffer object.
+ * OpenGL buffer object.
  * 
  * @ingroup geometry
  */

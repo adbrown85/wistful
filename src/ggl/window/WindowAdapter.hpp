@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Skeletal implementation of WindowListener.
+ * Skeletal implementation of WindowListener.
  *
  * @ingroup window
  */

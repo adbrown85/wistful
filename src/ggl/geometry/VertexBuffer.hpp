@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief OpenGL buffer object for vertex attributes.
+ * OpenGL buffer object for vertex attributes.
  * 
  * To create a VertexBuffer, use VertexBufferObject::Builder.  Then
  * use the variations of put() to fill the buffer.  Finally, call flush()

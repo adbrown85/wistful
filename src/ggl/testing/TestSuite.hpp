@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Collection of test cases to run.
+ * Collection of test cases to run.
  *
  * @ingroup testing
  */

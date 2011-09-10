@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) { \
 
 
 /**
- * @brief Utility for running tests.
+ * Utility for running tests.
  *
  * @ingroup testing
  */

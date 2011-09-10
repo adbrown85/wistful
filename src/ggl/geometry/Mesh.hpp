@@ -11,7 +11,7 @@ namespace Ggl {
 
 
 /**
- * @brief Polygonal geometry that can be drawn.
+ * Polygonal geometry that can be drawn.
  * 
  * Mesh represents reusable geometry data in a Vertex Buffer Object.  In order
  * to be as versatile as possible, the scope of Mesh is fairly limited.  It

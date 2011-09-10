@@ -15,7 +15,7 @@ namespace Ggl {
 
 
 /**
- * @brief Delegate for calculating a projection matrix.
+ * Delegate for calculating a projection matrix.
  * 
  * @ingroup transform
  */

@@ -14,7 +14,7 @@ namespace Ggl {
 class Viewport;
 
 /**
- * @brief Observer of viewport events.
+ * Observer of viewport events.
  * 
  * @ingroup transform
  */

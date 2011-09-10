@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for creating a mesh.
+ * Utility for creating a mesh.
  * 
  * @ingroup geometry
  */

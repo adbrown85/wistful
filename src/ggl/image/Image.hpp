@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Picture loaded into memory.
+ * Picture loaded into memory.
  * 
  * @ingroup image
  */

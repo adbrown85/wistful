@@ -13,7 +13,7 @@ namespace Ggl {
 class Projection;
 
 /**
- * @brief Observer of projection events.
+ * Observer of projection events.
  * 
  * @ingroup transform
  */

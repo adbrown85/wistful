@@ -20,7 +20,7 @@ struct CodeLine {
 
 
 /**
- * @brief Source code loaded from multiple files.
+ * Source code loaded from multiple files.
  */
 class Code {
 public:

@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for working with strings.
+ * Utility for working with strings.
  *
  * @ingroup system
  */

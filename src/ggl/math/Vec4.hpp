@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Four-component vector for 3D graphics.
+ * Four-component vector for 3D graphics.
  * 
  * <p><i>Vec4</i> is a four-component vector for use with 3D graphics.
  * It includes an extra homogeneous coordinate, which is often used in

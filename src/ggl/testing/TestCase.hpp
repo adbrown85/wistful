@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Part of a test that can be called.
+ * Part of a test that can be called.
  *
  * @ingroup testing
  */
