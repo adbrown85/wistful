@@ -47,7 +47,7 @@ void BitmapReader::read(const string &filename) {
         close();
     } catch (std::exception &e) {
         close();
-        throw Exception(e.what());
+        throw;
     }
 }
 
