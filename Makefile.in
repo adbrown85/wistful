@@ -36,8 +36,10 @@ CXX          := @CXX@
 INCLUDES     := -I$(srcdir)/ -I$(testdir)/
 DEFS         := @DEFS@
 CPPFLAGS     := @CPPFLAGS@
-CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES)
-LIBS         := @LIBS@
+DEPS_CFLAGS  := @DEPS_CFLAGS@
+CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES) $(DEPS_CFLAGS)
+DEPS_LIBS    := @DEPS_LIBS@
+LIBS         := @LIBS@ $(DEPS_LIBS)
 LDFLAGS      := @LDFLAGS@
 INSTALL      := @INSTALL@
 

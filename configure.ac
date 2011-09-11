@@ -30,6 +30,7 @@ AC_HEADER_STDBOOL
 # Check for tools
 AC_PROG_INSTALL
 AC_PROG_SED
+PKG_PROG_PKG_CONFIG
 
 # Check for OpenGL
 error_no_gl() {
@@ -60,6 +61,17 @@ else
     LIBS="${LIBS} -lX11"
 fi
 
+# Check for EDO
+error_no_edo() {
+    echo "------------------------------------------------------------"
+    echo " EDO is needed to build GGL."
+    echo " Please visit 'http://github.com/adbrown85/edo'."
+    echo "------------------------------------------------------------"
+    (exit 1); exit 1;
+}
+echo -n "checking for EDO..."
+PKG_CHECK_EXISTS([edo], [echo "yes"], [error_no_edo])
+
 # Set up exclusions
 if test "$host_vendor" = 'apple'; then
     AC_SUBST([EXCLUSIONS], [ggl/window/glx])
@@ -69,6 +81,7 @@ fi
 
 # Finish
 AC_CONFIG_FILES([ggl.pc Makefile])
+PKG_CHECK_MODULES([DEPS], [edo])
 AC_OUTPUT
 
 # Report
