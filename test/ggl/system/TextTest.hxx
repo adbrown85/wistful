@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for Text.
+ * Unit test for Text.
  */
 class TextTest : public Edo::TestFixture {
 public:

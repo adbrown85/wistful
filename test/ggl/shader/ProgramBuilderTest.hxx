@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for ProgramBuilder.
+ * Unit test for ProgramBuilder.
  */
 class ProgramBuilderTest {
 public:
@@ -23,7 +23,7 @@ public:
 
 
 /**
- * @brief Window listener for ProgramBuilderTest.
+ * Window listener for ProgramBuilderTest.
  */
 class ProgramBuilderTestListener : public WindowListener {
     virtual void onWindowOpen(const WindowEvent &e);

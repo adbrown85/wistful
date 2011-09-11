@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for ShaderLoader.
+ * Unit test for ShaderLoader.
  */
 class ShaderLoaderTest {
 public:
@@ -23,7 +23,7 @@ public:
 
 
 /**
- * @brief Window listener for ShaderLoaderTest.
+ * Window listener for ShaderLoaderTest.
  */
 class ShaderLoaderTestListener : public WindowListener {
 public:

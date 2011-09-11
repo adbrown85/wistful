@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for Quaternion.
+ * Unit test for Quaternion.
  */
 class QuaternionTest : public Edo::TestFixture {
 public:

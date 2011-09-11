@@ -18,7 +18,7 @@ namespace Ggl {
 
 
 /**
- * @brief Test for %ModelBuilder.
+ * Test for %ModelBuilder.
  */
 class ModelBuilderTest {
 public:
@@ -29,7 +29,7 @@ private:
 
 
 /**
- * @brief Observer of window events.
+ * Observer of window events.
  */
 class ModelBuilderTest::WindowObserver : public WindowAdapter {
 public:

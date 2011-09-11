@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for GglWindowCoca.
+ * Unit test for GglWindowCoca.
  */
 class WindowCocoaTest {
 public:

@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for Path.
+ * Unit test for Path.
  */
 class PathTest : public Edo::TestFixture {
 public:

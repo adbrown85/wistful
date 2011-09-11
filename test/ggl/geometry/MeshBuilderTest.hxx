@@ -17,7 +17,7 @@ namespace Ggl {
 
 
 /**
- * @brief Test for MeshBuilder.
+ * Test for MeshBuilder.
  */
 class MeshBuilderTest {
 public:
@@ -29,7 +29,7 @@ private:
 
 
 /**
- * @brief Window listener for the test.
+ * Window listener for the test.
  */
 class MeshBuilderTest::WindowObserver : public WindowListener {
 public:

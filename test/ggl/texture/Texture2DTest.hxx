@@ -20,7 +20,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for Texture2D.
+ * Unit test for Texture2D.
  */
 class Texture2DTest {
 public:
@@ -29,7 +29,7 @@ public:
 
 
 /**
- * @brief Window listener for Texture2DTest.
+ * Window listener for Texture2DTest.
  */
 class Texture2DTestListener : public WindowAdapter {
 public:

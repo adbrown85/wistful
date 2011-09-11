@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for Mat4.
+ * Unit test for Mat4.
  */
 class Mat4Test : public Edo::TestFixture {
 public:

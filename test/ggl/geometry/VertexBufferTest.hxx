@@ -16,7 +16,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for VertexBuffer.
+ * Unit test for VertexBuffer.
  */
 class VertexBufferTest {
 public:
@@ -25,7 +25,7 @@ public:
 
 
 /**
- * @brief Window listener for VertexBufferTest.
+ * Window listener for VertexBufferTest.
  */
 class VertexBufferTestListener : public WindowListener {
 public:

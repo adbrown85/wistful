@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for Vec4.
+ * Unit test for Vec4.
  */
 class Vec4Test : public Edo::TestFixture {
 public:

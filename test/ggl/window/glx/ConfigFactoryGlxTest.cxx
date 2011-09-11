@@ -10,7 +10,7 @@ using namespace std;
 namespace Ggl {
 
 /**
- * @brief Test for GglConfigFactoryGlx.
+ * Test for GglConfigFactoryGlx.
  */
 class ConfigFactoryGlxTest {
 public:

@@ -14,7 +14,7 @@ namespace Ggl {
 
 
 /**
- * @brief Unit test for BitmapReader.
+ * Unit test for BitmapReader.
  */
 class BitmapReaderTest : public Edo::TestFixture {
 public:

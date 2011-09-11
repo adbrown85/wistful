@@ -42,7 +42,7 @@ private:
 
 
 /**
- * @brief Simple implementation of a model.
+ * Simple implementation of a model.
  */
 class ModelBuilder::BasicModel : public Model {
 public:
