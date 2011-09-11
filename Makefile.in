@@ -96,7 +96,6 @@ tests: $(tests)
 	@libtool --mode=link --quiet \
         $(CXX) \
         $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
-        -DGGL_TEST_FIXTURE=$@ \
         $< -o $(builddir)/$@ \
         ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}} \
         $(LIBS)
