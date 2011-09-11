@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/config.h"
+#include "config.h"
 #include "ggl/shader/ProgramBuilderTest.hxx"
 using namespace std;
 using namespace Edo;

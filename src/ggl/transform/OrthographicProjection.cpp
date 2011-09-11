@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "ggl/config.h"
+#include "config.h"
 #include "ggl/transform/OrthographicProjection.hpp"
 using namespace Edo;
 using namespace Ggl;
