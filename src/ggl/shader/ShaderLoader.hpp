@@ -11,8 +11,8 @@
 #include <iomanip>
 #include <set>
 #include <edo/Text.hpp>
+#include <edo/Path.hpp>
 #include "ggl/shader/ShaderBuilder.hpp"
-#include "ggl/system/Path.hpp"
 namespace Ggl {
 
 
