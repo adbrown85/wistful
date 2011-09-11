@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef QUATERNIONTEST_HXX
-#define QUATERNIONTEST_HXX
+#ifndef GGL_QUATERNIONTEST_HXX
+#define GGL_QUATERNIONTEST_HXX
 #include "ggl/common.h"
 #include <edo/TestRunner.hpp>
 #include "ggl/math/Quaternion.hpp"

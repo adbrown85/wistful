@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GGL_SHADERBUILDERTEST_HXX
-#define GGL_SHADERBUILDERTEST_HXX
+#ifndef GGL_SHADERLOADERTEST_HXX
+#define GGL_SHADERLOADERTEST_HXX
 #include "ggl/common.h"
 #include "ggl/shader/ShaderLoader.hpp"
 #include "ggl/window/Window.hpp"
