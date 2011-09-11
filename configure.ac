@@ -64,14 +64,15 @@ fi
 
 # Check for EDO
 error_no_edo() {
+    AC_MSG_RESULT([no])
     echo "------------------------------------------------------------"
     echo " EDO is needed to build GGL."
     echo " Please visit 'http://github.com/adbrown85/edo'."
     echo "------------------------------------------------------------"
     (exit 1); exit 1;
 }
-echo -n "checking for EDO..."
-PKG_CHECK_EXISTS([edo], [echo "yes"], [error_no_edo])
+AC_MSG_CHECKING([for EDO...])
+PKG_CHECK_EXISTS([edo], [AC_MSG_RESULT([yes])], [error_no_edo])
 
 # Set up exclusions
 if test "$host_vendor" = 'apple'; then
