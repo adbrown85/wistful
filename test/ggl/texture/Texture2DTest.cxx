@@ -7,9 +7,10 @@
 #include "ggl/config.h"
 #include "ggl/texture/Texture2DTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
-void Texture2DTest::test() {
+void Texture2DTest::run() {
     
     WindowFactory wf;
     Ggl::Window *window = wf.createWindow();
@@ -159,6 +160,10 @@ Texture* Texture2DTestListener::createTexture() {
 // Main
 //
 
-GGL_TEST_SUITE
-GGL_ADD_TEST(test)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
+
+    Texture2DTest test;
+
+    test.run();
+    return 0;
+}

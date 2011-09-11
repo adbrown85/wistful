@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/window/cocoa/WindowCocoaTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void FakeWindowListener::onWindowOpen(const WindowEvent &e) {
@@ -44,7 +45,7 @@ void FakeWindowListener::onWindowClose(const WindowEvent &e) {
     cerr << "FakeGglListener::onWindowClose()" << endl;
 }
 
-void WindowCocoaTest::testOpen() {
+void WindowCocoaTest::run() {
     
     WindowFactory factory;
     Window *window = factory.createWindow();
@@ -56,7 +57,10 @@ void WindowCocoaTest::testOpen() {
 /*
  * Runs the program.
  */
-GGL_TEST_SUITE
-GGL_ADD_TEST(testOpen)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
+    
+    WindowCocoaTest test;
 
+    test.run();
+    return 0;
+}

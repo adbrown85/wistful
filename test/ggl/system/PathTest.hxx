@@ -6,18 +6,17 @@
  */
 #ifndef GGL_PATHTEST_HXX
 #define GGL_PATHTEST_HXX
-#define GGL_TEST_FIXTURE PathTest
+#include <edo/TestFixture.hpp>
+#include <edo/TestSuite.hpp>
+#include <edo/TestRunner.hpp>
 #include "ggl/system/Path.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestSuite.hpp"
-#include "ggl/testing/TestRunner.hpp"
 namespace Ggl {
 
 
 /**
  * @brief Unit test for Path.
  */
-class PathTest : public TestFixture {
+class PathTest : public Edo::TestFixture {
 public:
     void testToStringWithFile();
     void testToStringWithDirectory();

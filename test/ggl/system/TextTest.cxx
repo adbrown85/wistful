@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/system/TextTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void TextTest::testCount() {
@@ -103,15 +104,16 @@ void TextTest::testStripTrailingSpaces() {
     assert(result == "// This is a comment");
 }
 
-GGL_TEST_SUITE
-GGL_ADD_TEST(testCount)
-GGL_ADD_TEST(testFirstWordCharacter)
-GGL_ADD_TEST(testFirstNotWordCharacter)
-GGL_ADD_TEST(testFirstWord)
-GGL_ADD_TEST(testReplacements)
-GGL_ADD_TEST(testTrim)
-GGL_ADD_TEST(testSplit)
-GGL_ADD_TEST(testStripLeadingSpaces)
-GGL_ADD_TEST(testStripTrailingSpaces)
-GGL_RUN_TESTS
+#define EDO_TEST_FIXTURE TextTest
+EDO_TEST_SUITE
+EDO_ADD_TEST(testCount)
+EDO_ADD_TEST(testFirstWordCharacter)
+EDO_ADD_TEST(testFirstNotWordCharacter)
+EDO_ADD_TEST(testFirstWord)
+EDO_ADD_TEST(testReplacements)
+EDO_ADD_TEST(testTrim)
+EDO_ADD_TEST(testSplit)
+EDO_ADD_TEST(testStripLeadingSpaces)
+EDO_ADD_TEST(testStripTrailingSpaces)
+EDO_RUN_TESTS
 

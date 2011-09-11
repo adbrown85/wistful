@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/image/BitmapReaderTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /** Read the image into memory. */
@@ -49,8 +50,9 @@ void BitmapReaderTest::testToImage() {
 }
 
 /* Run the test. */
-GGL_TEST_SUITE
-GGL_ADD_TEST(testGetters)
-GGL_ADD_TEST(testToImage)
-GGL_RUN_TESTS
+#define EDO_TEST_FIXTURE BitmapReaderTest
+EDO_TEST_SUITE
+EDO_ADD_TEST(testGetters)
+EDO_ADD_TEST(testToImage)
+EDO_RUN_TESTS
 

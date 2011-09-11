@@ -10,7 +10,7 @@ using namespace std;
 using namespace Edo;
 using namespace Ggl;
 
-void VertexBufferTest::test() {
+void VertexBufferTest::run() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
@@ -112,7 +112,10 @@ GLuint VertexBufferTestListener::createProgram() {
     return pb.toProgram();
 }
 
-#define GGL_TEST_FIXTURE VertexBufferTest
-GGL_TEST_SUITE
-GGL_ADD_TEST(test)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
+
+    VertexBufferTest test;
+
+    test.run();
+    return 0;
+}

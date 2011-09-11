@@ -10,8 +10,6 @@
 #include "ggl/geometry/VertexBuffer.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"
 #include "ggl/system/ErrorChecker.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowFactory.hpp"
 namespace Ggl {
@@ -20,9 +18,9 @@ namespace Ggl {
 /**
  * @brief Unit test for VertexBuffer.
  */
-class VertexBufferTest : public TestFixture {
+class VertexBufferTest {
 public:
-    void test();
+    void run();
 };
 
 

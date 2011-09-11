@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/math/Mat4Test.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void Mat4Test::setUp() {
@@ -87,10 +88,11 @@ void Mat4Test::testMultiplyVector() {
     assertEquals( 45, v.w);
 }
 
-GGL_TEST_SUITE
-GGL_ADD_TEST(testInverse)
-GGL_ADD_TEST(testSetArray)
-GGL_ADD_TEST(testTranspose)
-GGL_ADD_TEST(testMultiplyVector)
-GGL_RUN_TESTS
+#define EDO_TEST_FIXTURE Mat4Test
+EDO_TEST_SUITE
+EDO_ADD_TEST(testInverse)
+EDO_ADD_TEST(testSetArray)
+EDO_ADD_TEST(testTranspose)
+EDO_ADD_TEST(testMultiplyVector)
+EDO_RUN_TESTS
 

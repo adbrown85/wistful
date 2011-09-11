@@ -6,17 +6,16 @@
  */
 #ifndef GGL_TEXTTEST_HXX
 #define GGL_TEXTTEST_HXX
-#define GGL_TEST_FIXTURE TextTest
+#include <edo/TestFixture.hpp>
+#include <edo/TestRunner.hpp>
 #include "ggl/system/Text.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 namespace Ggl {
 
 
 /**
  * @brief Unit test for Text.
  */
-class TextTest : public TestFixture {
+class TextTest : public Edo::TestFixture {
 public:
     void testCount();
     void testFirstWord();

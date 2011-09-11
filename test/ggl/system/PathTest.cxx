@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/system/PathTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void PathTest::testToStringWithFile() {
@@ -121,17 +122,18 @@ Path PathTest::basename(const string &filename) {
     return Path::basename(toPath(filename));
 }
 
-GGL_TEST_SUITE
-GGL_ADD_TEST(testToStringWithFile)
-GGL_ADD_TEST(testToStringWithDirectory)
-GGL_ADD_TEST(testToStringWithUnixRoot)
-GGL_ADD_TEST(testToStringWithWindowsRoot)
-GGL_ADD_TEST(testIsAbsoluteWithUnixRoot)
-GGL_ADD_TEST(testIsAbsoluteWithWindowsRoot)
-GGL_ADD_TEST(testIsDirectoryWithDirectory)
-GGL_ADD_TEST(testIsDirectoryWithFile)
-GGL_ADD_TEST(testLocateWithRelative)
-GGL_ADD_TEST(testLocateWithAbsolute)
-GGL_ADD_TEST(testDirname)
-GGL_ADD_TEST(testBasename)
-GGL_RUN_TESTS
+#define EDO_TEST_FIXTURE PathTest
+EDO_TEST_SUITE
+EDO_ADD_TEST(testToStringWithFile)
+EDO_ADD_TEST(testToStringWithDirectory)
+EDO_ADD_TEST(testToStringWithUnixRoot)
+EDO_ADD_TEST(testToStringWithWindowsRoot)
+EDO_ADD_TEST(testIsAbsoluteWithUnixRoot)
+EDO_ADD_TEST(testIsAbsoluteWithWindowsRoot)
+EDO_ADD_TEST(testIsDirectoryWithDirectory)
+EDO_ADD_TEST(testIsDirectoryWithFile)
+EDO_ADD_TEST(testLocateWithRelative)
+EDO_ADD_TEST(testLocateWithAbsolute)
+EDO_ADD_TEST(testDirname)
+EDO_ADD_TEST(testBasename)
+EDO_RUN_TESTS

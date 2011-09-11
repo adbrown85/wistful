@@ -11,9 +11,6 @@
 #include "ggl/geometry/Model.hpp"
 #include "ggl/geometry/ModelBuilder.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestSuite.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowFactory.hpp"
 #include "ggl/window/WindowAdapter.hpp"
@@ -23,9 +20,9 @@ namespace Ggl {
 /**
  * @brief Test for %ModelBuilder.
  */
-class ModelBuilderTest : public TestFixture {
+class ModelBuilderTest {
 public:
-    void test();
+    void run();
 private:
     class WindowObserver;
 };

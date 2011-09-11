@@ -6,10 +6,7 @@
  */
 #ifndef GGL_WINDOWCOCOATEST_HXX
 #define GGL_WINDOWCOCOATEST_HXX
-#define GGL_TEST_FIXTURE WindowCocoaTest
 #include "ggl/common.h"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowFactory.hpp"
 namespace Ggl {
@@ -18,9 +15,9 @@ namespace Ggl {
 /**
  * @brief Unit test for GglWindowCoca.
  */
-class WindowCocoaTest : public TestFixture {
+class WindowCocoaTest {
 public:
-    void testOpen();
+    void run();
 };
 
 

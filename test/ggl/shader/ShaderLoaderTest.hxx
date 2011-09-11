@@ -6,11 +6,8 @@
  */
 #ifndef GGL_SHADERBUILDERTEST_HXX
 #define GGL_SHADERBUILDERTEST_HXX
-#define GGL_TEST_FIXTURE ShaderLoaderTest
 #include "ggl/common.h"
 #include "ggl/shader/ShaderLoader.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowFactory.hpp"
 namespace Ggl {
@@ -19,9 +16,9 @@ namespace Ggl {
 /**
  * @brief Unit test for ShaderLoader.
  */
-class ShaderLoaderTest : public TestFixture {
+class ShaderLoaderTest {
 public:
-    void testLoad();
+    void run();
 };
 
 

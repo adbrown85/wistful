@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/shader/ProgramBuilderTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void ProgramBuilderTestListener::onWindowOpen(const WindowEvent &e) {
@@ -36,7 +37,7 @@ void ProgramBuilderTestListener::onWindowClose(const WindowEvent &e) {
     cout << "PASSED" << endl;
 }
 
-void ProgramBuilderTest::testBuild() {
+void ProgramBuilderTest::run() {
 	
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
@@ -45,7 +46,10 @@ void ProgramBuilderTest::testBuild() {
     Ggl::Window::open(window);
 }
 
-GGL_TEST_SUITE
-GGL_ADD_TEST(testBuild)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
 
+    ProgramBuilderTest test;
+
+    test.run();
+    return 0;
+}

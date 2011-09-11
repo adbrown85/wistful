@@ -6,10 +6,7 @@
  */
 #ifndef GGL_TEXTURE2DTEST_HXX
 #define GGL_TEXTURE2DTEST_HXX
-#define GGL_TEST_FIXTURE Texture2DTest
 #include "ggl/common.h"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/texture/Texture2D.hpp"
 #include "ggl/geometry/VertexBuffer.hpp"
 #include "ggl/image/Image.hpp"
@@ -25,9 +22,9 @@ namespace Ggl {
 /**
  * @brief Unit test for Texture2D.
  */
-class Texture2DTest : public TestFixture {
+class Texture2DTest {
 public:
-    void test();
+    void run();
 };
 
 

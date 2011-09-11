@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/math/QuaternionTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 const float QuaternionTest::ANGLE_30 = toRadians(30);
@@ -62,8 +63,9 @@ void QuaternionTest::testRotate() {
 /*
  * Runs the test.
  */
-GGL_TEST_SUITE
-GGL_ADD_TEST(testToMat4)
-GGL_ADD_TEST(testRotate)
-GGL_RUN_TESTS
+#define EDO_TEST_FIXTURE QuaternionTest
+EDO_TEST_SUITE
+EDO_ADD_TEST(testToMat4)
+EDO_ADD_TEST(testRotate)
+EDO_RUN_TESTS
 

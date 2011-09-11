@@ -6,11 +6,8 @@
  */
 #ifndef GGL_PROGRAMBUILDERTEST_HXX
 #define GGL_PROGRAMBUILDERTEST_HXX
-#define GGL_TEST_FIXTURE ProgramBuilderTest
 #include "ggl/common.h"
 #include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowFactory.hpp"
 namespace Ggl {
@@ -19,9 +16,9 @@ namespace Ggl {
 /**
  * @brief Unit test for ProgramBuilder.
  */
-class ProgramBuilderTest : public TestFixture {
+class ProgramBuilderTest {
 public:
-    void testBuild();
+    void run();
 };
 
 

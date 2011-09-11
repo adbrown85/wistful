@@ -7,12 +7,13 @@
 #include "ggl/config.h"
 #include "ggl/geometry/ModelBuilderTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**
  * Ensures ModelBuilder works correctly.
  */
-void ModelBuilderTest::test() {
+void ModelBuilderTest::run() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
@@ -98,7 +99,10 @@ Model* ModelBuilderTest::WindowObserver::createModel(Mesh *m, GLuint p) {
 
 // MAIN
 
-#define GGL_TEST_FIXTURE ModelBuilderTest
-GGL_TEST_SUITE
-GGL_ADD_TEST(test)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
+
+    ModelBuilderTest test;
+
+    test.run();
+    return 0;
+}

@@ -6,10 +6,9 @@
  */
 #ifndef GGL_MAT4TEST_HXX
 #define GGL_MAT4TEST_HXX
-#define GGL_TEST_FIXTURE Mat4Test
 #include "ggl/common.h"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
+#include <edo/TestFixture.hpp>
+#include <edo/TestRunner.hpp>
 #include "ggl/math/Mat4.hpp"
 namespace Ggl {
 
@@ -17,7 +16,7 @@ namespace Ggl {
 /**
  * @brief Unit test for Mat4.
  */
-class Mat4Test : public TestFixture {
+class Mat4Test : public Edo::TestFixture {
 public:
     void setUp();
     void testInverse();

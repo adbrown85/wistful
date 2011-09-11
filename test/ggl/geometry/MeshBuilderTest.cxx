@@ -7,12 +7,13 @@
 #include "ggl/config.h"
 #include "ggl/geometry/MeshBuilderTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**
  * Runs the test.
  */
-void MeshBuilderTest::test() {
+void MeshBuilderTest::run() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
@@ -147,7 +148,10 @@ GLuint MeshBuilderTest::WindowObserver::createVAO(Mesh *mesh, GLuint program) {
 
 /* MAIN */
 
-#define GGL_TEST_FIXTURE MeshBuilderTest
-GGL_TEST_SUITE
-GGL_ADD_TEST(test)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
+ 
+    MeshBuilderTest test;
+
+    test.run();
+    return 0;
+}

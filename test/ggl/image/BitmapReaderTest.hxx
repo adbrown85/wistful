@@ -6,18 +6,17 @@
  */
 #ifndef GGL_BITMAPREADERTEST_HXX
 #define GGL_BITMAPREADERTEST_HXX
-#define GGL_TEST_FIXTURE BitmapReaderTest
 #include "ggl/common.h"
+#include <edo/TestFixture.hpp>
+#include <edo/TestRunner.hpp>
 #include "ggl/image/BitmapReader.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 namespace Ggl {
 
 
 /**
  * @brief Unit test for BitmapReader.
  */
-class BitmapReaderTest : public TestFixture {
+class BitmapReaderTest : public Edo::TestFixture {
 public:
     BitmapReaderTest();
     void testGetters();

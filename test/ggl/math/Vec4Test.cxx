@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/math/Vec4Test.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void Vec4Test::setUp() {
@@ -46,9 +47,10 @@ void Vec4Test::testDivide() {
     assertEquals(0.4, C.z);
 }
 
-GGL_TEST_SUITE
-GGL_ADD_TEST(testAdd)
-GGL_ADD_TEST(testSubtract)
-GGL_ADD_TEST(testMultiply)
-GGL_ADD_TEST(testDivide)
-GGL_RUN_TESTS
+#define EDO_TEST_FIXTURE Vec4Test
+EDO_TEST_SUITE
+EDO_ADD_TEST(testAdd)
+EDO_ADD_TEST(testSubtract)
+EDO_ADD_TEST(testMultiply)
+EDO_ADD_TEST(testDivide)
+EDO_RUN_TESTS

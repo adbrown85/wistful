@@ -10,8 +10,6 @@
 #include "ggl/system/ErrorChecker.hpp"
 #include "ggl/geometry/MeshBuilder.hpp"
 #include "ggl/shader/ProgramBuilder.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 #include "ggl/window/Window.hpp"
 #include "ggl/window/WindowFactory.hpp"
 #include "ggl/window/WindowListener.hpp"
@@ -21,9 +19,9 @@ namespace Ggl {
 /**
  * @brief Test for MeshBuilder.
  */
-class MeshBuilderTest : public TestFixture {
+class MeshBuilderTest {
 public:
-    void test();
+    void run();
 private:
 // Nested classes
     class WindowObserver;

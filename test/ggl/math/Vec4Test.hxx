@@ -6,18 +6,17 @@
  */
 #ifndef GGL_VEC4TEST_HXX
 #define GGL_VEC4TEST_HXX
-#define GGL_TEST_FIXTURE Vec4Test
 #include "ggl/common.h"
+#include <edo/TestFixture.hpp>
+#include <edo/TestRunner.hpp>
 #include "ggl/math/Vec4.hpp"
-#include "ggl/testing/TestFixture.hpp"
-#include "ggl/testing/TestRunner.hpp"
 namespace Ggl {
 
 
 /**
  * @brief Unit test for Vec4.
  */
-class Vec4Test : public TestFixture {
+class Vec4Test : public Edo::TestFixture {
 public:
     void setUp();
     void testAdd();

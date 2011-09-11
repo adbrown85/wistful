@@ -7,6 +7,7 @@
 #include "ggl/config.h"
 #include "ggl/shader/ShaderLoaderTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void ShaderLoaderTestListener::onWindowOpen(const WindowEvent &e) {
@@ -64,7 +65,7 @@ void ShaderLoaderTestListener::onWindowClose(const WindowEvent &e) {
 /**
  * Ensures a shader can be loaded properly from a file.
  */
-void ShaderLoaderTest::testLoad() {
+void ShaderLoaderTest::run() {
     
     WindowFactory factory;
     Ggl::Window *window = factory.createWindow();
@@ -75,6 +76,10 @@ void ShaderLoaderTest::testLoad() {
 }
 
 /* Run the test. */
-GGL_TEST_SUITE
-GGL_ADD_TEST(testLoad)
-GGL_RUN_TESTS
+int main(int argc, char *argv[]) {
+
+    ShaderLoaderTest test;
+
+    test.run();
+    return 0;
+}
