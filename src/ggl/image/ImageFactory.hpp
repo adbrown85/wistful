@@ -7,9 +7,9 @@
 #ifndef GGL_IMAGEFACTORY_HPP
 #define GGL_IMAGEFACTORY_HPP
 #include "ggl/common.h"
+#include <edo/Text.hpp>
 #include "ggl/image/Image.hpp"
 #include "ggl/image/BitmapReader.hpp"
-#include "ggl/system/Text.hpp"
 namespace Ggl {
 
 

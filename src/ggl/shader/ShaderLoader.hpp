@@ -6,10 +6,11 @@
  */
 #ifndef GGL_SHADERLOADER_HPP
 #define GGL_SHADERLOADER_HPP
+#include "ggl/common.h"
 #include <fstream>
 #include <iomanip>
 #include <set>
-#include "ggl/common.h"
+#include <edo/Text.hpp>
 #include "ggl/shader/ShaderBuilder.hpp"
 #include "ggl/system/Path.hpp"
 namespace Ggl {

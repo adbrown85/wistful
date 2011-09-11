@@ -6,10 +6,10 @@
  */
 #ifndef GGL_PATH_HPP
 #define GGL_PATH_HPP
+#include "ggl/common.h"
 #include <cctype>
 #include <sstream>
-#include "ggl/common.h"
-#include "ggl/system/Text.hpp"
+#include <edo/Text.hpp>
 namespace Ggl {
 
 
