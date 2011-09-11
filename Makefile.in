@@ -152,6 +152,7 @@ $(builddir)/%.d: %.hpp
 	@$(CXX) \
             $(CPPFLAGS) $(CXXFLAGS) \
             -MM ${subst .hpp,.cpp,$<} \
+            | sed 's|\([[:alnum:]]*\)\.o|\1.o build/\1.d|' \
             > $@
 $(builddir)/%.d: %.cxx
 	@echo "  GEN   $@"
@@ -159,7 +160,7 @@ $(builddir)/%.d: %.cxx
 	@$(CXX) \
             $(CPPFLAGS) $(CXXFLAGS) \
             -MM $< \
-            | sed 's|\.o||' \
+            | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
             | sed 's|\.hpp|\.lo|g' \
             | sed 's|[[:alnum:]/]*/||g' \
             > $@
