@@ -29,7 +29,6 @@
  * @defgroup math
  * @defgroup shader
  * @defgroup system
- * @defgroup testing
  * @defgroup texture
  * @defgroup transform
  * @defgroup window
