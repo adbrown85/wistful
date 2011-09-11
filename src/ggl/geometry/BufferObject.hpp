@@ -7,7 +7,6 @@
 #ifndef GGL_BUFFEROBJECT_HPP
 #define GGL_BUFFEROBJECT_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 namespace Ggl {
 
 

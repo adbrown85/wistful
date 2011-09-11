@@ -7,7 +7,6 @@
 #ifndef GGL_PROJECTION_HPP
 #define GGL_PROJECTION_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/math/Mat4.hpp"
 #include "ggl/transform/ProjectionListener.hpp"
 #include "ggl/transform/Viewport.hpp"

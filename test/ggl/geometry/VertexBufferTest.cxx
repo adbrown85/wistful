@@ -6,6 +6,7 @@
  */
 #include "ggl/geometry/VertexBufferTest.hxx"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 void VertexBufferTest::test() {

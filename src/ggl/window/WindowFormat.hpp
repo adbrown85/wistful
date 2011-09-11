@@ -7,7 +7,6 @@
 #ifndef GGL_WINDOWFORMAT_HPP
 #define GGL_WINDOWFORMAT_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 namespace Ggl {
 
 

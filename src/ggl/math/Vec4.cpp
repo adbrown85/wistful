@@ -6,6 +6,7 @@
  */
 #include "ggl/math/Vec4.hpp"
 using namespace Ggl;
+using namespace Edo;
 using namespace std;
 
 /**

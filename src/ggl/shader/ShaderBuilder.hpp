@@ -8,7 +8,6 @@
 #define GGL_SHADERBUILDER_HPP
 #include <vector>
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 namespace Ggl {
 
 

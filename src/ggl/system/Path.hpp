@@ -9,7 +9,6 @@
 #include <cctype>
 #include <sstream>
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/system/Text.hpp"
 namespace Ggl {
 

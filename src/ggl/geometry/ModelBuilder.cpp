@@ -6,6 +6,7 @@
  */
 #include "ggl/geometry/ModelBuilder.hpp"
 using namespace Ggl;
+using namespace Edo;
 using namespace std;
 
 /**

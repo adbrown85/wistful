@@ -6,6 +6,7 @@
  */
 #include "ggl/system/ErrorChecker.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**

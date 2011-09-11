@@ -6,6 +6,7 @@
  */
 #include "ggl/image/Image.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**

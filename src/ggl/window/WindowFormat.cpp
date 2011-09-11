@@ -6,6 +6,7 @@
  */
 #include "ggl/window/WindowFormat.hpp"
 using namespace Ggl;
+using namespace Edo;
 using namespace std;
 
 /**
@@ -39,7 +40,7 @@ WindowFormat::getColorSize() const {
  * Changes the number of bits used for a pixel in the color buffer.
  * 
  * @param colorSize Size of color buffer pixel in bits
- * @throw GglException if size is negative
+ * @throw std::exception if size is negative
  */
 void
 WindowFormat::setColorSize(int colorSize) {
@@ -62,7 +63,7 @@ WindowFormat::getAlphaSize() const {
  * Changes number of bits used for a pixel's alpha component.
  * 
  * @param alphaSize Number of bits to store opacity
- * @throw GglException if size is negative
+ * @throw std::exception if size is negative
  */
 void
 WindowFormat::setAlphaSize(int alphaSize) {
@@ -85,7 +86,7 @@ WindowFormat::getDepthSize() const {
  * Changes the number of bits used for a pixel in the depth buffer. 
  * 
  * @param depthSize Size of depth buffer pixel in bits
- * @throw GglException if size is negative
+ * @throw std::exception if size is negative
  */
 void
 WindowFormat::setDepthSize(int depthSize) {
@@ -117,8 +118,8 @@ WindowFormat::getOpenGLMinorVersion() const {
  * 
  * @param major Major OpenGL version number
  * @param minor Minor OpenGL version number
- * @throw GglException if major number less than 1
- * @throw GglException if minor number less than 0
+ * @throw std::exception if major number less than 1
+ * @throw std::exception if minor number less than 0
  */
 void
 WindowFormat::setOpenGLVersion(int major,

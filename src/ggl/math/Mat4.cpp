@@ -6,6 +6,7 @@
  */
 #include "ggl/math/Mat4.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 namespace Ggl {
 

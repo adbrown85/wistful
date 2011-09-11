@@ -6,6 +6,7 @@
  */
 #include "ggl/texture/Texture.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**

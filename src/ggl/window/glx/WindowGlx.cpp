@@ -6,6 +6,7 @@
  */
 #include "ggl/window/glx/WindowGlx.hpp"
 using namespace Ggl;
+using namespace Edo;
 using namespace std;
 
 PFNGLXCCAA WindowGlx::glXCreateContextAttribsARB = getGlXCCAA();

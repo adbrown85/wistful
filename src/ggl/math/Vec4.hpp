@@ -9,7 +9,6 @@
 #include "ggl/common.h"
 #include <cmath>
 #include <iomanip>
-#include "ggl/Exception.hpp"
 namespace Ggl {
 
 

@@ -6,6 +6,7 @@
  */
 #include "ggl/testing/TestFixture.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**

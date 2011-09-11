@@ -6,6 +6,7 @@
  */
 #include "ggl/system/Path.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**

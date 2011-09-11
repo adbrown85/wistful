@@ -7,7 +7,6 @@
 #ifndef GGL_VERTEXBUFFER_HPP
 #define GGL_VERTEXBUFFER_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/geometry/BufferObject.hpp"
 namespace Ggl {
 

@@ -6,6 +6,7 @@
  */
 #include "ggl/shader/ShaderBuilder.hpp"
 using namespace std;
+using namespace Edo;
 using namespace Ggl;
 
 /**

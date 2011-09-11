@@ -7,7 +7,6 @@
 #ifndef GGL_TEXTURE_HPP
 #define GGL_TEXTURE_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/system/Dimension.hpp"
 namespace Ggl {
 

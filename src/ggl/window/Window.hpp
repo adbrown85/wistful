@@ -7,7 +7,6 @@
 #ifndef GGL_WINDOW_HPP
 #define GGL_WINDOW_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/window/keys.h"
 #include "ggl/window/WindowEvent.hpp"
 #include "ggl/window/WindowListener.hpp"

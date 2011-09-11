@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "ggl/transform/PerspectiveProjection.hpp"
+using namespace Edo;
 using namespace Ggl;
 
 /**

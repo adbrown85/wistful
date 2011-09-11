@@ -6,6 +6,7 @@
  */
 #include "ggl/transform/Viewport.hpp"
 using namespace Ggl;
+using namespace Edo;
 using namespace std;
 
 /**

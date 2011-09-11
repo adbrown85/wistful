@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <set>
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/shader/ShaderBuilder.hpp"
 #include "ggl/system/Path.hpp"
 namespace Ggl {

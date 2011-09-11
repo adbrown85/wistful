@@ -7,7 +7,6 @@
 #ifndef GGL_MODELBUILDER_HPP
 #define GGL_MODELBUILDER_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/geometry/Mesh.hpp"
 #include "ggl/geometry/Model.hpp"
 namespace Ggl {

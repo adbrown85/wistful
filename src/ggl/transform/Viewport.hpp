@@ -7,7 +7,6 @@
 #ifndef GGL_VIEWPORT_HPP
 #define GGL_VIEWPORT_HPP
 #include "ggl/common.h"
-#include "ggl/Exception.hpp"
 #include "ggl/transform/ViewportListener.hpp"
 namespace Ggl {
 

@@ -21,6 +21,7 @@
 #include <GL/glext.h>
 #include <GL/glx.h>
 #endif
+#include <edo/Exception.hpp>
 
 //#ifdef HAVE_CONFIG_H
 #include "ggl/config.h"
