@@ -4,6 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
+#include "ggl/config.h"
 #include "ggl/testing/TestFixture.hpp"
 using namespace std;
 using namespace Edo;

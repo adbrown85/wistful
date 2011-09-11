@@ -23,10 +23,6 @@
 #endif
 #include <edo/Exception.hpp>
 
-//#ifdef HAVE_CONFIG_H
-#include "ggl/config.h"
-//#endif
-
 /**
  * @defgroup geometry
  * @defgroup image

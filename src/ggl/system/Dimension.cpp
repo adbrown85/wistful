@@ -4,6 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
+#include "ggl/config.h"
 #include "ggl/system/Dimension.hpp"
 using namespace std;
 using namespace Ggl;
