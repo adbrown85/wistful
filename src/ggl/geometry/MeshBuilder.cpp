@@ -192,7 +192,10 @@ MeshBuilder::AttributeBin* MeshBuilder::findBin(const string &name,
  */
 bool MeshBuilder::isSupportedType(GLenum type) {
     switch (type) {
-    case GL_TRIANGLES: return true;
+    case GL_LINES:
+    case GL_POINTS:
+    case GL_TRIANGLES:
+        return true;
     default:
         return false;
     }
