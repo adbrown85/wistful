@@ -17,7 +17,7 @@ namespace Ggl {
  */
 class WindowCocoaTest {
 public:
-    void testOpen();
+    void run();
 };
 
 

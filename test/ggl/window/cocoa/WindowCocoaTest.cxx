@@ -44,7 +44,7 @@ void FakeWindowListener::onWindowClose(const WindowEvent &e) {
     cerr << "FakeGglListener::onWindowClose()" << endl;
 }
 
-void WindowCocoaTest::testOpen() {
+void WindowCocoaTest::run() {
     
     WindowFactory factory;
     Window *window = factory.createWindow();
@@ -57,8 +57,9 @@ void WindowCocoaTest::testOpen() {
  * Runs the program.
  */
 int main(int argc, char *argv[]) {
-    
-    Ggl::WindowCocoaTest test;
-    
-    test.testOpen();
+
+    WindowCocoaTest test;
+
+    test.run();
+    return 0;
 }
