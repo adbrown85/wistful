@@ -11,7 +11,7 @@ using namespace std;
 namespace Ggl {
 
 /**
- * @brief Test for GlWindowGlx.
+ * Test for GlWindowGlx.
  */
 class WindowGlxTest {
 public:

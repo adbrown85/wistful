@@ -17,7 +17,7 @@ namespace Ggl {
 
 
 /**
- * @brief Utility for creating windows.
+ * Utility for creating windows.
  */
 class WindowFactory {
 public:

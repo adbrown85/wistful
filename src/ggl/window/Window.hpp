@@ -16,7 +16,7 @@ namespace Ggl {
 
 
 /**
- * @brief Abstract base class for an OpenGL window.
+ * Abstract base class for an OpenGL window.
  * 
  * Because GGL is meant to keep things as simple as possible, currently
  * <i>%GglWindow</i> encompasses both the OpenGL drawing area and the native

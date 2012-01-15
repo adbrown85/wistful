@@ -11,8 +11,9 @@
 #include "ggl/window/Window.hpp"
 namespace Ggl {
 
+
 /**
- * @brief Observer of an application.
+ * Observer of an application.
  */
 class ApplicationListener {
 public:
@@ -23,7 +24,7 @@ public:
 
 
 /**
- * @brief Observer of an OpenGL view.
+ * Observer of an OpenGL view.
  */
 class OpenGLViewListener {
 public:
@@ -37,7 +38,7 @@ public:
 
 
 /**
- * @brief OpenGL window implemented with Cocoa.
+ * OpenGL Window implemented with Cocoa.
  */
 class WindowCocoa : public Window,
                     public ApplicationListener,
@@ -80,6 +81,7 @@ private:
 };
 
 } // namespace Ggl
+
 
 /*
  * Application delegate for window.
