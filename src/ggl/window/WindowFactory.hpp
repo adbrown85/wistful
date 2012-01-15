@@ -27,6 +27,9 @@ public:
     Window* createWindow(const WindowFormat &wf);
 private:
     WindowFormat defaultWindowFormat;
+// Constructors
+    WindowFactory(const WindowFactory&);
+    WindowFactory& operator=(const WindowFactory&);
 };
 
 }

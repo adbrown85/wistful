@@ -96,6 +96,9 @@ private:
     static const int DEFAULT_HEIGHT = 512;
     static const int DEFAULT_X = 25;
     static const int DEFAULT_Y = 25;
+// Constructors
+    Window(const Window&);
+    Window& operator=(const Window&);
 };
 
 }
