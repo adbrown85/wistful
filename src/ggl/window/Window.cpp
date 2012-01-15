@@ -156,7 +156,7 @@ void Ggl::Window::fireKeyEvent(int key) {
     WindowEvent event(this, key);
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
-        (*it)->onKey(event);
+        (*it)->onWindowKey(event);
     }
 }
 
@@ -169,7 +169,7 @@ void Ggl::Window::fireDestroyEvent() {
     WindowEvent event(this);
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
-        (*it)->onDestroy(event);
+        (*it)->onWindowClose(event);
     }
 }
 
@@ -182,7 +182,7 @@ void Ggl::Window::fireDisplayEvent() {
     WindowEvent event(this);
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
-        (*it)->onDisplay(event);
+        (*it)->onWindowPaint(event);
     }
     doFlush();
 }
@@ -196,7 +196,7 @@ void Ggl::Window::fireInitEvent() {
     WindowEvent event(this);
     
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
-        (*it)->onInit(event);
+        (*it)->onWindowOpen(event);
     }
 }
 

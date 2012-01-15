@@ -18,21 +18,18 @@ public:
 
 class FakeWindowListener : public WindowListener {
 public:
-    virtual void onInit(const WindowEvent &e) {
-        cerr << "FakeGglListener::init()" << endl;
+    virtual void onWindowOpen(const WindowEvent &e) {
+        cerr << "FakeGglListener::onWindowOpen()" << endl;
         cerr << glGetString(GL_VERSION) << endl;
         glViewport(0, 0, 512, 512);
     }
-    virtual void onDisplay(const WindowEvent &e) {
-        cerr << "FakeGglListener::display()" << endl;
+    virtual void onWindowPaint(const WindowEvent &e) {
+        cerr << "FakeGglListener::onWindowPaint()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-    virtual void onDestroy(const WindowEvent &e) {
-        cerr << "FakeGglListener::destroy()" << endl;
-    }
-    virtual void onKey(const WindowEvent &e) {
-        cerr << "FakeGglListener::onKey()" << endl;
+    virtual void onWindowKey(const WindowEvent &e) {
+        cerr << "FakeGglListener::onWindowKey()" << endl;
         int trigger = e.getTrigger();
         
         if (trigger == GGL_KEY_a) {
@@ -45,6 +42,9 @@ public:
             cerr << "Escape" << endl;
             e.getWindow()->close();
         }
+    }
+    virtual void onWindowClose(const WindowEvent &e) {
+        cerr << "FakeGglListener::onWindowClose()" << endl;
     }
 };
 

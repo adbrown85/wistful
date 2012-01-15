@@ -18,10 +18,10 @@ class WindowListener {
 public:
     WindowListener();
     virtual ~WindowListener();
-    virtual void onInit(const WindowEvent &e) = 0;
-    virtual void onDisplay(const WindowEvent &e) = 0;
-    virtual void onDestroy(const WindowEvent &e) = 0;
-    virtual void onKey(const WindowEvent &e) = 0;
+    virtual void onWindowOpen(const WindowEvent &e) = 0;
+    virtual void onWindowPaint(const WindowEvent &e) = 0;
+    virtual void onWindowKey(const WindowEvent &e) = 0;
+    virtual void onWindowClose(const WindowEvent &e) = 0;
 };
 
 }
