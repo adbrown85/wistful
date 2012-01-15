@@ -4,6 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
+#include "ggl/config.h"
 #include "ggl/window/glx/ConfigFactoryGlx.hpp"
 using namespace std;
 namespace Ggl {

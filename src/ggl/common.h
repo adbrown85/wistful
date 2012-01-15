@@ -17,8 +17,4 @@
 #include <GL/glx.h>
 #endif
 
-//#ifdef HAVE_CONFIG_H
-#include "ggl/config.h"
-//#endif
-
 #endif

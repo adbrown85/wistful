@@ -4,6 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
+#include "ggl/config.h"
 #include "ggl/window/WindowEvent.hpp"
 using namespace Ggl;
 using namespace std;
