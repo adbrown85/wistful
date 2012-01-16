@@ -37,7 +37,7 @@ public:
 
 
 /**
- * @brief Window implemented with Cocoa.
+ * @brief OpenGL window implemented with Cocoa.
  */
 class WindowCocoa : public Window,
                     public ApplicationListener,

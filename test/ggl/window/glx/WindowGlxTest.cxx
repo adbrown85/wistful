@@ -9,7 +9,9 @@
 using namespace std;
 namespace Ggl {
 
-/** Test for GlWindowGlx. */
+/**
+ * @brief Test for GlWindowGlx.
+ */
 class WindowGlxTest {
 public:
     void testOpen();

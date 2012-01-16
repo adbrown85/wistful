@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * @brief Object that listens to GGL events.
+ * @brief Object that listens for window events.
  */
 class WindowListener {
 public:

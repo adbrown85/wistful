@@ -12,7 +12,7 @@ namespace Ggl {
 
 
 /**
- * Container for settings describing a window configuration.
+ * @brief Container for settings describing a window configuration.
  */
 class WindowFormat {
 public:

@@ -14,7 +14,7 @@ namespace Ggl {
 class Window;
 
 /**
- * Event fired from a window.
+ * @brief Event fired from a window.
  */
 class WindowEvent {
 public:

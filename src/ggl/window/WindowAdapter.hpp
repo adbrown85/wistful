@@ -13,7 +13,7 @@ namespace Ggl {
 
 
 /**
- * @brief Skeletal implementation of WindowListener.
+ * @brief Skeletal implementation of %WindowListener.
  */
 class WindowAdapter : public WindowListener {
 public:
