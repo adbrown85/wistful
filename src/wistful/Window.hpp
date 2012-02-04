@@ -101,5 +101,5 @@ private:
     Window& operator=(const Window&);
 };
 
-}
+} /* namespace Wistful */
 #endif
