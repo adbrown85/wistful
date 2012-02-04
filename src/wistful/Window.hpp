@@ -7,8 +7,8 @@
 #ifndef WISTFUL_WINDOW_HPP
 #define WISTFUL_WINDOW_HPP
 #include "wistful/common.h"
-#include "wistful/WindowException.hpp"
 #include "wistful/keys.h"
+#include "wistful/WindowException.hpp"
 #include "wistful/WindowEvent.hpp"
 #include "wistful/WindowListener.hpp"
 #include "wistful/WindowFormat.hpp"
