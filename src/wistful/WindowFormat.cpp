@@ -40,12 +40,12 @@ WindowFormat::getColorSize() const {
  * Changes the number of bits used for a pixel in the color buffer.
  * 
  * @param colorSize Size of color buffer pixel in bits
- * @throw Exception if size is negative
+ * @throw std::exception if size is negative
  */
 void
 WindowFormat::setColorSize(int colorSize) {
     if (colorSize < 0) {
-        throw Exception("Color size is negative!");
+        throw WindowException("Color size is negative!");
     } else {
         this->colorSize = colorSize;
     }
@@ -63,12 +63,12 @@ WindowFormat::getAlphaSize() const {
  * Changes number of bits used for a pixel's alpha component.
  * 
  * @param alphaSize Number of bits to store opacity
- * @throw Exception if size is negative
+ * @throw std::exception if size is negative
  */
 void
 WindowFormat::setAlphaSize(int alphaSize) {
     if (alphaSize < 0) {
-        throw Exception("Alpha size is negative!");
+        throw WindowException("Alpha size is negative!");
     } else {
         this->alphaSize = alphaSize;
     }
@@ -91,7 +91,7 @@ WindowFormat::getDepthSize() const {
 void
 WindowFormat::setDepthSize(int depthSize) {
     if (depthSize < 0) {
-        throw Exception("Depth size is negative!");
+        throw WindowException("Depth size is negative!");
     } else {
         this->depthSize = depthSize;
     }
@@ -125,9 +125,9 @@ void
 WindowFormat::setOpenGLVersion(int major,
                                int minor) {
     if (major < 1) {
-        throw Exception("Major version less than 1!");
+        throw WindowException("Major version less than 1!");
     } else if (minor < 0) {
-        throw Exception("Minor version less than 0!");
+        throw WindowException("Minor version less than 0!");
     } else {
         this->majorVersion = major;
         this->minorVersion = minor;

@@ -1,32 +1,32 @@
 /*
- * Exception.cpp
+ * WindowException.cpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "wistful/Exception.hpp"
+#include "wistful/WindowException.hpp"
 using namespace Wistful;
 using namespace std;
 
 /**
- * Creates an exception.
+ * Creates a window exception.
  * 
  * @param message Explanation shown to the user
  */
-Exception::Exception(const string &message) throw() {
+WindowException::WindowException(const string &message) throw() {
     this->message = message;
 }
 
 /**
- * Destroys the exception.
+ * Destroys the window exception.
  */
-Exception::~Exception() throw() {
+WindowException::~WindowException() throw() {
     ;
 }
 
 /**
  * Returns the explanation that will be shown to the user.
  */
-const char* Exception::what() const throw() {
+const char* WindowException::what() const throw() {
     return message.c_str();
 }

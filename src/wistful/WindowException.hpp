@@ -1,11 +1,11 @@
 /*
- * Exception.hpp
+ * WindowException.hpp
  * 
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef WISTFUL_EXCEPTION_HPP
-#define WISTFUL_EXCEPTION_HPP
+#ifndef WISTFUL_WINDOWEXCEPTION_HPP
+#define WISTFUL_WINDOWEXCEPTION_HPP
 #include "wistful/common.h"
 namespace Wistful {
 
@@ -13,10 +13,10 @@ namespace Wistful {
 /**
  * @brief Exception thrown from within Wistful.
  */
-class Exception : public std::exception {
+class WindowException : public std::exception {
 public:
-    Exception(const std::string &message) throw();
-    virtual ~Exception() throw();
+    WindowException(const std::string &message) throw();
+    virtual ~WindowException() throw();
     virtual const char* what() const throw();
 private:
     std::string message;

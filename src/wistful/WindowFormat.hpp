@@ -7,7 +7,7 @@
 #ifndef WISTFUL_WINDOWFORMAT_HPP
 #define WISTFUL_WINDOWFORMAT_HPP
 #include "wistful/common.h"
-#include "wistful/Exception.hpp"
+#include "wistful/WindowException.hpp"
 namespace Wistful {
 
 

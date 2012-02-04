@@ -75,7 +75,7 @@ void WindowCocoa::doCreateWindow() throw(exception) {
     attributes = toArray(getWindowFormat());
     pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
     if (pixelFormat == nil) {
-        throw Exception("Could not make pixel format!");
+        throw WindowException("Could not make pixel format!");
     }
     delete[] attributes;
     
@@ -263,13 +263,13 @@ WindowCocoa::toList(const WindowFormat &wf) {
         if (wf.isOpenGLVersion(3, 2)) {
             attributes.push_back(NSOpenGLProfileVersion3_2Core);
         } else {
-            throw Exception("Core profile only supported with OpenGL 3.2!");
+            throw WindowException("Core profile only supported with OpenGL 3.2!");
         }
     } else {
         if (wf.isOpenGLVersion(2, 1)) {
             attributes.push_back(NSOpenGLProfileVersionLegacy);
         } else {
-            throw Exception("Legacy profile should use OpenGL 2.1!");
+            throw WindowException("Legacy profile should use OpenGL 2.1!");
         }
     }
     

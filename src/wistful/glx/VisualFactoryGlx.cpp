@@ -34,7 +34,7 @@ VisualFactoryGlx::createDisplay() throw(exception) {
     Display *display = XOpenDisplay(NULL);
     
     if (display == NULL) {
-        throw Exception("Could not create display!");
+        throw WindowException("Could not create display!");
     }
     return display;
 }

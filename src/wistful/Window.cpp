@@ -84,7 +84,7 @@ void Wistful::Window::activate() throw(exception) {
         doActivateWindow();
     } catch (const exception &e) {
         destroy();
-        throw Exception(e.what());
+        throw WindowException(e.what());
     }
     
     // Successfully activated

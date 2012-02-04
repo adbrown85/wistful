@@ -38,7 +38,7 @@ void WindowGlx::doCreateConnection() throw(exception) {
     display = XOpenDisplay(NULL);
     
     if (display == NULL) {
-        throw Exception("Could not open default display!");
+        throw WindowException("Could not open default display!");
     }
 }
 
@@ -117,7 +117,7 @@ void WindowGlx::doCreateContext() throw(exception) {
     
     // Check if not made correctly
     if (context == NULL) {
-        throw Exception("Could not make OpenGL context!");
+        throw WindowException("Could not make OpenGL context!");
     }
 }
 
@@ -190,7 +190,7 @@ XVisualInfo* WindowGlx::createInfo(const WindowFormat &wf) {
     XVisualInfo *xvi = visualFactory.createVisualInfo(wf);
 
     if (xvi == NULL) {
-        throw Exception("Could not make visual!");
+        throw WindowException("Could not make visual!");
     }
     
     return xvi;
@@ -343,7 +343,7 @@ WindowGlx::ConfigFactoryGlx::create(const map<int,int> &requirements) {
     
     // Validate
     if (len == 0) {
-        throw Exception("No configuration found for requirements!");
+        throw WindowException("No configuration found for requirements!");
     }
     
     // Copy the first config

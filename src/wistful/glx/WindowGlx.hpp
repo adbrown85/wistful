@@ -7,7 +7,7 @@
 #ifndef WISTFUL_WINDOWGLX_HPP
 #define WISTFUL_WINDOWGLX_HPP
 #include "wistful/common.h"
-#include "wistful/Exception.hpp"
+#include "wistful/WindowException.hpp"
 #include "wistful/Window.hpp"
 #include "wistful/glx/VisualFactoryGlx.hpp"
 #include "wistful/WindowFormat.hpp"
