@@ -34,8 +34,14 @@ Wistful::Window::~Window() {
 
 /**
  * Adds an object that will be notified of events.
+ *
+ * @param listener Listener to register
+ * @throw std::exception if listener is NULL
  */
 void Wistful::Window::addWindowListener(WindowListener *listener) {
+    if (listener == NULL) {
+        throw WindowException("Listener is NULL!");
+    }
     windowListeners.push_back(listener);
 }
 
