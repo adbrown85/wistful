@@ -12,9 +12,9 @@ using namespace std;
 /**
  * Creates a window from a format.
  *
- * @param wf Configuration of window
+ * @param format Configuration of window
  */
-Wistful::Window::Window(const WindowFormat &wf) {
+Wistful::Window::Window(const WindowFormat &format) {
     this->activated = false;
     this->created = false;
     this->destroyed = false;
@@ -22,7 +22,7 @@ Wistful::Window::Window(const WindowFormat &wf) {
     this->height = DEFAULT_HEIGHT;
     this->x = DEFAULT_X;
     this->y = DEFAULT_Y;
-    this->windowFormat = wf;
+    this->windowFormat = format;
 }
 
 /**
