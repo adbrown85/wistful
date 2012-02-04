@@ -1,0 +1,36 @@
+/*
+ * WindowFactory.hpp
+ * 
+ * Author
+ *     Andrew Brown <adb1413@rit.edu>
+ */
+#ifndef WISTFUL_WINDOWFACTORY_HPP
+#define WISTFUL_WINDOWFACTORY_HPP
+#include "wistful/common.h"
+#include "wistful/window/Window.hpp"
+#if defined(HAVE_COCOA)
+#include "wistful/window/cocoa/WindowCocoa.hpp"
+#elif defined(HAVE_GLX)
+#include "wistful/window/glx/WindowGlx.hpp"
+#endif
+namespace Wistful {
+
+
+/**
+ * Utility for creating windows.
+ */
+class WindowFactory {
+public:
+    WindowFactory();
+    virtual ~WindowFactory();
+    Window* createWindow();
+    Window* createWindow(const WindowFormat &wf);
+private:
+    WindowFormat defaultWindowFormat;
+// Constructors
+    WindowFactory(const WindowFactory&);
+    WindowFactory& operator=(const WindowFactory&);
+};
+
+}
+#endif

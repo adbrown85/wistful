@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@/wistful
+
+Name: libwistful
+Description: Simple cross-platform windowing library for OpenGL
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lwistful
+Cflags: -I${includedir}

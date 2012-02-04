@@ -17,9 +17,9 @@ config.log
 config.status
 configure
 configure.scan
-ggl.pc
+wistful.pc
 doc/
 install-sh
 Makefile
-libggl.so.*
+libwistful.so.*
 ltmain.sh

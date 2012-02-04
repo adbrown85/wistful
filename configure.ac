@@ -2,16 +2,16 @@
 AC_PREREQ([2.67])
 
 # Initialize package information
-define([MY_NAME], [ggl])
+define([MY_NAME], [wistful])
 define([MY_MAJOR_VERSION], [0])
 define([MY_MINOR_VERSION], [1])
 define([MY_VERSION], MY_MAJOR_VERSION.MY_MINOR_VERSION)
 define([MY_EMAIL], [adb1413@rit.edu])
-define([MY_URL], [http://github.com/adbrown85/ggl])
+define([MY_URL], [http://github.com/adbrown85/wistful])
 AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL, , MY_URL)
 AC_SUBST([PACKAGE_MAJOR_VERSION], MY_MAJOR_VERSION)
 AC_SUBST([PACKAGE_MINOR_VERSION], MY_MINOR_VERSION)
-AC_CONFIG_SRCDIR([src/ggl/common.h])
+AC_CONFIG_SRCDIR([src/wistful/common.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Check for system
@@ -63,13 +63,13 @@ fi
 
 # Set up exclusions
 if test "$host_vendor" = 'apple'; then
-    AC_SUBST([EXCLUSIONS], [ggl/window/glx])
+    AC_SUBST([EXCLUSIONS], [wistful/window/glx])
 else
-    AC_SUBST([EXCLUSIONS], [ggl/window/cocoa])
+    AC_SUBST([EXCLUSIONS], [wistful/window/cocoa])
 fi
 
 # Finish
-AC_CONFIG_FILES([ggl.pc Makefile])
+AC_CONFIG_FILES([wistful.pc Makefile])
 AC_OUTPUT
 
 # Report
