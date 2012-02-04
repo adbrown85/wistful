@@ -265,7 +265,6 @@ void Wistful::Window::setLocation(int x, int y) {
 /**
  * Returns copy of configuration used to create window.
  */
-WindowFormat
-Wistful::Window::getWindowFormat() const {
+WindowFormat Wistful::Window::getWindowFormat() const {
     return windowFormat;
 }
