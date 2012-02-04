@@ -45,10 +45,10 @@ void FakeWindowListener::onWindowClose(const WindowEvent &e) {
 }
 
 void WindowCocoaTest::run() {
-    
+
     WindowFactory factory;
     Window *window = factory.createWindow();
-    
+
     window->addWindowListener(new FakeWindowListener());
     Window::open(window);
 }

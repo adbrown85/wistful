@@ -1,6 +1,6 @@
 /*
  * WindowGlxTest.cxx
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -49,15 +49,15 @@ public:
 
 /** Ensures window can be opened. */
 void Wistful::WindowGlxTest::testOpen() {
-    
+
     WindowFactory factory;
     Window *window = factory.createWindow();
-    
+
     window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addWindowListener(new FakeWindowListener());
     Window::open(window);
-    
+
     cerr << "End of Wistful::WindowGlxTest::testOpen()" << endl;
 }
 
@@ -65,8 +65,8 @@ void Wistful::WindowGlxTest::testOpen() {
 
 /** Runs the test. */
 int main(int argc, char *argv[]) {
-    
+
     Wistful::WindowGlxTest test;
-    
+
     test.testOpen();
 }

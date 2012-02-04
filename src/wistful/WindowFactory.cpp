@@ -1,6 +1,6 @@
 /*
  * WindowFactory.cpp
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -25,7 +25,7 @@ WindowFactory::~WindowFactory() {
 
 /**
  * Creates a window.
- * 
+ *
  * @return Pointer to the new window
  */
 Wistful::Window* WindowFactory::createWindow() {
@@ -38,7 +38,7 @@ Wistful::Window* WindowFactory::createWindow() {
 
 /**
  * Creates a window.
- * 
+ *
  * @param wf Format to use for the window
  * @return Pointer to the new window
  */

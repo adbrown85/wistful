@@ -1,6 +1,6 @@
 /*
  * WindowFormat.cpp
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -38,7 +38,7 @@ WindowFormat::getColorSize() const {
 
 /**
  * Changes the number of bits used for a pixel in the color buffer.
- * 
+ *
  * @param colorSize Size of color buffer pixel in bits
  * @throw std::exception if size is negative
  */
@@ -61,7 +61,7 @@ WindowFormat::getAlphaSize() const {
 
 /**
  * Changes number of bits used for a pixel's alpha component.
- * 
+ *
  * @param alphaSize Number of bits to store opacity
  * @throw std::exception if size is negative
  */
@@ -83,8 +83,8 @@ WindowFormat::getDepthSize() const {
 }
 
 /**
- * Changes the number of bits used for a pixel in the depth buffer. 
- * 
+ * Changes the number of bits used for a pixel in the depth buffer.
+ *
  * @param depthSize Size of depth buffer pixel in bits
  * @throw GglException if size is negative
  */
@@ -115,7 +115,7 @@ WindowFormat::getOpenGLMinorVersion() const {
 
 /**
  * Changes the OpenGL version.
- * 
+ *
  * @param major Major OpenGL version number
  * @param minor Minor OpenGL version number
  * @throw GglException if major number less than 1
@@ -136,7 +136,7 @@ WindowFormat::setOpenGLVersion(int major,
 
 /**
  * Checks if an OpenGL version matches the format's version.
- * 
+ *
  * @param major OpenGL major version number
  * @param minor OpenGL minor version number
  * @return <tt>true</tt> if the versions match
@@ -157,7 +157,7 @@ WindowFormat::isOpenGLCoreProfile() const {
 
 /**
  * Changes whether to use the OpenGL core profile.
- * 
+ *
  * @param coreProfile <tt>true</tt> to use the core profile
  */
 void

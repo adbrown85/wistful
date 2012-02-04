@@ -1,6 +1,6 @@
 /*
  * WindowException.cpp
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -10,7 +10,7 @@ using namespace std;
 
 /**
  * Creates a window exception.
- * 
+ *
  * @param message Explanation shown to the user
  */
 WindowException::WindowException(const string &message) throw() {

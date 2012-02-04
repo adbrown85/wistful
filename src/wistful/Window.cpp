@@ -1,6 +1,6 @@
 /*
  * Window.cpp
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -11,7 +11,7 @@ using namespace std;
 
 /**
  * Creates a window from a format.
- * 
+ *
  * @param wf Configuration of window
  */
 Wistful::Window::Window(const WindowFormat &wf) {
@@ -67,17 +67,17 @@ void Wistful::Window::open(Window *window) {
 
 /**
  * Shows the window.
- * 
+ *
  * @throw std::exception if cannot activate native window
  * @throw std::exception if cannot activate OpenGL context
  */
 void Wistful::Window::activate() throw(exception) {
-    
+
     // Guard against bad requests
     if (!created || activated || destroyed) {
         return;
     }
-    
+
     // Try to activate objects
     try {
         doActivateContext();
@@ -86,28 +86,28 @@ void Wistful::Window::activate() throw(exception) {
         destroy();
         throw WindowException(e.what());
     }
-    
+
     // Successfully activated
     activated = true;
 }
 
 /**
  * Creates the window.
- * 
+ *
  * @throw std::exception if cannot make connection to windowing system
  * @throw std::exception if cannot make native window
  * @throw std::exception if cannot make OpenGL context
  */
 void Wistful::Window::create() throw(exception) {
-    
+
     // Guard against bad requests
     if (created || destroyed) {
         return;
     }
-    
+
     // Try to make connection
     doCreateConnection();
-    
+
     // Try to make window
     try {
         doCreateWindow();
@@ -115,7 +115,7 @@ void Wistful::Window::create() throw(exception) {
         doDestroyConnection();
         throw;
     }
-    
+
     // Try to make context
     try {
         doCreateContext();
@@ -124,7 +124,7 @@ void Wistful::Window::create() throw(exception) {
         doDestroyConnection();
         throw;
     }
-    
+
     // Successfully created
     created = true;
 }
@@ -133,17 +133,17 @@ void Wistful::Window::create() throw(exception) {
  * Destroys the window.
  */
 void Wistful::Window::destroy() {
-    
+
     // Guard against bad requests
     if (!created || destroyed) {
         return;
     }
-    
+
     // Destroy everything
     doDestroyContext();
     doDestroyWindow();
     doDestroyConnection();
-    
+
     // Successfully closed
     destroyed = true;
 }
@@ -152,10 +152,10 @@ void Wistful::Window::destroy() {
  * Sends a key event to all listeners.
  */
 void Wistful::Window::fireKeyEvent(int key) {
-    
+
     list<WindowListener*>::iterator it;
     WindowEvent event(this, key);
-    
+
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onWindowKey(event);
     }
@@ -165,10 +165,10 @@ void Wistful::Window::fireKeyEvent(int key) {
  * Sends a destroy event to all listeners.
  */
 void Wistful::Window::fireDestroyEvent() {
-    
+
     list<WindowListener*>::iterator it;
     WindowEvent event(this);
-    
+
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onWindowClose(event);
     }
@@ -178,10 +178,10 @@ void Wistful::Window::fireDestroyEvent() {
  * Sends a display event to all listeners.
  */
 void Wistful::Window::fireDisplayEvent() {
-    
+
     list<WindowListener*>::iterator it;
     WindowEvent event(this);
-    
+
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onWindowPaint(event);
     }
@@ -192,10 +192,10 @@ void Wistful::Window::fireDisplayEvent() {
  * Sends an initialize event to all listeners.
  */
 void Wistful::Window::fireInitEvent() {
-    
+
     list<WindowListener*>::iterator it;
     WindowEvent event(this);
-    
+
     for (it=windowListeners.begin(); it!=windowListeners.end(); ++it) {
         (*it)->onWindowOpen(event);
     }

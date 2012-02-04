@@ -1,6 +1,6 @@
 /*
  * VisualFactoryGlx.cpp
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -18,7 +18,7 @@ VisualFactoryGlx::~VisualFactoryGlx() {
 
 XVisualInfo*
 VisualFactoryGlx::createVisualInfo(const WindowFormat &wf) {
- 
+
     int *attributes = toArray(wf);
 
     return glXChooseVisual(display, 0, attributes);
@@ -30,9 +30,9 @@ VisualFactoryGlx::createVisualInfo(const WindowFormat &wf) {
 
 Display*
 VisualFactoryGlx::createDisplay() throw(exception) {
-    
+
     Display *display = XOpenDisplay(NULL);
-    
+
     if (display == NULL) {
         throw WindowException("Could not create display!");
     }
@@ -41,13 +41,13 @@ VisualFactoryGlx::createDisplay() throw(exception) {
 
 int*
 VisualFactoryGlx::toArray(const WindowFormat &wf) {
- 
+
     list<int> attributes = toList(wf);
     list<int>::iterator li;
     int len = attributes.size() + 1;
     int *arr;
     int i;
- 
+
     // Allocate
     arr = new int[len];
     arr[len - 1] = NULL;
@@ -64,10 +64,10 @@ VisualFactoryGlx::toArray(const WindowFormat &wf) {
 
 list<int>
 VisualFactoryGlx::toList(const WindowFormat &wf) {
- 
+
     list<int> L;
     int colorComponentSize = wf.getColorSize() / 8;
- 
+
     L.push_back(GLX_RGBA);
     L.push_back(GLX_DOUBLEBUFFER);
     L.push_back(GLX_RED_SIZE);
@@ -83,4 +83,3 @@ VisualFactoryGlx::toList(const WindowFormat &wf) {
 
     return L;
 }
-
