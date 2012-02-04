@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "wistful/window/WindowEvent.hpp"
+#include "wistful/WindowEvent.hpp"
 using namespace Wistful;
 using namespace std;
 

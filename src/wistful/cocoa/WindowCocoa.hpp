@@ -8,7 +8,7 @@
 #define WISTFUL_WINDOWCOCOA_HPP
 #include "wistful/common.h"
 #import <Cocoa/Cocoa.h>
-#include "wistful/window/Window.hpp"
+#include "wistful/Window.hpp"
 namespace Wistful {
 
 

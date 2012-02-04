@@ -7,8 +7,8 @@
 #ifndef WISTFUL_WINDOWCOCOATEST_HXX
 #define WISTFUL_WINDOWCOCOATEST_HXX
 #include "wistful/common.h"
-#include "wistful/window/Window.hpp"
-#include "wistful/window/WindowFactory.hpp"
+#include "wistful/Window.hpp"
+#include "wistful/WindowFactory.hpp"
 namespace Wistful {
 
 

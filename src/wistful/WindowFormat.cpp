@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "wistful/window/WindowFormat.hpp"
+#include "wistful/WindowFormat.hpp"
 using namespace Wistful;
 using namespace std;
 

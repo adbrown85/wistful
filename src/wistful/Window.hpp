@@ -8,10 +8,10 @@
 #define WISTFUL_WINDOW_HPP
 #include "wistful/common.h"
 #include "wistful/Exception.hpp"
-#include "wistful/window/keys.h"
-#include "wistful/window/WindowEvent.hpp"
-#include "wistful/window/WindowListener.hpp"
-#include "wistful/window/WindowFormat.hpp"
+#include "wistful/keys.h"
+#include "wistful/WindowEvent.hpp"
+#include "wistful/WindowListener.hpp"
+#include "wistful/WindowFormat.hpp"
 namespace Wistful {
 
 

@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "wistful/window/glx/ConfigFactoryGlx.hpp"
+#include "wistful/glx/ConfigFactoryGlx.hpp"
 using namespace std;
 namespace Wistful {
 

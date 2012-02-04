@@ -4,7 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#include "wistful/window/glx/VisualFactoryGlx.hpp"
+#include "wistful/glx/VisualFactoryGlx.hpp"
 using namespace Wistful;
 using namespace std;
 

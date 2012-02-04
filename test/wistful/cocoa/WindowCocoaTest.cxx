@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "wistful/window/cocoa/WindowCocoaTest.hxx"
+#include "wistful/cocoa/WindowCocoaTest.hxx"
 using namespace std;
 using namespace Wistful;
 

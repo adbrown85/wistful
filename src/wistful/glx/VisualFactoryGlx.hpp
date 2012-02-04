@@ -8,7 +8,7 @@
 #define WISTFUL_VISUALFACTORYGLX_HPP
 #include "wistful/common.h"
 #include "wistful/Exception.hpp"
-#include "wistful/window/WindowFormat.hpp"
+#include "wistful/WindowFormat.hpp"
 namespace Wistful {
 
 

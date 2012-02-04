@@ -7,11 +7,11 @@
 #ifndef WISTFUL_WINDOWFACTORY_HPP
 #define WISTFUL_WINDOWFACTORY_HPP
 #include "wistful/common.h"
-#include "wistful/window/Window.hpp"
+#include "wistful/Window.hpp"
 #if defined(HAVE_COCOA)
-#include "wistful/window/cocoa/WindowCocoa.hpp"
+#include "wistful/cocoa/WindowCocoa.hpp"
 #elif defined(HAVE_GLX)
-#include "wistful/window/glx/WindowGlx.hpp"
+#include "wistful/glx/WindowGlx.hpp"
 #endif
 namespace Wistful {
 

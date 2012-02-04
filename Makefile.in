@@ -21,13 +21,11 @@ exclusions   := ${addsuffix /,@EXCLUSIONS@}
 srcmods      := ${filter-out ${addprefix $(srcdir)/,$(exclusions)}, \
                     $(srcdir)/ \
                     ${filter %/,${wildcard $(srcdir)/*/}} \
-                    ${filter %/,${wildcard $(srcdir)/*/*/}} \
-                    ${filter %/,${wildcard $(srcdir)/*/*/*/}}}
+                    ${filter %/,${wildcard $(srcdir)/*/*/}}}
 testmods     := ${filter-out ${addprefix $(testdir)/,$(exclusions)}, \
                     $(testdir)/ \
                     ${filter %/,${wildcard $(testdir)/*/}} \
-                    ${filter %/,${wildcard $(testdir)/*/*/}} \
-                    ${filter %/,${wildcard $(testdir)/*/*/*/}}}
+                    ${filter %/,${wildcard $(testdir)/*/*/}}}
 VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
 pkgcfgdir    := $(libdir)/pkgconfig
 

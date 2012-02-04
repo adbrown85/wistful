@@ -63,9 +63,9 @@ fi
 
 # Set up exclusions
 if test "$host_vendor" = 'apple'; then
-    AC_SUBST([EXCLUSIONS], [wistful/window/glx])
+    AC_SUBST([EXCLUSIONS], [wistful/glx])
 else
-    AC_SUBST([EXCLUSIONS], [wistful/window/cocoa])
+    AC_SUBST([EXCLUSIONS], [wistful/cocoa])
 fi
 
 # Finish

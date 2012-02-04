@@ -8,9 +8,9 @@
 #define WISTFUL_WINDOWGLX_HPP
 #include "wistful/common.h"
 #include "wistful/Exception.hpp"
-#include "wistful/window/Window.hpp"
-#include "wistful/window/glx/VisualFactoryGlx.hpp"
-#include "wistful/window/WindowFormat.hpp"
+#include "wistful/Window.hpp"
+#include "wistful/glx/VisualFactoryGlx.hpp"
+#include "wistful/WindowFormat.hpp"
 namespace Wistful {
 
 typedef PFNGLXCREATECONTEXTATTRIBSARBPROC PFNGLXCCAA;

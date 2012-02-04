@@ -7,7 +7,7 @@
 #ifndef WISTFUL_WINDOWLISTENER_HPP
 #define WISTFUL_WINDOWLISTENER_HPP
 #include "wistful/common.h"
-#include "wistful/window/WindowEvent.hpp"
+#include "wistful/WindowEvent.hpp"
 namespace Wistful {
 
 

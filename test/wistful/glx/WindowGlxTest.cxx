@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "wistful/window/WindowFactory.hpp"
+#include "wistful/WindowFactory.hpp"
 #include <iostream>
 using namespace std;
 namespace Wistful {

@@ -7,8 +7,8 @@
 #ifndef WISTFUL_WINDOWADAPTER_HPP
 #define WISTFUL_WINDOWADAPTER_HPP
 #include "wistful/common.h"
-#include "wistful/window/Window.hpp"
-#include "wistful/window/WindowListener.hpp"
+#include "wistful/Window.hpp"
+#include "wistful/WindowListener.hpp"
 namespace Wistful {
 
 
