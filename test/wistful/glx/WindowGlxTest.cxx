@@ -38,15 +38,15 @@ public:
      */
     virtual void onWindowKey(const WindowEvent &e) {
         switch (e.getTrigger()) {
-        case GGL_KEY_ESCAPE:
-            cerr << "GGL_KEY_ESCAPE" << endl;
+        case WISTFUL_KEY_ESCAPE:
+            cerr << "WISTFUL_KEY_ESCAPE" << endl;
             e.getWindow()->close();
             break;
-        case GGL_KEY_A:
-            cerr << "GGL_KEY_A" << endl;
+        case WISTFUL_KEY_A:
+            cerr << "WISTFUL_KEY_A" << endl;
             break;
-        case GGL_KEY_a:
-            cerr << "GGL_KEY_a" << endl;
+        case WISTFUL_KEY_a:
+            cerr << "WISTFUL_KEY_a" << endl;
             break;
         }
     }
