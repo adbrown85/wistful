@@ -7,27 +7,35 @@
 #include "config.h"
 #include "wistful/WindowFactory.hpp"
 #include <iostream>
+using namespace Wistful;
 using namespace std;
-namespace Wistful {
+
 
 /**
- * Test for GlWindowGlx.
+ * Observer of the window.
  */
-class WindowGlxTest {
-public:
-    void testOpen();
-};
-
 class FakeWindowListener : public WindowListener {
 public:
+
+    /**
+     * Responds to the window opening.
+     */
     virtual void onWindowOpen(const WindowEvent &e) {
         cerr << "FakeWistfulListener::onWindowOpen()" << endl;
     }
+
+    /**
+     * Responds to the window being painted.
+     */
     virtual void onWindowPaint(const WindowEvent &e) {
         cerr << "FakeWistfulListener::onWindowPaint()" << endl;
         glClearColor(0, 1, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
     }
+
+    /**
+     * Responds to a key being pressed in the window.
+     */
     virtual void onWindowKey(const WindowEvent &e) {
         switch (e.getTrigger()) {
         case GGL_KEY_ESCAPE:
@@ -42,31 +50,28 @@ public:
             break;
         }
     }
+
+    /**
+     * Responds to the window being closed.
+     */
     virtual void onWindowClose(const WindowEvent &e) {
         cerr << "FakeWistfulListener::onWindowClose()" << endl;
     }
 };
 
-/** Ensures window can be opened. */
-void Wistful::WindowGlxTest::testOpen() {
+
+/**
+ * Runs the test.
+ */
+int main(int argc, char *argv[]) {
 
     WindowFactory factory;
-    Window *window = factory.createWindow();
+    Wistful::Window *window = factory.createWindow();
 
     window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addWindowListener(new FakeWindowListener());
-    Window::open(window);
+    Wistful::Window::open(window);
 
     cerr << "End of Wistful::WindowGlxTest::testOpen()" << endl;
-}
-
-} // End of namespace Wistful
-
-/** Runs the test. */
-int main(int argc, char *argv[]) {
-
-    Wistful::WindowGlxTest test;
-
-    test.testOpen();
 }
