@@ -6,8 +6,8 @@
  */
 #include "config.h"
 #include "wistful/WindowAdapter.hpp"
-using namespace std;
 using namespace Wistful;
+using namespace std;
 
 /**
  * Constructs a window adapter.
