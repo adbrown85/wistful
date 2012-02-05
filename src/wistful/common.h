@@ -7,9 +7,7 @@
 #ifndef WISTFUL_COMMON_H
 #define WISTFUL_COMMON_H
 #include <cstdlib>
-#include <iostream>
-#include <list>
-#include <map>
+#include <exception>
 #ifdef __APPLE__
 #define GL3_PROTOTYPES
 #include <OpenGL/gl3.h>

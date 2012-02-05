@@ -6,6 +6,7 @@
  */
 #include "config.h"
 #include "wistful/cocoa/WindowCocoaTest.hxx"
+#include <iostream>
 using namespace std;
 using namespace Wistful;
 

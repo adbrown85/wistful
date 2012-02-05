@@ -6,6 +6,7 @@
  */
 #ifndef WISTFUL_VISUALFACTORYGLX_HPP
 #define WISTFUL_VISUALFACTORYGLX_HPP
+#include <list>
 #include "wistful/common.h"
 #include "wistful/WindowException.hpp"
 #include "wistful/WindowFormat.hpp"

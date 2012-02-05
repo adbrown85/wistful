@@ -7,6 +7,7 @@
 #ifndef WISTFUL_WINDOWEXCEPTION_HPP
 #define WISTFUL_WINDOWEXCEPTION_HPP
 #include "wistful/common.h"
+#include <string>
 namespace Wistful {
 
 

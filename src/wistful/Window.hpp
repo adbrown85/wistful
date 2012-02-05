@@ -6,6 +6,7 @@
  */
 #ifndef WISTFUL_WINDOW_HPP
 #define WISTFUL_WINDOW_HPP
+#include <list>
 #include "wistful/common.h"
 #include "wistful/keys.h"
 #include "wistful/WindowException.hpp"

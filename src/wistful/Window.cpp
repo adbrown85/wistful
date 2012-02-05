@@ -6,6 +6,7 @@
  */
 #include "config.h"
 #include "wistful/Window.hpp"
+#include <iostream>
 using namespace Wistful;
 using namespace std;
 
