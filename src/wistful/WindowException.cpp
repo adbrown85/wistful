@@ -4,6 +4,7 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
+#include "config.h"
 #include "wistful/WindowException.hpp"
 using namespace Wistful;
 using namespace std;
