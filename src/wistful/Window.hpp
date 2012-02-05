@@ -52,7 +52,7 @@ public:
     virtual ~Window();
     void addWindowListener(WindowListener *listener);
     void close();
-    static void open(Window *window);
+    void open();
 // Getters and setters
     int getWidth() const;
     int getHeight() const;

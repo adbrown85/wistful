@@ -54,14 +54,14 @@ void Wistful::Window::close() {
 }
 
 /**
- * Shows a window and begins sending events.
+ * Shows the window and begins sending events.
  */
-void Wistful::Window::open(Window *window) {
+void Wistful::Window::open() {
     try {
-        window->create();
-        window->activate();
-        window->run();
-        window->destroy();
+        create();
+        activate();
+        run();
+        destroy();
     } catch (const exception &e) {
         cerr << e.what() << endl;
         exit(1);

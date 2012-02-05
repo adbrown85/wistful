@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
     window->setLocation(50, 50);
     window->setSize(640, 480);
     window->addWindowListener(new FakeWindowListener());
-    Wistful::Window::open(window);
+    window->open();
 
     cerr << "End of Wistful::WindowGlxTest::testOpen()" << endl;
 }

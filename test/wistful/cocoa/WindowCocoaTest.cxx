@@ -73,6 +73,6 @@ int main(int argc, char *argv[]) {
     Window *window = factory.createWindow();
 
     window->addWindowListener(new FakeWindowListener());
-    Window::open(window);
+    window->open();
     return 0;
 }
