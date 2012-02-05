@@ -12,7 +12,7 @@ namespace Wistful {
 
 
 /**
- * @brief Exception thrown from within Wistful.
+ * Exception thrown from within Wistful.
  */
 class WindowException : public std::exception {
 public:
