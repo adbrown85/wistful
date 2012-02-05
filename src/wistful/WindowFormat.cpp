@@ -81,7 +81,7 @@ int WindowFormat::getDepthSize() const {
  * Changes the number of bits used for a pixel in the depth buffer.
  *
  * @param depthSize Size of depth buffer pixel in bits
- * @throw GglException if size is negative
+ * @throw std::exception if size is negative
  */
 void WindowFormat::setDepthSize(int depthSize) {
     if (depthSize < 0) {
@@ -110,8 +110,8 @@ int WindowFormat::getOpenGLMinorVersion() const {
  *
  * @param major Major OpenGL version number
  * @param minor Minor OpenGL version number
- * @throw GglException if major number less than 1
- * @throw GglException if minor number less than 0
+ * @throw std::exception if major number less than 1
+ * @throw std::exception if minor number less than 0
  */
 void WindowFormat::setOpenGLVersion(int major, int minor) {
     if (major < 1) {
