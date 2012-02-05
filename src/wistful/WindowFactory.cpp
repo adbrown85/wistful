@@ -39,14 +39,14 @@ Wistful::Window* WindowFactory::createWindow() {
 /**
  * Creates a window.
  *
- * @param wf Format to use for the window
+ * @param format Format to use for the window
  * @return Pointer to the new window
  */
 Wistful::Window*
-WindowFactory::createWindow(const WindowFormat &wf) {
+WindowFactory::createWindow(const WindowFormat &format) {
 #if defined(HAVE_COCOA)
-    return new WindowCocoa(wf);
+    return new WindowCocoa(format);
 #elif defined(HAVE_GLX)
-    return new WindowGlx(wf);
+    return new WindowGlx(format);
 #endif
 }

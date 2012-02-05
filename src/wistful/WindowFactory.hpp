@@ -24,7 +24,7 @@ public:
     WindowFactory();
     virtual ~WindowFactory();
     Window* createWindow();
-    Window* createWindow(const WindowFormat &wf);
+    Window* createWindow(const WindowFormat &format);
 private:
     WindowFormat defaultWindowFormat;
 // Constructors
