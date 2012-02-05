@@ -80,5 +80,5 @@ private:
     static const int* toArray(const std::map<int,int> &m);
 };
 
-}
+} /* namespace Wistful */
 #endif

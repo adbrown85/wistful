@@ -47,5 +47,5 @@ private:
     static const bool DEFAULT_CORE_PROFILE = true;
 };
 
-}
+} /* namespace Wistful */
 #endif

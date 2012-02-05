@@ -23,5 +23,5 @@ private:
     std::string message;
 };
 
-}
+} /* namespace Wistful */
 #endif

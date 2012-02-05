@@ -24,5 +24,5 @@ public:
     virtual void onWindowClose(const WindowEvent &e) = 0;
 };
 
-}
+} /* namespace Wistful */
 #endif

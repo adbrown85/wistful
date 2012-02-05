@@ -80,7 +80,7 @@ private:
     WindowCocoa& operator=(const WindowCocoa&);
 };
 
-} // namespace Wistful
+} /* namespace Wistful */
 
 
 /*

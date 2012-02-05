@@ -26,5 +26,5 @@ private:
     static std::list<int> toList(const WindowFormat &wf);
 };
 
-} // namespace Wistful
-#endif // WISTFUL_VISUALFACTORYGLX_HPP
+} /* namespace Wistful */
+#endif

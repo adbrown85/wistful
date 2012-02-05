@@ -32,5 +32,5 @@ private:
     WindowFactory& operator=(const WindowFactory&);
 };
 
-}
+} /* namespace Wistful */
 #endif

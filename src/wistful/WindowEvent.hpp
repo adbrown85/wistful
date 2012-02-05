@@ -27,5 +27,5 @@ private:
     GLuint trigger;
 };
 
-}
+} /* namespace Wistful */
 #endif
